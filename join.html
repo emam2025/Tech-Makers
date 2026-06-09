@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>انضم الينا — Tech Makers Egypt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="logo.png" alt="TKA Logo" class="brand-logo" />
+        <span class="brand-name">TKA-Egypt</span>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html">الرئيسية</a>
+        <a href="about.html">من نحن</a>
+        <a href="certificate.html">التحقق من الشهادة</a>
+        <a href="join.html">انضم الينا</a>
+      </nav>
+      <a href="join.html" class="header-cta">
+        <span class="header-tag">انضم لفريق العمل</span>
+      </a>
+    </div>
+    <div class="funding-strip">
+      <span class="funding-dot"></span>
+      مدعوم جزئياً من <strong>TKA-Egypt</strong>
+    </div>
+  </header>
+
+  <!-- JOIN HERO -->
+  <section class="join-hero">
+    <div class="container">
+      <span class="section-eyebrow">انضم الينا</span>
+      <h1 class="join-hero-title">كن جزءاً من فريق Tech Makers</h1>
+      <p class="join-hero-sub">نبحث عن أشخاص شغوفين بالتعليم والتكنولوجيا للانضمام إلى فريقنا المتنامي</p>
+    </div>
+  </section>
+
+  <!-- WHY JOIN -->
+  <section class="why-join">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">لماذا Tech Makers؟</span>
+        <h2 class="section-title">فرص متميزة لتطوير مسيرتك المهنية</h2>
+      </div>
+      <div class="why-join-grid">
+        <div class="why-join-card">
+          <div class="why-join-icon">🌱</div>
+          <h4>بيئة عمل مرنة</h4>
+          <p>عمل عن بُعد بمرونة في الأوقات يناسب الطلاب والخريجين</p>
+        </div>
+        <div class="why-join-card">
+          <div class="why-join-icon">📚</div>
+          <h4>تدريب مستمر</h4>
+          <p>برامج تدريبية وتطوير مهني مستمر للموظفين</p>
+        </div>
+        <div class="why-join-card">
+          <div class="why-join-icon">🤝</div>
+          <h4>فريق شغوف</h4>
+          <p>العمل مع فريق متميز يؤمن بأهمية التعليم والتكنولوجيا</p>
+        </div>
+        <div class="why-join-card">
+          <div class="why-join-icon">🚀</div>
+          <h4>نمو مهني</h4>
+          <p>فرص للترقي والنمو داخل المؤسسة</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTRATION FORMS -->
+  <section class="join-forms">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">نموذج التسجيل</span>
+        <h2 class="section-title">اختر الدور المناسب لك</h2>
+        <p class="section-sub">اختر التخصص الذي يناسب خبراتك ومهاراتك</p>
+      </div>
+
+      <!-- TABS -->
+      <div class="form-tabs">
+        <button class="form-tab active" data-tab="trainer">👨‍🏫 مدرب</button>
+        <button class="form-tab" data-tab="specialist">🧑‍⚕️ اخصائي</button>
+        <button class="form-tab" data-tab="admin">📋 اداري</button>
+      </div>
+
+      <!-- TRAINER FORM -->
+      <div class="form-panel active" id="trainer">
+        <div class="form-card">
+          <div class="form-header">
+            <h3>نموذج تسجيل المدربين</h3>
+            <p>أكمل البيانات التالية للتقديم على وظيفة المدرب</p>
+          </div>
+          <form class="registration-form" id="trainerForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="trainer-name">الاسم الكامل *</label>
+                <input type="text" id="trainer-name" placeholder="أدخل اسمك الكامل" required />
+              </div>
+              <div class="form-group">
+                <label for="trainer-email">البريد الإلكتروني *</label>
+                <input type="email" id="trainer-email" placeholder="example@email.com" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="trainer-phone">رقم الهاتف *</label>
+                <input type="tel" id="trainer-phone" placeholder="+20 1XX XXX XXXX" required />
+              </div>
+              <div class="form-group">
+                <label for="trainer-country">الدولة *</label>
+                <select id="trainer-country" required>
+                  <option value="">اختر الدولة</option>
+                  <option value="egypt">مصر</option>
+                  <option value="jordan">الأردن</option>
+                  <option value="saudi">السعودية</option>
+                  <option value="kuwait">الكويت</option>
+                  <option value="uae">الإمارات</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="trainer-specialty">التخصص *</label>
+                <select id="trainer-specialty" required>
+                  <option value="">اختر التخصص</option>
+                  <option value="programming">برمجة (Python / Scratch)</option>
+                  <option value="web">تطوير الويب</option>
+                  <option value="ai">ذكاء اصطناعي</option>
+                  <option value="mobile">تطوير تطبيقات الموبايل</option>
+                  <option value="iot"> إنترنت الأشياء (IoT)</option>
+                  <option value="data">تحليل البيانات</option>
+                  <option value="other">أخرى</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="trainer-experience">سنوات الخبرة *</label>
+                <select id="trainer-experience" required>
+                  <option value="">اختر مستوى الخبرة</option>
+                  <option value="0-1">أقل من سنة</option>
+                  <option value="1-3">1-3 سنوات</option>
+                  <option value="3-5">3-5 سنوات</option>
+                  <option value="5+">أكثر من 5 سنوات</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="trainer-portfolio">رابط ملف الأعمال (Portfolio) / LinkedIn</label>
+              <input type="url" id="trainer-portfolio" placeholder="https://" />
+            </div>
+            <div class="form-group">
+              <label for="trainer-bio">نبذة عنك *</label>
+              <textarea id="trainer-bio" rows="4" placeholder="أخبرنا عن خبراتك ومهاراتك ولماذا تريد الانضمام لفريق Tech Makers" required></textarea>
+            </div>
+            <button type="submit" class="form-submit">إرسال الطلب</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- SPECIALIST FORM -->
+      <div class="form-panel" id="specialist">
+        <div class="form-card">
+          <div class="form-header">
+            <h3>نموذج تسجيل الإخصائيين</h3>
+            <p>أكمل البيانات التالية للتقديم على وظيفة الإخصائي السلوكي</p>
+          </div>
+          <form class="registration-form" id="specialistForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="spec-name">الاسم الكامل *</label>
+                <input type="text" id="spec-name" placeholder="أدخل اسمك الكامل" required />
+              </div>
+              <div class="form-group">
+                <label for="spec-email">البريد الإلكتروني *</label>
+                <input type="email" id="spec-email" placeholder="example@email.com" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="spec-phone">رقم الهاتف *</label>
+                <input type="tel" id="spec-phone" placeholder="+20 1XX XXX XXXX" required />
+              </div>
+              <div class="form-group">
+                <label for="spec-country">الدولة *</label>
+                <select id="spec-country" required>
+                  <option value="">اختر الدولة</option>
+                  <option value="egypt">مصر</option>
+                  <option value="jordan">الأردن</option>
+                  <option value="saudi">السعودية</option>
+                  <option value="kuwait">الكويت</option>
+                  <option value="uae">الإمارات</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="spec-type">نوع التخصص *</label>
+                <select id="spec-type" required>
+                  <option value="">اختر نوع التخصص</option>
+                  <option value="behavioral">إخصائي سلوكي</option>
+                  <option value="educational">إخصائي إرشادي</option>
+                  <option value="counselor">مرشد نفسي</option>
+                  <option value="other">أخرى</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="spec-experience">سنوات الخبرة *</label>
+                <select id="spec-experience" required>
+                  <option value="">اختر مستوى الخبرة</option>
+                  <option value="0-1">أقل من سنة</option>
+                  <option value="1-3">1-3 سنوات</option>
+                  <option value="3-5">3-5 سنوات</option>
+                  <option value="5+">أكثر من 5 سنوات</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="spec-certificate">الشهادات المهنية</label>
+              <textarea id="spec-certificate" rows="3" placeholder="اذكر الشهادات المهنية التي تمتلكها"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="spec-bio">نبذة عنك *</label>
+              <textarea id="spec-bio" rows="4" placeholder="أخبرنا عن خبراتك ومهاراتك ولماذا تريد الانضمام لفريق Tech Makers" required></textarea>
+            </div>
+            <button type="submit" class="form-submit">إرسال الطلب</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ADMIN FORM -->
+      <div class="form-panel" id="admin">
+        <div class="form-card">
+          <div class="form-header">
+            <h3>نموذج تسجيل الإداريين</h3>
+            <p>أكمل البيانات التالية للتقديم على وظائف الإدارة</p>
+          </div>
+          <form class="registration-form" id="adminForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="admin-name">الاسم الكامل *</label>
+                <input type="text" id="admin-name" placeholder="أدخل اسمك الكامل" required />
+              </div>
+              <div class="form-group">
+                <label for="admin-email">البريد الإلكتروني *</label>
+                <input type="email" id="admin-email" placeholder="example@email.com" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="admin-phone">رقم الهاتف *</label>
+                <input type="tel" id="admin-phone" placeholder="+20 1XX XXX XXXX" required />
+              </div>
+              <div class="form-group">
+                <label for="admin-country">الدولة *</label>
+                <select id="admin-country" required>
+                  <option value="">اختر الدولة</option>
+                  <option value="egypt">مصر</option>
+                  <option value="jordan">الأردن</option>
+                  <option value="saudi">السعودية</option>
+                  <option value="kuwait">الكويت</option>
+                  <option value="uae">الإمارات</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="admin-dept">القسم *</label>
+                <select id="admin-dept" required>
+                  <option value="">اختر القسم</option>
+                  <option value="hr">الموارد البشرية</option>
+                  <option value="marketing">التسويق والمبيعات</option>
+                  <option value="support">خدمة العملاء</option>
+                  <option value="finance">المالية</option>
+                  <option value="tech">الدعم الفني</option>
+                  <option value="other">أخرى</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="admin-experience">سنوات الخبرة *</label>
+                <select id="admin-experience" required>
+                  <option value="">اختر مستوى الخبرة</option>
+                  <option value="0-1">أقل من سنة</option>
+                  <option value="1-3">1-3 سنوات</option>
+                  <option value="3-5">3-5 سنوات</option>
+                  <option value="5+">أكثر من 5 سنوات</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="admin-portfolio">LinkedIn</label>
+              <input type="url" id="admin-portfolio" placeholder="https://linkedin.com/in/yourname" />
+            </div>
+            <div class="form-group">
+              <label for="admin-bio">نبذة عنك *</label>
+              <textarea id="admin-bio" rows="4" placeholder="أخبرنا عن خبراتك ومهاراتك ولماذا تريد الانضمام لفريق Tech Makers" required></textarea>
+            </div>
+            <button type="submit" class="form-submit">إرسال الطلب</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT INFO -->
+  <section class="contact-info">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">تواصل معنا</span>
+        <h2 class="section-title">أو تواصل معنا مباشرة</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-icon">📧</div>
+          <h4>البريد الإلكتروني</h4>
+          <a href="mailto:info@techmakers.eg">info@techmakers.eg</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">📱</div>
+          <h4>واتساب</h4>
+          <a href="https://wa.me/20XXXXXXXXXX">+20 1XX XXX XXXX</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">🌐</div>
+          <h4>السوشيال ميديا</h4>
+          <a href="#">@TechMakersEgypt</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="logo.png" alt="TKA Logo" class="footer-logo" />
+        <span class="brand-name">TKA-Egypt</span>
+      </div>
+      <div class="footer-text">
+        <p>© 2026 Tech Makers Egypt — Sharpen your Knowledge</p>
+        <p class="footer-funding">بفضل الدعم الجزئي من TKA-Egypt 💙</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Tab switching
+    document.querySelectorAll('.form-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Form submission
+    document.querySelectorAll('.registration-form').forEach(form => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('شكراً لك! تم استلام طلبك وسنتواصل معك قريباً.');
+        form.reset();
+      });
+    });
+  </script>
+
+</body>
+</html>

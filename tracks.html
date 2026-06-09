@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المسارات التعليمية — Tech Makers Egypt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="logo.png" alt="TKA Logo" class="brand-logo" />
+        <span class="brand-name">TKA-Egypt</span>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html">الرئيسية</a>
+        <a href="about.html">من نحن</a>
+        <a href="certificate.html">التحقق من الشهادة</a>
+        <a href="join.html">انضم الينا</a>
+      </nav>
+      <a href="join.html" class="header-cta">
+        <span class="header-tag">انضم لفريق العمل</span>
+      </a>
+    </div>
+    <div class="funding-strip">
+      <span class="funding-dot"></span>
+      مدعوم جزئياً من <strong>TKA-Egypt</strong>
+    </div>
+  </header>
+
+  <!-- SPACE JOURNEY (Hidden by default, shown on track selection) -->
+  <section class="space-journey" id="space-journey" style="display: none;">
+    <div class="space-bg">
+      <div class="stars"></div>
+      <div class="stars2"></div>
+      <div class="stars3"></div>
+    </div>
+    <div class="container">
+      <!-- JOURNEY PROGRESS -->
+      <div class="journey-progress">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-steps" id="progressSteps">
+          <div class="progress-step active" data-step="1">
+            <div class="step-dot">1</div>
+            <span>البرمجة</span>
+          </div>
+          <div class="progress-step" data-step="2">
+            <div class="step-dot">2</div>
+            <span>تطوير الويب</span>
+          </div>
+          <div class="progress-step" data-step="3">
+            <div class="step-dot">3</div>
+            <span>Python والـ AI</span>
+          </div>
+          <div class="progress-step" data-step="4">
+            <div class="step-dot">4</div>
+            <span>أساسيات الـ AI</span>
+          </div>
+          <div class="progress-step" data-step="5">
+            <div class="step-dot">5</div>
+            <span>التخصص</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- YEAR LABEL -->
+      <div class="year-label" id="yearLabel">
+        <span class="year-badge">السنة الأولى — Foundation Year</span>
+      </div>
+
+      <!-- JOURNEY STEPS -->
+      <div class="journey-steps">
+        <!-- Step 1 -->
+        <div class="journey-step active" id="journeyStep1">
+          <div class="rocket-animation">
+            <div class="rocket">🚀</div>
+            <div class="rocket-trail"></div>
+          </div>
+          <div class="journey-content">
+            <div class="step-badge" id="step1Badge">المرحلة 1</div>
+            <h2 class="journey-title" id="step1Title"></h2>
+            <p class="journey-desc" id="step1Desc"></p>
+            <div class="journey-gains" id="step1Gains"></div>
+            <div class="journey-achievement" id="step1Achievement"></div>
+            <button class="journey-next-btn" onclick="nextStep(2)">التالي ←</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="journey-step" id="journeyStep2">
+          <div class="planet-animation">
+            <div class="planet">🪐</div>
+          </div>
+          <div class="journey-content">
+            <div class="step-badge" id="step2Badge">المرحلة 2</div>
+            <h2 class="journey-title" id="step2Title"></h2>
+            <p class="journey-desc" id="step2Desc"></p>
+            <div class="journey-gains" id="step2Gains"></div>
+            <div class="journey-achievement" id="step2Achievement"></div>
+            <div class="journey-nav">
+              <button class="journey-prev-btn" onclick="prevStep(1)">→ السابق</button>
+              <button class="journey-next-btn" onclick="nextStep(3)">التالي ←</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="journey-step" id="journeyStep3">
+          <div class="satellite-animation">
+            <div class="satellite">🛰️</div>
+          </div>
+          <div class="journey-content">
+            <div class="step-badge" id="step3Badge">المرحلة 3</div>
+            <h2 class="journey-title" id="step3Title"></h2>
+            <p class="journey-desc" id="step3Desc"></p>
+            <div class="journey-gains" id="step3Gains"></div>
+            <div class="journey-achievement" id="step3Achievement"></div>
+            <div class="journey-nav">
+              <button class="journey-prev-btn" onclick="prevStep(2)">→ السابق</button>
+              <button class="journey-next-btn" onclick="nextStep(4)">التالي ←</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="journey-step" id="journeyStep4">
+          <div class="celebration-animation">
+            <div class="celebration">🏆</div>
+            <div class="confetti"></div>
+          </div>
+          <div class="journey-content">
+            <div class="step-badge" id="step4Badge">المرحلة 4</div>
+            <h2 class="journey-title" id="step4Title"></h2>
+            <p class="journey-desc" id="step4Desc"></p>
+            <div class="journey-gains" id="step4Gains"></div>
+            <div class="journey-achievement journey-achievement-final" id="step4Achievement"></div>
+            <div class="journey-nav">
+              <button class="journey-prev-btn" onclick="prevStep(3)">→ السابق</button>
+              <button class="journey-next-btn" onclick="nextStep(5)">التالي ←</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="journey-step" id="journeyStep5">
+          <div class="rocket-animation">
+            <div class="rocket">🛸</div>
+          </div>
+          <div class="journey-content">
+            <div class="step-badge" id="step5Badge">المرحلة 5</div>
+            <h2 class="journey-title" id="step5Title"></h2>
+            <p class="journey-desc" id="step5Desc"></p>
+            <div class="journey-gains" id="step5Gains"></div>
+            <div class="journey-achievement" id="step5Achievement"></div>
+            <div class="journey-nav">
+              <button class="journey-prev-btn" onclick="prevStep(4)">→ السابق</button>
+              <a href="#plans" class="journey-next-btn" onclick="showPlans()">عرض الباقات ←</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANS SECTION (shown after journey) -->
+  <section class="plans" id="plans" style="display: none;">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">📌 خطط الاشتراك المتاحة</span>
+        <p class="section-sub">تقدر تختار نظام الاشتراك الأنسب لك من بين الخطط التالية:</p>
+      </div>
+
+      <div class="plans-grid">
+
+        <article class="plan">
+          <div class="plan-head">
+            <div class="plan-emoji">✅</div>
+            <h3 class="plan-name">اشتراك شهري</h3>
+          </div>
+          <div class="plan-price">
+            <span class="price-amount">1200</span>
+            <span class="price-currency">جنيه</span>
+            <span class="price-period">/ شهر</span>
+          </div>
+          <div class="plan-tag plan-tag-green">مناسب للتجربة - البرايفت سيشن</div>
+          <a href="register.html?plan=monthly" class="plan-btn plan-register">اشترك الآن</a>
+        </article>
+
+        <article class="plan plan-popular">
+          <div class="plan-ribbon">⭐ الأكثر اختيارًا</div>
+          <div class="plan-head">
+            <div class="plan-emoji">✅</div>
+            <h3 class="plan-name">اشتراك ربع سنوي</h3>
+          </div>
+          <div class="plan-price">
+            <span class="price-amount">890</span>
+            <span class="price-currency">جنيه</span>
+            <span class="price-period">/ شهريًا</span>
+          </div>
+          <div class="plan-total">اجمالي 2670 جنيه لكل 3 شهور <span class="plan-save">(ستوفر 930 جنيه)</span></div>
+          <a href="register.html?plan=quarterly" class="plan-btn plan-register">اشترك دلوقتي</a>
+        </article>
+
+        <article class="plan plan-elite">
+          <div class="plan-ribbon ribbon-elite">🏆 الأوفر</div>
+          <div class="plan-head">
+            <div class="plan-emoji">✅</div>
+            <h3 class="plan-name">اشتراك سنوي</h3>
+          </div>
+          <div class="plan-price">
+            <span class="price-amount">690</span>
+            <span class="price-currency">جنيه</span>
+            <span class="price-period">/ شهريًا</span>
+          </div>
+          <div class="plan-total">اجمالي 8280 جنيه سنويًا <span class="plan-save">(ستوفر 6120 جنيه)</span></div>
+          <a href="register.html?plan=yearly" class="plan-btn plan-btn-elite plan-register">اشترك سنوي</a>
+        </article>
+
+      </div>
+
+      <div class="plans-footnote">
+        <p>🎯 <strong>ميزة الاشتراك السنوي:</strong> الاشتراك السنوي بيوفر لك 6120 جنيه مقارنة بالاشتراك الشهري، وده مش مجرد توفير مالي، لكنه كمان استثمار في استمرارية تعليم أفضل وخطة أوضح لابنك على مدار السنة.</p>
+      </div>
+      <div class="plans-footnote" style="margin-top: 14px;">
+        <p>✅ <strong>رسوم تسجيل إدارية</strong> 200 جنيه تدفع لمرة واحدة</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="logo.png" alt="TKA Logo" class="footer-logo" />
+        <span class="brand-name">TKA-Egypt</span>
+      </div>
+      <div class="footer-text">
+        <p>© 2026 Tech Makers Egypt — Sharpen your Knowledge</p>
+        <p class="footer-funding">بفضل الدعم الجزئي من TKA-Egypt 💙</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const trackData = {
+      a: {
+        totalSteps: 4,
+        yearLabels: ["السنة الأولى — رحلة الاكتشاف"],
+        steps: [
+          {
+            title: "الطالب هيلعب... ويلعب... ويلعب!",
+            desc: "بس المرة دي، هو اللي بيصمم اللعبة. في المستوى ده بنخلي طفلك يحب التكنولوجيا من غير أي خوف أو ملل.",
+            gains: [
+              "🕹️ يصمم ألعابه الخاصة على الكمبيوتر",
+              "🧩 يحل المشكلات بذكاء بدل الحفظ",
+              "📝 يحول أفكاره لمشاريع يشوفها بعينه",
+              "💪 يكتسب ثقة كبيرة في نفسه"
+            ],
+            achievement: "بنهاية المستوى: طفلك هيقولك 'أنا اللي عملت اللعبة دي!' بفخر 🏅"
+          },
+          {
+            title: "ابنك هيبقى مصمم تطبيقات صغير!",
+            desc: "بنقله من 'بيستخدم التطبيقات' لـ'بيصممها'. دلوقتي طفلك يقدر يبني تطبيق موبايل خاص بيه ويفهم واجهة المستخدم.",
+            gains: [
+              "📱 يصمم تطبيق موبايل كامل من الصفر",
+              "🎨 يحترف أسس التصميم والألوان والخطوط",
+              "🤖 يستخدم أدوات الذكاء الاصطناعي بشكل إبداعي",
+              "🎤 يقدّم مشروعه قدام الناس بثقة"
+            ],
+            achievement: "بنهاية المستوى: ممكن يعرض تطبيقه على الموبايل بتاعه! 🏅"
+          },
+          {
+            title: "بيبدأ يكتب أكواد زي المبرمجين الكبار",
+            desc: "هنا اللحظة المهمة — طفلك هيتعلم لغة Python الحقيقية ويفهم إزاي المواقع شغالة. بأساليب مبسطة ومناسبة لسنه.",
+            gains: [
+              "💻 يكتب برامج بنفسه بلغة حقيقية",
+              "🌐 يبني أول موقع شخصي ليه على الإنترنت",
+              "🔍 يتعلم يستخدم AI كأداة ذكية للتعلم",
+              "🧠 يصبر على حل المشاكل ولا يستسلم"
+            ],
+            achievement: "بنهاية المستوى: طفلك يقدر يقول 'أنا مبرمج!' بجدية 🏅"
+          },
+          {
+            title: "التخرج! أول مشروع كامل لطفلك",
+            desc: "المستوى الأخير — طفلك بيجمع كل اللي اتعلمه في مشروع تخرج حقيقي يستخدم فيه الذكاء الاصطناعي.",
+            gains: [
+              "🤖 يبني أداة ذكاء اصطناعي بنفسه",
+              "📋 يخطط لمشروع كامل من الصفر للنهاية",
+              "👥 يشتغل ضمن فريق مع زملاءه",
+              "🎯 يقدّم مشروعه قدام لجنة تقييم"
+            ],
+            achievement: "بنهاية السنة: طفلك جاهز يدخل التخصص اللي يحبه بثقة 🎓"
+          }
+        ]
+      },
+      b: {
+        totalSteps: 4,
+        yearLabels: ["السنة الأولى — رحلة الاحتراف"],
+        steps: [
+          {
+            title: "ابنك هيبدأ يفكر زي المبرمجين",
+            desc: "بيبدأ يتعلم يفكر بطريقة منظمة، يكتب كود حقيقي بلغة Python، ويتعامل مع الأدوات اللي بيستخدمها المحترفين.",
+            gains: [
+              "💻 يكتب برامج حقيقية بلغة Python",
+              "🧠 يفكر بطريقة المبرمج المحترف",
+              "🛠️ يستخدم أدوات المطورين المحترفين",
+              "📁 يدير ملفاته ومشاريعه باحتراف"
+            ],
+            achievement: "بنهاية المستوى: ابنك هيبدأ يبني أدوات عملية تفيده في حياته 🏅"
+          },
+          {
+            title: "بيصمم موقعه على الإنترنت!",
+            desc: "ابنك هيبني أول موقع شخصي ليه ويبدأ يفهم تجربة المستخدم والتصميم، كأنه مالك منتج تقني حقيقي.",
+            gains: [
+              "🌐 يبني موقع ويب كامل يستعرض أعماله",
+              "🎨 يفهم أساسيات التصميم وتجربة المستخدم",
+              "📱 يصمم صفحات تعمل على الموبايل والكمبيوتر",
+              "🏷️ يبني هويته البصرية الشخصية"
+            ],
+            achievement: "بنهاية المستوى: ابنك يقدر يشارك أعماله مع العالم أونلاين 🏅"
+          },
+          {
+            title: "بيستخدم الذكاء الاصطناعي زي المحترفين",
+            desc: "ابنك هيبدأ يستخدم أدوات الـ AI بشكل احترافي ويبني أدوات ذكية تحل مشاكل حقيقية، ويفهم قواعد البيانات.",
+            gains: [
+              "🤖 يبني مساعد ذكاء اصطناعي خاص بيه",
+              "⚙️ يصمم أدوات تنفذ مهام بشكل أوتوماتيك",
+              "📊 يفهم تنظيم البيانات وقواعد البيانات",
+              "🔬 يبحث ويحل المشكلات بشكل مستقل"
+            ],
+            achievement: "بنهاية المستوى: ابنك بيستخدم التكنولوجيا عشان يبتكر مش بس يستخدم 🏅"
+          },
+          {
+            title: "هوية تقنية حقيقية قبل التخرج",
+            desc: "ابنك بيبني ملف أعماله الاحترافي على GitHub، وبيفهم سوق العمل التقني، وبيبدأ يفكر في مساراته المهنية المستقبلية.",
+            gains: [
+              "💼 يبني Portfolio احترافي على GitHub",
+              "🚀 ينشر مشاريعه على الإنترنت",
+              "🧭 يفهم المسارات المهنية في التكنولوجيا",
+              "🤝 يطور مهارات التواصل والعرض المهني"
+            ],
+            achievement: "بنهاية السنة: ابنك جاهز للسنة التخصصية وهوية تقنية قوية تميزه 🎓"
+          }
+        ]
+      },
+      c: {
+        totalSteps: 5,
+        yearLabels: ["السنة الأولى — Foundation Year", "السنة الثانية — Specialization Year"],
+        yearBreak: 4,
+        steps: [
+          {
+            title: "Level 1: Programming & Computer Science Foundations",
+            desc: "بناء عقلية المبرمج وفهم طريقة عمل البرمجيات. يتعلم الطالب Computational Thinking, Algorithms, Flowcharts, Problem Solving, و Python Fundamentals.",
+            gains: [
+              "✅ Variables, Conditions, Loops, Functions",
+              "✅ Lists, Dictionaries, Debugging",
+              "🛠️ أدوات المطور: VS Code, Terminal, Git Basics",
+              "🎮 المشاريع: نظام اختبارات، ألعاب منطقية، أدوات أتمتة بسيطة"
+            ],
+            achievement: "بنهاية المستوى: كتابة برامج حقيقية + تحليل المشاكل بطريقة منظمة + فهم أساسيات البرمجة 🏅"
+          },
+          {
+            title: "Level 2: Web Development & Digital Products",
+            desc: "تعليم الطالب كيف تتحول الفكرة إلى منتج رقمي. أساسيات المواقع电子信息 والتصميم وتجربة المستخدم UI/UX.",
+            gains: [
+              "🌐 HTML, CSS, JavaScript Basics",
+              "🎨 التفكير كصانع منتجات رقمية",
+              "📱 بناء تجربة مستخدم جيدة",
+              "🌐 المشاريع: موقع شخصي، صفحة منتج، مشروع ويب تفاعلي"
+            ],
+            achievement: "بنهاية المستوى: بناء صفحات ويب حقيقية + فهم طريقة تصميم المنتجات الرقمية + إنشاء أول Portfolio 🏅"
+          },
+          {
+            title: "Level 3: Python Development & AI Tools",
+            desc: "الانتقال من كتابة الأكواد إلى بناء أدوات ذكية. Python Intermediate, APIs, JSON, Automation, File Handling, Prompt Engineering, AI Workflows.",
+            gains: [
+              "🤖 Prompt Engineering, AI Productivity",
+              "⚙️ APIs, JSON, Automation, File Handling",
+              "📊 تنظيم البيانات وقواعد البيانات",
+              "🤖 المشاريع: AI Assistant, Smart Automation Tool, Student Management System"
+            ],
+            achievement: "بنهاية المستوى: بناء أدوات عملية + استخدام الذكاء الاصطناعي بذكاء + ربط البرمجة بحلول واقعية 🏅"
+          },
+          {
+            title: "Level 4: AI Engineering Foundations",
+            desc: "تجهيز الطالب لاختيار تخصصه وبناء مشاريع أقوى. أساسيات الذكاء الاصطناعي + طريقة عمل الأنظمة الذكية + تكامل الأدوات والـ APIs.",
+            gains: [
+              "🧠 أساسيات الذكاء الاصطناعي وطريقة عمل الأنظمة الذكية",
+              "🔗 تكامل الأدوات والـ APIs",
+              "💼 GitHub Portfolio + Presentation Skills + Career Awareness",
+              "🚀 المشروع النهائي: Graduation Project"
+            ],
+            achievement: "بنهاية السنة الأولى: امتلاك مشروع متكامل + معرفة كيف يعمل مهندس التكنولوجيا + جاهزية للانتقال للتخصص 🎓"
+          },
+          {
+            title: "السنة التخصصية: اختر مسارك",
+            desc: "اختر التخصص اللي يناسبك وابدأ بناء مهاراتك المتقدمة. 4 مسارات متاحة: AI Engineering, Full Stack Development, Mobile App Development, Data & Analytics.",
+            gains: [
+              "🚀 AI Engineering: بناء تطبيقات وحلول تعتمد على الذكاء الاصطناعي",
+              "🌐 Full Stack Development: تطبيقات ويب كاملة (Frontend + Backend + Databases)",
+              "📱 Mobile App Development: صناعة تطبيقات الهاتف",
+              "📊 Data & Analytics: تحويل البيانات لقرارات"
+            ],
+            achievement: "بنهاية الرحلة: مشاريع حقيقية + Portfolio + خبرة عملية + عقلية مطور + رؤية واضحة لمستقبله التقني 🏆"
+          }
+        ]
+      }
+    };
+
+    let currentTrack = '';
+    let currentStep = 1;
+
+    // Check URL for track parameter
+    function getTrackFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('track');
+    }
+
+    // Auto-start journey if track is specified in URL
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlTrack = getTrackFromURL();
+      if (urlTrack && trackData[urlTrack]) {
+        currentTrack = urlTrack;
+        startJourney();
+      } else {
+        // If no track specified, show space journey with first track
+        currentTrack = 'a';
+        startJourney();
+      }
+    });
+
+    function startJourney() {
+      const track = trackData[currentTrack];
+      
+      document.getElementById('space-journey').style.display = 'block';
+      document.getElementById('plans').style.display = 'none';
+      
+      // Update progress steps based on track
+      updateProgressSteps(track);
+      
+      // Populate step 1
+      populateStep(1);
+      
+      // Scroll to journey
+      document.getElementById('space-journey').scrollIntoView({ behavior: 'smooth' });
+      
+      // Start animation
+      setTimeout(() => {
+        document.querySelector('.rocket').classList.add('launch');
+      }, 500);
+    }
+
+    function updateProgressSteps(track) {
+      const progressSteps = document.getElementById('progressSteps');
+      const totalSteps = track.totalSteps;
+      
+      let html = '';
+      for (let i = 1; i <= totalSteps; i++) {
+        const isActive = i === 1 ? 'active' : '';
+        html += `
+          <div class="progress-step ${isActive}" data-step="${i}">
+            <div class="step-dot">${i}</div>
+            <span>${getStepLabel(i, track)}</span>
+          </div>
+        `;
+      }
+      progressSteps.innerHTML = html;
+    }
+
+    function getStepLabel(step, track) {
+      if (track === trackData.c) {
+        const labels = ['البرمجة', 'تطوير الويب', 'Python والـ AI', 'أساسيات الـ AI', 'التخصص'];
+        return labels[step - 1] || `المرحلة ${step}`;
+      }
+      const labels = ['الانطلاق', 'الاكتشاف', 'البناء', 'الإنجاز'];
+      return labels[step - 1] || `المرحلة ${step}`;
+    }
+
+    function populateStep(step) {
+      const track = trackData[currentTrack];
+      const data = track.steps[step - 1];
+      const totalSteps = track.totalSteps;
+      
+      // Update badge
+      const badge = document.getElementById(`step${step}Badge`);
+      if (track.yearBreak && step <= track.yearBreak) {
+        badge.textContent = `السنة الأولى - المستوى ${step}`;
+      } else if (track.yearBreak && step > track.yearBreak) {
+        badge.textContent = `السنة التخصصية`;
+      } else {
+        badge.textContent = `المرحلة ${step} من ${totalSteps}`;
+      }
+      
+      document.getElementById(`step${step}Title`).textContent = data.title;
+      document.getElementById(`step${step}Desc`).textContent = data.desc;
+      
+      let gainsHTML = '<ul>';
+      data.gains.forEach(gain => {
+        gainsHTML += `<li>${gain}</li>`;
+      });
+      gainsHTML += '</ul>';
+      document.getElementById(`step${step}Gains`).innerHTML = gainsHTML;
+      
+      document.getElementById(`step${step}Achievement`).textContent = data.achievement;
+      
+      // Update year label
+      const yearLabel = document.getElementById('yearLabel');
+      if (track.yearBreak && step > track.yearBreak) {
+        yearLabel.innerHTML = `<span class="year-badge year-badge-2">${track.yearLabels[1]}</span>`;
+      } else {
+        yearLabel.innerHTML = `<span class="year-badge">${track.yearLabels[0]}</span>`;
+      }
+      
+      // Update progress bar
+      document.getElementById('progressFill').style.width = `${(step / totalSteps) * 100}%`;
+      
+      // Update progress steps
+      document.querySelectorAll('.progress-step').forEach((s, i) => {
+        s.classList.remove('active', 'completed');
+        if (i + 1 < step) s.classList.add('completed');
+        if (i + 1 === step) s.classList.add('active');
+      });
+    }
+
+    function nextStep(step) {
+      document.querySelectorAll('.journey-step').forEach(s => s.classList.remove('active'));
+      document.getElementById(`journeyStep${step}`).classList.add('active');
+      
+      populateStep(step);
+      
+      document.getElementById(`journeyStep${step}`).scrollIntoView({ behavior: 'smooth' });
+      
+      currentStep = step;
+    }
+
+    function prevStep(step) {
+      nextStep(step);
+    }
+
+    function showPlans() {
+      document.getElementById('space-journey').style.display = 'none';
+      document.getElementById('plans').style.display = 'block';
+      document.getElementById('plans').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Append current track to all register links
+    document.addEventListener('DOMContentLoaded', function() {
+      const params = new URLSearchParams(window.location.search);
+      const track = params.get('track');
+      if (track) {
+        document.querySelectorAll('.plan-register').forEach(function(link) {
+          var href = link.getAttribute('href');
+          link.setAttribute('href', href + '&track=' + track);
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تسجيل الطالب — Tech Makers Egypt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .register-section {
+      padding: 60px 0 100px;
+      background:
+        radial-gradient(ellipse 60% 70% at 50% 0%, rgba(30, 58, 138, 0.04) 0%, transparent 70%),
+        linear-gradient(180deg, var(--off-white) 0%, #eef2ff 100%);
+      min-height: 80vh;
+    }
+    .register-box {
+      max-width: 780px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      border: 1.5px solid var(--line);
+      box-shadow: var(--shadow-md);
+    }
+    .register-selection {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .register-selection .sel-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .register-selection label {
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--royal-blue-deep);
+    }
+    .register-selection select {
+      padding: 12px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      background: var(--white);
+      transition: border-color 0.2s ease;
+      cursor: pointer;
+    }
+    .register-selection select:focus {
+      outline: none;
+      border-color: var(--royal-blue);
+      box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+    }
+    .register-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .register-form .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .register-form .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .register-form .form-group.full {
+      grid-column: 1 / -1;
+    }
+    .register-form label {
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--royal-blue-deep);
+    }
+    .register-form input,
+    .register-form select {
+      padding: 12px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--white);
+      transition: border-color 0.2s ease;
+    }
+    .register-form input:focus,
+    .register-form select:focus {
+      outline: none;
+      border-color: var(--royal-blue);
+      box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+    }
+    .register-form input[type="tel"] { direction: ltr; text-align: right; }
+    .register-note {
+      background: rgba(251, 191, 36, 0.1);
+      border: 1.5px solid rgba(251, 191, 36, 0.25);
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin-top: 8px;
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.8;
+    }
+    .register-note strong { color: var(--royal-blue-deep); }
+    .register-submit {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-blue-light) 100%);
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 18px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      margin-top: 8px;
+    }
+    .register-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(30, 58, 138, 0.3);
+    }
+    @media (max-width: 480px) {
+      .register-box { padding: 28px 20px; }
+      .register-selection { grid-template-columns: 1fr; }
+      .register-form .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="logo.png" alt="TKA Logo" class="brand-logo" />
+        <span class="brand-name">TKA-Egypt</span>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html">الرئيسية</a>
+        <a href="about.html">من نحن</a>
+        <a href="certificate.html">التحقق من الشهادة</a>
+        <a href="join.html">انضم الينا</a>
+      </nav>
+      <a href="join.html" class="header-cta">
+        <span class="header-tag">انضم لفريق العمل</span>
+      </a>
+    </div>
+    <div class="funding-strip">
+      <span class="funding-dot"></span>
+      مدعوم جزئياً من <strong>TKA-Egypt</strong>
+    </div>
+  </header>
+
+  <!-- REGISTRATION -->
+  <section class="register-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">📝 تسجيل الطالب</span>
+        <h2 class="section-title">نموذج تسجيل طالب</h2>
+        <p class="section-sub" style="font-weight: 800; color: var(--royal-blue); font-size: 18px;">تك ميكرز - مصر</p>
+        <p class="section-sub">اختر المسار المناسب وخطة الاشتراك واستكمل بيانات ابنك</p>
+      </div>
+
+      <div class="register-box">
+        <form id="registerForm" onsubmit="handleSubmit(event)">
+
+          <div class="register-selection">
+            <div class="sel-group">
+              <label>المسار التعليمي</label>
+              <select id="trackSelect" required>
+                <option value="">اختر المسار</option>
+                <option value="a">Track A — Junior Tech Explorers (8–11 سنة)</option>
+                <option value="b">Track B — Future AI Engineers (12–15 سنة)</option>
+                <option value="c">Track C — Future Tech Engineers (16–20 سنة)</option>
+              </select>
+            </div>
+            <div class="sel-group">
+              <label>خطة الاشتراك</label>
+              <select id="planSelect" required>
+                <option value="">اختر الخطة</option>
+                <option value="monthly">اشتراك شهري — 1200 جنيه/شهر</option>
+                <option value="quarterly">اشتراك ربع سنوي — 890 جنيه/شهرياً (إجمالي 2670)</option>
+                <option value="yearly">اشتراك سنوي — 690 جنيه/شهرياً (إجمالي 8280)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="register-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label>اسم الطالب ثلاثي *</label>
+                <input type="text" placeholder="مثال: أحمد محمد علي" required />
+              </div>
+              <div class="form-group">
+                <label>تاريخ الميلاد *</label>
+                <input type="date" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>رقم تليفون ولي الأمر *</label>
+                <input type="tel" placeholder="010xxxxxxxx" required />
+              </div>
+              <div class="form-group">
+                <label>رقم واتساب للمتابعة *</label>
+                <input type="tel" placeholder="010xxxxxxxx" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>الصف الدراسي للطالب *</label>
+                <select required>
+                  <option value="">اختر الصف</option>
+                  <option value="2">الصف الثاني الابتدائي</option>
+                  <option value="3">الصف الثالث الابتدائي</option>
+                  <option value="4">الصف الرابع الابتدائي</option>
+                  <option value="5">الصف الخامس الابتدائي</option>
+                  <option value="6">الصف السادس الابتدائي</option>
+                  <option value="7">الصف الأول الإعدادي</option>
+                  <option value="8">الصف الثاني الإعدادي</option>
+                  <option value="9">الصف الثالث الإعدادي</option>
+                  <option value="10">الصف الأول الثانوي</option>
+                  <option value="11">الصف الثاني الثانوي</option>
+                  <option value="12">الصف الثالث الثانوي</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>الدولة</label>
+                <input type="text" placeholder="مثال: مصر" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>المحافظة</label>
+                <input type="text" placeholder="مثال: القاهرة" />
+              </div>
+              <div class="form-group">
+                <label>المدينة / الحي</label>
+                <input type="text" placeholder="مثال: مدينة نصر" />
+              </div>
+            </div>
+          </div>
+
+          <div class="register-note">
+            <strong>⬅️ بعد التسجيل:</strong> سيتم عمل انترفيو للطالب واختبار قبول مع محاضرة مجانية لتحديد مستوى الطالب والتأكد من ملاءمة المسار له.
+          </div>
+
+          <button type="submit" class="register-submit">✅ تسجيل الطالب</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="logo.png" alt="TKA Logo" class="footer-logo" />
+        <span class="brand-name">TKA-Egypt</span>
+      </div>
+      <div class="footer-text">
+        <p>© 2026 <strong>Tech Makers Egypt</strong> — بالشراكة مع <strong>TKA-Egypt</strong></p>
+        <p class="footer-funding">مدعوم جزئياً من TKA-Egypt لتأهيل جيل المستقبل التكنولوجي</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Read URL params
+    const params = new URLSearchParams(window.location.search);
+    const trackParam = params.get('track');
+    const planParam = params.get('plan');
+
+    if (trackParam) {
+      document.getElementById('trackSelect').value = trackParam;
+    }
+    if (planParam) {
+      document.getElementById('planSelect').value = planParam;
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      alert('✅ تم استلام طلب التسجيل بنجاح!\nسيتم التواصل معك لتحديد موعد المقابلة والمحاضرة المجانية.');
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>التحقق من الشهادة — Tech Makers Egypt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="logo.png" alt="TKA Logo" class="brand-logo" />
+        <span class="brand-name">TKA-Egypt</span>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html">الرئيسية</a>
+        <a href="about.html">من نحن</a>
+        <a href="certificate.html">التحقق من الشهادة</a>
+        <a href="join.html">انضم الينا</a>
+      </nav>
+      <a href="join.html" class="header-cta">
+        <span class="header-tag">انضم لفريق العمل</span>
+      </a>
+    </div>
+    <div class="funding-strip">
+      <span class="funding-dot"></span>
+      مدعوم جزئياً من <strong>TKA-Egypt</strong>
+    </div>
+  </header>
+
+  <!-- CERTIFICATE HERO -->
+  <section class="cert-hero">
+    <div class="container">
+      <span class="section-eyebrow">التحقق من الشهادة</span>
+      <h1 class="cert-hero-title">تحقق من صحة شهادتك</h1>
+      <p class="cert-hero-sub">يمكنك عرض وتحميل شهادتك أو التحقق من صحتها باستخدام الرقم القومي أو رقم الشهادة</p>
+    </div>
+  </section>
+
+  <!-- CERTIFICATE TABS -->
+  <section class="cert-section">
+    <div class="container">
+
+      <!-- TABS -->
+      <div class="cert-tabs">
+        <button class="cert-tab active" data-tab="view">📜 عرض الشهادة</button>
+        <button class="cert-tab" data-tab="verify">🔍 التحقق من الشهادة</button>
+      </div>
+
+      <!-- VIEW TAB -->
+      <div class="cert-panel active" id="view">
+        <div class="cert-form-card">
+          <div class="cert-form-header">
+            <h3>عرض وتحميل الشهادة</h3>
+            <p>أدخل الرقم القومي للطالب لعرض شهادته وتحميلها</p>
+          </div>
+          <form class="cert-form" id="viewForm">
+            <div class="cert-input-group">
+              <label for="view-national-id">الرقم القومي *</label>
+              <input type="text" id="view-national-id" placeholder="أدخل الرقم القومي (14 رقم)" maxlength="14" required />
+            </div>
+            <button type="submit" class="cert-submit">عرض الشهادة</button>
+          </form>
+        </div>
+
+        <!-- Certificate Preview -->
+        <div class="cert-preview" id="certPreview" style="display: none;">
+          <div class="certificate">
+            <div class="cert-border">
+              <div class="cert-logo">
+                <img src="logo.png" alt="Tech Makers" />
+              </div>
+              <div class="cert-title">شهادة إتمام</div>
+              <div class="cert-subtitle">Certificate of Completion</div>
+              <div class="cert-line"></div>
+              <div class="cert-text">تشهد Tech Makers Egypt بأن</div>
+              <div class="cert-student-name" id="certStudentName">اسم الطالب</div>
+              <div class="cert-text">لقد أتم بنجاح</div>
+              <div class="cert-course" id="certCourse">المسار التعليمي</div>
+              <div class="cert-details">
+                <div class="cert-detail">
+                  <span class="cert-label">رقم الشهادة:</span>
+                  <span class="cert-value" id="certNumber">XXXXX</span>
+                </div>
+                <div class="cert-detail">
+                  <span class="cert-label">التاريخ:</span>
+                  <span class="cert-value" id="certDate">2026</span>
+                </div>
+              </div>
+              <div class="cert-signatures">
+                <div class="cert-signature">
+                  <div class="sig-line"></div>
+                  <span>المدير التعليمي</span>
+                </div>
+                <div class="cert-signature">
+                  <div class="sig-line"></div>
+                  <span>مؤسس TKA-Egypt</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cert-actions">
+            <button class="cert-download-btn" onclick="downloadCert()">📥 تحميل الشهادة</button>
+            <button class="cert-print-btn" onclick="window.print()">🖨️ طباعة</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VERIFY TAB -->
+      <div class="cert-panel" id="verify">
+        <div class="cert-form-card">
+          <div class="cert-form-header">
+            <h3>التحقق من صحة الشهادة</h3>
+            <p>أدخل رقم الشهادة للتحقق من صحتها وسلامتها</p>
+          </div>
+          <form class="cert-form" id="verifyForm">
+            <div class="cert-input-group">
+              <label for="verify-cert-number">رقم الشهادة *</label>
+              <input type="text" id="verify-cert-number" placeholder="أدخل رقم الشهادة (مثلاً: 400179 AU)" required />
+            </div>
+            <button type="submit" class="cert-submit">التحقق من الشهادة</button>
+          </form>
+        </div>
+
+        <!-- Verify Result -->
+        <div class="verify-result" id="verifyResult" style="display: none;">
+          <div class="verify-card" id="verifyCard">
+            <div class="verify-icon" id="verifyIcon"></div>
+            <h3 id="verifyTitle"></h3>
+            <p id="verifyMessage"></p>
+            <div class="verify-details" id="verifyDetails"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="logo.png" alt="TKA Logo" class="footer-logo" />
+        <span class="brand-name">TKA-Egypt</span>
+      </div>
+      <div class="footer-text">
+        <p>© 2026 Tech Makers Egypt — Sharpen your Knowledge</p>
+        <p class="footer-funding">بفضل الدعم الجزئي من TKA-Egypt 💙</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sample certificate data (in real app, this would come from a database)
+    const certificates = {
+      '10000000000000': {
+        name: 'Tala Nasser Abdelfatah',
+        course: 'Level One - Junior Tech Explorers',
+        number: '400179 AU',
+        date: '2026',
+        level: 'Distinction'
+      },
+      '10000000000001': {
+        name: 'Ahmed Mohamed Foudad',
+        course: 'Level One - Junior Tech Explorers',
+        number: '400122 AU',
+        date: '2026',
+        level: 'Distinction'
+      },
+      '10000000000002': {
+        name: 'Seif Hesham Mohamed',
+        course: 'Level One - Junior Tech Explorers',
+        number: '400126 AU',
+        date: '2026',
+        level: 'Distinction'
+      }
+    };
+
+    // Tab switching
+    document.querySelectorAll('.cert-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.cert-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.cert-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // View Form
+    document.getElementById('viewForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nationalId = document.getElementById('view-national-id').value;
+      
+      const cert = certificates[nationalId];
+      if (cert) {
+        document.getElementById('certStudentName').textContent = cert.name;
+        document.getElementById('certCourse').textContent = cert.course;
+        document.getElementById('certNumber').textContent = cert.number;
+        document.getElementById('certDate').textContent = cert.date;
+        document.getElementById('certPreview').style.display = 'block';
+        document.getElementById('certPreview').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        alert('لم يتم العثور على شهادة لهذا الرقم القومي. يرجى التحقق من الرقم والمحاولة مرة أخرى.');
+      }
+    });
+
+    // Verify Form
+    document.getElementById('verifyForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const certNumber = document.getElementById('verify-cert-number').value.trim();
+      
+      // Check if certificate exists
+      const certExists = Object.values(certificates).some(cert => cert.number === certNumber);
+      
+      const verifyCard = document.getElementById('verifyCard');
+      const verifyIcon = document.getElementById('verifyIcon');
+      const verifyTitle = document.getElementById('verifyTitle');
+      const verifyMessage = document.getElementById('verifyMessage');
+      const verifyDetails = document.getElementById('verifyDetails');
+      
+      if (certExists) {
+        const cert = Object.values(certificates).find(c => c.number === certNumber);
+        verifyCard.className = 'verify-card verify-success';
+        verifyIcon.innerHTML = '✅';
+        verifyTitle.textContent = 'شهادة صحيحة وموثقة';
+        verifyMessage.textContent = 'هذه الشهادة صادرة من Tech Makers Egypt وهي شهادة أصلية وموثقة.';
+        verifyDetails.innerHTML = `
+          <div class="verify-detail-item">
+            <span>اسم الطالب:</span>
+            <strong>${cert.name}</strong>
+          </div>
+          <div class="verify-detail-item">
+            <span>المسار:</span>
+            <strong>${cert.course}</strong>
+          </div>
+          <div class="verify-detail-item">
+            <span>التقدير:</span>
+            <strong>${cert.level}</strong>
+          </div>
+        `;
+      } else {
+        verifyCard.className = 'verify-card verify-error';
+        verifyIcon.innerHTML = '❌';
+        verifyTitle.textContent = 'شهادة غير موجودة';
+        verifyMessage.textContent = 'لم يتم العثور على شهادة بهذا الرقم. يرجى التحقق من الرقم والمحاولة مرة أخرى.';
+        verifyDetails.innerHTML = '';
+      }
+      
+      document.getElementById('verifyResult').style.display = 'block';
+      document.getElementById('verifyResult').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Download Certificate (simulated)
+    function downloadCert() {
+      alert('جاري تحميل الشهادة... (في التطبيق الحقيقي سيتم تحميل ملف PDF)');
+    }
+  </script>
+
+</body>
+</html>
