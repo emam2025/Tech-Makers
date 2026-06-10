@@ -35,6 +35,27 @@ export async function POST(request) {
       );
     }
 
+    // Check for duplicate (name + email)
+    const checkRes = await fetch(
+      `${supabaseUrl}/rest/v1/students?name=eq.${encodeURIComponent(name)}&email=eq.${encodeURIComponent(email)}&select=id`,
+      {
+        headers: {
+          apikey: supabaseKey,
+          Authorization: `Bearer ${supabaseKey}`,
+        },
+      }
+    );
+
+    if (checkRes.ok) {
+      const existing = await checkRes.json();
+      if (existing && existing.length > 0) {
+        return NextResponse.json(
+          { error: 'هذا الطالب مسجل مسبقاً بهذا البريد الإلكتروني', field: '_form' },
+          { status: 409 }
+        );
+      }
+    }
+
     const dbResponse = await fetch(`${supabaseUrl}/rest/v1/students`, {
       method: 'POST',
       headers: {
@@ -49,7 +70,7 @@ export async function POST(request) {
         email,
         phone,
         whatsapp,
-        grade,
+        grade: Number(grade),
         country: country || null,
         governorate: governorate || null,
         city: city || null,
@@ -122,7 +143,7 @@ export async function POST(request) {
 
     if (brevoKey) {
       try {
-        await fetch('https://api.brevo.com/v3/smtp/email', {
+        const brevoRes = await fetch('https://api.brevo.com/v3/smtp/email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -135,6 +156,11 @@ export async function POST(request) {
             htmlContent: emailHtml,
           }),
         });
+
+        if (!brevoRes.ok) {
+          const errBody = await brevoRes.text();
+          console.error('Brevo send error:', brevoRes.status, errBody);
+        }
       } catch (emailErr) {
         console.error('Email send error:', emailErr);
       }

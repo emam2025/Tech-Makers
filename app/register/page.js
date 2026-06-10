@@ -3,10 +3,68 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
+const GRADES = [
+  { v: 2, l: 'الصف الثاني الابتدائي' },
+  { v: 3, l: 'الصف الثالث الابتدائي' },
+  { v: 4, l: 'الصف الرابع الابتدائي' },
+  { v: 5, l: 'الصف الخامس الابتدائي' },
+  { v: 6, l: 'الصف السادس الابتدائي' },
+  { v: 7, l: 'الصف الأول الإعدادي' },
+  { v: 8, l: 'الصف الثاني الإعدادي' },
+  { v: 9, l: 'الصف الثالث الإعدادي' },
+  { v: 10, l: 'الصف الأول الثانوي' },
+  { v: 11, l: 'الصف الثاني الثانوي' },
+  { v: 12, l: 'الصف الثالث الثانوي' },
+];
+
+const COUNTRIES = [
+  'مصر',
+  'الأردن',
+  'السعودية',
+  'الكويت',
+  'الإمارات',
+  'قطر',
+  'البحرين',
+  'عمان',
+  'فلسطين',
+  'لبنان',
+  'العراق',
+  'سوريا',
+  'اليمن',
+  'ليبيا',
+  'تونس',
+  'الجزائر',
+  'المغرب',
+  'السودان',
+  'موريتانيا',
+  'أخرى',
+];
+
+const EGYPT_GOVS = [
+  'القاهرة', 'الجيزة', 'الإسكندرية', 'الدقهلية', 'الشرقية',
+  'الغربية', 'القليوبية', 'المنوفية', 'البحيرة', 'كفر الشيخ',
+  'دمياط', 'بورسعيد', 'الإسماعيلية', 'السويس', 'شمال سيناء',
+  'جنوب سيناء', 'الفيوم', 'بني سويف', 'المنيا', 'أسيوط',
+  'سوهاج', 'قنا', 'الأقصر', 'أسوان', 'الوادي الجديد',
+  'مطروح', 'البحر الأحمر', 'حلوان', '6 أكتوبر',
+];
+
+function calcAge(birthDate) {
+  const b = new Date(birthDate);
+  const t = new Date();
+  let age = t.getFullYear() - b.getFullYear();
+  const m = t.getMonth() - b.getMonth();
+  if (m < 0 || (m === 0 && t.getDate() < b.getDate())) age--;
+  return age;
+}
+
 export default function RegisterPage() {
   const [track, setTrack] = useState('');
   const [plan, setPlan] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [done, setDone] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [country, setCountry] = useState('');
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -16,25 +74,60 @@ export default function RegisterPage() {
     if (p) setPlan(p);
   }, []);
 
+  function validate() {
+    const errs = {};
+    const name = document.getElementById('studentName').value.trim();
+    const birthDate = document.getElementById('birthDate').value;
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const whatsapp = document.getElementById('whatsapp').value.trim();
+    const grade = document.getElementById('grade').value;
+    const governorate = document.getElementById('governorate').value.trim();
+    const city = document.getElementById('city').value.trim();
+
+    if (!name || !/^[\u0600-\u06FF\sA-Za-z]{3,}$/.test(name))
+      errs.name = 'الاسم يجب أن يحتوي على 3 أحرف على الأقل (حروف فقط)';
+
+    if (!birthDate) {
+      errs.birthDate = 'تاريخ الميلاد مطلوب';
+    } else {
+      const age = calcAge(birthDate);
+      if (age < 8 || age > 20) errs.birthDate = 'العمر يجب أن يكون بين 8 و 20 سنة';
+    }
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      errs.email = 'البريد الإلكتروني غير صحيح';
+
+    if (!/^01[0-9]{9}$/.test(phone))
+      errs.phone = 'رقم التليفون غير صحيح (مثال: 01012345678)';
+
+    if (!/^01[0-9]{9}$/.test(whatsapp))
+      errs.whatsapp = 'رقم الواتساب غير صحيح (مثال: 01012345678)';
+
+    if (!grade) errs.grade = 'اختر الصف الدراسي';
+
+    if (country === 'مصر' && !governorate)
+      errs.governorate = 'اختر المحافظة';
+
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
+    if (!validate()) return;
     setSubmitting(true);
-    const btn = e.target.querySelector('.register-submit');
-    btn.textContent = '⏳ جاري التسجيل...';
 
-    const data = {
-      name: document.getElementById('studentName').value,
-      birth_date: document.getElementById('birthDate').value,
-      email: document.getElementById('email').value,
-      phone: document.getElementById('phone').value,
-      whatsapp: document.getElementById('whatsapp').value,
-      grade: document.getElementById('grade').value,
-      country: document.getElementById('country').value,
-      governorate: document.getElementById('governorate').value,
-      city: document.getElementById('city').value,
-      track,
-      plan,
-    };
+    const name = document.getElementById('studentName').value.trim();
+    const birthDate = document.getElementById('birthDate').value;
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const whatsapp = document.getElementById('whatsapp').value.trim();
+    const grade = document.getElementById('grade').value;
+    const governorate = document.getElementById('governorate').value.trim();
+    const city = document.getElementById('city').value.trim();
+
+    const data = { name, birth_date: birthDate, email, phone, whatsapp, grade, country, governorate, city, track, plan };
 
     try {
       const res = await fetch('/api/register', {
@@ -44,17 +137,41 @@ export default function RegisterPage() {
       });
       const json = await res.json();
       if (json.success) {
-        alert(json.message);
-        document.getElementById('registerForm').reset();
+        setDone(true);
       } else {
-        alert('❌ ' + (json.error || 'حدث خطأ'));
+        const errs = {};
+        if (json.field) errs[json.field] = json.error;
+        else errs._form = json.error || 'حدث خطأ';
+        setErrors(errs);
       }
     } catch {
-      alert('❌ فشل الاتصال بالخادم');
+      setErrors({ _form: 'فشل الاتصال بالخادم' });
     } finally {
       setSubmitting(false);
-      btn.textContent = '✅ تسجيل الطالب';
     }
+  }
+
+  if (done) {
+    return (
+      <section className="register-section">
+        <div className="container">
+          <div className="success-card">
+            <div className="success-icon">✅</div>
+            <h2 className="success-title">تم تسجيل الطالب بنجاح!</h2>
+            <p className="success-text">
+              سيتم التواصل معكم خلال أقرب وقت لتحديد موعد <strong>المقابلة الشخصية للطالب واختبار القبول</strong>،
+              بالإضافة إلى حجز موعد <strong>المحاضرة المجانية</strong> لتقييم المستوى والتأكد من ملاءمة المسار.
+            </p>
+            <div className="success-actions">
+              <Link href="/" className="btn btn-primary">العودة للصفحة الرئيسية</Link>
+              <button className="btn btn-ghost" onClick={() => { setDone(false); document.getElementById('registerForm')?.reset(); setTrack(''); setPlan(''); setCountry(''); setErrors({}); }}>
+                تسجيل طالب آخر
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
   }
 
   return (
@@ -68,10 +185,11 @@ export default function RegisterPage() {
         </div>
 
         <div className="register-box">
-          <form id="registerForm" onSubmit={handleSubmit}>
+          {errors._form && <div className="form-error-banner">{errors._form}</div>}
+          <form id="registerForm" onSubmit={handleSubmit} noValidate>
             <div className="register-selection">
               <div className="sel-group">
-                <label>المسار التعليمي</label>
+                <label>المسار التعليمي *</label>
                 <select value={track} onChange={e => setTrack(e.target.value)} required>
                   <option value="">اختر المسار</option>
                   <option value="a">Track A — Junior Tech Explorers (8–11 سنة)</option>
@@ -80,7 +198,7 @@ export default function RegisterPage() {
                 </select>
               </div>
               <div className="sel-group">
-                <label>خطة الاشتراك</label>
+                <label>خطة الاشتراك *</label>
                 <select value={plan} onChange={e => setPlan(e.target.value)} required>
                   <option value="">اختر الخطة</option>
                   <option value="monthly">اشتراك شهري — 1200 جنيه/شهر</option>
@@ -95,26 +213,31 @@ export default function RegisterPage() {
                 <div className="form-group">
                   <label>اسم الطالب ثلاثي *</label>
                   <input type="text" id="studentName" placeholder="مثال: أحمد محمد علي" required />
+                  {errors.name && <span className="field-error">{errors.name}</span>}
                 </div>
                 <div className="form-group">
                   <label>تاريخ الميلاد *</label>
                   <input type="date" id="birthDate" required />
+                  {errors.birthDate && <span className="field-error">{errors.birthDate}</span>}
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group" style={{ gridColumn: '1 / -1' }}>
                   <label>البريد الإلكتروني لولي الأمر *</label>
                   <input type="email" id="email" placeholder="example@email.com" required />
+                  {errors.email && <span className="field-error">{errors.email}</span>}
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group">
                   <label>رقم تليفون ولي الأمر *</label>
                   <input type="tel" id="phone" placeholder="010xxxxxxxx" required />
+                  {errors.phone && <span className="field-error">{errors.phone}</span>}
                 </div>
                 <div className="form-group">
                   <label>رقم واتساب للمتابعة *</label>
                   <input type="tel" id="whatsapp" placeholder="010xxxxxxxx" required />
+                  {errors.whatsapp && <span className="field-error">{errors.whatsapp}</span>}
                 </div>
               </div>
               <div className="form-row">
@@ -122,20 +245,36 @@ export default function RegisterPage() {
                   <label>الصف الدراسي للطالب *</label>
                   <select id="grade" required>
                     <option value="">اختر الصف</option>
-                    {[2,3,4,5,6,7,8,9,10,11,12].map(g => (
-                      <option key={g} value={g}>{`الصف ${g <= 6 ? ['الثاني','الثالث','الرابع','الخامس','السادس'][g-2] + ' الابتدائي' : g <= 9 ? ['الأول','الثاني','الثالث'][g-7] + ' الإعدادي' : ['الأول','الثاني','الثالث'][g-10] + ' الثانوي'}`}</option>
+                    {GRADES.map(g => (
+                      <option key={g.v} value={g.v}>{g.l}</option>
                     ))}
                   </select>
+                  {errors.grade && <span className="field-error">{errors.grade}</span>}
                 </div>
                 <div className="form-group">
-                  <label>الدولة</label>
-                  <input type="text" id="country" placeholder="مثال: مصر" />
+                  <label>الدولة *</label>
+                  <select id="country" value={country} onChange={e => setCountry(e.target.value)} required>
+                    <option value="">اختر الدولة</option>
+                    {COUNTRIES.map(c => (
+                      <option key={c} value={c}>{c}</option>
+                    ))}
+                  </select>
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group">
                   <label>المحافظة</label>
-                  <input type="text" id="governorate" placeholder="مثال: القاهرة" />
+                  {country === 'مصر' ? (
+                    <select id="governorate">
+                      <option value="">اختر المحافظة</option>
+                      {EGYPT_GOVS.map(g => (
+                        <option key={g} value={g}>{g}</option>
+                      ))}
+                    </select>
+                  ) : (
+                    <input type="text" id="governorate" placeholder="مثال: القاهرة" />
+                  )}
+                  {errors.governorate && <span className="field-error">{errors.governorate}</span>}
                 </div>
                 <div className="form-group">
                   <label>المدينة / الحي</label>
@@ -149,7 +288,7 @@ export default function RegisterPage() {
             </div>
 
             <button type="submit" className="register-submit" disabled={submitting}>
-              ✅ تسجيل الطالب
+              {submitting ? '⏳ جاري التسجيل...' : '✅ تسجيل الطالب'}
             </button>
           </form>
         </div>
