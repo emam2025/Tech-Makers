@@ -25,6 +25,7 @@ export default function RegisterPage() {
     const data = {
       name: document.getElementById('studentName').value,
       birth_date: document.getElementById('birthDate').value,
+      email: document.getElementById('email').value,
       phone: document.getElementById('phone').value,
       whatsapp: document.getElementById('whatsapp').value,
       grade: document.getElementById('grade').value,
@@ -98,6 +99,12 @@ export default function RegisterPage() {
                 <div className="form-group">
                   <label>تاريخ الميلاد *</label>
                   <input type="date" id="birthDate" required />
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-group" style={{ gridColumn: '1 / -1' }}>
+                  <label>البريد الإلكتروني لولي الأمر *</label>
+                  <input type="email" id="email" placeholder="example@email.com" required />
                 </div>
               </div>
               <div className="form-row">
