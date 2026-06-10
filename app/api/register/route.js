@@ -26,7 +26,7 @@ export async function POST(request) {
 
     const supabaseUrl = process.env.SUPABASE_URL;
     const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
-    const resendKey = process.env.RESEND_API_KEY;
+    const brevoKey = process.env.BREVO_API_KEY;
 
     if (!supabaseUrl || !supabaseKey) {
       return NextResponse.json(
@@ -120,19 +120,19 @@ export async function POST(request) {
 </body>
 </html>`;
 
-    if (resendKey) {
+    if (brevoKey) {
       try {
-        await fetch('https://api.resend.com/emails', {
+        await fetch('https://api.brevo.com/v3/smtp/email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${resendKey}`,
+            'api-key': brevoKey,
           },
           body: JSON.stringify({
-            from: 'Tech Makers Egypt <noreply@tka-egypt.com>',
-            to: email,
+            sender: { name: 'Tech Makers Egypt', email: 'info@tka-egypt.com' },
+            to: [{ email }],
             subject: `✅ تم تسجيل ${name} في Tech Makers Egypt`,
-            html: emailHtml,
+            htmlContent: emailHtml,
           }),
         });
       } catch (emailErr) {
