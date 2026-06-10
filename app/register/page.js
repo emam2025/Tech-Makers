@@ -76,7 +76,9 @@ export default function RegisterPage() {
 
   function validate() {
     const errs = {};
-    const name = document.getElementById('studentName').value.trim();
+    const firstName = document.getElementById('firstName').value.trim();
+    const fatherName = document.getElementById('fatherName').value.trim();
+    const familyName = document.getElementById('familyName').value.trim();
     const birthDate = document.getElementById('birthDate').value;
     const email = document.getElementById('email').value.trim();
     const phone = document.getElementById('phone').value.trim();
@@ -85,8 +87,14 @@ export default function RegisterPage() {
     const governorate = document.getElementById('governorate').value.trim();
     const city = document.getElementById('city').value.trim();
 
-    if (!name || !/^[\u0600-\u06FF\sA-Za-z]{3,}$/.test(name))
-      errs.name = 'الاسم يجب أن يحتوي على 3 أحرف على الأقل (حروف فقط)';
+    if (!firstName || !/^[\u0600-\u06FFA-Za-z]{2,}$/.test(firstName))
+      errs.firstName = 'الاسم الأول مطلوب (حروف فقط)';
+
+    if (!fatherName || !/^[\u0600-\u06FFA-Za-z]{2,}$/.test(fatherName))
+      errs.fatherName = 'اسم الأب مطلوب (حروف فقط)';
+
+    if (!familyName || !/^[\u0600-\u06FFA-Za-z]{2,}$/.test(familyName))
+      errs.familyName = 'اسم العائلة مطلوب (حروف فقط)';
 
     if (!birthDate) {
       errs.birthDate = 'تاريخ الميلاد مطلوب';
@@ -118,7 +126,10 @@ export default function RegisterPage() {
     if (!validate()) return;
     setSubmitting(true);
 
-    const name = document.getElementById('studentName').value.trim();
+    const firstName = document.getElementById('firstName').value.trim();
+    const fatherName = document.getElementById('fatherName').value.trim();
+    const familyName = document.getElementById('familyName').value.trim();
+    const name = `${firstName} ${fatherName} ${familyName}`;
     const birthDate = document.getElementById('birthDate').value;
     const email = document.getElementById('email').value.trim();
     const phone = document.getElementById('phone').value.trim();
@@ -209,17 +220,30 @@ export default function RegisterPage() {
             </div>
 
             <div className="register-form">
-              <div className="form-row">
+              <div className="form-row form-row-3">
                 <div className="form-group">
-                  <label>اسم الطالب ثلاثي *</label>
-                  <input type="text" id="studentName" placeholder="مثال: أحمد محمد علي" required />
-                  {errors.name && <span className="field-error">{errors.name}</span>}
+                  <label>الاسم الأول *</label>
+                  <input type="text" id="firstName" placeholder="مثال: أحمد" required />
+                  {errors.firstName && <span className="field-error">{errors.firstName}</span>}
                 </div>
+                <div className="form-group">
+                  <label>اسم الأب *</label>
+                  <input type="text" id="fatherName" placeholder="مثال: محمد" required />
+                  {errors.fatherName && <span className="field-error">{errors.fatherName}</span>}
+                </div>
+                <div className="form-group">
+                  <label>اسم العائلة *</label>
+                  <input type="text" id="familyName" placeholder="مثال: علي" required />
+                  {errors.familyName && <span className="field-error">{errors.familyName}</span>}
+                </div>
+              </div>
+              <div className="form-row">
                 <div className="form-group">
                   <label>تاريخ الميلاد *</label>
                   <input type="date" id="birthDate" required />
                   {errors.birthDate && <span className="field-error">{errors.birthDate}</span>}
                 </div>
+                <div className="form-group"></div>
               </div>
               <div className="form-row">
                 <div className="form-group" style={{ gridColumn: '1 / -1' }}>
