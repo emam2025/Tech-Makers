@@ -14,7 +14,7 @@ export default function HeaderNav() {
         <span className={`ham-line ${open ? 'open' : ''}`}></span>
       </button>
       <nav className={`header-nav ${open ? 'nav-open' : ''}`}>
-        <Link href="/" onClick={() => setOpen(false)}>الرئيسية</Link>
+        <Link href="/" onClick={() => setOpen(false)}>تك ميكرز</Link>
         <Link href="/about" onClick={() => setOpen(false)}>من نحن</Link>
         <Link href="/certificate" onClick={() => setOpen(false)}>التحقق من الشهادة</Link>
         <Link href="/join" onClick={() => setOpen(false)}>انضم الينا</Link>

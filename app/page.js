@@ -6,20 +6,20 @@ export default function HomePage() {
       <section className="hero">
         <div className="container hero-grid">
           <div className="hero-text">
-            <span className="hero-eyebrow">🌟 تك ميكرز</span>
+            <span className="hero-eyebrow">🌟 Tech Makers Egypt</span>
             <h1 className="hero-title">
               من <span className="hl">مستهلك للتكنولوجيا</span>
               إلى <span className="hl-yellow">صانع ومطور وقائد</span>
             </h1>
             <p className="hero-tagline">
-              تك ميكرز <span className="dot">•</span> Building Future Tech Leaders
+              Tech Makers <span className="dot">•</span> Building Future Tech Leaders
             </p>
             <div className="hero-image-mobile">
-              <img src="/tech-1.png" alt="طالب تك ميكرز" className="hero-image-mobile-img" />
+              <img src="/tech-1.png" alt="طالب Tech Makers" className="hero-image-mobile-img" />
             </div>
             <p className="hero-sub">
               في عالم تتغير فيه التكنولوجيا بسرعة، أصبح امتلاك المهارات الرقمية ليس اختيارًا… بل ضرورة لصناعة المستقبل.
-              <strong className="hero-highlight">تك ميكرز</strong> هو برنامج تعليمي متكامل يهدف إلى إعداد جيل جديد من المبدعين والقادة التقنيين، من خلال رحلة عملية تبدأ من أساسيات البرمجة والتفكير المنطقي، وصولًا إلى الذكاء الاصطناعي وبناء المشاريع الرقمية الحقيقية.
+              <strong className="hero-highlight">Tech Makers</strong> هو برنامج تعليمي متكامل يهدف إلى إعداد جيل جديد من المبدعين والقادة التقنيين، من خلال رحلة عملية تبدأ من أساسيات البرمجة والتفكير المنطقي، وصولًا إلى الذكاء الاصطناعي وبناء المشاريع الرقمية الحقيقية.
             </p>
             <p className="hero-sub hero-sub-emph">
               نؤمن أن التكنولوجيا لا يجب أن تكون مجرد أداة للاستهلاك، بل وسيلة للإبداع، الابتكار، وحل المشكلات.
@@ -54,7 +54,7 @@ export default function HomePage() {
           </div>
           <div className="hero-image-wrap">
             <div className="hero-blob"></div>
-            <img src="/tech-1.png" alt="طالب تك ميكرز" className="hero-image" />
+            <img src="/tech-1.png" alt="طالب Tech Makers" className="hero-image" />
             <div className="age-floats">
               <div className="age-float age-float-1">
                 <span className="age-float-range">8–11</span>
@@ -85,7 +85,7 @@ export default function HomePage() {
       <section className="about" id="about">
         <div className="container">
           <div className="section-head">
-            <span className="section-eyebrow">عن تك ميكرز</span>
+            <span className="section-eyebrow">عن Tech Makers</span>
             <h2 className="section-title">إحنا مش بنعلّم برمجة وبس… إحنا بنبني شخصية</h2>
             <p className="section-sub">منهج متكامل مبني على 4 محاور أساسية تُعد جيل المستقبل</p>
           </div>
@@ -123,7 +123,7 @@ export default function HomePage() {
         <div className="container">
           <div className="section-head">
             <span className="section-eyebrow">النتائج المتوقعة</span>
-            <h2 className="section-title">ماذا سيحقق ابنك من خلال تك ميكرز؟</h2>
+            <h2 className="section-title">ماذا سيحقق ابنك من خلال Tech Makers؟</h2>
             <p className="section-sub">نتائج ملموسة تؤثر بشكل إيجابي على مستقبل طفلك الأكاديمي والمهني</p>
           </div>
 
@@ -416,7 +416,7 @@ export default function HomePage() {
       <section className="cta">
         <div className="container cta-inner">
           <span className="cta-eyebrow">مستقبل ابنك يبدأ من هنا</span>
-          <h2>🚀 سجّل اهتمامك في تك ميكرز</h2>
+          <h2>🚀 سجّل اهتمامك في Tech Makers Egypt</h2>
           <p>ابدأ رحلة ابنك في عالم التكنولوجيا، البرمجة، والذكاء الاصطناعي. مقاعد محدودة في كل دفعة.</p>
           <div className="cta-actions">
             <Link href="/register" className="btn btn-primary btn-lg">سجّل الآن</Link>

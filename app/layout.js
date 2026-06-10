@@ -3,8 +3,8 @@ import './globals.css';
 import HeaderNav from '@/components/HeaderNav';
 
 export const metadata = {
-  title: 'تك ميكرز — Building Future Tech Leaders',
-  description: 'من مستهلك للتكنولوجيا إلى صانع ومطور وقائد — تك ميكرز',
+  title: 'Tech Makers Egypt — Building Future Tech Leaders',
+  description: 'من مستهلك للتكنولوجيا إلى صانع ومطور وقائد',
 };
 
 export default function RootLayout({ children }) {
@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
               <span className="brand-name">TKA-Egypt</span>
             </div>
             <div className="footer-text">
-              <p>© 2026 <strong>تك ميكرز</strong> — بالشراكة مع <strong>TKA-Egypt</strong></p>
+              <p>© 2026 <strong>Tech Makers Egypt</strong> — بالشراكة مع <strong>TKA-Egypt</strong></p>
               <p className="footer-funding">مدعوم جزئياً من TKA-Egypt لتأهيل جيل المستقبل التكنولوجي</p>
             </div>
           </div>
