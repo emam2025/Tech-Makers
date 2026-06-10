@@ -108,7 +108,6 @@ export default function AboutPage() {
           <div className="founder-grid">
             <div className="founder-image-wrap">
               <div className="founder-blob"></div>
-              <div className="founder-image-ring"></div>
               <img src="/ceo.jpg" alt="مؤسس TKA-Egypt" className="founder-image" />
             </div>
             <div className="founder-content">
