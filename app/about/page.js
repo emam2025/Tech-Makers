@@ -108,7 +108,7 @@ export default function AboutPage() {
           <div className="founder-grid">
             <div className="founder-image-wrap">
               <div className="founder-blob"></div>
-              <img src="founder.png" alt="مؤسس TKA-Egypt" className="founder-image" />
+              <img src="/ceo.jpg" alt="مؤسس TKA-Egypt" className="founder-image" />
             </div>
             <div className="founder-content">
               <span className="section-eyebrow">كلمة المؤسس</span>
@@ -120,8 +120,9 @@ export default function AboutPage() {
                 <p>دعونا معاً نبني جيلًا عربياً قادرًا على صناعة المستقبل.</p>
               </div>
               <div className="founder-signature">
-                <span className="founder-name">مؤسس TKA-Egypt</span>
-                <span className="founder-role">Tech Makers Egypt</span>
+                <span className="founder-name">م/ إمام عبد العزيز</span>
+                <span className="founder-role">مؤسس TKA-Egypt والمشرف العام على Tech Makers Egypt</span>
+                <span className="founder-role" style={{ marginTop: 4 }}>بكالريوس نظم المعلومات — ماجستير هندسة البرمجيات  جامعة القاهرة</span>
               </div>
             </div>
           </div>

@@ -158,7 +158,7 @@ export default function CertificatePage() {
                     </div>
                     <div className="cert-signature">
                       <div className="sig-line"></div>
-                      <span>مؤسس TKA-Egypt</span>
+                      <span>م/ إمام عبد العزيز</span>
                     </div>
                   </div>
                 </div>
