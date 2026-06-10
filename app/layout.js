@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import './globals.css';
+import HeaderNav from '@/components/HeaderNav';
 
 export const metadata = {
   title: 'Tech Makers Egypt — Building Future Tech Leaders',
@@ -24,13 +25,8 @@ export default function RootLayout({ children }) {
               <img src="/logo.png" alt="TKA Logo" className="brand-logo" />
               <span className="brand-name">TKA-Egypt</span>
             </div>
-            <nav className="header-nav">
-              <Link href="/">الرئيسية</Link>
-              <Link href="/about">من نحن</Link>
-              <Link href="/certificate">التحقق من الشهادة</Link>
-              <Link href="/join">انضم الينا</Link>
-            </nav>
-            <Link href="/join" className="header-cta">
+            <HeaderNav />
+            <Link href="/join" className="header-cta header-cta-desktop">
               <span className="header-tag">انضم لفريق العمل</span>
             </Link>
           </div>
