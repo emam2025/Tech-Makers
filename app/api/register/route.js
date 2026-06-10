@@ -1,29 +1,34 @@
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
+import { NextResponse } from 'next/server';
 
+export async function POST(request) {
   try {
-    const { name, birth_date, phone, whatsapp, grade, country, governorate, city, track, plan } = req.body;
+    const body = await request.json();
+    const { name, birth_date, phone, whatsapp, grade, country, governorate, city, track, plan } = body;
 
     if (!name || !birth_date || !phone || !whatsapp || !grade || !track || !plan) {
-      return res.status(400).json({ error: 'جميع الحقول المطلوبة يجب أن تكون مكتملة' });
+      return NextResponse.json(
+        { error: 'جميع الحقول المطلوبة يجب أن تكون مكتملة' },
+        { status: 400 }
+      );
     }
 
     const supabaseUrl = process.env.SUPABASE_URL;
     const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
 
     if (!supabaseUrl || !supabaseKey) {
-      return res.status(500).json({ error: 'Server configuration error' });
+      return NextResponse.json(
+        { error: 'Server configuration error' },
+        { status: 500 }
+      );
     }
 
     const response = await fetch(`${supabaseUrl}/rest/v1/students`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'apikey': supabaseKey,
-        'Authorization': `Bearer ${supabaseKey}`,
-        'Prefer': 'return=minimal',
+        apikey: supabaseKey,
+        Authorization: `Bearer ${supabaseKey}`,
+        Prefer: 'return=minimal',
       },
       body: JSON.stringify({
         name,
@@ -44,15 +49,21 @@ export default async function handler(req, res) {
     if (!response.ok) {
       const errorText = await response.text();
       console.error('Supabase error:', response.status, errorText);
-      return res.status(500).json({ error: 'فشل حفظ البيانات' });
+      return NextResponse.json(
+        { error: 'فشل حفظ البيانات' },
+        { status: 500 }
+      );
     }
 
-    return res.status(200).json({
+    return NextResponse.json({
       success: true,
       message: '✅ تم تسجيل الطالب بنجاح! سيتم التواصل معك لتحديد موعد المقابلة.',
     });
   } catch (err) {
     console.error('Server error:', err);
-    return res.status(500).json({ error: 'خطأ داخلي في الخادم' });
+    return NextResponse.json(
+      { error: 'خطأ داخلي في الخادم' },
+      { status: 500 }
+    );
   }
 }
