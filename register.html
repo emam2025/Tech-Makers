@@ -199,29 +199,29 @@
             <div class="form-row">
               <div class="form-group">
                 <label>اسم الطالب ثلاثي *</label>
-                <input type="text" placeholder="مثال: أحمد محمد علي" required />
+                <input type="text" id="studentName" placeholder="مثال: أحمد محمد علي" required />
               </div>
               <div class="form-group">
                 <label>تاريخ الميلاد *</label>
-                <input type="date" required />
+                <input type="date" id="birthDate" required />
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <label>رقم تليفون ولي الأمر *</label>
-                <input type="tel" placeholder="010xxxxxxxx" required />
+                <input type="tel" id="phone" placeholder="010xxxxxxxx" required />
               </div>
               <div class="form-group">
                 <label>رقم واتساب للمتابعة *</label>
-                <input type="tel" placeholder="010xxxxxxxx" required />
+                <input type="tel" id="whatsapp" placeholder="010xxxxxxxx" required />
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <label>الصف الدراسي للطالب *</label>
-                <select required>
+                <select id="grade" required>
                   <option value="">اختر الصف</option>
                   <option value="2">الصف الثاني الابتدائي</option>
                   <option value="3">الصف الثالث الابتدائي</option>
@@ -238,18 +238,18 @@
               </div>
               <div class="form-group">
                 <label>الدولة</label>
-                <input type="text" placeholder="مثال: مصر" />
+                <input type="text" id="country" placeholder="مثال: مصر" />
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <label>المحافظة</label>
-                <input type="text" placeholder="مثال: القاهرة" />
+                <input type="text" id="governorate" placeholder="مثال: القاهرة" />
               </div>
               <div class="form-group">
                 <label>المدينة / الحي</label>
-                <input type="text" placeholder="مثال: مدينة نصر" />
+                <input type="text" id="city" placeholder="مثال: مدينة نصر" />
               </div>
             </div>
           </div>
@@ -293,7 +293,42 @@
 
     function handleSubmit(e) {
       e.preventDefault();
-      alert('✅ تم استلام طلب التسجيل بنجاح!\nسيتم التواصل معك لتحديد موعد المقابلة والمحاضرة المجانية.');
+      const submitBtn = e.target.querySelector('.register-submit');
+      submitBtn.disabled = true;
+      submitBtn.textContent = '⏳ جاري التسجيل...';
+
+      const data = {
+        name: document.getElementById('studentName').value,
+        birth_date: document.getElementById('birthDate').value,
+        phone: document.getElementById('phone').value,
+        whatsapp: document.getElementById('whatsapp').value,
+        grade: document.getElementById('grade').value,
+        country: document.getElementById('country').value,
+        governorate: document.getElementById('governorate').value,
+        city: document.getElementById('city').value,
+        track: document.getElementById('trackSelect').value,
+        plan: document.getElementById('planSelect').value,
+      };
+
+      fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+        .then(r => r.json())
+        .then(res => {
+          if (res.success) {
+            alert(res.message);
+            e.target.reset();
+          } else {
+            alert('❌ ' + (res.error || 'حدث خطأ'));
+          }
+        })
+        .catch(() => alert('❌ فشل الاتصال بالخادم'))
+        .finally(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = '✅ تسجيل الطالب';
+        });
     }
   </script>
 
