@@ -15,7 +15,7 @@ export default function HomePage() {
               Tech Makers <span className="dot">•</span> Building Future Tech Leaders
             </p>
             <div className="hero-image-mobile">
-              <img src="/tech%201.png" alt="طالب Tech Makers" className="hero-image-mobile-img" />
+              <img src="/tech-1.png" alt="طالب Tech Makers" className="hero-image-mobile-img" />
             </div>
             <p className="hero-sub">
               في عالم تتغير فيه التكنولوجيا بسرعة، أصبح امتلاك المهارات الرقمية ليس اختيارًا… بل ضرورة لصناعة المستقبل.
@@ -54,7 +54,7 @@ export default function HomePage() {
           </div>
           <div className="hero-image-wrap">
             <div className="hero-blob"></div>
-            <img src="/tech%201.png" alt="طالب Tech Makers" className="hero-image" />
+            <img src="/tech-1.png" alt="طالب Tech Makers" className="hero-image" />
             <div className="age-floats">
               <div className="age-float age-float-1">
                 <span className="age-float-range">8–11</span>
