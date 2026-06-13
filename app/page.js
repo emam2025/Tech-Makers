@@ -208,7 +208,7 @@ export default function HomePage() {
         <div className="container-inner">
           <div className="text-center mb-16">
             <span className="font-label-md text-label-md text-primary uppercase tracking-wide mb-2 block">المسارات التعليمية</span>
-            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">قسّمنا الطلاب حسب الفئة العمرية</h2>
+            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">اختار مسار الطالب المناسب لعمره</h2>
             <p className="text-on-surface-variant font-body-lg text-body-lg">علشان كل طالب يتعلم بالطريقة المناسبة لسنه ومستواه — فرق كبير في طريقة التفكير، سرعة التعلم، والقدرة على الاستيعاب التقني</p>
           </div>
 
