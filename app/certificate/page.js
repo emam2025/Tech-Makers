@@ -74,12 +74,10 @@ export default function CertificatePage() {
   }
 
   const openCert = (cert) => {
-    let imageUrl = ''
+    let fileId = ''
     const match = cert.pdfUrl?.match(/id=([a-zA-Z0-9_-]+)/)
-    if (match) {
-      imageUrl = `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000`
-    }
-    setSelectedCert({ ...cert, imageUrl })
+    if (match) fileId = match[1]
+    setSelectedCert({ ...cert, fileId })
   }
 
   const getDownloadUrl = () => {
@@ -234,25 +232,27 @@ export default function CertificatePage() {
       {/* CERTIFICATE MODAL */}
       {selectedCert && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" onClick={() => setSelectedCert(null)}>
-          <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full flex flex-col" style={{ maxHeight: '95vh' }} onClick={(e) => e.stopPropagation()}>
+          <div className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full flex flex-col" style={{ height: '90vh' }} onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between px-6 py-4 bg-primary text-on-primary rounded-t-2xl shrink-0">
               <h2 className="font-headline-lg text-headline-lg">شهادة: {selectedCert.program}</h2>
               <button onClick={() => setSelectedCert(null)} className="p-2 hover:bg-white/20 rounded-lg transition-colors">
                 <span className="material-symbols-outlined text-3xl">close</span>
               </button>
             </div>
-            <div className="flex-1 p-6 flex items-center justify-center bg-gray-50 overflow-auto min-h-0">
-              {selectedCert.imageUrl ? (
-                <img
-                  src={selectedCert.imageUrl}
-                  alt={selectedCert.program}
-                  className="max-w-full rounded-lg shadow-lg"
-                  style={{ maxHeight: '65vh', objectFit: 'contain', border: '6px solid transparent', background: 'linear-gradient(white, white) padding-box, linear-gradient(135deg, #d4af37, #f7ef8a, #d4af37) border-box' }}
+            <div className="flex-1 min-h-0">
+              {selectedCert.fileId ? (
+                <iframe
+                  src={`https://drive.google.com/file/d/${selectedCert.fileId}/preview`}
+                  className="w-full h-full border-0"
+                  allow="autoplay"
+                  title={`شهادة ${selectedCert.program}`}
                 />
               ) : (
-                <div className="text-center text-on-surface-variant py-12">
-                  <span className="material-symbols-outlined text-7xl mb-4">description</span>
-                  <p className="font-body-lg">لا يمكن تحميل الشهادة</p>
+                <div className="flex items-center justify-center h-full text-center text-on-surface-variant py-12">
+                  <div>
+                    <span className="material-symbols-outlined text-7xl mb-4">description</span>
+                    <p className="font-body-lg">لا يمكن تحميل الشهادة</p>
+                  </div>
                 </div>
               )}
             </div>
@@ -263,7 +263,7 @@ export default function CertificatePage() {
               </button>
               <a href={getDownloadUrl()} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-success text-white rounded-full font-bold hover:opacity-90 transition-all no-underline">
                 <span className="material-symbols-outlined">download</span>
-                تحميل
+                تحميل PDF
               </a>
               <button onClick={shareCert} className="flex items-center gap-2 px-6 py-3 bg-primary text-on-primary rounded-full font-bold hover:opacity-90 transition-all">
                 <span className="material-symbols-outlined">share</span>
