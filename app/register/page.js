@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { registerStudent } from '@/lib/supabase';
 
 const GRADES = [
   { v: 2, l: 'الصف الثاني الابتدائي' },
@@ -65,6 +66,16 @@ export default function RegisterPage() {
   const [done, setDone] = useState(false);
   const [errors, setErrors] = useState({});
   const [country, setCountry] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [fatherName, setFatherName] = useState('');
+  const [familyName, setFamilyName] = useState('');
+  const [birthDate, setBirthDate] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
+  const [grade, setGrade] = useState('');
+  const [governorate, setGovernorate] = useState('');
+  const [city, setCity] = useState('');
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -76,16 +87,6 @@ export default function RegisterPage() {
 
   function validate() {
     const errs = {};
-    const firstName = document.getElementById('firstName').value.trim();
-    const fatherName = document.getElementById('fatherName').value.trim();
-    const familyName = document.getElementById('familyName').value.trim();
-    const birthDate = document.getElementById('birthDate').value;
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const whatsapp = document.getElementById('whatsapp').value.trim();
-    const grade = document.getElementById('grade').value;
-    const governorate = document.getElementById('governorate').value.trim();
-    const city = document.getElementById('city').value.trim();
 
     if (!firstName || !/^[\u0600-\u06FFA-Za-z]{2,}$/.test(firstName))
       errs.firstName = 'الاسم الأول مطلوب (حروف فقط)';
@@ -126,33 +127,17 @@ export default function RegisterPage() {
     if (!validate()) return;
     setSubmitting(true);
 
-    const firstName = document.getElementById('firstName').value.trim();
-    const fatherName = document.getElementById('fatherName').value.trim();
-    const familyName = document.getElementById('familyName').value.trim();
     const name = `${firstName} ${fatherName} ${familyName}`;
-    const birthDate = document.getElementById('birthDate').value;
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const whatsapp = document.getElementById('whatsapp').value.trim();
-    const grade = document.getElementById('grade').value;
-    const governorate = document.getElementById('governorate').value.trim();
-    const city = document.getElementById('city').value.trim();
-
     const data = { name, birth_date: birthDate, email, phone, whatsapp, grade, country, governorate, city, track, plan };
 
     try {
-      const res = await fetch('/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-      const json = await res.json();
-      if (json.success) {
+      const result = await registerStudent(data);
+      if (result.success) {
         setDone(true);
       } else {
         const errs = {};
-        if (json.field) errs[json.field] = json.error;
-        else errs._form = json.error || 'حدث خطأ';
+        if (result.field) errs[result.field] = result.error;
+        else errs._form = result.error || 'حدث خطأ';
         setErrors(errs);
       }
     } catch {
@@ -162,56 +147,84 @@ export default function RegisterPage() {
     }
   }
 
+  function resetForm() {
+    setDone(false);
+    setTrack('');
+    setPlan('');
+    setCountry('');
+    setFirstName('');
+    setFatherName('');
+    setFamilyName('');
+    setBirthDate('');
+    setEmail('');
+    setPhone('');
+    setWhatsapp('');
+    setGrade('');
+    setGovernorate('');
+    setCity('');
+    setErrors({});
+  }
+
   if (done) {
     return (
-      <section className="register-section">
-        <div className="container">
-          <div className="success-card">
-            <div className="success-icon">✅</div>
-            <h2 className="success-title">تم تسجيل الطالب بنجاح!</h2>
-            <p className="success-text">
-              سيتم التواصل معكم خلال أقرب وقت لتحديد موعد <strong>المقابلة الشخصية للطالب واختبار القبول</strong>،
-              بالإضافة إلى حجز موعد <strong>المحاضرة المجانية</strong> لتقييم المستوى والتأكد من ملاءمة المسار.
-            </p>
-            <div className="success-actions">
-              <Link href="/" className="btn btn-primary">العودة للصفحة الرئيسية</Link>
-              <button className="btn btn-ghost" onClick={() => { setDone(false); document.getElementById('registerForm')?.reset(); setTrack(''); setPlan(''); setCountry(''); setErrors({}); }}>
-                تسجيل طالب آخر
-              </button>
-            </div>
-          </div>
+      <section className="p-8 md:p-16 flex flex-col items-center justify-center text-center form-shadow border border-secondary-container/20 rounded-20 w-full bg-white mx-auto max-w-container-max" dir="rtl">
+        <div className="w-24 h-24 bg-secondary-container/20 rounded-full flex items-center justify-center mb-8 animate-bounce">
+          <span className="material-symbols-outlined text-secondary-container text-5xl" style={{fontVariationSettings: "'FILL' 1"}}>check_circle</span>
+        </div>
+        <h2 className="font-headline-xl text-headline-xl text-primary mb-4">تم تسجيل الطالب بنجاح!</h2>
+        <p className="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-md mx-auto">شكراً لانضمامكم إلى &ldquo;تك ميكرز&rdquo;. سيقوم فريق القبول بالتواصل معكم عبر الهاتف أو واتساب خلال 24 ساعة عمل لتأكيد الحجز وموعد الاختبار.</p>
+        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
+          <button className="flex-1 bg-primary text-on-primary py-4 rounded-full font-label-md text-label-md hover:bg-primary-deep transition-colors" onClick={resetForm}>
+            تسجيل طالب آخر
+          </button>
+          <Link href="/" className="flex-1 border-2 border-primary text-primary py-4 rounded-full font-label-md text-label-md hover:bg-surface-container-low transition-colors text-center">
+            العودة للرئيسية
+          </Link>
         </div>
       </section>
     );
   }
 
   return (
-    <section className="register-section">
-      <div className="container">
-        <div className="section-head">
-          <span className="section-eyebrow">📝 تسجيل الطالب</span>
-          <h2 className="section-title">نموذج تسجيل طالب</h2>
-          <p className="section-sub" style={{ fontWeight: 800, color: 'var(--royal-blue)', fontSize: 18 }}>تك ميكرز - مصر</p>
-          <p className="section-sub">اختر المسار المناسب وخطة الاشتراك واستكمل بيانات ابنك</p>
-        </div>
+    <section className="relative py-12 px-margin-mobile md:px-margin-desktop flex flex-col items-center min-h-screen bg-bg-off-white" dir="rtl">
+      <div className="w-full max-w-2xl mx-auto">
 
-        <div className="register-box">
-          {errors._form && <div className="form-error-banner">{errors._form}</div>}
-          <form id="registerForm" onSubmit={handleSubmit} noValidate>
-            <div className="register-selection">
-              <div className="sel-group">
-                <label>المسار التعليمي *</label>
-                <select value={track} onChange={e => setTrack(e.target.value)} required>
-                  <option value="">اختر المسار</option>
+        {/* Registration Form Card */}
+          <div className="drop-shadow-xl">
+          <div className="glow-border" style={{padding:3}}>
+            <section className="w-full bg-white rounded-20 p-8 md:p-12 relative transition-all duration-500">
+              {/* Form Header */}
+          <div className="mb-10 text-right">
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-high text-primary-light font-label-md text-label-sm mb-3">
+              <span className="material-symbols-outlined text-sm ml-1">edit_note</span>
+              خطوة نحو المستقبل
+            </span>
+            <h2 className="font-headline-xl text-headline-xl text-primary">نموذج تسجيل طالب</h2>
+            <p className="text-text-muted font-body-md text-body-md mt-2">يرجى ملء البيانات التالية بدقة للانضمام إلى برامجنا التعليمية.</p>
+          </div>
+
+          {errors._form && (
+            <div className="mb-6">
+              <div className="bg-error-container text-on-error-container px-6 py-4 rounded-xl font-body-md text-body-md">{errors._form}</div>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} noValidate className="space-y-8">
+            {/* Tracks & Plans */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+              <div className="space-y-2">
+                <label className="block font-label-md text-label-md text-on-surface-variant">المسار التعليمي *</label>
+                <select value={track} onChange={e => setTrack(e.target.value)} required className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary appearance-none rtl-input shadow-inner">
+                  <option value="">اختر المسار...</option>
                   <option value="a">Track A — Junior Tech Explorers (8–11 سنة)</option>
                   <option value="b">Track B — Future AI Engineers (12–15 سنة)</option>
                   <option value="c">Track C — Future Tech Engineers (16–20 سنة)</option>
                 </select>
               </div>
-              <div className="sel-group">
-                <label>خطة الاشتراك *</label>
-                <select value={plan} onChange={e => setPlan(e.target.value)} required>
-                  <option value="">اختر الخطة</option>
+              <div className="space-y-2">
+                <label className="block font-label-md text-label-md text-on-surface-variant">خطة الاشتراك *</label>
+                <select value={plan} onChange={e => setPlan(e.target.value)} required className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary appearance-none rtl-input shadow-inner">
+                  <option value="">اختر الخطة...</option>
                   <option value="monthly">اشتراك شهري — 1200 جنيه/شهر</option>
                   <option value="quarterly">اشتراك ربع سنوي — 890 جنيه/شهرياً (إجمالي 2670)</option>
                   <option value="yearly">اشتراك سنوي — 690 جنيه/شهرياً (إجمالي 8280)</option>
@@ -219,102 +232,105 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            <div className="register-form">
-              <div className="form-row form-row-3">
-                <div className="form-group">
-                  <label>الاسم الأول *</label>
-                  <input type="text" id="firstName" placeholder="مثال: أحمد" required />
-                  {errors.firstName && <span className="field-error">{errors.firstName}</span>}
-                </div>
-                <div className="form-group">
-                  <label>اسم الأب *</label>
-                  <input type="text" id="fatherName" placeholder="مثال: محمد" required />
-                  {errors.fatherName && <span className="field-error">{errors.fatherName}</span>}
-                </div>
-                <div className="form-group">
-                  <label>اسم العائلة *</label>
-                  <input type="text" id="familyName" placeholder="مثال: علي" required />
-                  {errors.familyName && <span className="field-error">{errors.familyName}</span>}
-                </div>
+            {/* Name Fields */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+              <div className="space-y-2">
+                <label className="block font-label-md text-label-md text-on-surface-variant">الاسم الأول *</label>
+                <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="مثال: أحمد" required className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary rtl-input shadow-inner" />
+                {errors.firstName && <span className="font-label-sm text-label-sm text-error">{errors.firstName}</span>}
               </div>
-              <div className="form-row">
-                <div className="form-group">
-                  <label>تاريخ الميلاد *</label>
-                  <input type="date" id="birthDate" required />
-                  {errors.birthDate && <span className="field-error">{errors.birthDate}</span>}
-                </div>
-                <div className="form-group"></div>
+              <div className="space-y-2">
+                <label className="block font-label-md text-label-md text-on-surface-variant">اسم الأب *</label>
+                <input type="text" value={fatherName} onChange={e => setFatherName(e.target.value)} placeholder="مثال: محمد" required className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary rtl-input shadow-inner" />
+                {errors.fatherName && <span className="font-label-sm text-label-sm text-error">{errors.fatherName}</span>}
               </div>
-              <div className="form-row">
-                <div className="form-group" style={{ gridColumn: '1 / -1' }}>
-                  <label>البريد الإلكتروني لولي الأمر *</label>
-                  <input type="email" id="email" placeholder="example@email.com" required />
-                  {errors.email && <span className="field-error">{errors.email}</span>}
-                </div>
-              </div>
-              <div className="form-row">
-                <div className="form-group">
-                  <label>رقم تليفون ولي الأمر *</label>
-                  <input type="tel" id="phone" placeholder="010xxxxxxxx" required />
-                  {errors.phone && <span className="field-error">{errors.phone}</span>}
-                </div>
-                <div className="form-group">
-                  <label>رقم واتساب للمتابعة *</label>
-                  <input type="tel" id="whatsapp" placeholder="010xxxxxxxx" required />
-                  {errors.whatsapp && <span className="field-error">{errors.whatsapp}</span>}
-                </div>
-              </div>
-              <div className="form-row">
-                <div className="form-group">
-                  <label>الصف الدراسي للطالب *</label>
-                  <select id="grade" required>
-                    <option value="">اختر الصف</option>
-                    {GRADES.map(g => (
-                      <option key={g.v} value={g.v}>{g.l}</option>
-                    ))}
-                  </select>
-                  {errors.grade && <span className="field-error">{errors.grade}</span>}
-                </div>
-                <div className="form-group">
-                  <label>الدولة *</label>
-                  <select id="country" value={country} onChange={e => setCountry(e.target.value)} required>
-                    <option value="">اختر الدولة</option>
-                    {COUNTRIES.map(c => (
-                      <option key={c} value={c}>{c}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              <div className="form-row">
-                <div className="form-group">
-                  <label>المحافظة</label>
-                  {country === 'مصر' ? (
-                    <select id="governorate">
-                      <option value="">اختر المحافظة</option>
-                      {EGYPT_GOVS.map(g => (
-                        <option key={g} value={g}>{g}</option>
-                      ))}
-                    </select>
-                  ) : (
-                    <input type="text" id="governorate" placeholder="مثال: القاهرة" />
-                  )}
-                  {errors.governorate && <span className="field-error">{errors.governorate}</span>}
-                </div>
-                <div className="form-group">
-                  <label>المدينة / الحي</label>
-                  <input type="text" id="city" placeholder="مثال: مدينة نصر" />
-                </div>
+              <div className="space-y-2">
+                <label className="block font-label-md text-label-md text-on-surface-variant">اسم العائلة *</label>
+                <input type="text" value={familyName} onChange={e => setFamilyName(e.target.value)} placeholder="مثال: علي" required className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary rtl-input shadow-inner" />
+                {errors.familyName && <span className="font-label-sm text-label-sm text-error">{errors.familyName}</span>}
               </div>
             </div>
 
-            <div className="register-note">
-              <strong>⬅️ بعد التسجيل:</strong> سيتم عمل انترفيو للطالب واختبار قبول مع محاضرة مجانية لتحديد مستوى الطالب والتأكد من ملاءمة المسار له.
+            {/* Personal Info */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+              <div className="space-y-2">
+                <label className="block font-label-md text-label-md text-on-surface-variant">تاريخ الميلاد *</label>
+                <input type="date" value={birthDate} onChange={e => setBirthDate(e.target.value)} required className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary rtl-input shadow-inner" />
+                {errors.birthDate && <span className="font-label-sm text-label-sm text-error">{errors.birthDate}</span>}
+              </div>
+              <div className="space-y-2">
+                <label className="block font-label-md text-label-md text-on-surface-variant">الصف الدراسي للطالب *</label>
+                <select value={grade} onChange={e => setGrade(e.target.value)} required className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary appearance-none rtl-input shadow-inner">
+                  <option value="">اختر الصف...</option>
+                  {GRADES.map(g => (
+                    <option key={g.v} value={g.v}>{g.l}</option>
+                  ))}
+                </select>
+                {errors.grade && <span className="font-label-sm text-label-sm text-error">{errors.grade}</span>}
+              </div>
             </div>
 
-            <button type="submit" className="register-submit" disabled={submitting}>
-              {submitting ? '⏳ جاري التسجيل...' : '✅ تسجيل الطالب'}
-            </button>
+            {/* Contact Info */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+              <div className="space-y-2">
+                <label className="block font-label-md text-label-md text-on-surface-variant">رقم تليفون ولي الأمر *</label>
+                <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="010xxxxxxxx" required className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary rtl-input shadow-inner" />
+                {errors.phone && <span className="font-label-sm text-label-sm text-error">{errors.phone}</span>}
+              </div>
+              <div className="space-y-2">
+                <label className="block font-label-md text-label-md text-on-surface-variant">رقم واتساب للمتابعة *</label>
+                <input type="tel" value={whatsapp} onChange={e => setWhatsapp(e.target.value)} placeholder="010xxxxxxxx" required className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary rtl-input shadow-inner" />
+                {errors.whatsapp && <span className="font-label-sm text-label-sm text-error">{errors.whatsapp}</span>}
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="block font-label-md text-label-md text-on-surface-variant">البريد الإلكتروني لولي الأمر *</label>
+              <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="example@email.com" required className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary rtl-input shadow-inner" />
+              {errors.email && <span className="font-label-sm text-label-sm text-error">{errors.email}</span>}
+            </div>
+
+            {/* Location Group */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+              <div className="space-y-2">
+                <label className="block font-label-md text-label-md text-on-surface-variant">الدولة *</label>
+                <select value={country} onChange={e => setCountry(e.target.value)} required className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary appearance-none rtl-input shadow-inner">
+                  <option value="">اختر الدولة</option>
+                  {COUNTRIES.map(c => (
+                    <option key={c} value={c}>{c}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="space-y-2">
+                <label className="block font-label-md text-label-md text-on-surface-variant">المحافظة</label>
+                {country === 'مصر' ? (
+                  <select value={governorate} onChange={e => setGovernorate(e.target.value)} className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary appearance-none rtl-input shadow-inner">
+                    <option value="">اختر المحافظة</option>
+                    {EGYPT_GOVS.map(g => (
+                      <option key={g} value={g}>{g}</option>
+                    ))}
+                  </select>
+                ) : (
+                  <input type="text" value={governorate} onChange={e => setGovernorate(e.target.value)} placeholder="مثال: القاهرة" className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary rtl-input shadow-inner" />
+                )}
+                {errors.governorate && <span className="font-label-sm text-label-sm text-error">{errors.governorate}</span>}
+              </div>
+              <div className="space-y-2">
+                <label className="block font-label-md text-label-md text-on-surface-variant">المدينة / الحي</label>
+                <input type="text" value={city} onChange={e => setCity(e.target.value)} placeholder="مثال: مدينة نصر" className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary rtl-input shadow-inner" />
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <div className="pt-6">
+              <button type="submit" className="w-full bg-gradient-to-l from-primary to-primary-light text-on-primary py-5 rounded-full font-headline-lg text-headline-lg flex items-center justify-center gap-3 hover:shadow-lg hover:-translate-y-1 transition-all active:scale-95 group disabled:opacity-50" disabled={submitting}>
+                <span>{submitting ? '⏳ جاري التسجيل...' : '✅ تسجيل الطالب'}</span>
+                <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+              </button>
+            </div>
           </form>
+        </section>
+        </div>
         </div>
       </div>
     </section>

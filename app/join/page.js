@@ -8,315 +8,325 @@ export default function JoinPage() {
 
   return (
     <>
-      <section className="join-hero">
-        <div className="container">
-          <span className="section-eyebrow">انضم الينا</span>
-          <h1 className="join-hero-title">كن جزءاً من فريق Tech Makers</h1>
-          <p className="join-hero-sub">نبحث عن أشخاص شغوفين بالتعليم والتكنولوجيا للانضمام إلى فريقنا المتنامي</p>
-        </div>
-      </section>
-
-      <section className="why-join">
-        <div className="container">
-          <div className="section-head">
-            <span className="section-eyebrow">لماذا Tech Makers؟</span>
-            <h2 className="section-title">فرص متميزة لتطوير مسيرتك المهنية</h2>
-          </div>
-          <div className="why-join-grid">
-            <div className="why-join-card">
-              <div className="why-join-icon">🌱</div>
-              <h4>بيئة عمل مرنة</h4>
-              <p>عمل عن بُعد بمرونة في الأوقات يناسب الطلاب والخريجين</p>
-            </div>
-            <div className="why-join-card">
-              <div className="why-join-icon">📚</div>
-              <h4>تدريب مستمر</h4>
-              <p>برامج تدريبية وتطوير مهني مستمر للموظفين</p>
-            </div>
-            <div className="why-join-card">
-              <div className="why-join-icon">🤝</div>
-              <h4>فريق شغوف</h4>
-              <p>العمل مع فريق متميز يؤمن بأهمية التعليم والتكنولوجيا</p>
-            </div>
-            <div className="why-join-card">
-              <div className="why-join-icon">🚀</div>
-              <h4>نمو مهني</h4>
-              <p>فرص للترقي والنمو داخل المؤسسة</p>
-            </div>
+      <section className="relative bg-gradient-to-br from-primary-deep to-primary text-on-primary overflow-hidden py-24 md:py-32">
+        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-center">
+          <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6">كن جزءاً من فريق Tech Makers</h1>
+          <p className="font-body-lg text-body-lg max-w-2xl mx-auto opacity-90">انضم إلى مجتمع يسعى لتشكيل مستقبل التكنولوجيا في مصر وتطوير جيل المبتكرين القادم.</p>
+          <div className="mt-10">
+            <Link href="#apply-forms" className="bg-secondary-container text-on-secondary-container px-10 py-4 rounded-full font-headline-lg shadow-xl hover:scale-105 active:scale-95 transition-all inline-block">ابدأ رحلتك معنا</Link>
           </div>
         </div>
       </section>
 
-      <section className="join-forms">
-        <div className="container">
-          <div className="section-head">
-            <span className="section-eyebrow">نموذج التسجيل</span>
-            <h2 className="section-title">اختر الدور المناسب لك</h2>
-            <p className="section-sub">اختر التخصص الذي يناسب خبراتك ومهاراتك</p>
+      <section className="py-20 bg-bg-off-white">
+        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+          <div className="text-center mb-16">
+            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">لماذا تنضم إلينا؟</h2>
+            <div className="h-1.5 w-24 bg-secondary-container mx-auto rounded-full"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+            <div className="bg-white p-8 rounded-xl shadow-card border border-primary-light/10 hover:-translate-y-2 transition-transform duration-300">
+              <div className="w-16 h-16 bg-surface-container-high rounded-full flex items-center justify-center mb-6">
+                <span className="material-symbols-outlined text-primary text-3xl">schedule</span>
+              </div>
+              <h4 className="font-headline-lg text-headline-lg mb-3">بيئة عمل مرنة</h4>
+              <p className="text-on-surface-variant font-body-md">نقدر التوازن بين العمل والحياة ونوفر مرونة كاملة في المواعيد والمهام.</p>
+            </div>
+            <div className="bg-white p-8 rounded-xl shadow-card border border-primary-light/10 hover:-translate-y-2 transition-transform duration-300">
+              <div className="w-16 h-16 bg-surface-container-high rounded-full flex items-center justify-center mb-6">
+                <span className="material-symbols-outlined text-primary text-3xl">model_training</span>
+              </div>
+              <h4 className="font-headline-lg text-headline-lg mb-3">تدريب مستمر</h4>
+              <p className="text-on-surface-variant font-body-md">فرص لا تنتهي لتطوير مهاراتك التقنية والشخصية من خلال ورش عمل مكثفة.</p>
+            </div>
+            <div className="bg-white p-8 rounded-xl shadow-card border border-primary-light/10 hover:-translate-y-2 transition-transform duration-300">
+              <div className="w-16 h-16 bg-surface-container-high rounded-full flex items-center justify-center mb-6">
+                <span className="material-symbols-outlined text-primary text-3xl">groups</span>
+              </div>
+              <h4 className="font-headline-lg text-headline-lg mb-3">فريق شغوف</h4>
+              <p className="text-on-surface-variant font-body-md">ستعمل جنباً إلى جنب مع أفضل العقول في مجال التكنولوجيا والابتكار.</p>
+            </div>
+            <div className="bg-white p-8 rounded-xl shadow-card border border-primary-light/10 hover:-translate-y-2 transition-transform duration-300">
+              <div className="w-16 h-16 bg-surface-container-high rounded-full flex items-center justify-center mb-6">
+                <span className="material-symbols-outlined text-primary text-3xl">trending_up</span>
+              </div>
+              <h4 className="font-headline-lg text-headline-lg mb-3">نمو مهني</h4>
+              <p className="text-on-surface-variant font-body-md">مسار وظيفي واضح وفرص حقيقية للترقي وتولي مسؤوليات قيادية.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 bg-surface-container-lowest" id="apply-forms">
+        <div className="max-w-4xl mx-auto px-margin-mobile">
+          <div className="text-center mb-12">
+            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">طلبات الانضمام</h2>
+            <p className="text-on-surface-variant">اختر الفئة التي تناسب خبراتك واملأ النموذج</p>
           </div>
 
-          <div className="form-tabs">
+          <div className="flex justify-center gap-4 mb-12">
             <button
-              className={'form-tab' + (activeTab === 'trainer' ? ' active' : '')}
+              className={`px-8 py-3 rounded-full font-label-md transition-all duration-300 ${activeTab === 'trainer' ? 'bg-primary text-on-primary shadow-lg scale-105' : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high'}`}
               onClick={() => setActiveTab('trainer')}
             >
-              👨‍🏫 مدرب
+              مدرب (Trainer)
             </button>
             <button
-              className={'form-tab' + (activeTab === 'specialist' ? ' active' : '')}
+              className={`px-8 py-3 rounded-full font-label-md transition-all duration-300 ${activeTab === 'specialist' ? 'bg-primary text-on-primary shadow-lg scale-105' : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high'}`}
               onClick={() => setActiveTab('specialist')}
             >
-              🧑‍⚕️ اخصائي
+              متخصص (Specialist)
             </button>
             <button
-              className={'form-tab' + (activeTab === 'admin' ? ' active' : '')}
+              className={`px-8 py-3 rounded-full font-label-md transition-all duration-300 ${activeTab === 'admin' ? 'bg-primary text-on-primary shadow-lg scale-105' : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high'}`}
               onClick={() => setActiveTab('admin')}
             >
-              📋 اداري
+              إداري (Admin)
             </button>
           </div>
 
           {activeTab === 'trainer' && (
-            <div className="form-panel active" id="trainer">
-              <div className="form-card">
-                <div className="form-header">
-                  <h3>نموذج تسجيل المدربين</h3>
-                  <p>أكمل البيانات التالية للتقديم على وظيفة المدرب</p>
-                </div>
-                <form className="registration-form" onSubmit={(e) => { e.preventDefault(); alert('شكراً لك! تم استلام طلبك وسنتواصل معك قريباً.'); e.target.reset(); }}>
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="trainer-name">الاسم الكامل *</label>
-                      <input type="text" id="trainer-name" placeholder="أدخل اسمك الكامل" required />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="trainer-email">البريد الإلكتروني *</label>
-                      <input type="email" id="trainer-email" placeholder="example@email.com" required />
-                    </div>
-                  </div>
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="trainer-phone">رقم الهاتف *</label>
-                      <input type="tel" id="trainer-phone" placeholder="+20 1XX XXX XXXX" required />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="trainer-country">الدولة *</label>
-                      <select id="trainer-country" required>
-                        <option value="">اختر الدولة</option>
-                        <option value="egypt">مصر</option>
-                        <option value="jordan">الأردن</option>
-                        <option value="saudi">السعودية</option>
-                        <option value="kuwait">الكويت</option>
-                        <option value="uae">الإمارات</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="trainer-specialty">التخصص *</label>
-                      <select id="trainer-specialty" required>
-                        <option value="">اختر التخصص</option>
-                        <option value="programming">برمجة (Python / Scratch)</option>
-                        <option value="web">تطوير الويب</option>
-                        <option value="ai">ذكاء اصطناعي</option>
-                        <option value="mobile">تطوير تطبيقات الموبايل</option>
-                        <option value="iot">إنترنت الأشياء (IoT)</option>
-                        <option value="data">تحليل البيانات</option>
-                        <option value="other">أخرى</option>
-                      </select>
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="trainer-experience">سنوات الخبرة *</label>
-                      <select id="trainer-experience" required>
-                        <option value="">اختر مستوى الخبرة</option>
-                        <option value="0-1">أقل من سنة</option>
-                        <option value="1-3">1-3 سنوات</option>
-                        <option value="3-5">3-5 سنوات</option>
-                        <option value="5+">أكثر من 5 سنوات</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="trainer-portfolio">رابط ملف الأعمال (Portfolio) / LinkedIn</label>
-                    <input type="url" id="trainer-portfolio" placeholder="https://" />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="trainer-bio">نبذة عنك *</label>
-                    <textarea id="trainer-bio" rows="4" placeholder="أخبرنا عن خبراتك ومهاراتك ولماذا تريد الانضمام لفريق Tech Makers" required></textarea>
-                  </div>
-                  <button type="submit" className="form-submit">إرسال الطلب</button>
-                </form>
+            <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-outline-variant/20">
+              <div className="text-center mb-8">
+                <h3 className="font-headline-lg text-headline-lg text-primary mb-2">تسجيل المدربين</h3>
+                <p className="text-on-surface-variant">أكمل البيانات التالية للتقديم على وظيفة المدرب</p>
               </div>
+              <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); alert('تم استلام طلبك بنجاح! سيتواصل معك فريق التوظيف قريباً.'); e.target.reset(); }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="trainer-name">الاسم الكامل *</label>
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" id="trainer-name" placeholder="أدخل اسمك الثلاثي" required />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="trainer-email">البريد الإلكتروني *</label>
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="email" id="trainer-email" placeholder="example@techmakers.com" required />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="trainer-phone">رقم الهاتف *</label>
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" id="trainer-phone" placeholder="+20 123 456 7890" required />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="trainer-country">الدولة *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="trainer-country" required>
+                      <option value="">اختر الدولة</option>
+                      <option value="egypt">مصر</option>
+                      <option value="jordan">الأردن</option>
+                      <option value="saudi">السعودية</option>
+                      <option value="kuwait">الكويت</option>
+                      <option value="uae">الإمارات</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="trainer-specialty">التخصص *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="trainer-specialty" required>
+                      <option value="">اختر التخصص</option>
+                      <option value="programming">برمجة (Python / Scratch)</option>
+                      <option value="web">تطوير الويب</option>
+                      <option value="ai">ذكاء اصطناعي</option>
+                      <option value="mobile">تطوير تطبيقات الموبايل</option>
+                      <option value="iot">إنترنت الأشياء (IoT)</option>
+                      <option value="data">تحليل البيانات</option>
+                      <option value="other">أخرى</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="trainer-experience">سنوات الخبرة *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="trainer-experience" required>
+                      <option value="">اختر مستوى الخبرة</option>
+                      <option value="0-1">أقل من سنة</option>
+                      <option value="1-3">1-3 سنوات</option>
+                      <option value="3-5">3-5 سنوات</option>
+                      <option value="5+">أكثر من 5 سنوات</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="font-label-md text-on-surface" htmlFor="trainer-portfolio">رابط ملف الأعمال (Portfolio) / LinkedIn</label>
+                  <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="url" id="trainer-portfolio" placeholder="https://linkedin.com/in/username" />
+                </div>
+                <div className="space-y-2">
+                  <label className="font-label-md text-on-surface" htmlFor="trainer-bio">نبذة عنك *</label>
+                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="trainer-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." required></textarea>
+                </div>
+                <div className="pt-6">
+                  <button type="submit" className="w-full bg-primary text-on-primary py-4 rounded-full font-headline-lg hover:shadow-lg active:scale-95 transition-all">إرسال الطلب</button>
+                </div>
+              </form>
             </div>
           )}
 
           {activeTab === 'specialist' && (
-            <div className="form-panel active" id="specialist">
-              <div className="form-card">
-                <div className="form-header">
-                  <h3>نموذج تسجيل الإخصائيين</h3>
-                  <p>أكمل البيانات التالية للتقديم على وظيفة الإخصائي السلوكي</p>
-                </div>
-                <form className="registration-form" onSubmit={(e) => { e.preventDefault(); alert('شكراً لك! تم استلام طلبك وسنتواصل معك قريباً.'); e.target.reset(); }}>
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="spec-name">الاسم الكامل *</label>
-                      <input type="text" id="spec-name" placeholder="أدخل اسمك الكامل" required />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="spec-email">البريد الإلكتروني *</label>
-                      <input type="email" id="spec-email" placeholder="example@email.com" required />
-                    </div>
-                  </div>
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="spec-phone">رقم الهاتف *</label>
-                      <input type="tel" id="spec-phone" placeholder="+20 1XX XXX XXXX" required />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="spec-country">الدولة *</label>
-                      <select id="spec-country" required>
-                        <option value="">اختر الدولة</option>
-                        <option value="egypt">مصر</option>
-                        <option value="jordan">الأردن</option>
-                        <option value="saudi">السعودية</option>
-                        <option value="kuwait">الكويت</option>
-                        <option value="uae">الإمارات</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="spec-type">نوع التخصص *</label>
-                      <select id="spec-type" required>
-                        <option value="">اختر نوع التخصص</option>
-                        <option value="behavioral">إخصائي سلوكي</option>
-                        <option value="educational">إخصائي إرشادي</option>
-                        <option value="counselor">مرشد نفسي</option>
-                        <option value="other">أخرى</option>
-                      </select>
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="spec-experience">سنوات الخبرة *</label>
-                      <select id="spec-experience" required>
-                        <option value="">اختر مستوى الخبرة</option>
-                        <option value="0-1">أقل من سنة</option>
-                        <option value="1-3">1-3 سنوات</option>
-                        <option value="3-5">3-5 سنوات</option>
-                        <option value="5+">أكثر من 5 سنوات</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="spec-certificate">الشهادات المهنية</label>
-                    <textarea id="spec-certificate" rows="3" placeholder="اذكر الشهادات المهنية التي تمتلكها"></textarea>
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="spec-bio">نبذة عنك *</label>
-                    <textarea id="spec-bio" rows="4" placeholder="أخبرنا عن خبراتك ومهاراتك ولماذا تريد الانضمام لفريق Tech Makers" required></textarea>
-                  </div>
-                  <button type="submit" className="form-submit">إرسال الطلب</button>
-                </form>
+            <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-outline-variant/20">
+              <div className="text-center mb-8">
+                <h3 className="font-headline-lg text-headline-lg text-primary mb-2">تسجيل المتخصصين</h3>
+                <p className="text-on-surface-variant">أكمل البيانات التالية للتقديم على وظيفة المتخصص</p>
               </div>
+              <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); alert('تم استلام طلبك بنجاح! سيتواصل معك فريق التوظيف قريباً.'); e.target.reset(); }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="spec-name">الاسم الكامل *</label>
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" id="spec-name" placeholder="أدخل اسمك الثلاثي" required />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="spec-email">البريد الإلكتروني *</label>
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="email" id="spec-email" placeholder="example@techmakers.com" required />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="spec-phone">رقم الهاتف *</label>
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" id="spec-phone" placeholder="+20 123 456 7890" required />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="spec-country">الدولة *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="spec-country" required>
+                      <option value="">اختر الدولة</option>
+                      <option value="egypt">مصر</option>
+                      <option value="jordan">الأردن</option>
+                      <option value="saudi">السعودية</option>
+                      <option value="kuwait">الكويت</option>
+                      <option value="uae">الإمارات</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="spec-type">نوع التخصص *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="spec-type" required>
+                      <option value="">اختر نوع التخصص</option>
+                      <option value="behavioral">إخصائي سلوكي</option>
+                      <option value="educational">إخصائي إرشادي</option>
+                      <option value="counselor">مرشد نفسي</option>
+                      <option value="other">أخرى</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="spec-experience">سنوات الخبرة *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="spec-experience" required>
+                      <option value="">اختر مستوى الخبرة</option>
+                      <option value="0-1">أقل من سنة</option>
+                      <option value="1-3">1-3 سنوات</option>
+                      <option value="3-5">3-5 سنوات</option>
+                      <option value="5+">أكثر من 5 سنوات</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="font-label-md text-on-surface" htmlFor="spec-certificate">الشهادات المهنية</label>
+                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="spec-certificate" rows="3" placeholder="اذكر الشهادات المهنية التي تمتلكها"></textarea>
+                </div>
+                <div className="space-y-2">
+                  <label className="font-label-md text-on-surface" htmlFor="spec-bio">نبذة عنك *</label>
+                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="spec-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." required></textarea>
+                </div>
+                <div className="pt-6">
+                  <button type="submit" className="w-full bg-primary text-on-primary py-4 rounded-full font-headline-lg hover:shadow-lg active:scale-95 transition-all">إرسال الطلب</button>
+                </div>
+              </form>
             </div>
           )}
 
           {activeTab === 'admin' && (
-            <div className="form-panel active" id="admin">
-              <div className="form-card">
-                <div className="form-header">
-                  <h3>نموذج تسجيل الإداريين</h3>
-                  <p>أكمل البيانات التالية للتقديم على وظائف الإدارة</p>
-                </div>
-                <form className="registration-form" onSubmit={(e) => { e.preventDefault(); alert('شكراً لك! تم استلام طلبك وسنتواصل معك قريباً.'); e.target.reset(); }}>
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="admin-name">الاسم الكامل *</label>
-                      <input type="text" id="admin-name" placeholder="أدخل اسمك الكامل" required />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="admin-email">البريد الإلكتروني *</label>
-                      <input type="email" id="admin-email" placeholder="example@email.com" required />
-                    </div>
-                  </div>
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="admin-phone">رقم الهاتف *</label>
-                      <input type="tel" id="admin-phone" placeholder="+20 1XX XXX XXXX" required />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="admin-country">الدولة *</label>
-                      <select id="admin-country" required>
-                        <option value="">اختر الدولة</option>
-                        <option value="egypt">مصر</option>
-                        <option value="jordan">الأردن</option>
-                        <option value="saudi">السعودية</option>
-                        <option value="kuwait">الكويت</option>
-                        <option value="uae">الإمارات</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="admin-dept">القسم *</label>
-                      <select id="admin-dept" required>
-                        <option value="">اختر القسم</option>
-                        <option value="hr">الموارد البشرية</option>
-                        <option value="marketing">التسويق والمبيعات</option>
-                        <option value="support">خدمة العملاء</option>
-                        <option value="finance">المالية</option>
-                        <option value="tech">الدعم الفني</option>
-                        <option value="other">أخرى</option>
-                      </select>
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="admin-experience">سنوات الخبرة *</label>
-                      <select id="admin-experience" required>
-                        <option value="">اختر مستوى الخبرة</option>
-                        <option value="0-1">أقل من سنة</option>
-                        <option value="1-3">1-3 سنوات</option>
-                        <option value="3-5">3-5 سنوات</option>
-                        <option value="5+">أكثر من 5 سنوات</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="admin-portfolio">LinkedIn</label>
-                    <input type="url" id="admin-portfolio" placeholder="https://linkedin.com/in/yourname" />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="admin-bio">نبذة عنك *</label>
-                    <textarea id="admin-bio" rows="4" placeholder="أخبرنا عن خبراتك ومهاراتك ولماذا تريد الانضمام لفريق Tech Makers" required></textarea>
-                  </div>
-                  <button type="submit" className="form-submit">إرسال الطلب</button>
-                </form>
+            <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-outline-variant/20">
+              <div className="text-center mb-8">
+                <h3 className="font-headline-lg text-headline-lg text-primary mb-2">تسجيل الإداريين</h3>
+                <p className="text-on-surface-variant">أكمل البيانات التالية للتقديم على وظائف الإدارة</p>
               </div>
+              <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); alert('تم استلام طلبك بنجاح! سيتواصل معك فريق التوظيف قريباً.'); e.target.reset(); }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="admin-name">الاسم الكامل *</label>
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" id="admin-name" placeholder="أدخل اسمك الثلاثي" required />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="admin-email">البريد الإلكتروني *</label>
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="email" id="admin-email" placeholder="example@techmakers.com" required />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="admin-phone">رقم الهاتف *</label>
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" id="admin-phone" placeholder="+20 123 456 7890" required />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="admin-country">الدولة *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="admin-country" required>
+                      <option value="">اختر الدولة</option>
+                      <option value="egypt">مصر</option>
+                      <option value="jordan">الأردن</option>
+                      <option value="saudi">السعودية</option>
+                      <option value="kuwait">الكويت</option>
+                      <option value="uae">الإمارات</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="admin-dept">القسم *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="admin-dept" required>
+                      <option value="">اختر القسم</option>
+                      <option value="hr">الموارد البشرية</option>
+                      <option value="marketing">التسويق والمبيعات</option>
+                      <option value="support">خدمة العملاء</option>
+                      <option value="finance">المالية</option>
+                      <option value="tech">الدعم الفني</option>
+                      <option value="other">أخرى</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="admin-experience">سنوات الخبرة *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="admin-experience" required>
+                      <option value="">اختر مستوى الخبرة</option>
+                      <option value="0-1">أقل من سنة</option>
+                      <option value="1-3">1-3 سنوات</option>
+                      <option value="3-5">3-5 سنوات</option>
+                      <option value="5+">أكثر من 5 سنوات</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="font-label-md text-on-surface" htmlFor="admin-portfolio">LinkedIn</label>
+                  <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="url" id="admin-portfolio" placeholder="https://linkedin.com/in/username" />
+                </div>
+                <div className="space-y-2">
+                  <label className="font-label-md text-on-surface" htmlFor="admin-bio">نبذة عنك *</label>
+                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="admin-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." required></textarea>
+                </div>
+                <div className="pt-6">
+                  <button type="submit" className="w-full bg-primary text-on-primary py-4 rounded-full font-headline-lg hover:shadow-lg active:scale-95 transition-all">إرسال الطلب</button>
+                </div>
+              </form>
             </div>
           )}
         </div>
       </section>
 
-      <section className="contact-info">
-        <div className="container">
-          <div className="section-head">
-            <span className="section-eyebrow">تواصل معنا</span>
-            <h2 className="section-title">أو تواصل معنا مباشرة</h2>
+      <section className="py-24 bg-bg-off-white">
+        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+          <div className="text-center mb-16">
+            <h2 className="font-headline-xl text-headline-xl text-primary">تواصل مباشر</h2>
+            <p className="text-on-surface-variant mt-2">نحن هنا للإجابة على استفساراتك حول الانضمام</p>
           </div>
-          <div className="contact-grid">
-            <div className="contact-card">
-              <div className="contact-icon">📧</div>
-              <h4>البريد الإلكتروني</h4>
-              <a href="mailto:info@techmakers.eg">info@techmakers.eg</a>
-            </div>
-            <div className="contact-card">
-              <div className="contact-icon">📱</div>
-              <h4>واتساب</h4>
-              <a href="https://wa.me/20XXXXXXXXXX">+20 1XX XXX XXXX</a>
-            </div>
-            <div className="contact-card">
-              <div className="contact-icon">🌐</div>
-              <h4>السوشيال ميديا</h4>
-              <a href="#">@TechMakersEgypt</a>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <a className="flex flex-col items-center text-center p-10 bg-white rounded-3xl shadow-sm hover:shadow-md transition-shadow group" href="mailto:careers@techmakers.com">
+              <div className="w-20 h-20 bg-primary/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors">
+                <span className="material-symbols-outlined text-primary text-4xl">mail</span>
+              </div>
+              <h4 className="font-headline-lg text-headline-lg mb-2">البريد الإلكتروني</h4>
+              <p className="text-on-surface-variant font-label-md">careers@techmakers.com</p>
+            </a>
+            <a className="flex flex-col items-center text-center p-10 bg-white rounded-3xl shadow-sm hover:shadow-md transition-shadow group" href="https://wa.me/201062540164" target="_blank" rel="noopener noreferrer">
+              <div className="w-20 h-20 bg-whatsapp/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-whatsapp/10 transition-colors">
+                <span className="material-symbols-outlined text-whatsapp text-4xl">chat</span>
+              </div>
+              <h4 className="font-headline-lg text-headline-lg mb-2">واتساب</h4>
+              <p className="text-on-surface-variant font-label-md">+20 106 254 0164</p>
+            </a>
+            <div className="flex flex-col items-center text-center p-10 bg-white rounded-3xl shadow-sm hover:shadow-md transition-shadow group">
+              <div className="w-20 h-20 bg-secondary-container/10 rounded-full flex items-center justify-center mb-6">
+                <span className="material-symbols-outlined text-secondary text-4xl">share</span>
+              </div>
+              <h4 className="font-headline-lg text-headline-lg mb-4">وسائل التواصل</h4>
+              <div className="flex gap-4">
+                <a className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary-light hover:text-white transition-all" href="#">
+                  <span className="material-symbols-outlined text-xl">public</span>
+                </a>
+                <a className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary-light hover:text-white transition-all" href="#">
+                  <span className="material-symbols-outlined text-xl">group</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

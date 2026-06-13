@@ -1,426 +1,541 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import HeroWithHalo from '../components/HeroWithHalo';
 
 export default function HomePage() {
   return (
     <>
-      <section className="hero">
-        <div className="container hero-grid">
-          <div className="hero-text">
-            <span className="hero-eyebrow">🌟 Tech Makers Egypt</span>
-            <h1 className="hero-title">
-              من <span className="hl">مستهلك للتكنولوجيا</span>
-              إلى <span className="hl-yellow">صانع ومطور وقائد</span>
-            </h1>
-            <p className="hero-tagline">
-              Tech Makers <span className="dot">•</span> Building Future Tech Leaders
-            </p>
-            <div className="hero-image-mobile">
-              <img src="/tech-1.png" alt="طالب Tech Makers" className="hero-image-mobile-img" />
+      <section role="banner" aria-label="Hero" className="relative py-16 md:py-24 px-margin-mobile md:px-margin-desktop hero-gradient overflow-hidden">
+        <div className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
+          {/* Logo */}
+          <div className="col-span-1 md:col-span-2 inline-flex items-center gap-2 px-4 py-1.5 bg-primary/5 border border-primary/10 rounded-full w-fit">
+            <span className="text-lg">🌟</span>
+            <span className="font-label-md text-label-md text-primary font-bold uppercase tracking-wide">Tech Makers Egypt</span>
+          </div>
+          
+          {/* Left Column: Content */}
+          <div className="flex flex-col gap-8">
+            <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg leading-tight">من <span className="text-secondary-container">مستهلك</span> للتكنولوجيا إلى <span className="text-royal">صانع</span> <span className="text-primary-deep">ومطور</span> و<span className="text-royal">قائد</span></h1>
+            
+            <p className="text-primary-deep font-headline-lg text-headline-lg flex items-center gap-2">Tech Makers • <span className="font-normal opacity-80">Building Future Tech Leaders</span></p>
+
+            {/* Student Age Cards */}
+            <div className="grid grid-cols-3 gap-3 max-w-sm">
+              {['8–11 سنة', '12–15 سنة', '16–20 سنة'].map((age, i) => (
+                <div key={i} className="bg-white p-2.5 md:p-3 rounded-lg md:rounded-xl shadow-sm text-center font-label-md text-primary text-xs md:text-sm">{age}</div>
+              ))}
             </div>
-            <p className="hero-sub">
-              في عالم تتغير فيه التكنولوجيا بسرعة، أصبح امتلاك المهارات الرقمية ليس اختيارًا… بل ضرورة لصناعة المستقبل.
-              <strong className="hero-highlight">Tech Makers</strong> هو برنامج تعليمي متكامل يهدف إلى إعداد جيل جديد من المبدعين والقادة التقنيين، من خلال رحلة عملية تبدأ من أساسيات البرمجة والتفكير المنطقي، وصولًا إلى الذكاء الاصطناعي وبناء المشاريع الرقمية الحقيقية.
-            </p>
-            <p className="hero-sub hero-sub-emph">
-              نؤمن أن التكنولوجيا لا يجب أن تكون مجرد أداة للاستهلاك، بل وسيلة للإبداع، الابتكار، وحل المشكلات.
-            </p>
-            <div className="hero-focus">
-              <span className="focus-label">يركز البرنامج على:</span>
-              <ul className="focus-list">
-                <li>✅ بناء عقلية تحليلية ومنهجية تفكير هندسية</li>
-                <li>✅ تطوير مهارات البرمجة والذكاء الاصطناعي</li>
-                <li>✅ التعلم بالمشاريع والتطبيق العملي</li>
-                <li>✅ تعزيز الثقة بالنفس والإبداع والعمل الجماعي</li>
-                <li>✅ إعداد الطلاب لمهارات المستقبل والمسارات التقنية الحديثة</li>
-              </ul>
+
+            {/* Tech Pillars */}
+            <div className="flex flex-wrap gap-3 md:gap-4">
+              {[
+                { icon: '🎯', text: 'تفكير منطقي' },
+                { icon: '🤖', text: 'ذكاء اصطناعي' },
+                { icon: '💡', text: 'مشاريع حقيقية' },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-2 md:gap-3 bg-primary/5 text-primary px-3 md:px-4 py-1.5 md:py-2 rounded-full font-label-md text-xs md:text-sm hover:opacity-95 transition-all">
+                  <span className="emoji-badge text-sm md:text-base">{item.icon}</span>
+                  <span className="font-medium">{item.text}</span>
+                </div>
+              ))}
             </div>
-            <div className="hero-statement">
-              نحن لا نقدم مادة علمية فقط… بل نبني بيئة تعليمية متكاملة تساعد الطالب على النمو فكريًا، تقنيًا، وشخصيًا.
-            </div>
-            <div className="hero-countries">
-              <span className="countries-label">متاح حاليًا في:</span>
-              <div className="countries-list">
-                <span className="country-flag">🇪🇬 مصر</span>
-                <span className="country-flag">🇯🇴 الأردن</span>
-                <span className="country-flag">🇸🇦 السعودية</span>
-                <span className="country-flag">🇰🇼 الكويت</span>
-                <span className="country-flag">🇦🇪 الإمارات</span>
+
+            {/* Detailed Description */}
+            <div className="text-on-surface-variant font-body-md md:font-body-lg text-sm md:text-body-lg leading-relaxed space-y-4">
+              <p>في عالم تتغير فيه التكنولوجيا بسرعة، أصبح امتلاك المهارات الرقمية ليس اختيارًا… بل ضرورة لصناعة المستقبل. Tech Makers هو برنامج تعليمي متكامل يهدف إلى إعداد جيل جديد من المبدعين والقادة التقنيين، من خلال رحلة عملية تبدأ من أساسيات البرمجة والتفكير المنطقي، وصولًا إلى الذكاء الاصطناعي وبناء المشاريع الرقمية الحقيقية.</p>
+              <p className="font-bold">نؤمن أن التكنولوجيا لا يجب أن تكون مجرد أداة للاستهلاك، بل وسيلة للإبداع، الابتكار، وحل المشكلات.</p>
+              
+              <div className="bg-white p-6 rounded-20 shadow-card border border-primary/5">
+                <p className="font-bold mb-3">يركز البرنامج على:</p>
+                <ul className="grid md:grid-cols-2 gap-2">
+                  {['بناء عقلية تحليلية ومنهجية تفكير هندسية', 'تطوير مهارات البرمجة والذكاء الاصطناعي', 'التعلم بالمشاريع والتطبيق العملي', 'تعزيز الثقة بالنفس والإبداع والعمل الجماعي', 'إعداد الطلاب لمهارات المستقبل والمسارات التقنية الحديثة'].map((item, i) => (
+                    <li key={i} className="flex items-center gap-2 text-on-surface-variant"><span className="text-secondary">✅</span> {item}</li>
+                  ))}
+                </ul>
               </div>
-            </div>
-            <div className="hero-actions">
-              <a href="#tracks" className="btn btn-primary">استكشف المسارات</a>
-              <Link href="/register" className="btn btn-ghost">سجّل الآن</Link>
+
+              <p>نحن لا نقدم مادة علمية فقط… بل نبني بيئة تعليمية متكاملة تساعد الطالب على النمو فكريًا، تقنيًا، وشخصيًا.</p>
             </div>
           </div>
-          <div className="hero-image-wrap">
-            <div className="hero-blob"></div>
-            <img src="/tech-1.png" alt="طالب Tech Makers" className="hero-image" />
-            <div className="age-floats">
-              <div className="age-float age-float-1">
-                <span className="age-float-range">8–11</span>
-                <span className="age-float-label">سنة</span>
-              </div>
-              <div className="age-float age-float-2">
-                <span className="age-float-range">12–15</span>
-                <span className="age-float-label">سنة</span>
-              </div>
-              <div className="age-float age-float-3">
-                <span className="age-float-range">16–20</span>
-                <span className="age-float-label">سنة</span>
+          
+          {/* Right Column: Hero Illustration */}
+          <div className="flex flex-col gap-8 items-center justify-start">
+            <HeroWithHalo />
+            
+            {/* Features Card */}
+            <div className="bg-white rounded-20 md:rounded-24 shadow-card-sm p-6 md:p-8 border border-primary/5 w-full md:max-w-sm hover-lift">
+              <div className="flex flex-col gap-3 md:gap-4">
+                <div className="flex items-start gap-3 text-on-surface font-body-md text-sm md:text-base"><span className="material-symbols-outlined text-secondary text-lg md:text-xl flex-shrink-0 mt-0.5">check_circle</span> <span>تعلم البرمجة من الصفر للاحتراف</span></div>
+                <div className="flex items-start gap-3 text-on-surface font-body-md text-sm md:text-base"><span className="material-symbols-outlined text-secondary text-lg md:text-xl flex-shrink-0 mt-0.5">check_circle</span> <span>تطبيقات عملية على الذكاء الاصطناعي</span></div>
+                <div className="flex items-start gap-3 text-on-surface font-body-md text-sm md:text-base"><span className="material-symbols-outlined text-secondary text-lg md:text-xl flex-shrink-0 mt-0.5">check_circle</span> <span>تطوير مهارات التفكير المنطقي والرياضي</span></div>
+                <div className="flex items-start gap-3 text-on-surface font-body-md text-sm md:text-base"><span className="material-symbols-outlined text-secondary text-lg md:text-xl flex-shrink-0 mt-0.5">check_circle</span> <span>مشاريع حقيقية وشهادات معتمدة</span></div>
+                <div className="flex items-start gap-3 text-on-surface font-body-md text-sm md:text-base"><span className="material-symbols-outlined text-secondary text-lg md:text-xl flex-shrink-0 mt-0.5">check_circle</span> <span>دعم نفسي وتربوي متخصص للمواهب</span></div>
               </div>
             </div>
-            <div className="hero-float hero-float-1">
-              <span>🎯</span> تفكير منطقي
+          </div>
+          
+          {/* CTA Buttons - Full Width */}
+          <div className="col-span-1 md:col-span-2 flex flex-wrap gap-4 mt-4 md:mt-8">
+            <Link href="/register" aria-label="سجل الآن في Tech Makers" className="btn-primary">اشترك الآن</Link>
+            <Link href="#tracks" className="btn-secondary">استكشف المسارات</Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding" id="about">
+        <div className="container-inner">
+          <div className="text-center mb-16 reveal">
+            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">إحنا مش بنعلّم برمجة وبس… إحنا بنبني شخصية</h2>
+            <p className="text-on-surface-variant font-body-lg text-body-lg">منهج متكامل مبني على 4 محاور أساسية تُعد جيل المستقبل</p>
+          </div>
+          <div className="grid grid-cols-1 gap-6 max-w-4xl mx-auto">
+            <div className="bg-white p-8 rounded-20 card-shadow hover-lift border border-primary/5 flex items-start gap-6 reveal reveal-delay-1">
+              <div className="w-16 h-16 shrink-0 bg-primary-container/10 flex items-center justify-center rounded-2xl text-primary font-bold text-3xl">01</div>
+              <div>
+                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary">🧠 التفكير المنطقي</h3>
+                <p className="text-on-surface-variant">بناء عقلية تحليلية تُمكّن الطالب من فهم المشكلات وتقسيمها بذكاء</p>
+              </div>
             </div>
-            <div className="hero-float hero-float-2">
-              <span>🤖</span> ذكاء اصطناعي
+            <div className="bg-white p-8 rounded-20 card-shadow hover-lift border border-primary/5 flex items-start gap-6 reveal reveal-delay-2">
+              <div className="w-16 h-16 shrink-0 bg-secondary-container/20 flex items-center justify-center rounded-2xl text-secondary font-bold text-3xl">02</div>
+              <div>
+                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary">🎨 الإبداع الرقمي</h3>
+                <p className="text-on-surface-variant">تحويل الطالب من مستهلك للتكنولوجيا إلى صانع يُنتج أدواته</p>
+              </div>
             </div>
-            <div className="hero-float hero-float-3">
-              <span>💡</span> مشاريع حقيقية
+            <div className="bg-white p-8 rounded-20 card-shadow hover-lift border border-primary/5 flex items-start gap-6 reveal reveal-delay-3">
+              <div className="w-16 h-16 shrink-0 bg-tertiary-container/10 flex items-center justify-center rounded-2xl text-tertiary font-bold text-3xl">03</div>
+              <div>
+                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary">🛠️ التعلم بالمشاريع</h3>
+                <p className="text-on-surface-variant">زيادة الثقة بالنفس من خلال تطبيقات عملية ومشاريع حقيقية</p>
+              </div>
+            </div>
+            <div className="bg-white p-8 rounded-20 card-shadow hover-lift border border-primary/5 flex items-start gap-6 reveal reveal-delay-4">
+              <div className="w-16 h-16 shrink-0 bg-error-container/40 flex items-center justify-center rounded-2xl text-error font-bold text-3xl">04</div>
+              <div>
+                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary">🤖 التعرض المبكر للـ AI</h3>
+                <p className="text-on-surface-variant">إعداد جيل المستقبل بأدوات وتقنيات الذكاء الاصطناعي</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="about" id="about">
-        <div className="container">
-          <div className="section-head">
-            <span className="section-eyebrow">عن Tech Makers</span>
-            <h2 className="section-title">إحنا مش بنعلّم برمجة وبس… إحنا بنبني شخصية</h2>
-            <p className="section-sub">منهج متكامل مبني على 4 محاور أساسية تُعد جيل المستقبل</p>
+      <section className="section-padding bg-surface-container-low">
+        <div className="container-inner">
+          <div className="text-center mb-16 reveal">
+            <span className="font-label-md text-label-md text-primary uppercase tracking-wide mb-2 block">النتائج المتوقعة</span>
+            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">ماذا سيحقق ابنك من خلال Tech Makers؟</h2>
+            <p className="text-on-surface-variant font-body-lg text-body-lg">نتائج ملموسة تؤثر بشكل إيجابي على مستقبل طفلك الأكاديمي والمهني</p>
           </div>
 
-          <div className="pillars-grid">
-            <div className="pillar">
-              <div className="pillar-num">01</div>
-              <div className="pillar-icon">🧠</div>
-              <h3>التفكير المنطقي</h3>
-              <p>بناء عقلية تحليلية تُمكّن الطالب من فهم المشكلات وتقسيمها بذكاء</p>
-            </div>
-            <div className="pillar">
-              <div className="pillar-num">02</div>
-              <div className="pillar-icon">🎨</div>
-              <h3>الإبداع الرقمي</h3>
-              <p>تحويل الطالب من مستهلك للتكنولوجيا إلى صانع يُنتج أدواته</p>
-            </div>
-            <div className="pillar">
-              <div className="pillar-num">03</div>
-              <div className="pillar-icon">🛠️</div>
-              <h3>التعلم بالمشاريع</h3>
-              <p>زيادة الثقة بالنفس من خلال تطبيقات عملية ومشاريع حقيقية</p>
-            </div>
-            <div className="pillar">
-              <div className="pillar-num">04</div>
-              <div className="pillar-icon">🤖</div>
-              <h3>التعرض المبكر للـ AI</h3>
-              <p>إعداد جيل المستقبل بأدوات وتقنيات الذكاء الاصطناعي</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="outcomes">
-        <div className="container">
-          <div className="section-head">
-            <span className="section-eyebrow">النتائج المتوقعة</span>
-            <h2 className="section-title">ماذا سيحقق ابنك من خلال Tech Makers؟</h2>
-            <p className="section-sub">نتائج ملموسة تؤثر بشكل إيجابي على مستقبل طفلك الأكاديمي والمهني</p>
-          </div>
-
-          <div className="outcomes-grid">
-            <div className="outcome-card">
-              <div className="outcome-icon-wrap"><div className="outcome-icon">💻</div></div>
-              <h3>اكتساب مهارات تقنية متقدمة</h3>
-              <ul className="outcome-list">
-                <li>فهم أساسيات البرمجة وتطبيقاتها العملية مما يؤهلهم لمواكبة التطورات التكنولوجية</li>
-                <li>القدرة على التعامل مع مفاهيم الذكاء الاصطناعي وتصميم الروبوتات البسيطة</li>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-xl card-shadow text-center reveal reveal-delay-1">
+              <div className="w-14 h-14 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                <span className="text-2xl">💻</span>
+              </div>
+              <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">اكتساب مهارات تقنية متقدمة</h3>
+              <ul className="text-right space-y-2">
+                <li className="text-on-surface-variant font-body-md text-body-md">• فهم أساسيات البرمجة وتطبيقاتها العملية مما يؤهلهم لمواكبة التطورات التكنولوجية</li>
+                <li className="text-on-surface-variant font-body-md text-body-md">• القدرة على التعامل مع مفاهيم الذكاء الاصطناعي وتصميم الروبوتات البسيطة</li>
               </ul>
             </div>
-            <div className="outcome-card">
-              <div className="outcome-icon-wrap"><div className="outcome-icon">📚</div></div>
-              <h3>تحسين الأداء الأكاديمي</h3>
-              <ul className="outcome-list">
-                <li>تحسين مهارات الحساب الذهني ينعكس إيجابًا على قدرتهم في الرياضيات والعلوم</li>
-                <li>تقوية اللغة الإنجليزية تعزز فهمهم للمواد الدراسية خاصة في المجالات التقنية</li>
+            <div className="bg-white p-6 rounded-xl card-shadow text-center reveal reveal-delay-2">
+              <div className="w-14 h-14 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                <span className="text-2xl">📚</span>
+              </div>
+              <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">تحسين الأداء الأكاديمي</h3>
+              <ul className="text-right space-y-2">
+                <li className="text-on-surface-variant font-body-md text-body-md">• تحسين مهارات الحساب الذهني ينعكس إيجابًا على قدرتهم في الرياضيات والعلوم</li>
+                <li className="text-on-surface-variant font-body-md text-body-md">• تقوية اللغة الإنجليزية تعزز فهمهم للمواد الدراسية خاصة في المجالات التقنية</li>
               </ul>
             </div>
-            <div className="outcome-card">
-              <div className="outcome-icon-wrap"><div className="outcome-icon">🧠</div></div>
-              <h3>تنمية المهارات الشخصية</h3>
-              <ul className="outcome-list">
-                <li>تطوير مهارات التفكير النقدي وحل المشكلات من خلال المشاريع العملية</li>
-                <li>تعزيز العمل الجماعي والقيادة من خلال المشاركة في أنشطة تعاونية</li>
+            <div className="bg-white p-6 rounded-xl card-shadow text-center reveal reveal-delay-3">
+              <div className="w-14 h-14 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                <span className="text-2xl">🧠</span>
+              </div>
+              <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">تنمية المهارات الشخصية</h3>
+              <ul className="text-right space-y-2">
+                <li className="text-on-surface-variant font-body-md text-body-md">• تطوير مهارات التفكير النقدي وحل المشكلات من خلال المشاريع العملية</li>
+                <li className="text-on-surface-variant font-body-md text-body-md">• تعزيز العمل الجماعي والقيادة من خلال المشاركة في أنشطة تعاونية</li>
               </ul>
             </div>
-            <div className="outcome-card">
-              <div className="outcome-icon-wrap"><div className="outcome-icon">💪</div></div>
-              <h3>زيادة الثقة بالنفس</h3>
-              <ul className="outcome-list">
-                <li>إنجاز مشاريع تقنية يعزز ثقة الأطفال بأنفسهم وقدرتهم على الإبداع</li>
-                <li>المشاركة في أنشطة تعليمية متقدمة تشجعهم على تحقيق أهداف أكبر</li>
+            <div className="bg-white p-6 rounded-xl card-shadow text-center reveal reveal-delay-1">
+              <div className="w-14 h-14 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                <span className="text-2xl">💪</span>
+              </div>
+              <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">زيادة الثقة بالنفس</h3>
+              <ul className="text-right space-y-2">
+                <li className="text-on-surface-variant font-body-md text-body-md">• إنجاز مشاريع تقنية يعزز ثقة الأطفال بأنفسهم وقدرتهم على الإبداع</li>
+                <li className="text-on-surface-variant font-body-md text-body-md">• المشاركة في أنشطة تعليمية متقدمة تشجعهم على تحقيق أهداف أكبر</li>
               </ul>
             </div>
-            <div className="outcome-card">
-              <div className="outcome-icon-wrap"><div className="outcome-icon">🔭</div></div>
-              <h3>فتح آفاق جديدة للتعلم</h3>
-              <ul className="outcome-list">
-                <li>تحفيز الأطفال على استكشاف مجالات جديدة في العلوم والتكنولوجيا</li>
-                <li>استعداد أكبر لمواجهة تحديات المستقبل في سوق العمل التقني</li>
+            <div className="bg-white p-6 rounded-xl card-shadow text-center">
+              <div className="w-14 h-14 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                <span className="text-2xl">🔭</span>
+              </div>
+              <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">فتح آفاق جديدة للتعلم</h3>
+              <ul className="text-right space-y-2">
+                <li className="text-on-surface-variant font-body-md text-body-md">• تحفيز الأطفال على استكشاف مجالات جديدة في العلوم والتكنولوجيا</li>
+                <li className="text-on-surface-variant font-body-md text-body-md">• استعداد أكبر لمواجهة تحديات المستقبل في سوق العمل التقني</li>
               </ul>
             </div>
-            <div className="outcome-card">
-              <div className="outcome-icon-wrap"><div className="outcome-icon">🚀</div></div>
-              <h3>بناء جيل مبتكر</h3>
-              <ul className="outcome-list">
-                <li>إعداد جيل من الأطفال القادرين على الابتكار والإسهام في تطوير المجتمع</li>
-                <li>أساس قوي في التكنولوجيا والذكاء الاصطناعي يؤهلهم لقيادة مشاريع تكنولوجية</li>
+            <div className="bg-white p-6 rounded-xl card-shadow text-center">
+              <div className="w-14 h-14 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                <span className="text-2xl">🚀</span>
+              </div>
+              <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">بناء جيل مبتكر</h3>
+              <ul className="text-right space-y-2">
+                <li className="text-on-surface-variant font-body-md text-body-md">• إعداد جيل من الأطفال القادرين على الابتكار والإسهام في تطوير المجتمع</li>
+                <li className="text-on-surface-variant font-body-md text-body-md">• أساس قوي في التكنولوجيا والذكاء الاصطناعي يؤهلهم لقيادة مشاريع تكنولوجية</li>
               </ul>
             </div>
-            <div className="outcome-card outcome-card-wide">
-              <div className="outcome-icon-wrap"><div className="outcome-icon">🌍</div></div>
-              <h3>تأثير إيجابي على المجتمع</h3>
-              <ul className="outcome-list">
-                <li>زيادة عدد الأطفال الملمين بالتكنولوجيا يسهم في تطوير المجتمع وزيادة الوعي التقني</li>
-                <li>سيكون لهؤلاء الأطفال دور فعال في دفع عجلة الابتكار والتنمية في الوطن العربي</li>
+            <div className="bg-white p-6 rounded-xl card-shadow text-center sm:col-span-2 lg:col-span-3">
+              <div className="w-14 h-14 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                <span className="text-2xl">🌍</span>
+              </div>
+              <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">تأثير إيجابي على المجتمع</h3>
+              <ul className="text-right space-y-2 max-w-2xl mx-auto">
+                <li className="text-on-surface-variant font-body-md text-body-md">• زيادة عدد الأطفال الملمين بالتكنولوجيا يسهم في تطوير المجتمع وزيادة الوعي التقني</li>
+                <li className="text-on-surface-variant font-body-md text-body-md">• سيكون لهؤلاء الأطفال دور فعال في دفع عجلة الابتكار والتنمية في الوطن العربي</li>
               </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="tracks-intro" id="tracks">
-        <div className="container">
-          <div className="section-head">
-            <span className="section-eyebrow">المسارات التعليمية</span>
-            <h2 className="section-title">قسّمنا الطلاب حسب الفئة العمرية</h2>
-            <p className="section-sub">علشان كل طالب يتعلم بالطريقة المناسبة لسنه ومستواه — فرق كبير في طريقة التفكير، سرعة التعلم، والقدرة على الاستيعاب التقني</p>
+      <section className="section-padding" id="tracks">
+        <div className="container-inner">
+          <div className="text-center mb-16">
+            <span className="font-label-md text-label-md text-primary uppercase tracking-wide mb-2 block">المسارات التعليمية</span>
+            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">قسّمنا الطلاب حسب الفئة العمرية</h2>
+            <p className="text-on-surface-variant font-body-lg text-body-lg">علشان كل طالب يتعلم بالطريقة المناسبة لسنه ومستواه — فرق كبير في طريقة التفكير، سرعة التعلم، والقدرة على الاستيعاب التقني</p>
           </div>
 
-          <div className="tracks-cards">
-            <div className="track-card track-a">
-              <div className="track-badge">Track A</div>
-              <h3>Junior Tech Explorers</h3>
-              <p className="track-age">من 8 إلى 11 سنة</p>
-              <ul className="track-tags">
-                <li>🎮 Visual Learning</li>
-                <li>🕹️ Gamification</li>
-                <li>🎨 Creative Projects</li>
-              </ul>
-              <Link href="/tracks?track=a" className="track-link">شاهد الرحلة ←</Link>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="relative bg-white rounded-24 overflow-hidden card-shadow group">
+              <div className="h-3 bg-secondary"></div>
+              <div className="p-8">
+                <div className="flex justify-between items-start mb-6">
+                  <div className="bg-secondary/10 p-4 rounded-2xl">
+                    <span className="font-label-md text-label-md text-secondary font-bold">Track A</span>
+                  </div>
+                </div>
+                <h3 className="font-headline-lg text-headline-lg text-primary mb-2">Junior Tech Explorers</h3>
+                <p className="text-on-surface-variant font-body-md text-body-md mb-4">من 8 إلى 11 سنة</p>
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">🎮 Visual Learning</li>
+                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">🕹️ Gamification</li>
+                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">🎨 Creative Projects</li>
+                </ul>
+                <Link href="/tracks?track=a" className="w-full block text-center py-3 border-2 border-secondary text-secondary rounded-xl font-bold group-hover:bg-secondary group-hover:text-white transition-all">شاهد الرحلة ←</Link>
+              </div>
             </div>
-            <div className="track-card track-b">
-              <div className="track-badge">Track B</div>
-              <h3>Future AI Engineers</h3>
-              <p className="track-age">من 12 إلى 15 سنة</p>
-              <ul className="track-tags">
-                <li>💻 Real Coding</li>
-                <li>🤖 AI Workflows</li>
-                <li>🧠 Tech Thinking</li>
-              </ul>
-              <Link href="/tracks?track=b" className="track-link">شاهد الرحلة ←</Link>
+            <div className="relative bg-white rounded-24 overflow-hidden card-shadow group">
+              <div className="h-3 bg-primary-light"></div>
+              <div className="p-8">
+                <div className="flex justify-between items-start mb-6">
+                  <div className="bg-primary-light/10 p-4 rounded-2xl">
+                    <span className="font-label-md text-label-md text-primary-light font-bold">Track B</span>
+                  </div>
+                </div>
+                <h3 className="font-headline-lg text-headline-lg text-primary mb-2">Future AI Engineers</h3>
+                <p className="text-on-surface-variant font-body-md text-body-md mb-4">من 12 إلى 15 سنة</p>
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">💻 Real Coding</li>
+                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">🤖 AI Workflows</li>
+                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">🧠 Tech Thinking</li>
+                </ul>
+                <Link href="/tracks?track=b" className="w-full block text-center py-3 border-2 border-primary-light text-primary-light rounded-xl font-bold group-hover:bg-primary-light group-hover:text-white transition-all">شاهد الرحلة ←</Link>
+              </div>
             </div>
-            <div className="track-card track-c">
-              <div className="track-badge track-badge-c">Track C</div>
-              <h3>Future Tech Engineers</h3>
-              <p className="track-age">من 16 إلى 20 سنة</p>
-              <ul className="track-tags">
-                <li>🚀 Full Stack</li>
-                <li>🤖 AI Engineering</li>
-                <li>📱 Mobile Dev</li>
-                <li>📊 Data Analytics</li>
-              </ul>
-              <Link href="/tracks?track=c" className="track-link track-link-c">شاهد الرحلة ←</Link>
+            <div className="relative bg-white rounded-24 overflow-hidden card-shadow group">
+              <div className="h-3 bg-tertiary"></div>
+              <div className="p-8">
+                <div className="flex justify-between items-start mb-6">
+                  <div className="bg-tertiary/10 p-4 rounded-2xl">
+                    <span className="font-label-md text-label-md text-tertiary font-bold">Track C</span>
+                  </div>
+                </div>
+                <h3 className="font-headline-lg text-headline-lg text-primary mb-2">Future Tech Engineers</h3>
+                <p className="text-on-surface-variant font-body-md text-body-md mb-4">من 16 إلى 20 سنة</p>
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">🚀 Full Stack</li>
+                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">🤖 AI Engineering</li>
+                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">📱 Mobile Dev</li>
+                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">📊 Data Analytics</li>
+                </ul>
+                <Link href="/tracks?track=c" className="w-full block text-center py-3 border-2 border-tertiary text-tertiary rounded-xl font-bold group-hover:bg-tertiary group-hover:text-white transition-all">شاهد الرحلة ←</Link>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="students" id="students">
-        <div className="container">
-          <div className="section-head">
-            <span className="section-eyebrow">طلابنا</span>
-            <h2 className="section-title">بعض طلابنا المتميزين</h2>
-            <p className="section-sub">نماذج حية من دفعات سابقة — بأسماء حقيقية وشهادات موثقة</p>
+      <section className="section-padding bg-surface" id="students">
+        <div className="container-inner">
+          <div className="text-center mb-16">
+            <span className="inline-block bg-primary/5 text-primary font-label-md text-label-md px-5 py-2 rounded-full mb-4">قصص نجاح</span>
+            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">بعض طلابنا المتميزين</h2>
+            <p className="text-on-surface-variant font-body-lg text-body-lg">نماذج حية من دفعات سابقة — بأسماء حقيقية وشهادات موثقة</p>
+            <div className="h-1.5 w-24 bg-secondary-container mx-auto rounded-full mt-4"></div>
           </div>
 
-          <div className="students-grid">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {[
               { name: 'Tala Nasser Abdelfatah', cert: '400179 AU', img: '1.jpeg' },
               { name: 'Ahmed Mohamed Fouad', cert: '400122 AU', img: '2.jpeg' },
               { name: 'Seif Hesham Mohamed', cert: '400126 AU', img: '3.jpeg' },
               { name: 'Sila Ahmed Mohamed', cert: '400125 AU', img: '4.jpeg' },
               { name: 'Ziad Ahmed AlSayigh', cert: '400114 AU', img: '5.jpeg' },
-              { name: 'Aysen Hossam Ali', cert: '400177 Bt', img: '6.jpeg', result: 'Passed Level Two with Distinction' },
-              { name: 'Tala Nasser Abdelfatah', cert: '400179 AU', img: '7.jpeg' },
-              { name: 'Ahmed Mohamed Fouad', cert: '400122 AU', img: '8.jpeg' },
-              { name: 'Seif Hesham Mohamed', cert: '400126 AU', img: '9.jpeg' },
-              { name: 'Sila Ahmed Mohamed', cert: '400125 AU', img: '10.jpeg' },
-              { name: 'Ziad Ahmed AlSayigh', cert: '400114 AU', img: '11.jpeg' },
+              { name: 'Aysen Hossam Ali', cert: '400177 BT', img: '6.jpeg' },
+              { name: 'Mariam Saeed Ali', cert: '400180 AU', img: '7.jpeg' },
+              { name: 'Omar Karim ElSheikh', cert: '400181 AU', img: '8.jpeg' },
+              { name: 'Nourhan Gamal', cert: '400182 AU', img: '9.jpeg' },
+              { name: 'Youssef Ali', cert: '400183 AU', img: '10.jpeg' },
+              { name: 'Lina Mahmoud', cert: '400184 AU', img: '11.jpeg' },
             ].map((s, i) => (
-              <div className="student-card" key={i}>
-                <div className="student-photo-wrap">
-                  <img src={`/student/${s.img}`} alt={s.name} className="student-photo" />
-                  <div className="student-medal">🥇</div>
+              <div className="group bg-white rounded-2xl hover:shadow-2xl transition-all overflow-hidden border-2 border-secondary-container/40 hover:border-secondary-container" key={i}>
+                <div className="relative overflow-hidden">
+                  <Image src={`/student/${s.img}`} alt={s.name} width={300} height={220} loading="lazy" className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                 </div>
-                <h4>{s.name}</h4>
-                <p className="student-cert">Certificate No: {s.cert}</p>
-                <p className="student-result">{s.result || 'Passed Level One with Distinction'}</p>
+                <div className="p-5 text-right bg-gradient-to-b from-white to-amber-50/30">
+                  <div className="flex items-center gap-2 mb-1">
+                    <svg viewBox="0 0 40 40" className="w-8 h-8 flex-shrink-0 drop-shadow-md">
+                      <defs>
+                        <linearGradient id="mg" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#ffd700"/>
+                          <stop offset="50%" stopColor="#ffec8b"/>
+                          <stop offset="100%" stopColor="#daa520"/>
+                        </linearGradient>
+                      </defs>
+                      <circle cx="20" cy="20" r="18" fill="url(#mg)" stroke="#b8860b" strokeWidth="1.5"/>
+                      <circle cx="20" cy="23" r="8" fill="none" stroke="#b8860b" strokeWidth="0.8"/>
+                      <text x="20" y="20" textAnchor="middle" fill="#8b6914" fontSize="9" fontWeight="bold">★</text>
+                      <text x="20" y="31" textAnchor="middle" fill="#8b6914" fontSize="5" fontWeight="bold">تميز</text>
+                      <circle cx="20" cy="10" r="3.5" fill="#ffd700" stroke="#b8860b" strokeWidth="0.6"/>
+                    </svg>
+                    <h4 className="font-headline-lg text-headline-lg text-primary">{s.name}</h4>
+                  </div>
+                  <div className="flex items-center gap-2 text-[#b8860b] mr-10">
+                    <span className="material-symbols-outlined text-sm">badge</span>
+                    <span className="font-label-md text-label-md">{s.cert}</span>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
 
-          <div className="students-cta">
-            <p>ابنك ممكن يكون التالي 🌟</p>
+          <div className="text-center mt-16">
+            <p className="font-headline-xl text-headline-xl text-primary">ابنك ممكن يكون التالي 🌟</p>
           </div>
         </div>
       </section>
 
-      <section className="addons" id="why">
-        <div className="container">
-          <div className="section-head">
-            <span className="section-eyebrow">المزيد من القيمة</span>
-            <h2 className="section-title">مميزات إضافية وبرامج تطويرية</h2>
-            <p className="section-sub">مش بس منهج تقني — بنهتم بالشخصية والمهارات الداعمة كاملة</p>
+      <section className="section-padding" id="why">
+        <div className="container-inner">
+          <div className="text-center mb-16">
+            <span className="font-label-md text-label-md text-primary uppercase tracking-wide mb-2 block">المزيد من القيمة</span>
+            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">مميزات إضافية وبرامج تطويرية</h2>
+            <p className="text-on-surface-variant font-body-lg text-body-lg">مش بس منهج تقني — بنهتم بالشخصية والمهارات الداعمة كاملة</p>
           </div>
 
-          <div className="addons-grid">
-            <div className="addon-card addon-extra">
-              <div className="addon-badge">إضافة مستقلة</div>
-              <div className="addon-icon">🧠</div>
-              <h3>Techno Math</h3>
-              <p>برنامج تطويري لتعزيز التفكير الرياضي والمنطقي بربطه بالتكنولوجيا. تفاصيل الاشتراك والرسوم عند التواصل معنا.</p>
-              <a href="#plans" className="addon-link">استفسر عن البرنامج ←</a>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/20 hover:border-primary transition-colors group">
+              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                <span className="text-2xl">🧠</span>
+              </div>
+              <span className="font-label-sm text-label-sm text-primary-light bg-primary-light/10 px-3 py-1 rounded-full mb-3 inline-block">إضافة مستقلة</span>
+              <h3 className="font-headline-lg text-headline-lg text-primary mb-2">Techno Math</h3>
+              <p className="text-on-surface-variant font-body-md text-body-md mb-4">برنامج تطويري لتعزيز التفكير الرياضي والمنطقي بربطه بالتكنولوجيا. تفاصيل الاشتراك والرسوم عند التواصل معنا.</p>
+               <Link href="#plans" className="text-primary font-headline-lg text-headline-lg inline-flex items-center gap-1 hover:gap-2 transition-all">استفسر عن البرنامج ←</Link>
             </div>
-            <div className="addon-card addon-extra">
-              <div className="addon-badge">إضافة مستقلة</div>
-              <div className="addon-icon">🗣️</div>
-              <h3>Tech English</h3>
-              <p>برنامج تطويري لبناء ثقة الطالب في التواصل التقني باللغة الإنجليزية. تفاصيل الاشتراك والرسوم عند التواصل معنا.</p>
-              <a href="#plans" className="addon-link">استفسر عن البرنامج ←</a>
+            <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/20 hover:border-primary transition-colors group">
+              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                <span className="text-2xl">🗣️</span>
+              </div>
+              <span className="font-label-sm text-label-sm text-primary-light bg-primary-light/10 px-3 py-1 rounded-full mb-3 inline-block">إضافة مستقلة</span>
+              <h3 className="font-headline-lg text-headline-lg text-primary mb-2">Tech English</h3>
+              <p className="text-on-surface-variant font-body-md text-body-md mb-4">برنامج تطويري لبناء ثقة الطالب في التواصل التقني باللغة الإنجليزية. تفاصيل الاشتراك والرسوم عند التواصل معنا.</p>
+               <Link href="#plans" className="text-primary font-headline-lg text-headline-lg inline-flex items-center gap-1 hover:gap-2 transition-all">استفسر عن البرنامج ←</Link>
             </div>
-            <div className="addon-card addon-support">
-              <div className="addon-badge addon-badge-included">مضمّن</div>
-              <div className="addon-icon">🛡️</div>
-              <h3>إخصائي سلوكي وإرشادي</h3>
-              <p>إخصائي متخصص لمتابعة الجانب النفسي للطالب، مساعدته في التخلص من الضغوط، ودعمه طوال الرحلة التعليمية بأمان.</p>
-              <span className="addon-included">مشمول في الباقة الأساسية</span>
+            <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/20 hover:border-primary transition-colors group">
+              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                <span className="text-2xl">🛡️</span>
+              </div>
+              <span className="font-label-sm text-label-sm text-green-600 bg-green-100 px-3 py-1 rounded-full mb-3 inline-block">مضمّن</span>
+              <h3 className="font-headline-lg text-headline-lg text-primary mb-2">إخصائي سلوكي وإرشادي</h3>
+              <p className="text-on-surface-variant font-body-md text-body-md mb-4">إخصائي متخصص لمتابعة الجانب النفسي للطالب، مساعدته في التخلص من الضغوط، ودعمه طوال الرحلة التعليمية بأمان.</p>
+              <span className="text-green-600 font-label-md text-label-md">مشمول في الباقة الأساسية</span>
             </div>
-            <div className="addon-card addon-funding">
-              <div className="addon-icon">💙</div>
-              <h3>مدعوم من TKA-Egypt</h3>
-              <p>البرنامج مدعوم جزئياً من TKA-Egypt، مما يضمن جودة عالية مع أسعار مناسبة للأسر المصرية.</p>
-              <span className="addon-included">دعم مستمر للأهالي</span>
+            <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/20 hover:border-primary transition-colors group">
+              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                <span className="text-2xl">💙</span>
+              </div>
+              <h3 className="font-headline-lg text-headline-lg text-primary mb-2">مدعوم من TKA-Egypt</h3>
+              <p className="text-on-surface-variant font-body-md text-body-md mb-4">البرنامج مدعوم جزئياً من TKA-Egypt، مما يضمن جودة عالية مع أسعار مناسبة للأسر المصرية.</p>
+              <span className="text-primary font-label-md text-label-md">دعم مستمر للأهالي</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="plans" id="plans">
-        <div className="container">
-          <div className="section-head">
-            <span className="section-eyebrow">📌 خطط الاشتراك المتاحة</span>
-            <p className="section-sub plans-sub">تقدر تختار نظام الاشتراك الأنسب لك من بين الخطط التالية:</p>
+      <section className="section-padding bg-surface-container-highest/20" id="plans">
+        <div className="container-inner">
+          <div className="text-center mb-16">
+            <span className="font-label-md text-label-md text-primary uppercase tracking-wide mb-2 block">📌 خطط الاشتراك المتاحة</span>
+            <p className="text-on-surface-variant font-body-lg text-body-lg">تقدر تختار نظام الاشتراك الأنسب لك من بين الخطط التالية:</p>
           </div>
 
-          <div className="plans-grid">
-            <article className="plan">
-              <div className="plan-head">
-                <div className="plan-emoji">✅</div>
-                <h3 className="plan-name">اشتراك شهري</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="bg-white p-8 rounded-32 card-shadow flex flex-col items-center">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-2xl">✅</span>
+                <span className="font-label-md text-label-md text-on-surface-variant">اشتراك شهري</span>
               </div>
-              <div className="plan-price">
-                <span className="price-amount">1200</span>
-                <span className="price-currency">جنيه</span>
-                <span className="price-period">/ شهر</span>
+              <div className="flex items-baseline gap-1 mb-6">
+                <span className="text-4xl font-bold text-primary">1200</span>
+                <span className="text-on-surface-variant">جنيه</span>
+                <span className="text-on-surface-variant">/ شهر</span>
               </div>
-              <div className="plan-tag plan-tag-green">مناسب للتجربة - البرايفت سيشن</div>
-              <Link href="/register?plan=monthly" className="plan-btn">اشترك الآن</Link>
-            </article>
+              <span className="bg-green-100 text-green-700 px-4 py-1 rounded-full text-sm font-bold mb-6">مناسب للتجربة - البرايفت سيشن</span>
+              <Link href="/register?plan=monthly" className="w-full py-3 bg-surface-container-high text-primary font-bold rounded-2xl hover:bg-primary-container hover:text-white transition-colors text-center">اشترك الآن</Link>
+            </div>
 
-            <article className="plan plan-popular">
-              <div className="plan-ribbon">⭐ الأكثر اختيارًا</div>
-              <div className="plan-head">
-                <div className="plan-emoji">✅</div>
-                <h3 className="plan-name">اشتراك ربع سنوي</h3>
+            <div className="bg-white p-8 rounded-32 card-shadow flex flex-col items-center border-2 border-secondary relative scale-105 z-10">
+              <div className="absolute -top-4 bg-secondary text-on-secondary px-6 py-1 rounded-full text-sm font-bold">⭐ الأكثر اختيارًا</div>
+              <div className="flex items-center gap-2 mb-4 mt-2">
+                <span className="text-2xl">✅</span>
+                <span className="font-label-md text-label-md text-on-surface-variant">اشتراك ربع سنوي</span>
               </div>
-              <div className="plan-price">
-                <span className="price-amount">890</span>
-                <span className="price-currency">جنيه</span>
-                <span className="price-period">/ شهريًا</span>
+              <div className="flex items-baseline gap-1 mb-6">
+                <span className="text-5xl font-bold text-primary">890</span>
+                <span className="text-on-surface-variant">جنيه</span>
+                <span className="text-on-surface-variant">/ شهريًا</span>
               </div>
-              <div className="plan-total">اجمالي 2670 جنيه لكل 3 شهور <span className="plan-save">(ستوفر 930 جنيه)</span></div>
-              <Link href="/register?plan=quarterly" className="plan-btn">اشترك دلوقتي</Link>
-            </article>
+              <div className="text-sm text-on-surface-variant mb-6">اجمالي 2670 جنيه لكل 3 شهور <span className="text-green-600 font-bold">(ستوفر 930 جنيه)</span></div>
+              <Link href="/register?plan=quarterly" className="w-full py-4 bg-secondary text-on-secondary font-bold rounded-2xl shadow-lg shadow-secondary/20 hover:opacity-90 transition-opacity text-center">اشترك دلوقتي</Link>
+            </div>
 
-            <article className="plan plan-elite">
-              <div className="plan-ribbon ribbon-elite">🏆 الأوفر</div>
-              <div className="plan-head">
-                <div className="plan-emoji">✅</div>
-                <h3 className="plan-name">اشتراك سنوي</h3>
+            <div className="bg-gradient-to-br from-primary-deep to-primary p-8 rounded-32 card-shadow flex flex-col items-center text-white">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-2xl">✅</span>
+                <span className="font-label-md text-label-md text-primary-fixed-dim">اشتراك سنوي</span>
               </div>
-              <div className="plan-price">
-                <span className="price-amount">690</span>
-                <span className="price-currency">جنيه</span>
-                <span className="price-period">/ شهريًا</span>
+              <div className="flex items-baseline gap-1 mb-6">
+                <span className="text-4xl font-bold text-secondary-container">690</span>
+                <span className="text-primary-fixed-dim">جنيه</span>
+                <span className="text-primary-fixed-dim">/ شهريًا</span>
               </div>
-              <div className="plan-total">اجمالي 8280 جنيه سنويًا <span className="plan-save">(ستوفر 6120 جنيه)</span></div>
-              <Link href="/register?plan=yearly" className="plan-btn plan-btn-elite">اشترك سنوي</Link>
-            </article>
+              <span className="bg-white/10 text-secondary-container px-4 py-1 rounded-full text-sm font-bold mb-2">🏆 الأوفر</span>
+              <div className="text-sm text-primary-fixed-dim mb-6">اجمالي 8280 جنيه سنويًا <span className="text-secondary-container font-bold">(ستوفر 6120 جنيه)</span></div>
+              <Link href="/register?plan=yearly" className="w-full py-3 bg-white text-primary font-bold rounded-2xl hover:bg-secondary-container transition-colors text-center">اشترك سنوي</Link>
+            </div>
           </div>
 
-          <div className="plans-footnote">
-            <p>🎯 <strong>ميزة الاشتراك السنوي:</strong> الاشتراك السنوي بيوفر لك 6120 جنيه مقارنة بالاشتراك الشهري، وده مش مجرد توفير مالي، لكنه كمان استثمار في استمرارية تعليم أفضل وخطة أوضح لابنك على مدار السنة.</p>
-          </div>
-          <div className="plans-footnote" style={{ marginTop: 14 }}>
-            <p>✅ <strong>رسوم تسجيل إدارية</strong> 200 جنيه تدفع لمرة واحدة</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="faq" id="faq">
-        <div className="container">
-          <div className="section-head">
-            <span className="section-eyebrow">الأسئلة الشائعة</span>
-            <h2 className="section-title">إجابات على أهم أسئلة الأهالي</h2>
-          </div>
-
-          <div className="faq-list">
-            <details className="faq-item" open>
-              <summary>المحاضرات أوفلاين ولا أونلاين؟</summary>
-              <p>جميع المحاضرات مباشرة Live أونلاين، مع تسجيلات متاحة للمراجعة، ومشاريع عملية وتفاعل حقيقي داخل كل محاضرة.</p>
-            </details>
-            <details className="faq-item">
-              <summary>إيه الفرق بين Track A و Track B؟</summary>
-              <p>Track A (من 8 إلى 11 سنة) يركز على التعلم البصري والألعاب والمشاريع الإبداعية. Track B (من 12 إلى 15 سنة) يركز على البرمجة الحقيقية وسير عمل الـ AI والتفكير الاحترافي.</p>
-            </details>
-            <details className="faq-item">
-              <summary>هل فيه شهادة بعد كل مستوى؟</summary>
-              <p>نعم، يحصل الطالب على شهادة معتمدة بعد كل مستوى. في باقة Future Elite يحصل الطالب على شهادة معتمدة مطبوعة + Portfolio كامل.</p>
-            </details>
-            <details className="faq-item">
-              <summary>إيه هي برامج Techno Math و Tech English؟</summary>
-              <p>برامج تطويرية إضافية تُقدم بجانب المسار الأساسي. Techno Math لتعزيز التفكير الرياضي، و Tech English لبناء ثقة الطالب في التواصل التقني باللغة الإنجليزية. يتم التسجيل فيها بشكل مستقل.</p>
-            </details>
-            <details className="faq-item">
-              <summary>هل فيه متابعة نفسية للطالب؟</summary>
-              <p>بالتأكيد. كل الباقات تشمل متابعة من إخصائي سلوكي وإرشادي متخصص لمساندة الطالب نفسياً ومساعدته في التعامل مع ضغوط الرحلة التعليمية.</p>
-            </details>
-            <details className="faq-item">
-              <summary>إيه التخصصات المتاحة بعد السنة التأسيسية؟</summary>
-              <p>5 تخصصات: Web Development، Mobile App Development، AI Automations، Data Analysis، و IoT & Smart Systems. يختار الطالب التخصص اللي يناسبه للسنة الثانية.</p>
-            </details>
+          <div className="mt-12 max-w-3xl mx-auto space-y-4">
+            <div className="bg-white p-6 rounded-2xl card-shadow">
+              <p className="text-on-surface-variant font-body-md text-body-md">🎯 <strong className="text-primary">ميزة الاشتراك السنوي:</strong> الاشتراك السنوي بيوفر لك 6120 جنيه مقارنة بالاشتراك الشهري، وده مش مجرد توفير مالي، لكنه كمان استثمار في استمرارية تعليم أفضل وخطة أوضح لابنك على مدار السنة.</p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl card-shadow">
+              <p className="text-on-surface-variant font-body-md text-body-md">✅ <strong className="text-primary">رسوم تسجيل إدارية</strong> 200 جنيه تدفع لمرة واحدة</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="cta">
-        <div className="container cta-inner">
-          <span className="cta-eyebrow">مستقبل ابنك يبدأ من هنا</span>
-          <h2>🚀 سجّل اهتمامك في Tech Makers Egypt</h2>
-          <p>ابدأ رحلة ابنك في عالم التكنولوجيا، البرمجة، والذكاء الاصطناعي. مقاعد محدودة في كل دفعة.</p>
-          <div className="cta-actions">
-            <Link href="/register" className="btn btn-primary btn-lg">سجّل الآن</Link>
-            <a href="#tracks" className="btn btn-ghost btn-lg">استكشف المسارات</a>
+      <section className="section-padding bg-white" id="faq">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="font-label-md text-label-md text-primary uppercase tracking-wide mb-2 block">الأسئلة الشائعة</span>
+            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">إجابات على أهم أسئلة الأهالي</h2>
+          </div>
+
+          <div className="space-y-4">
+            <div className="border border-outline-variant/30 rounded-2xl overflow-hidden">
+              <details className="group" open>
+                <summary className="w-full flex justify-between items-center p-6 text-right bg-off-white hover:bg-surface-container-low transition-colors cursor-pointer list-none">
+                  <span className="font-headline-lg text-headline-lg text-primary">المحاضرات أوفلاين ولا أونلاين؟</span>
+                  <span className="material-symbols-outlined transition-transform group-open:rotate-45 text-primary">add</span>
+                </summary>
+                <div className="p-6 bg-white border-t border-outline-variant/30 text-on-surface-variant font-body-md text-body-md">
+                  جميع المحاضرات مباشرة Live أونلاين، مع تسجيلات متاحة للمراجعة، ومشاريع عملية وتفاعل حقيقي داخل كل محاضرة.
+                </div>
+              </details>
+            </div>
+            <div className="border border-outline-variant/30 rounded-2xl overflow-hidden">
+              <details className="group">
+                <summary className="w-full flex justify-between items-center p-6 text-right bg-off-white hover:bg-surface-container-low transition-colors cursor-pointer list-none">
+                  <span className="font-headline-lg text-headline-lg text-primary">إيه الفرق بين Track A و Track B؟</span>
+                  <span className="material-symbols-outlined transition-transform group-open:rotate-45 text-primary">add</span>
+                </summary>
+                <div className="p-6 bg-white border-t border-outline-variant/30 text-on-surface-variant font-body-md text-body-md">
+                  Track A (من 8 إلى 11 سنة) يركز على التعلم البصري والألعاب والمشاريع الإبداعية. Track B (من 12 إلى 15 سنة) يركز على البرمجة الحقيقية وسير عمل الـ AI والتفكير الاحترافي.
+                </div>
+              </details>
+            </div>
+            <div className="border border-outline-variant/30 rounded-2xl overflow-hidden">
+              <details className="group">
+                <summary className="w-full flex justify-between items-center p-6 text-right bg-off-white hover:bg-surface-container-low transition-colors cursor-pointer list-none">
+                  <span className="font-headline-lg text-headline-lg text-primary">هل فيه شهادة بعد كل مستوى؟</span>
+                  <span className="material-symbols-outlined transition-transform group-open:rotate-45 text-primary">add</span>
+                </summary>
+                <div className="p-6 bg-white border-t border-outline-variant/30 text-on-surface-variant font-body-md text-body-md">
+                  نعم، يحصل الطالب على شهادة معتمدة بعد كل مستوى. في باقة Future Elite يحصل الطالب على شهادة معتمدة مطبوعة + Portfolio كامل.
+                </div>
+              </details>
+            </div>
+            <div className="border border-outline-variant/30 rounded-2xl overflow-hidden">
+              <details className="group">
+                <summary className="w-full flex justify-between items-center p-6 text-right bg-off-white hover:bg-surface-container-low transition-colors cursor-pointer list-none">
+                  <span className="font-headline-lg text-headline-lg text-primary">إيه هي برامج Techno Math و Tech English؟</span>
+                  <span className="material-symbols-outlined transition-transform group-open:rotate-45 text-primary">add</span>
+                </summary>
+                <div className="p-6 bg-white border-t border-outline-variant/30 text-on-surface-variant font-body-md text-body-md">
+                  برامج تطويرية إضافية تُقدم بجانب المسار الأساسي. Techno Math لتعزيز التفكير الرياضي، و Tech English لبناء ثقة الطالب في التواصل التقني باللغة الإنجليزية. يتم التسجيل فيها بشكل مستقل.
+                </div>
+              </details>
+            </div>
+            <div className="border border-outline-variant/30 rounded-2xl overflow-hidden">
+              <details className="group">
+                <summary className="w-full flex justify-between items-center p-6 text-right bg-off-white hover:bg-surface-container-low transition-colors cursor-pointer list-none">
+                  <span className="font-headline-lg text-headline-lg text-primary">هل فيه متابعة نفسية للطالب؟</span>
+                  <span className="material-symbols-outlined transition-transform group-open:rotate-45 text-primary">add</span>
+                </summary>
+                <div className="p-6 bg-white border-t border-outline-variant/30 text-on-surface-variant font-body-md text-body-md">
+                  بالتأكيد. كل الباقات تشمل متابعة من إخصائي سلوكي وإرشادي متخصص لمساندة الطالب نفسياً ومساعدته في التعامل مع ضغوط الرحلة التعليمية.
+                </div>
+              </details>
+            </div>
+            <div className="border border-outline-variant/30 rounded-2xl overflow-hidden">
+              <details className="group">
+                <summary className="w-full flex justify-between items-center p-6 text-right bg-off-white hover:bg-surface-container-low transition-colors cursor-pointer list-none">
+                  <span className="font-headline-lg text-headline-lg text-primary">إيه التخصصات المتاحة بعد السنة التأسيسية؟</span>
+                  <span className="material-symbols-outlined transition-transform group-open:rotate-45 text-primary">add</span>
+                </summary>
+                <div className="p-6 bg-white border-t border-outline-variant/30 text-on-surface-variant font-body-md text-body-md">
+                  5 تخصصات: Web Development، Mobile App Development، AI Automations، Data Analysis، و IoT & Smart Systems. يختار الطالب التخصص اللي يناسبه للسنة الثانية.
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding">
+        <div className="container-inner bg-gradient-to-br from-primary-deep to-primary-container rounded-40 p-12 md:p-24 text-center text-white relative overflow-hidden">
+          <div className="relative z-10">
+            <span className="font-label-md text-label-md text-primary-fixed-dim mb-4 block">مستقبل ابنك يبدأ من هنا</span>
+            <h2 className="font-headline-xl text-headline-xl text-display-lg-mobile md:text-display-lg mb-6">🚀 سجّل اهتمامك في Tech Makers Egypt</h2>
+            <p className="text-primary-fixed-dim font-body-lg text-body-lg mb-12 max-w-2xl mx-auto">ابدأ رحلة ابنك في عالم التكنولوجيا، البرمجة، والذكاء الاصطناعي. مقاعد محدودة في كل دفعة.</p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link href="/register" className="bg-secondary text-on-secondary px-12 py-5 rounded-full font-headline-lg text-headline-lg shadow-xl shadow-secondary/30 hover:scale-105 transition-transform active:scale-95">سجّل الآن</Link>
+               <Link href="#tracks" className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-12 py-5 rounded-full font-headline-lg text-headline-lg hover:bg-white/20 transition-all active:scale-95">استكشف المسارات</Link>
+            </div>
+          </div>
+          <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none">
+            <span className="material-symbols-outlined text-icon-hero" style={{ fontVariationSettings: "'wght' 700" }}>code</span>
           </div>
         </div>
       </section>
