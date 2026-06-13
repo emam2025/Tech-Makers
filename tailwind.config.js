@@ -14,8 +14,8 @@ module.exports = {
         '40': '40px',
       },
       colors: {
-        primary: "#1e3a8a",
-        "primary-deep": "#0f2360",
+        primary: "#4169e1",
+        "primary-deep": "#1a3fa0",
         "primary-light": "#6b8aff",
         "primary-container": "#1e3a8a",
         "on-primary": "#ffffff",
