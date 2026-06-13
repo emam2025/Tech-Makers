@@ -345,7 +345,7 @@ export default function TracksPage() {
           <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-4">
             {track ? track.title : 'اكتشف مسار التعلم'}
           </h1>
-          <p className="font-body-lg text-body-lg max-w-2xl mx-auto opacity-90">
+          <p className="font-body-md md:font-body-lg text-body-md md:text-body-lg max-w-2xl mx-auto opacity-90">
             {track ? track.description : 'رحلات تعليمية متدرجة تناسب كل فئة عمرية — من أساسيات البرمجة إلى الاحتراف التقني'}
           </p>
           {track && (
@@ -455,7 +455,7 @@ export default function TracksPage() {
                                       expand_more
                                     </span>
                                   </div>
-                                  <h3 className="font-headline-lg text-headline-lg text-primary-deep mb-2">{level.titleAr}</h3>
+                                  <h3 className="font-headline-md md:font-headline-lg text-headline-md md:text-headline-lg text-primary-deep mb-2">{level.titleAr}</h3>
                                   <p className="text-on-surface-variant font-body-md">{level.description}</p>
                                 </div>
 
@@ -477,7 +477,7 @@ export default function TracksPage() {
                                     </div>
 
                                     {/* Content + Tools + Projects */}
-                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                                       <div className="bg-surface-container-low rounded-16 p-4">
                                         <h5 className="font-label-sm text-on-surface-variant mb-3 flex items-center gap-1.5">
                                           <span className="material-symbols-outlined text-sm">checklist</span>
@@ -525,7 +525,7 @@ export default function TracksPage() {
                                         <span className="material-symbols-outlined text-lg">emoji_events</span>
                                         المخرجات المتوقعة
                                       </h4>
-                                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                      <div className="space-y-2">
                                         {level.outcomes.map((o, i) => (
                                           <div key={i} className="flex items-center gap-2 text-green-700 font-body-md text-sm">
                                             <span className="material-symbols-outlined text-green-500 text-base">check_circle</span>
@@ -592,50 +592,50 @@ export default function TracksPage() {
 
             {/* Next Steps (Track B only) */}
             {track.nextSteps && (
-              <div className="bg-white rounded-24 card-shadow p-8 md:p-12 mb-12">
-                <h3 className="font-headline-xl text-headline-xl text-primary-deep text-center mb-4">بعد إنهاء المسار</h3>
-                <p className="text-on-surface-variant font-body-lg text-center mb-8">يستطيع الطالب الانتقال لمسارات التخصص</p>
-                <div className="flex flex-wrap justify-center gap-3">
+              <div className="bg-white rounded-24 card-shadow p-6 md:p-12 mb-12">
+                <h3 className="font-headline-lg md:font-headline-xl text-headline-lg md:text-headline-xl text-primary-deep text-center mb-4">بعد إنهاء المسار</h3>
+                <p className="text-on-surface-variant font-body-md md:font-body-lg text-center mb-6 md:mb-8">يستطيع الطالب الانتقال لمسارات التخصص</p>
+                <div className="flex flex-wrap justify-center gap-2 md:gap-3">
                   {track.nextSteps.map((s, i) => (
-                    <span key={i} className="bg-primary/5 text-primary px-5 py-2.5 rounded-full font-label-md">{s}</span>
+                    <span key={i} className="bg-primary/5 text-primary px-4 md:px-5 py-2 md:py-2.5 rounded-full font-label-sm md:font-label-md text-sm md:text-base">{s}</span>
                   ))}
                 </div>
               </div>
             )}
 
             {/* Soft Skills */}
-            <div className="bg-white rounded-24 card-shadow p-8 md:p-12 mb-12">
-              <h3 className="font-headline-xl text-headline-xl text-primary-deep text-center mb-4">
+            <div className="bg-white rounded-24 card-shadow p-6 md:p-12 mb-12">
+              <h3 className="font-headline-lg md:font-headline-xl text-headline-lg md:text-headline-xl text-primary-deep text-center mb-4 md:mb-8">
                 {track.id === 'a' ? 'الجانب النفسي والسلوكي' : 'الجانب الشخصي والمهني'}
               </h3>
-              <p className="text-on-surface-variant font-body-lg text-center mb-8">
+              <p className="text-on-surface-variant font-body-md md:font-body-lg text-center mb-6 md:mb-8">
                 {track.id === 'a' ? 'نحن لا نبني مهارات تقنية فقط، بل نبني شخصية الطفل' : 'لأن النجاح التقني يحتاج أكثر من مهارة'}
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-3 md:gap-4">
                 {track.softSkills.map((s, i) => (
-                  <div key={i} className="flex items-center gap-3 bg-surface-container-low px-6 py-4 rounded-2xl">
-                    <span className="text-2xl">{s.icon}</span>
-                    <span className="font-label-md text-on-surface">{s.text}</span>
+                  <div key={i} className="flex items-center gap-2 md:gap-3 bg-surface-container-low px-4 md:px-6 py-3 md:py-4 rounded-2xl">
+                    <span className="text-xl md:text-2xl">{s.icon}</span>
+                    <span className="font-label-sm md:font-label-md text-on-surface text-sm md:text-base">{s.text}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Final Outcomes */}
-            <div className="bg-gradient-to-br from-primary-deep to-primary rounded-24 p-8 md:p-12 text-on-primary text-center">
-              <h3 className="font-headline-xl text-headline-xl mb-4">{track.id === 'a' ? 'نهاية المسار' : 'نهاية الرحلة'}</h3>
-              <p className="font-body-lg opacity-90 mb-8">
+            <div className="bg-gradient-to-br from-primary-deep to-primary rounded-24 p-6 md:p-12 text-on-primary text-center">
+              <h3 className="font-headline-lg md:font-headline-xl text-headline-lg md:text-headline-xl mb-4">{track.id === 'a' ? 'نهاية المسار' : 'نهاية الرحلة'}</h3>
+              <p className="font-body-md md:font-body-lg opacity-90 mb-6 md:mb-8">
                 {track.id === 'a' ? 'بنهاية المسار يصبح الطفل قادراً على:' : 'الطالب لا يخرج بشهادة فقط... بل يخرج بـ:'}
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex flex-wrap justify-center gap-2 md:gap-4">
                 {track.finalOutcomes.map((o, i) => (
-                  <span key={i} className="bg-white/15 backdrop-blur-sm px-6 py-3 rounded-full font-label-md">{o}</span>
+                  <span key={i} className="bg-white/15 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 rounded-full font-label-sm md:font-label-md text-sm md:text-base">{o}</span>
                 ))}
               </div>
-              <div className="mt-10">
+              <div className="mt-8 md:mt-10">
                 <button
                   onClick={goToPlans}
-                  className="inline-flex items-center gap-3 bg-white text-primary-deep px-10 py-4 rounded-full font-label-lg hover:shadow-xl transition-all scale-100 hover:scale-105 active:scale-95"
+                  className="inline-flex items-center gap-3 bg-white text-primary-deep px-8 md:px-10 py-3.5 md:py-4 rounded-full font-label-md hover:shadow-xl transition-all scale-100 hover:scale-105 active:scale-95"
                 >
                   <span className="material-symbols-outlined">shopping_cart</span>
                   اختر خطتك الآن
@@ -656,18 +656,18 @@ export default function TracksPage() {
               العودة لرحلة التعلم
             </button>
 
-            <div className="text-center mb-16">
+            <div className="text-center mb-10 md:mb-16">
               <span className="inline-block bg-secondary-container/20 text-secondary px-5 py-2 rounded-full font-label-md mb-4">📌 خطط الاشتراك</span>
-              <h2 className="font-headline-xl text-headline-xl text-primary-deep mb-2">اختر الخطة المناسبة لك</h2>
-              <p className="text-on-surface-variant font-body-lg">مسار: <strong className="text-primary">{track.title}</strong> — الفئة العمرية: {track.age}</p>
+              <h2 className="font-headline-lg md:font-headline-xl text-headline-lg md:text-headline-xl text-primary-deep mb-2">اختر الخطة المناسبة لك</h2>
+              <p className="text-on-surface-variant font-body-md md:font-body-lg">مسار: <strong className="text-primary">{track.title}</strong> — الفئة العمرية: {track.age}</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
               {plans.map((plan) => (
                 <div
                   key={plan.id}
                   className={`relative bg-white rounded-24 overflow-hidden transition-all duration-300 ${
-                    plan.highlight ? 'ring-2 ring-primary shadow-xl scale-105 md:scale-110 z-10' : 'card-shadow hover-lift'
+                    plan.highlight ? 'ring-2 ring-primary shadow-xl md:scale-110 z-10' : 'card-shadow hover-lift'
                   }`}
                 >
                   {plan.badge && (
@@ -676,13 +676,13 @@ export default function TracksPage() {
                     </div>
                   )}
                   <div className={`h-2 ${plan.highlight ? 'bg-primary' : 'bg-secondary-container'}`} />
-                  <div className="p-8 pt-10">
-                    <h3 className="font-headline-lg text-headline-lg text-primary-deep mb-4">{plan.name}</h3>
+                  <div className="p-6 md:p-8 pt-10">
+                    <h3 className="font-headline-md md:font-headline-lg text-headline-md md:text-headline-lg text-primary-deep mb-4">{plan.name}</h3>
                     <div className="mb-2">
-                      <span className="font-display-lg text-display-lg text-primary-deep">{plan.price}</span>
-                      <span className="text-on-surface-variant font-body-md mr-2">{plan.unit}</span>
+                      <span className="font-display-md md:font-display-lg text-display-md md:text-display-lg text-primary-deep">{plan.price}</span>
+                      <span className="text-on-surface-variant font-body-sm md:font-body-md mr-2">{plan.unit}</span>
                     </div>
-                    <p className="text-on-surface-variant font-body-sm mb-8 text-sm">{plan.note}</p>
+                    <p className="text-on-surface-variant font-body-sm mb-6 md:mb-8">{plan.note}</p>
                     <button
                       onClick={() => selectPlan(plan)}
                       className={`w-full py-3.5 rounded-full font-label-md transition-all ${
@@ -717,30 +717,30 @@ export default function TracksPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={() => setShowConfirm(false)}>
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
           <div
-            className="relative bg-white rounded-32 shadow-2xl max-w-md w-full p-8 text-center animate-scaleIn"
+            className="relative bg-white rounded-32 shadow-2xl max-w-md w-full p-6 md:p-8 text-center animate-scaleIn"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="material-symbols-outlined text-primary text-4xl">help</span>
+            <div className="w-16 h-16 md:w-20 md:h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+              <span className="material-symbols-outlined text-primary text-3xl md:text-4xl">help</span>
             </div>
-            <h3 className="font-headline-lg text-headline-lg text-primary-deep mb-4">تأكيد التسجيل</h3>
-            <p className="text-on-surface-variant font-body-md mb-2">أنت على وشك التسجيل في:</p>
-            <div className="bg-surface-container-low rounded-2xl p-5 mb-6">
+            <h3 className="font-headline-md md:font-headline-lg text-headline-md md:text-headline-lg text-primary-deep mb-4">تأكيد التسجيل</h3>
+            <p className="text-on-surface-variant font-body-sm md:font-body-md mb-2">أنت على وشك التسجيل في:</p>
+            <div className="bg-surface-container-low rounded-2xl p-4 md:p-5 mb-5 md:mb-6">
               <div className="flex items-center justify-center gap-2 mb-2">
-                <span className="material-symbols-outlined text-primary">route</span>
-                <span className="font-bold text-primary-deep">{track?.title}</span>
+                <span className="material-symbols-outlined text-primary text-lg md:text-xl">route</span>
+                <span className="font-bold text-primary-deep text-sm md:text-base">{track?.title}</span>
               </div>
               <div className="flex items-center justify-center gap-2">
-                <span className="material-symbols-outlined text-secondary">payments</span>
-                <span className="text-on-surface-variant">{selectedPlan?.name} — {selectedPlan?.price} {selectedPlan?.unit}</span>
+                <span className="material-symbols-outlined text-secondary text-lg md:text-xl">payments</span>
+                <span className="text-on-surface-variant text-sm md:text-base">{selectedPlan?.name} — {selectedPlan?.price} {selectedPlan?.unit}</span>
               </div>
             </div>
-            <p className="text-on-surface-variant font-body-md mb-8 text-sm">هل تريد المتابعة؟</p>
+            <p className="text-on-surface-variant font-body-sm md:font-body-md mb-6 md:mb-8">هل تريد المتابعة؟</p>
             <div className="flex gap-3">
-              <button onClick={() => setShowConfirm(false)} className="flex-1 py-3 border-2 border-outline-variant text-on-surface-variant rounded-xl font-bold hover:bg-surface-container-low transition-all">
+              <button onClick={() => setShowConfirm(false)} className="flex-1 py-3 border-2 border-outline-variant text-on-surface-variant rounded-xl font-bold hover:bg-surface-container-low transition-all text-sm md:text-base">
                 إلغاء
               </button>
-              <button onClick={confirmRegister} className="flex-1 py-3 bg-primary text-white rounded-xl font-bold hover:shadow-lg transition-all">
+              <button onClick={confirmRegister} className="flex-1 py-3 bg-primary text-white rounded-xl font-bold hover:shadow-lg transition-all text-sm md:text-base">
                 نعم، المتابعة
               </button>
             </div>
@@ -753,8 +753,8 @@ export default function TracksPage() {
         <section className="py-16 md:py-20 bg-gradient-to-br from-primary-deep to-primary text-on-primary text-center">
           <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <h2 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-4">ابدأ رحلة التعلم اليوم</h2>
-            <p className="font-body-lg text-body-lg max-w-2xl mx-auto opacity-90 mb-8">سجل الآن وامنح ابنك مستقبلاً تقنياً واعداً مع أحدث أساليب التعليم التفاعلي</p>
-            <Link href="/register" className="inline-block bg-white text-primary-deep px-10 py-4 rounded-full font-label-md hover:shadow-xl transition-all scale-100 hover:scale-105 active:scale-95">
+            <p className="font-body-md md:font-body-lg text-body-md md:text-body-lg max-w-2xl mx-auto opacity-90 mb-8">سجل الآن وامنح ابنك مستقبلاً تقنياً واعداً مع أحدث أساليب التعليم التفاعلي</p>
+            <Link href="/register" className="inline-block bg-white text-primary-deep px-8 md:px-10 py-3.5 md:py-4 rounded-full font-label-md hover:shadow-xl transition-all scale-100 hover:scale-105 active:scale-95">
               سجل الآن
             </Link>
           </div>
