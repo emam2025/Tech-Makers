@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useRef } from 'react';
 
 const LANG_LEVELS = [
@@ -322,7 +323,7 @@ export default function JoinPage() {
   if (submitted) {
     return (
       <>
-        <section className="relative bg-gradient-to-br from-primary-deep to-primary text-on-primary overflow-hidden py-24 md:py-32">
+      <section className="relative bg-gradient-to-br from-primary-deep to-primary text-on-primary overflow-hidden py-16 md:py-32">
           <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-center">
             <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6">شكراً لتواصلك معنا</h1>
             <p className="font-body-lg text-body-lg max-w-2xl mx-auto opacity-90">تم استلام طلبك بنجاح! سيتواصل معك فريق التوظيف قريباً.</p>
@@ -338,6 +339,16 @@ export default function JoinPage() {
   return (
     <>
       <section className="relative bg-gradient-to-br from-primary-deep to-primary text-on-primary overflow-hidden py-24 md:py-32">
+        <div className="absolute inset-0">
+          <Image
+            src="/join-banner.jpg"
+            alt="فريق Tech Makers"
+            fill
+            sizes="100vw"
+            style={{ objectFit: 'cover' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-deep/90 to-primary/80"></div>
+        </div>
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-center">
           <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6">كن جزءاً من فريق Tech Makers</h1>
           <p className="font-body-lg text-body-lg max-w-2xl mx-auto opacity-90">انضم إلى مجتمع يسعى لتشكيل مستقبل التكنولوجيا في مصر وتطوير جيل المبتكرين القادم.</p>
@@ -354,16 +365,16 @@ export default function JoinPage() {
             <div className="h-1.5 w-24 bg-secondary-container mx-auto rounded-full"></div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-gutter">
-            <div className="bg-white p-8 rounded-xl shadow-card border border-primary-light/10 hover:-translate-y-2 transition-transform duration-300">
-              <div className="w-16 h-16 bg-surface-container-high rounded-full flex items-center justify-center mb-6">
-                <span className="material-symbols-outlined text-primary text-3xl">schedule</span>
+            <div className="bg-white p-5 md:p-8 rounded-xl shadow-card border border-primary-light/10 hover:-translate-y-2 transition-transform duration-300">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-surface-container-high rounded-full flex items-center justify-center mb-4 md:mb-6">
+                <span className="material-symbols-outlined text-primary text-2xl md:text-3xl">schedule</span>
               </div>
               <h4 className="font-headline-lg text-headline-lg mb-3">بيئة عمل مرنة</h4>
               <p className="text-on-surface-variant font-body-md">نقدر التوازن بين العمل والحياة ونوفر مرونة كاملة في المواعيد والمهام.</p>
             </div>
-            <div className="bg-white p-8 rounded-xl shadow-card border border-primary-light/10 hover:-translate-y-2 transition-transform duration-300">
-              <div className="w-16 h-16 bg-surface-container-high rounded-full flex items-center justify-center mb-6">
-                <span className="material-symbols-outlined text-primary text-3xl">model_training</span>
+            <div className="bg-white p-5 md:p-8 rounded-xl shadow-card border border-primary-light/10 hover:-translate-y-2 transition-transform duration-300">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-surface-container-high rounded-full flex items-center justify-center mb-4 md:mb-6">
+                <span className="material-symbols-outlined text-primary text-2xl md:text-3xl">model_training</span>
               </div>
               <h4 className="font-headline-lg text-headline-lg mb-3">تدريب مستمر</h4>
               <p className="text-on-surface-variant font-body-md">فرص لا تنتهي لتطوير مهاراتك التقنية والشخصية من خلال ورش عمل مكثفة.</p>

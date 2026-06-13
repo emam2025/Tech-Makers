@@ -1,28 +1,36 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function AboutPage() {
   return (
     <>
-      {/* HERO */}
-      <section className="relative flex items-center justify-center overflow-hidden hero-gradient py-24 md:py-36 px-margin-mobile md:px-margin-desktop">
-        <div className="relative z-10 text-center max-w-4xl mx-auto">
-          <span className="inline-block bg-primary/5 text-primary font-label-md text-label-md px-5 py-2 rounded-full mb-6">من نحن</span>
-          <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary-deep mb-6 leading-snug md:leading-tight">نبني جيلًا عربيًا قادرًا على صناعة التكنولوجيا</h1>
-          <p className="text-on-surface-variant font-body-lg mb-10 max-w-2xl mx-auto">منذ انطلاقتنا في عام 2016، أخذنا على عاتقنا مسؤولية إعادة صياغة مفهوم تعليم التكنولوجيا للناشئين. TKA-Egypt ليست مجرد مركز لتعليم البرمجة، بل بيئة متكاملة تُدار بعقلية هندسية بحتة.</p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/tracks" className="bg-primary-light text-white px-8 py-4 rounded-full font-label-md hover:shadow-lg transition-all">برامجنا التدريبية</Link>
-            <a href="#founder" className="border-2 border-secondary text-secondary-container font-bold px-8 py-4 rounded-full font-label-md hover:bg-secondary-container hover:text-white transition-all">تعرف على المؤسس</a>
-          </div>
-        </div>
-      </section>
-
       {/* ABOUT INTRO */}
       <section className="py-24 px-margin-mobile md:px-margin-desktop bg-surface">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-32 card-shadow p-8 md:p-12 border border-outline-variant/20">
-            <p className="text-on-surface-variant font-body-lg leading-relaxed text-center">
-              نتبنى مناهج عالمية ونطوّعها لتناسب العقول الشابة <strong className="text-primary">(من 8 إلى 20 سنة)</strong>، لننتقل بهم من مجرد &quot;مستهلكين&quot; للألعاب والتطبيقات إلى &quot;مبتكرين&quot; و&quot;صنّاع&quot; لها، عبر التأسيس القوي في علوم الحاسب والذكاء الاصطناعي.
+          <div className="bg-gradient-to-br from-amber-50/80 to-yellow-50/60 rounded-32 p-8 md:p-12 border-2 border-amber-400/40">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-14 h-14 bg-gradient-to-br from-amber-300 to-yellow-400 rounded-2xl flex items-center justify-center">
+                <span className="material-symbols-outlined text-white text-2xl">auto_awesome</span>
+              </div>
+              <h2 className="font-headline-xl text-amber-900">من نحن</h2>
+            </div>
+            <p className="text-amber-950 font-body-lg leading-relaxed text-center mb-6">
+              نتبنى مناهج <strong className="text-amber-800 font-bold">CS50 العالمية</strong> والمعتمدة من <strong className="text-amber-800 font-bold">جامعة هارفارد</strong> ونطوّعها لتناسب العقول الشابة <strong className="text-amber-800 font-bold">(من 8 إلى 20 سنة)</strong>، لننتقل بهم من مجرد &quot;مستهلكين&quot; إلى &quot;مبتكرين&quot; و&quot;صنّاع&quot; لها، عبر التأسيس القوي في علوم الحاسب والذكاء الاصطناعي. <strong className="text-amber-800 font-bold">ودعم الرؤية الاستراتيجية المصرية للتنمية المستدامة 2030.</strong>
             </p>
+            <div className="bg-amber-100/50 rounded-2xl p-5 md:p-6 border border-amber-300/30 mb-6">
+              <p className="text-amber-900 font-body-md leading-relaxed text-center">
+                <strong className="text-amber-800">TKA-Egypt</strong> آكاديمية المعرفة التكنولوجية - مصر، <strong className="text-amber-800">المرخصة عام ٢٠١٦</strong> ومعتمدة ضمن مراكز التدريب الرائدة بمجال تدريب علوم الحاسب ونظم المعلومات التكنولوجية، وتعمل أيضاً على تطوير طلابها بتكنولوجيا <strong className="text-amber-800">الذكاء الاصطناعي المتطور</strong>.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <Image
+                src="/egypt-2030.png"
+                alt="الرؤية المصرية 2030"
+                width={160}
+                height={90}
+                style={{ objectFit: 'contain' }}
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -30,16 +38,16 @@ export default function AboutPage() {
       {/* VISION & MISSION */}
       <section className="py-24 px-margin-mobile md:px-margin-desktop bg-bg-off-white">
         <div className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-gutter">
-          <div className="bg-white p-10 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 border-r-4 border-r-primary hover-lift">
-            <div className="w-16 h-16 bg-primary-container/20 rounded-xl flex items-center justify-center mb-6 text-primary">
-              <span className="material-symbols-outlined" style={{fontSize: 32}}>visibility</span>
+          <div className="bg-white p-5 md:p-10 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 border-r-4 border-r-primary hover-lift">
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-primary-container/20 rounded-xl flex items-center justify-center mb-4 md:mb-6 text-primary">
+              <span className="material-symbols-outlined" style={{fontSize: 28}}>visibility</span>
             </div>
             <h3 className="font-headline-lg text-primary-deep mb-4">رؤيتنا</h3>
             <p className="text-on-surface-variant font-body-md leading-relaxed">أن نكون الوجهة الأولى والأكثر ثقة في مصر والوطن العربي لبناء العقول التقنية الشابة، والمحرك الأساسي لتمكين جيل يقود التحول الرقمي وصناعة التكنولوجيا تماشياً مع رؤية مصر 2030.</p>
           </div>
-          <div className="bg-white p-10 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 border-r-4 border-r-secondary-container hover-lift">
-            <div className="w-16 h-16 bg-secondary-container/20 rounded-xl flex items-center justify-center mb-6 text-secondary-container">
-              <span className="material-symbols-outlined" style={{fontSize: 32}}>rocket_launch</span>
+          <div className="bg-white p-5 md:p-10 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 border-r-4 border-r-secondary-container hover-lift">
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-secondary-container/20 rounded-xl flex items-center justify-center mb-4 md:mb-6 text-secondary-container">
+              <span className="material-symbols-outlined" style={{fontSize: 28}}>rocket_launch</span>
             </div>
             <h3 className="font-headline-lg text-primary-deep mb-4">رسالتنا</h3>
             <p className="text-on-surface-variant font-body-md leading-relaxed">توفير بيئة تعليمية تفاعلية ومبتكرة تعتمد على فلسفة الاستنتاج وحل المشكلات بدلاً من التلقين، وتطوير مهارات التفكير المنطقي وتزويد الطلاب بأدوات العصر الرقمي على أيدي نخبة من الخبراء والمهندسين.</p>
@@ -50,7 +58,7 @@ export default function AboutPage() {
       {/* VALUES */}
       <section className="py-16 px-margin-mobile md:px-margin-desktop bg-surface">
         <div className="max-w-container-max mx-auto text-center">
-          <h2 className="font-headline-xl text-primary-deep mb-8">قيمنا</h2>
+          <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary-deep mb-8">قيمنا</h2>
           <div className="flex flex-wrap justify-center gap-4">
             {['الشغف', 'الابتكار', 'الجودة', 'التأثير المجتمعي'].map((v, i) => (
               <span key={i} className="bg-primary/5 text-primary px-8 py-4 rounded-2xl font-headline-md border border-primary/10">{v}</span>
@@ -62,34 +70,34 @@ export default function AboutPage() {
       {/* GOALS */}
       <section className="py-24 px-margin-mobile md:px-margin-desktop bg-bg-off-white">
         <div className="text-center mb-16">
-          <h2 className="font-headline-xl text-primary-deep mb-4">أهدافنا الاستراتيجية</h2>
+          <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary-deep mb-4">أهدافنا الاستراتيجية</h2>
           <div className="h-1.5 w-24 bg-secondary-container mx-auto rounded-full"></div>
         </div>
         <div className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="group bg-white p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 hover-lift">
-            <div className="flex items-center gap-4 mb-4">
-              <span className="text-3xl">🧠</span>
+          <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 hover-lift">
+            <div className="flex items-center gap-3 md:gap-4 mb-4">
+              <span className="material-symbols-outlined text-2xl md:text-3xl text-primary">psychology</span>
               <h4 className="font-headline-lg text-primary">بناء العقلية الهندسية</h4>
             </div>
             <p className="text-on-surface-variant font-body-md">تدريب الأطفال على تفكيك المشكلات المعقدة وحلها بخطوات منطقية متسلسلة (التفكير الحسابي).</p>
           </div>
-          <div className="group bg-white p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 hover-lift">
-            <div className="flex items-center gap-4 mb-4">
-              <span className="text-3xl">💻</span>
+          <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 hover-lift">
+            <div className="flex items-center gap-3 md:gap-4 mb-4">
+              <span className="material-symbols-outlined text-2xl md:text-3xl text-secondary">code</span>
               <h4 className="font-headline-lg text-primary">التمكين التقني المبكر</h4>
             </div>
             <p className="text-on-surface-variant font-body-md">التأسيس السليم في لغات البرمجة المتقدمة وعلوم البيانات والذكاء الاصطناعي لتهيئة الطلاب لسوق العمل المستقبلي.</p>
           </div>
-          <div className="group bg-white p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 hover-lift">
-            <div className="flex items-center gap-4 mb-4">
-              <span className="text-3xl">⭐</span>
+          <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 hover-lift">
+            <div className="flex items-center gap-3 md:gap-4 mb-4">
+              <span className="material-symbols-outlined text-2xl md:text-3xl text-tertiary">star</span>
               <h4 className="font-headline-lg text-primary">الجودة والاعتمادية</h4>
             </div>
             <p className="text-on-surface-variant font-body-md">تقديم محتوى تعليمي يضاهي المناهج الجامعية العالمية (مثل فلسفة CS50)، مع تبسيطها لتناسب استيعاب الناشئين.</p>
           </div>
-          <div className="group bg-white p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 hover-lift">
-            <div className="flex items-center gap-4 mb-4">
-              <span className="text-3xl">🎯</span>
+          <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 hover-lift">
+            <div className="flex items-center gap-3 md:gap-4 mb-4">
+              <span className="material-symbols-outlined text-2xl md:text-3xl text-primary-light">emoji_events</span>
               <h4 className="font-headline-lg text-primary">اكتشاف المواهب ورعايتها</h4>
             </div>
             <p className="text-on-surface-variant font-body-md">توفير مسارات متخصصة للطلاب المتميزين ودعمهم لبناء سابقة أعمال حقيقية والمشاركة في المسابقات الدولية.</p>
@@ -129,7 +137,7 @@ export default function AboutPage() {
       <section className="py-20 px-margin-mobile md:px-margin-desktop">
         <div className="max-w-container-max mx-auto bg-primary-container rounded-40 p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
           <div className="relative z-10">
-            <h2 className="font-headline-xl md:text-display-lg text-white mb-8">جاهز لتكون صانع التكنولوجيا القادم؟</h2>
+            <h2 className="font-headline-xl text-headline-lg md:text-display-lg text-white mb-8">جاهز لتكون صانع التكنولوجيا القادم؟</h2>
             <p className="text-primary-fixed font-body-lg mb-12 max-w-2xl mx-auto">انضم إلى مئات الطلاب الذين بدأوا رحلتهم معنا وحولوا شغفهم إلى واقع ملموس.</p>
             <div className="flex flex-wrap justify-center gap-6">
               <Link href="/tracks" className="bg-secondary-container text-on-secondary-container font-bold px-12 py-5 rounded-full font-headline-lg hover:shadow-highlight transition-all scale-100 hover:scale-105">استكشف المسارات</Link>

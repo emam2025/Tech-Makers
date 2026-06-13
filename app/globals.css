@@ -185,8 +185,8 @@
     100% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.88; }
   }
 
-  .halo-wrapper { position: relative; width: 12rem; height: 12rem; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; margin: 2rem auto; }
-  @media (min-width: 640px) { .halo-wrapper { width: 16rem; height: 16rem; margin: 2.5rem auto; } }
+  .halo-wrapper { position: relative; width: 12rem; height: 12rem; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; margin: 1rem auto; }
+  @media (min-width: 640px) { .halo-wrapper { width: 16rem; height: 16rem; margin: 2rem auto; } }
   @media (min-width: 768px) { .halo-wrapper { width: 24rem; height: 24rem; margin: 0; } }
 
   .halo-svg-inner { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; filter: blur(6px) saturate(1.08); opacity: 0.99; pointer-events: none; }
@@ -197,17 +197,19 @@
   .spin-rev { animation: spin-rev var(--d, 8s) linear infinite; transform-origin: 0 0; will-change: transform; }
 
   .orb { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
-  .orb .emoji { position: absolute; left: 0; top: 0; transform: translate(var(--r, 80px), calc(-0.5 * var(--size, 20px))); font-size: var(--size, 20px); z-index: 20; text-shadow: 0 2px 6px rgba(0,0,0,0.18); }
+  .orb .emoji, .orb .material-symbols-outlined { position: absolute; left: 0; top: 0; transform: translate(var(--r, 80px), calc(-0.5 * var(--size, 20px))); font-size: var(--size, 20px); z-index: 20; text-shadow: 0 2px 6px rgba(0,0,0,0.18); }
 
   @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
   @keyframes spin-rev { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
 
   @media (max-width: 480px) {
     .halo { width: 180%; height: 180%; filter: blur(12px); }
-    .orbit-inner { transform: scale(0.55); }
+    .orbit-inner { transform: scale(0.5); }
+    .spin, .spin-rev { animation-duration: 20s !important; }
   }
   @media (min-width: 481px) and (max-width: 767px) {
-    .orbit-inner { transform: scale(0.75); }
+    .orbit-inner { transform: scale(0.7); }
+    .spin, .spin-rev { animation-duration: 15s !important; }
   }
 
   /* ── Material Icons ── */
@@ -423,6 +425,18 @@
     text-shadow: 0 0 8px rgba(30, 58, 138, 0.4), 0 0 20px rgba(30, 58, 138, 0.2);
   }
   [dir="rtl"] .rtl-flip { transform: scaleX(-1); }
+
+  /* ── Mobile Animation Optimization ── */
+  @media (max-width: 768px) {
+    .glow-border::before { animation-duration: 12s !important; }
+    .golden-glow-border::before { animation-duration: 10s !important; }
+  }
+
+  /* ── Reduced Motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    .spin, .spin-rev, .glow-border::before, .golden-glow-border::before { animation: none !important; }
+    .hover-lift:hover { transform: none !important; }
+  }
 
   /* ── Story Link ── */
   .story-link {

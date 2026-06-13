@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 /* ──────────────────────── TRACK DATA ──────────────────────── */
@@ -16,10 +17,10 @@ const trackData = {
     description:
       'في هذه المرحلة لا نركز فقط على تعليم الطفل البرمجة، بل على بناء علاقة إيجابية مع التكنولوجيا. هدمنا تحويل الطفل من مستخدم للألعاب والمحتوى الرقمي إلى طفل قادر على التفكير، الإبداع، وصناعة أفكاره باستخدام التكنولوجيا.',
     objectives: [
-      { icon: '🎨', text: 'التعلم البصري' },
-      { icon: '🎮', text: 'الأنشطة التفاعلية' },
-      { icon: '🧩', text: 'حل المشكلات' },
-      { icon: '🚀', text: 'التعلم بالمشاريع' },
+      { icon: 'palette', text: 'التعلم البصري' },
+      { icon: 'sports_esports', text: 'الأنشطة التفاعلية' },
+      { icon: 'extension', text: 'حل المشكلات' },
+      { icon: 'rocket_launch', text: 'التعلم بالمشاريع' },
     ],
     years: [
       {
@@ -75,17 +76,17 @@ const trackData = {
       },
     ],
     softSkills: [
-      { icon: '🧠', text: 'الثقة بالنفس' },
-      { icon: '🌱', text: 'تقبل الخطأ والتعلم منه' },
-      { icon: '🎯', text: 'التركيز والانضباط' },
-      { icon: '🤝', text: 'التعاون' },
-      { icon: '💡', text: 'عقلية أنا أستطيع أن أصنع' },
+      { icon: 'psychology', text: 'الثقة بالنفس' },
+      { icon: 'eco', text: 'تقبل الخطأ والتعلم منه' },
+      { icon: 'gps_fixed', text: 'التركيز والانضباط' },
+      { icon: 'handshake', text: 'التعاون' },
+      { icon: 'lightbulb', text: 'عقلية أنا أستطيع أن أصنع' },
     ],
     finalOutcomes: [
-      '⭐ التفكير كمبدع تقني',
-      '⭐ بناء مشاريع رقمية',
-      '⭐ فهم أساسيات البرمجة والـ AI',
-      '⭐ أساس قوي للتخصص مستقبلاً',
+      'التفكير كمبدع تقني',
+      'بناء مشاريع رقمية',
+      'فهم أساسيات البرمجة والـ AI',
+      'أساس قوي للتخصص مستقبلاً',
     ],
   },
 
@@ -99,10 +100,10 @@ const trackData = {
     description:
       'في عمر 12–15 سنة يبدأ الطالب مرحلة الانتقال من التعرف على التكنولوجيا إلى بناء مهارات تقنية حقيقية. لذلك يركز هذا المسار على تطوير عقلية المطور من خلال كتابة أكواد حقيقية، التفكير التحليلي، واستخدام الذكاء الاصطناعي بشكل عملي.',
     objectives: [
-      { icon: '💻', text: 'كتابة أكواد حقيقية' },
-      { icon: '🧠', text: 'التفكير التحليلي وحل المشكلات' },
-      { icon: '🤖', text: 'استخدام الذكاء الاصطناعي عملياً' },
-      { icon: '🚀', text: 'بناء مشاريع رقمية حقيقية' },
+      { icon: 'code', text: 'كتابة أكواد حقيقية' },
+      { icon: 'psychology', text: 'التفكير التحليلي وحل المشكلات' },
+      { icon: 'smart_toy', text: 'استخدام الذكاء الاصطناعي عملياً' },
+      { icon: 'rocket_launch', text: 'بناء مشاريع رقمية حقيقية' },
     ],
     years: [
       {
@@ -158,17 +159,17 @@ const trackData = {
       },
     ],
     softSkills: [
-      { icon: '🧠', text: 'التفكير النقدي' },
-      { icon: '🎯', text: 'الالتزام والمسؤولية' },
-      { icon: '👥', text: 'العمل الجماعي' },
-      { icon: '🗣', text: 'مهارات التواصل' },
-      { icon: '🚀', text: 'الثقة بالنفس' },
+      { icon: 'psychology', text: 'التفكير النقدي' },
+      { icon: 'gps_fixed', text: 'الالتزام والمسؤولية' },
+      { icon: 'group', text: 'العمل الجماعي' },
+      { icon: 'record_voice_over', text: 'مهارات التواصل' },
+      { icon: 'rocket_launch', text: 'الثقة بالنفس' },
     ],
     finalOutcomes: [
-      '⭐ بناء مشاريع تقنية متوسطة',
-      '⭐ استخدام أدوات المطورين',
-      '⭐ فهم أساسيات الـ AI',
-      '⭐ اختيار التخصص المناسب',
+      'بناء مشاريع تقنية متوسطة',
+      'استخدام أدوات المطورين',
+      'فهم أساسيات الـ AI',
+      'اختيار التخصص المناسب',
     ],
     nextSteps: ['AI Engineering', 'Full Stack Development', 'Mobile Development', 'Data Analysis', 'Smart Systems'],
   },
@@ -183,11 +184,11 @@ const trackData = {
     description:
       'في عمر 16–20 سنة يبدأ الطالب مرحلة مختلفة؛ لم يعد الهدف فقط تعلم أداة أو لغة برمجة، بل بناء عقلية تقنية تؤهله للدراسة الجامعية وسوق العمل. لذلك صممنا مسار Future Tech Engineers ليحول الطالب من مستخدم للتكنولوجيا إلى مطور قادر على بناء حلول رقمية حقيقية.',
     objectives: [
-      { icon: '💻', text: 'البرمجة' },
-      { icon: '🤖', text: 'الذكاء الاصطناعي' },
-      { icon: '🌐', text: 'تطوير التطبيقات والمواقع' },
-      { icon: '🧠', text: 'التفكير الهندسي وحل المشكلات' },
-      { icon: '🚀', text: 'بناء المشاريع التقنية' },
+      { icon: 'code', text: 'البرمجة' },
+      { icon: 'smart_toy', text: 'الذكاء الاصطناعي' },
+      { icon: 'language', text: 'تطوير التطبيقات والمواقع' },
+      { icon: 'psychology', text: 'التفكير الهندسي وحل المشكلات' },
+      { icon: 'rocket_launch', text: 'بناء المشاريع التقنية' },
     ],
     years: [
       {
@@ -254,32 +255,26 @@ const trackData = {
       },
     ],
     softSkills: [
-      { icon: '🧠', text: 'التفكير النقدي' },
-      { icon: '🎯', text: 'الالتزام والمسؤولية' },
-      { icon: '👥', text: 'العمل الجماعي' },
-      { icon: '🗣', text: 'مهارات العرض' },
-      { icon: '🚀', text: 'الثقة بالنفس' },
+      { icon: 'psychology', text: 'التفكير النقدي' },
+      { icon: 'gps_fixed', text: 'الالتزام والمسؤولية' },
+      { icon: 'group', text: 'العمل الجماعي' },
+      { icon: 'record_voice_over', text: 'مهارات العرض' },
+      { icon: 'rocket_launch', text: 'الثقة بالنفس' },
     ],
     finalOutcomes: [
-      '⭐ مشاريع حقيقية',
-      '⭐ Portfolio',
-      '⭐ خبرة عملية',
-      '⭐ عقلية مطور',
-      '⭐ رؤية واضحة لمستقبله التقني',
+      'مشاريع حقيقية',
+      'Portfolio',
+      'خبرة عملية',
+      'عقلية مطور',
+      'رؤية واضحة لمستقبله التقني',
     ],
   },
 };
 
-const allTracks = [
-  { id: 'a', title: 'Track A: The Explorer', age: '8–11 سنة', icon: 'child_care', color: 'secondary', points: ['البرمجة الرسومية (Scratch)', 'صناعة التطبيقات والإبداع الرقمي', 'أساسيات Python واكتشاف الويب', 'المشاريع الذكية وأساسيات AI'] },
-  { id: 'b', title: 'Track B: The Builder', age: '12–15 سنة', icon: 'code', color: 'primary', points: ['التفكير الحسابي وPython', 'تطوير الويب والمنتجات الرقمية', 'مشاريع Python وأدوات AI', 'أساسيات هندسة الذكاء الاصطناعي'] },
-  { id: 'c', title: 'Track C: The Professional', age: '16–20 سنة', icon: 'engineering', color: 'tertiary', points: ['علوم الكمبيوتر وهندسة البرمجيات', 'المنتجات الرقمية وتجربة المستخدم', 'هندسة الذكاء الاصطناعي', '4 مسارات تخصصية'] },
-];
-
 const plans = [
   { id: 'monthly', name: 'اشتراك شهري', price: '1200', unit: 'جنيه / شهر', badge: null, highlight: false, note: 'مناسب للتجربة — البرايفت سيشن' },
-  { id: 'quarterly', name: 'اشتراك ربع سنوي', price: '890', unit: 'جنيه / شهريًا', badge: '⭐ الأكثر اختيارًا', highlight: true, note: 'إجمالي 2,670 جنيه لكل 3 شهور — توفر 930 جنيه' },
-  { id: 'yearly', name: 'اشتراك سنوي', price: '690', unit: 'جنيه / شهريًا', badge: '🏆 الأوفر', highlight: false, note: 'إجمالي 8,280 جنيه سنويًا — توفر 6,120 جنيه' },
+  { id: 'quarterly', name: 'اشتراك ربع سنوي', price: '890', unit: 'جنيه / شهريًا', badge: <><span className="material-symbols-outlined text-sm align-middle">star</span> الأكثر اختيارًا</>, highlight: true, note: 'إجمالي 2,670 جنيه لكل 3 شهور — توفر 930 جنيه' },
+  { id: 'yearly', name: 'اشتراك سنوي', price: '690', unit: 'جنيه / شهريًا', badge: <><span className="material-symbols-outlined text-sm align-middle">emoji_events</span> الأوفر</>, highlight: false, note: 'إجمالي 8,280 جنيه سنويًا — توفر 6,120 جنيه' },
 ];
 
 const colorMap = {
@@ -336,7 +331,17 @@ export default function TracksPage() {
   return (
     <div dir="rtl">
       {/* ── HERO ── */}
-      <section className="relative bg-gradient-to-br from-primary-deep to-primary text-on-primary overflow-hidden py-20 md:py-28">
+      <section className="relative bg-gradient-to-br from-primary-deep to-primary text-on-primary overflow-hidden py-16 md:py-28">
+        <div className="absolute inset-0">
+          <Image
+            src="/tracks-banner.jpg"
+            alt="مسارات التعلم"
+            fill
+            sizes="100vw"
+            style={{ objectFit: 'cover' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-deep/85 to-primary/80"></div>
+        </div>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 right-20 w-72 h-72 bg-white rounded-full blur-3xl" />
           <div className="absolute bottom-10 left-10 w-96 h-96 bg-secondary rounded-full blur-3xl" />
@@ -351,8 +356,8 @@ export default function TracksPage() {
           {track && (
             <div className="flex flex-wrap justify-center gap-3 mt-8">
               {track.objectives.map((obj, i) => (
-                <span key={i} className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-full font-label-md">
-                  <span>{obj.icon}</span> {obj.text}
+                  <span key={i} className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-full font-label-md">
+                    <span className="material-symbols-outlined text-sm">{obj.icon}</span> {obj.text}
                 </span>
               ))}
             </div>
@@ -360,49 +365,193 @@ export default function TracksPage() {
         </div>
       </section>
 
+      {/* ── INTRO ── */}
+      {!track && (
+        <section className="py-16 md:py-20 bg-bg-off-white">
+          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-10 md:mb-14">
+                <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary-deep mb-3">
+                  <span className="material-symbols-outlined text-tertiary align-middle text-3xl md:text-4xl">rocket_launch</span> Tech Makers
+                </h2>
+                <p className="font-headline-lg text-headline-md md:text-headline-lg text-on-surface font-bold">رحلة ابنك من التعلم إلى صناعة التكنولوجيا</p>
+              </div>
+
+              <div className="space-y-4 md:space-y-5 text-on-surface-variant font-body-md md:text-body-lg leading-relaxed md:leading-loose text-center md:text-right">
+                <p>
+                  اختيار المسار الصحيح هو أول خطوة لبناء مستقبل تقني قوي.
+                </p>
+                <p>
+                  في Tech Makers صممنا رحلة تعليمية متدرجة تناسب كل مرحلة عمرية، تبدأ من تأسيس طريقة التفكير وتنمية الإبداع، ثم الانتقال تدريجيًا إلى البرمجة، الذكاء الاصطناعي، وبناء المشاريع الحقيقية.
+                </p>
+                <p className="text-primary font-bold text-lg md:text-xl">
+                 نحن لا نعلم الطلاب كتابة الأكواد فقط…
+                  بل نساعدهم على تطوير عقلية المبتكر وصانع الحلول.
+                </p>
+              </div>
+
+              <div className="mt-12 md:mt-16">
+                <h3 className="font-headline-lg text-headline-md md:text-headline-lg text-primary-deep text-center mb-8 md:mb-10">مسارات Tech Makers</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+                  <div className="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 rounded-24 p-5 md:p-6">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="material-symbols-outlined text-emerald-600 text-2xl">rocket_launch</span>
+                      <h4 className="font-headline-md text-headline-sm md:text-headline-md text-emerald-700 font-bold">Junior Tech Explorers</h4>
+                    </div>
+                    <p className="text-emerald-600 font-label-sm mb-2">للأعمار 8–11 سنة</p>
+                    <p className="text-gray-600 font-body-sm text-sm">اكتشاف التكنولوجيا، البرمجة الإبداعية، وبناء أولى المشاريع الرقمية.</p>
+                  </div>
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-24 p-5 md:p-6">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="material-symbols-outlined text-blue-600 text-2xl">smart_toy</span>
+                      <h4 className="font-headline-md text-headline-sm md:text-headline-md text-blue-700 font-bold">Future AI Developers</h4>
+                    </div>
+                    <p className="text-blue-600 font-label-sm mb-2">للأعمار 12–15 سنة</p>
+                    <p className="text-gray-600 font-body-sm text-sm">تعلم البرمجة الحقيقية، تطوير التطبيقات، واستخدام أدوات الذكاء الاصطناعي.</p>
+                  </div>
+                  <div className="bg-gradient-to-br from-purple-50 to-fuchsia-50 border border-purple-200 rounded-24 p-5 md:p-6">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="material-symbols-outlined text-purple-600 text-2xl">engineering</span>
+                      <h4 className="font-headline-md text-headline-sm md:text-headline-md text-purple-700 font-bold">Future Tech Engineers</h4>
+                    </div>
+                    <p className="text-purple-600 font-label-sm mb-2">للأعمار 16–20 سنة</p>
+                    <p className="text-gray-600 font-body-sm text-sm">بناء مهارات المطورين والاستعداد للتخصصات التقنية الحديثة وسوق المستقبل.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-10 md:mt-12 bg-surface-container-low border border-outline-variant/20 rounded-24 p-5 md:p-6 text-center">
+                <p className="text-on-surface-variant font-body-sm md:text-body-md">
+                  Tech Makers هو برنامج مدعوم جزئيًا من <strong className="text-primary">TKA-Egypt</strong>
+                  ويأتي ضمن رؤيتنا لدعم بناء جيل يمتلك مهارات المستقبل والمساهمة في التحول الرقمي وتنمية رأس المال البشري.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ── TRACK CARDS ── */}
       {!track && (
         <section className="py-16 md:py-24 bg-bg-off-white">
           <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <div className="text-center mb-16">
-              <span className="inline-block bg-secondary-container/20 text-secondary px-5 py-2 rounded-full font-label-md mb-4">📌 اختر المسار</span>
-              <h2 className="font-headline-xl text-headline-xl text-primary-deep mb-4">ثلاث مسارات — ثلاث فئات عمرية</h2>
+              <span className="inline-block bg-secondary-container/20 text-secondary px-5 py-2 rounded-full font-label-md mb-4">اختر المسار</span>
+              <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary-deep mb-4">ثلاث مسارات — ثلاث فئات عمرية</h2>
               <p className="text-on-surface-variant font-body-lg">كل مسار صمم خصيصاً ليناسب عمر طفلك ومستواه</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-              {allTracks.map((t) => {
-                const c = colorMap[t.color];
-                const trackFull = trackData[t.id];
-                return (
-                  <div key={t.id} className="relative bg-white rounded-24 overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 group hover-lift">
-                    <div className={`h-2.5 ${c.solid}`} />
-                    <div className="p-8">
-                      <div className="flex justify-between items-start mb-6">
-                        <div className={`${c.bg} p-4 rounded-2xl`}>
-                          <span className={`material-symbols-outlined ${c.text} text-4xl`}>{t.icon}</span>
-                        </div>
-                        <span className={`${c.bg} ${c.text} px-4 py-1 rounded-full font-bold text-sm`}>{t.age}</span>
-                      </div>
-                      <h3 className="font-headline-lg text-headline-lg text-primary mb-2">{t.title}</h3>
-                      <p className="text-on-surface-variant font-body-sm mb-4 text-sm">{trackFull?.subtitle}</p>
-                      <ul className="space-y-3 mb-8">
-                        {t.points.map((p, i) => (
-                          <li key={i} className="flex items-center gap-2 text-on-surface-variant font-body-md">
-                            <span className={`material-symbols-outlined ${c.text} text-sm`}>circle</span>
-                            {p}
-                          </li>
-                        ))}
-                      </ul>
-                      <button
-                        onClick={() => enterTrack(t.id)}
-                        className={`w-full py-3 border-2 ${c.border} ${c.text} rounded-xl font-bold group-hover:${c.solid} group-hover:text-white transition-all`}
-                      >
-                        تفاصيل المسار
-                      </button>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              {/* Track A - 8-11 years - Green/Teal theme */}
+              <div className="relative bg-white rounded-32 overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-emerald-100 group transition-all duration-500 hover:-translate-y-4 hover:shadow-[0_20px_60px_rgba(16,185,129,0.25)]">
+                <div className="h-2 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400"></div>
+                <div className="p-5 md:p-8">
+                  <div className="flex items-center justify-between mb-4 md:mb-6">
+                    <div className="bg-gradient-to-br from-emerald-50 to-teal-50 p-3 md:p-4 rounded-2xl border border-emerald-100">
+                      <span className="font-label-lg text-emerald-600 font-bold">Track A</span>
                     </div>
+                    <span className="material-symbols-outlined text-4xl md:text-5xl text-emerald-400 group-hover:scale-125 transition-transform duration-500">rocket_launch</span>
                   </div>
-                );
-              })}
+                  <h3 className="font-headline-xl text-headline-lg md:text-headline-xl text-emerald-700 mb-2 font-extrabold">استكشاف التكنولوجيا</h3>
+                  <p className="text-emerald-600 font-headline-md text-headline-sm md:text-headline-md mb-1 font-bold">Junior Tech Explorers</p>
+                  <p className="text-gray-500 font-body-md text-body-sm md:text-body-md mb-4 md:mb-6 flex items-center gap-2">
+                    <span className="material-symbols-outlined text-emerald-500 text-lg">child_care</span>
+                    من 8 إلى 11 سنة
+                  </p>
+                  <div className="space-y-2 md:space-y-3 mb-6 md:mb-8">
+                    {[
+                      { icon: 'visibility', text: 'تعلم مرئي تفاعلي' },
+                      { icon: 'sports_esports', text: 'ألعاب تعليمية ذكية' },
+                      { icon: 'palette', text: 'مشاريع إبداعية ممتعة' },
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-2 md:gap-3 bg-gradient-to-r from-emerald-50 to-teal-50 p-2.5 md:p-3 rounded-xl border border-emerald-50">
+                        <span className="material-symbols-outlined text-emerald-500 text-lg md:text-xl">{item.icon}</span>
+                        <span className="text-gray-700 font-body-md text-body-sm md:text-body-md">{item.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => enterTrack('a')}
+                    className="w-full block text-center py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-2xl font-bold text-lg shadow-lg shadow-emerald-200 group-hover:shadow-xl group-hover:shadow-emerald-300 group-hover:-translate-y-1 transition-all duration-300"
+                  >
+                    ابدأ الرحلة
+                  </button>
+                </div>
+              </div>
+
+              {/* Track B - 12-15 years - Blue/Royal theme */}
+              <div className="relative bg-white rounded-32 overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-blue-100 group transition-all duration-500 hover:-translate-y-4 hover:shadow-[0_20px_60px_rgba(59,130,246,0.25)]">
+                <div className="h-2 bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500"></div>
+                <div className="p-5 md:p-8">
+                  <div className="flex items-center justify-between mb-4 md:mb-6">
+                    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-3 md:p-4 rounded-2xl border border-blue-100">
+                      <span className="font-label-lg text-blue-600 font-bold">Track B</span>
+                    </div>
+                    <span className="material-symbols-outlined text-4xl md:text-5xl text-blue-400 group-hover:scale-125 transition-transform duration-500">smart_toy</span>
+                  </div>
+                  <h3 className="font-headline-xl text-headline-lg md:text-headline-xl text-blue-700 mb-2 font-extrabold">مهندس الذكاء الاصطناعي</h3>
+                  <p className="text-blue-600 font-headline-md text-headline-sm md:text-headline-md mb-1 font-bold">Future AI Engineers</p>
+                  <p className="text-gray-500 font-body-md text-body-sm md:text-body-md mb-4 md:mb-6 flex items-center gap-2">
+                    <span className="material-symbols-outlined text-blue-500 text-lg">psychology</span>
+                    من 12 إلى 15 سنة
+                  </p>
+                  <div className="space-y-2 md:space-y-3 mb-6 md:mb-8">
+                    {[
+                      { icon: 'code', text: 'برمجة حقيقية ومواقع' },
+                      { icon: 'smart_toy', text: 'مسارات عمل الذكاء الاصطناعي' },
+                      { icon: 'psychology', text: 'تفكير تقني متقدم' },
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-2 md:gap-3 bg-gradient-to-r from-blue-50 to-indigo-50 p-2.5 md:p-3 rounded-xl border border-blue-50">
+                        <span className="material-symbols-outlined text-blue-500 text-lg md:text-xl">{item.icon}</span>
+                        <span className="text-gray-700 font-body-md text-body-sm md:text-body-md">{item.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => enterTrack('b')}
+                    className="w-full block text-center py-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-2xl font-bold text-lg shadow-lg shadow-blue-200 group-hover:shadow-xl group-hover:shadow-blue-300 group-hover:-translate-y-1 transition-all duration-300"
+                  >
+                    ابدأ الرحلة
+                  </button>
+                </div>
+              </div>
+
+              {/* Track C - 16-20 years - Purple/Violet theme */}
+              <div className="relative bg-white rounded-32 overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-purple-100 group transition-all duration-500 hover:-translate-y-4 hover:shadow-[0_20px_60px_rgba(139,92,246,0.25)]">
+                <div className="h-2 bg-gradient-to-r from-purple-500 via-fuchsia-500 to-pink-500"></div>
+                <div className="p-5 md:p-8">
+                  <div className="flex items-center justify-between mb-4 md:mb-6">
+                    <div className="bg-gradient-to-br from-purple-50 to-fuchsia-50 p-3 md:p-4 rounded-2xl border border-purple-100">
+                      <span className="font-label-lg text-purple-600 font-bold">Track C</span>
+                    </div>
+                    <span className="material-symbols-outlined text-4xl md:text-5xl text-purple-400 group-hover:scale-125 transition-transform duration-500">bolt</span>
+                  </div>
+                  <h3 className="font-headline-xl text-headline-lg md:text-headline-xl text-purple-700 mb-2 font-extrabold">مهندس التكنولوجيا</h3>
+                  <p className="text-purple-600 font-headline-md text-headline-sm md:text-headline-md mb-1 font-bold">Future Tech Engineers</p>
+                  <p className="text-gray-500 font-body-md text-body-sm md:text-body-md mb-4 md:mb-6 flex items-center gap-2">
+                    <span className="material-symbols-outlined text-purple-500 text-lg">engineering</span>
+                    من 16 إلى 20 سنة
+                  </p>
+                  <div className="space-y-2 md:space-y-3 mb-6 md:mb-8">
+                    {[
+                      { icon: 'rocket_launch', text: 'تطوير ويب شامل' },
+                      { icon: 'smart_toy', text: 'هندسة الذكاء الاصطناعي' },
+                      { icon: 'phone_iphone', text: 'تطوير تطبيقات الموبايل' },
+                      { icon: 'analytics', text: 'تحليل البيانات المتقدم' },
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-2 md:gap-3 bg-gradient-to-r from-purple-50 to-fuchsia-50 p-2.5 md:p-3 rounded-xl border border-purple-50">
+                        <span className="material-symbols-outlined text-purple-500 text-lg md:text-xl">{item.icon}</span>
+                        <span className="text-gray-700 font-body-md text-body-sm md:text-body-md">{item.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => enterTrack('c')}
+                    className="w-full block text-center py-4 bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white rounded-2xl font-bold text-lg shadow-lg shadow-purple-200 group-hover:shadow-xl group-hover:shadow-purple-300 group-hover:-translate-y-1 transition-all duration-300"
+                  >
+                    ابدأ الرحلة
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -512,7 +661,7 @@ export default function TracksPage() {
                                         <ul className="space-y-1.5">
                                           {level.projects.map((p, i) => (
                                             <li key={i} className="text-sm text-on-surface-variant font-body-md flex items-start gap-1.5">
-                                              <span className="text-tertiary mt-0.5">🚀</span> {p}
+                                              <span className="material-symbols-outlined text-tertiary text-sm mt-0.5">rocket_launch</span> {p}
                                             </li>
                                           ))}
                                         </ul>
@@ -579,7 +728,7 @@ export default function TracksPage() {
                               ))}
                             </div>
                             <div className={`${c.bg} rounded-xl p-3 text-center`}>
-                              <span className={`font-label-sm ${c.text}`}>🎯 {spec.outcomes[0]}</span>
+                              <span className={`font-label-sm ${c.text}`}><span className="material-symbols-outlined text-sm align-middle">gps_fixed</span> {spec.outcomes[0]}</span>
                             </div>
                           </div>
                         </div>
@@ -614,7 +763,7 @@ export default function TracksPage() {
               <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-3 md:gap-4">
                 {track.softSkills.map((s, i) => (
                   <div key={i} className="flex items-center gap-2 md:gap-3 bg-surface-container-low px-4 md:px-6 py-3 md:py-4 rounded-2xl">
-                    <span className="text-xl md:text-2xl">{s.icon}</span>
+                    <span className="material-symbols-outlined text-xl md:text-2xl">{s.icon}</span>
                     <span className="font-label-sm md:font-label-md text-on-surface text-sm md:text-base">{s.text}</span>
                   </div>
                 ))}
@@ -657,7 +806,7 @@ export default function TracksPage() {
             </button>
 
             <div className="text-center mb-10 md:mb-16">
-              <span className="inline-block bg-secondary-container/20 text-secondary px-5 py-2 rounded-full font-label-md mb-4">📌 خطط الاشتراك</span>
+              <span className="inline-block bg-secondary-container/20 text-secondary px-5 py-2 rounded-full font-label-md mb-4"><span className="material-symbols-outlined text-sm align-middle">push_pin</span> خطط الاشتراك</span>
               <h2 className="font-headline-lg md:font-headline-xl text-headline-lg md:text-headline-xl text-primary-deep mb-2">اختر الخطة المناسبة لك</h2>
               <p className="text-on-surface-variant font-body-md md:font-body-lg">مسار: <strong className="text-primary">{track.title}</strong> — الفئة العمرية: {track.age}</p>
             </div>
@@ -699,12 +848,12 @@ export default function TracksPage() {
             <div className="mt-8 max-w-3xl mx-auto space-y-3">
               <div className="bg-surface-container-low p-5 rounded-16 border-r-4 border-secondary-container">
                 <p className="text-on-surface-variant font-body-md text-sm">
-                  🎯 <strong className="text-primary">ميزة الاشتراك السنوي:</strong> يوفر 6,120 جنيه مقارنة بالشهري، واستثمار في استمرارية تعليم أفضل.
+                  <span className="material-symbols-outlined text-sm align-middle">gps_fixed</span> <strong className="text-primary">ميزة الاشتراك السنوي:</strong> يوفر 6,120 جنيه مقارنة بالشهري، واستثمار في استمرارية تعليم أفضل.
                 </p>
               </div>
               <div className="bg-surface-container-low p-5 rounded-16 border-r-4 border-primary">
                 <p className="text-on-surface-variant font-body-md text-sm">
-                  ✅ <strong className="text-primary">رسوم تسجيل إدارية</strong> 200 جنيه تدفع لمرة واحدة
+                  <span className="material-symbols-outlined text-sm align-middle">task_alt</span> <strong className="text-primary">رسوم تسجيل إدارية</strong> 200 جنيه تدفع لمرة واحدة
                 </p>
               </div>
             </div>

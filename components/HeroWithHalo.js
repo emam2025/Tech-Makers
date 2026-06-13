@@ -9,10 +9,10 @@ export default function HeroWithHalo() {
 
       <div className="halo-image-inner hero-img">
         <Image
-          src="/tech-1.png"
+          src="/tech-1.webp"
           alt="طفل يتعلم البرمجة"
           fill
-          sizes="(max-width: 480px) 192px, (max-width: 768px) 256px, 384px"
+          sizes="(max-width: 480px) 160px, (max-width: 768px) 220px, 320px"
           priority
           style={{ objectFit: 'cover' }}
         />
@@ -20,13 +20,13 @@ export default function HeroWithHalo() {
 
       <div className="orbit-inner" aria-hidden="true">
         <div className="orb spin" style={{ ['--r']: '140px', ['--size']: '40px', ['--d']: '10s' }}>
-          <div className="emoji">🚀</div>
+          <div className="material-symbols-outlined" style={{fontSize: '24px', color: '#FFDD57'}}>rocket_launch</div>
         </div>
         <div className="orb spin-rev" style={{ ['--r']: '120px', ['--size']: '36px', ['--d']: '7s' }}>
-          <div className="emoji">🤖</div>
+          <div className="material-symbols-outlined" style={{fontSize: '22px', color: '#FFDD57'}}>smart_toy</div>
         </div>
         <div className="orb spin" style={{ ['--r']: '160px', ['--size']: '32px', ['--d']: '13s' }}>
-          <div className="emoji">🔬</div>
+          <div className="material-symbols-outlined" style={{fontSize: '20px', color: '#FFDD57'}}>science</div>
         </div>
       </div>
     </div>

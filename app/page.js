@@ -5,79 +5,92 @@ import HeroWithHalo from '../components/HeroWithHalo';
 export default function HomePage() {
   return (
     <>
-      <section role="banner" aria-label="Hero" className="relative py-12 md:py-24 px-margin-mobile md:px-margin-desktop hero-gradient overflow-hidden">
-        <div className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 relative z-10">
+      <section role="banner" aria-label="Hero" className="relative py-10 md:py-24 px-margin-mobile md:px-margin-desktop text-white overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/hero-bg.jpg"
+            alt="طلاب يتعلمون التكنولوجيا"
+            fill
+            sizes="100vw"
+            priority
+            style={{ objectFit: 'cover' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-deep/70 via-primary-deep/80 to-[#0f2d6e]/85"></div>
+        </div>
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 right-20 w-72 h-72 bg-white rounded-full blur-3xl" />
+          <div className="absolute bottom-10 left-10 w-96 h-96 bg-secondary rounded-full blur-3xl" />
+        </div>
+        <div className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 relative z-10">
           {/* Logo */}
-          <div className="col-span-1 md:col-span-2 inline-flex items-center gap-2 px-4 py-1.5 bg-primary/5 border border-primary/10 rounded-full w-fit">
-            <span className="text-lg">🌟</span>
-            <span className="font-label-md text-label-md text-primary font-bold uppercase tracking-wide">Tech Makers Egypt</span>
+          <div className="col-span-1 md:col-span-2 inline-flex items-center gap-2 px-4 py-1.5 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full w-fit">
+            <span className="material-symbols-outlined text-tertiary text-lg">star</span>
+            <span className="font-label-md text-label-md text-white font-bold uppercase tracking-wide">Tech Makers Egypt</span>
           </div>
           
           {/* Left Column: Content */}
-          <div className="flex flex-col gap-8">
-            <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg leading-tight">من <span className="text-secondary-container">مستهلك</span> للتكنولوجيا إلى <span className="text-royal">صانع</span> <span className="text-primary-deep">ومطور</span> و<span className="text-royal">قائد</span></h1>
+          <div className="flex flex-col gap-6 md:gap-8">
+            <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg leading-tight text-white">من <span className="text-tertiary">مستهلك</span> للتكنولوجيا إلى <span className="text-tertiary">صانع</span> <span className="text-tertiary">ومطور</span> و<span className="text-tertiary">قائد</span></h1>
             
-            <p className="text-primary-deep font-headline-lg text-headline-lg flex items-center gap-2">Tech Makers • <span className="font-normal opacity-80">Building Future Tech Leaders</span></p>
+            <p className="text-white/80 font-headline-lg text-headline-sm md:text-headline-lg flex items-center gap-2">Tech Makers • <span className="font-normal opacity-80">Building Future Tech Leaders</span></p>
 
             {/* Student Age Cards */}
-            <div className="grid grid-cols-3 gap-3 max-w-sm">
+            <div className="grid grid-cols-3 gap-2 md:gap-3 max-w-xs md:max-w-sm">
               {['8–11 سنة', '12–15 سنة', '16–20 سنة'].map((age, i) => (
-                <div key={i} className="bg-white p-2.5 md:p-3 rounded-lg md:rounded-xl shadow-sm text-center font-label-md text-primary text-xs md:text-sm">{age}</div>
+                <div key={i} className="bg-white/15 backdrop-blur-sm p-2 md:p-3 rounded-lg md:rounded-xl text-center font-label-md text-white text-xs md:text-sm border border-white/20">{age}</div>
               ))}
             </div>
 
             {/* Tech Pillars */}
-            <div className="flex flex-wrap gap-3 md:gap-4">
+            <div className="flex flex-wrap gap-2 md:gap-4">
               {[
-                { icon: '🎯', text: 'تفكير منطقي' },
-                { icon: '🤖', text: 'ذكاء اصطناعي' },
-                { icon: '💡', text: 'مشاريع حقيقية' },
+                { icon: 'psychology', text: 'تفكير منطقي' },
+                { icon: 'smart_toy', text: 'ذكاء اصطناعي' },
+                { icon: 'lightbulb', text: 'مشاريع حقيقية' },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2 md:gap-3 bg-primary/5 text-primary px-3 md:px-4 py-1.5 md:py-2 rounded-full font-label-md text-xs md:text-sm hover:opacity-95 transition-all">
-                  <span className="emoji-badge text-sm md:text-base">{item.icon}</span>
+                <div key={i} className="flex items-center gap-1.5 md:gap-3 bg-white/15 backdrop-blur-sm text-white px-2.5 md:px-4 py-1.5 md:py-2 rounded-full font-label-md text-xs md:text-sm hover:bg-white/25 transition-all border border-white/20">
+                  <span className="material-symbols-outlined text-sm md:text-base">{item.icon}</span>
                   <span className="font-medium">{item.text}</span>
                 </div>
               ))}
             </div>
 
             {/* Detailed Description */}
-            <div className="text-on-surface-variant font-body-md md:font-body-lg text-sm md:text-body-lg leading-relaxed space-y-4">
-              <p>في عالم تتغير فيه التكنولوجيا بسرعة، أصبح امتلاك المهارات الرقمية ليس اختيارًا… بل ضرورة لصناعة المستقبل. Tech Makers هو برنامج تعليمي متكامل يهدف إلى إعداد جيل جديد من المبدعين والقادة التقنيين، من خلال رحلة عملية تبدأ من أساسيات البرمجة والتفكير المنطقي، وصولًا إلى الذكاء الاصطناعي وبناء المشاريع الرقمية الحقيقية.</p>
-              <p className="font-bold">نؤمن أن التكنولوجيا لا يجب أن تكون مجرد أداة للاستهلاك، بل وسيلة للإبداع، الابتكار، وحل المشكلات.</p>
+            <div className="text-white/80 font-body-sm md:font-body-lg text-xs md:text-body-lg leading-relaxed md:leading-loose space-y-3 md:space-y-4">
+              <p>في عالم تتغير فيه التكنولوجيا بسرعة، أصبح امتلاك المهارات الرقمية ليس اختيارًا… بل ضرورة لصناعة المستقبل. Tech Makers هو برنامج تعليمي متكامل يهدف إلى إعداد جيل جديد من المبدعين والقادة التقنيين.</p>
+              <p className="font-bold text-white text-sm md:text-base">نؤمن أن التكنولوجيا لا يجب أن تكون مجرد أداة للاستهلاك، بل وسيلة للإبداع، الابتكار، وحل المشكلات.</p>
               
-              <div className="bg-white p-6 rounded-20 shadow-card border border-primary/5">
-                <p className="font-bold mb-3">يركز البرنامج على:</p>
-                <ul className="grid md:grid-cols-2 gap-2">
-                  {['بناء عقلية تحليلية ومنهجية تفكير هندسية', 'تطوير مهارات البرمجة والذكاء الاصطناعي', 'التعلم بالمشاريع والتطبيق العملي', 'تعزيز الثقة بالنفس والإبداع والعمل الجماعي', 'إعداد الطلاب لمهارات المستقبل والمسارات التقنية الحديثة'].map((item, i) => (
-                    <li key={i} className="flex items-center gap-2 text-on-surface-variant"><span className="text-secondary">✅</span> {item}</li>
+              <div className="bg-white/10 backdrop-blur-sm p-4 md:p-6 rounded-20 border border-white/20">
+                <p className="font-bold mb-2 md:mb-3 text-white text-sm md:text-base">يركز البرنامج على:</p>
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2">
+                  {['بناء عقلية تحليلية ومنهجية', 'تطوير مهارات البرمجة والـ AI', 'التعلم بالمشاريع والتطبيق العملي', 'تعزيز الثقة بالنفس والإبداع', 'إعداد الطلاب لمهارات المستقبل'].map((item, i) => (
+                    <li key={i} className="flex items-center gap-1.5 md:gap-2 text-white/80 text-xs md:text-sm"><span className="material-symbols-outlined text-tertiary text-xs md:text-base">check_circle</span> {item}</li>
                   ))}
                 </ul>
               </div>
-
-              <p>نحن لا نقدم مادة علمية فقط… بل نبني بيئة تعليمية متكاملة تساعد الطالب على النمو فكريًا، تقنيًا، وشخصيًا.</p>
             </div>
           </div>
           
           {/* Right Column: Hero Illustration */}
-          <div className="flex flex-col gap-8 items-center justify-start">
+          <div className="flex flex-col gap-6 md:gap-8 items-center justify-start">
             <HeroWithHalo />
             
             {/* Features Card */}
-            <div className="bg-white rounded-20 md:rounded-24 shadow-card-sm p-6 md:p-8 border border-primary/5 w-full md:max-w-sm hover-lift">
-              <div className="flex flex-col gap-3 md:gap-4">
-                <div className="flex items-start gap-3 text-on-surface font-body-md text-sm md:text-base"><span className="material-symbols-outlined text-secondary text-lg md:text-xl flex-shrink-0 mt-0.5">check_circle</span> <span>تعلم البرمجة من الصفر للاحتراف</span></div>
-                <div className="flex items-start gap-3 text-on-surface font-body-md text-sm md:text-base"><span className="material-symbols-outlined text-secondary text-lg md:text-xl flex-shrink-0 mt-0.5">check_circle</span> <span>تطبيقات عملية على الذكاء الاصطناعي</span></div>
-                <div className="flex items-start gap-3 text-on-surface font-body-md text-sm md:text-base"><span className="material-symbols-outlined text-secondary text-lg md:text-xl flex-shrink-0 mt-0.5">check_circle</span> <span>تطوير مهارات التفكير المنطقي والرياضي</span></div>
-                <div className="flex items-start gap-3 text-on-surface font-body-md text-sm md:text-base"><span className="material-symbols-outlined text-secondary text-lg md:text-xl flex-shrink-0 mt-0.5">check_circle</span> <span>مشاريع حقيقية وشهادات معتمدة</span></div>
-                <div className="flex items-start gap-3 text-on-surface font-body-md text-sm md:text-base"><span className="material-symbols-outlined text-secondary text-lg md:text-xl flex-shrink-0 mt-0.5">check_circle</span> <span>دعم نفسي وتربوي متخصص للمواهب</span></div>
+            <div className="bg-white/10 backdrop-blur-md rounded-20 md:rounded-24 p-4 md:p-8 border border-white/20 w-full md:max-w-sm hover-lift">
+              <div className="flex flex-col gap-2.5 md:gap-4">
+                <div className="flex items-start gap-2 md:gap-3 text-white font-body-sm md:font-body-md text-xs md:text-base"><span className="material-symbols-outlined text-secondary text-sm md:text-xl flex-shrink-0 mt-0.5">check_circle</span> <span>تعلم البرمجة من الصفر للاحتراف</span></div>
+                <div className="flex items-start gap-2 md:gap-3 text-white font-body-sm md:font-body-md text-xs md:text-base"><span className="material-symbols-outlined text-secondary text-sm md:text-xl flex-shrink-0 mt-0.5">check_circle</span> <span>تطبيقات عملية على الذكاء الاصطناعي</span></div>
+                <div className="flex items-start gap-2 md:gap-3 text-white font-body-sm md:font-body-md text-xs md:text-base"><span className="material-symbols-outlined text-secondary text-sm md:text-xl flex-shrink-0 mt-0.5">check_circle</span> <span>تطوير مهارات التفكير المنطقي والرياضي</span></div>
+                <div className="flex items-start gap-2 md:gap-3 text-white font-body-sm md:font-body-md text-xs md:text-base"><span className="material-symbols-outlined text-secondary text-sm md:text-xl flex-shrink-0 mt-0.5">check_circle</span> <span>مشاريع حقيقية وشهادات معتمدة</span></div>
+                <div className="flex items-start gap-2 md:gap-3 text-white font-body-sm md:font-body-md text-xs md:text-base"><span className="material-symbols-outlined text-secondary text-sm md:text-xl flex-shrink-0 mt-0.5">check_circle</span> <span>دعم نفسي وتربوي متخصص للمواهب</span></div>
               </div>
             </div>
           </div>
           
           {/* CTA Buttons - Full Width */}
-          <div className="col-span-1 md:col-span-2 flex flex-wrap gap-4 mt-4 md:mt-8">
-            <Link href="/register" aria-label="سجل الآن في Tech Makers" className="btn-primary">اشترك الآن</Link>
-            <Link href="#tracks" className="btn-secondary">استكشف المسارات</Link>
+          <div className="col-span-1 md:col-span-2 flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 mt-2 md:mt-8">
+            <Link href="/register" aria-label="سجل الآن في Tech Makers" className="bg-white text-primary-deep px-6 md:px-8 py-3 md:py-3.5 rounded-full font-bold hover:shadow-xl transition-all hover:-translate-y-1 w-full sm:w-auto text-center text-sm md:text-base">اشترك الآن</Link>
+            <Link href="#tracks" className="border-2 border-white/40 text-white px-6 md:px-8 py-3 md:py-3.5 rounded-full font-bold hover:bg-white/15 transition-all w-full sm:w-auto text-center text-sm md:text-base">استكشف المسارات</Link>
           </div>
         </div>
       </section>
@@ -85,36 +98,36 @@ export default function HomePage() {
       <section className="section-padding" id="about">
         <div className="container-inner">
           <div className="text-center mb-16 reveal">
-            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">إحنا مش بنعلّم برمجة وبس… إحنا بنبني شخصية</h2>
+            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">إحنا مش بنعلّم برمجة وبس… إحنا بنبني شخصية</h2>
             <p className="text-on-surface-variant font-body-lg text-body-lg">منهج متكامل مبني على 4 محاور أساسية تُعد جيل المستقبل</p>
           </div>
-          <div className="grid grid-cols-1 gap-6 max-w-4xl mx-auto">
-            <div className="bg-white p-8 rounded-20 card-shadow hover-lift border border-primary/5 flex items-start gap-6 reveal reveal-delay-1">
-              <div className="w-16 h-16 shrink-0 bg-primary-container/10 flex items-center justify-center rounded-2xl text-primary font-bold text-3xl">01</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(65,105,225,0.2)] flex items-start gap-4 md:gap-6 reveal reveal-delay-1">
+              <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 bg-gradient-to-br from-primary to-primary-deep flex items-center justify-center rounded-2xl text-white font-bold text-xl md:text-2xl group-hover:scale-110 transition-transform">01</div>
               <div>
                 <h3 className="font-headline-lg text-headline-lg mb-2 text-primary">🧠 التفكير المنطقي</h3>
-                <p className="text-on-surface-variant">بناء عقلية تحليلية تُمكّن الطالب من فهم المشكلات وتقسيمها بذكاء</p>
+                <p className="text-on-surface-variant font-body-md">بناء عقلية تحليلية تُمكّن الطالب من فهم المشكلات وتقسيمها بذكاء</p>
               </div>
             </div>
-            <div className="bg-white p-8 rounded-20 card-shadow hover-lift border border-primary/5 flex items-start gap-6 reveal reveal-delay-2">
-              <div className="w-16 h-16 shrink-0 bg-secondary-container/20 flex items-center justify-center rounded-2xl text-secondary font-bold text-3xl">02</div>
+            <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-secondary/10 hover:border-secondary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(253,118,26,0.2)] flex items-start gap-4 md:gap-6 reveal reveal-delay-2">
+              <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 bg-gradient-to-br from-secondary to-amber-500 flex items-center justify-center rounded-2xl text-white font-bold text-xl md:text-2xl group-hover:scale-110 transition-transform">02</div>
               <div>
                 <h3 className="font-headline-lg text-headline-lg mb-2 text-primary">🎨 الإبداع الرقمي</h3>
-                <p className="text-on-surface-variant">تحويل الطالب من مستهلك للتكنولوجيا إلى صانع يُنتج أدواته</p>
+                <p className="text-on-surface-variant font-body-md">تحويل الطالب من مستهلك للتكنولوجيا إلى صانع يُنتج أدواته</p>
               </div>
             </div>
-            <div className="bg-white p-8 rounded-20 card-shadow hover-lift border border-primary/5 flex items-start gap-6 reveal reveal-delay-3">
-              <div className="w-16 h-16 shrink-0 bg-tertiary-container/10 flex items-center justify-center rounded-2xl text-tertiary font-bold text-3xl">03</div>
+            <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-tertiary/10 hover:border-tertiary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(247,190,29,0.2)] flex items-start gap-4 md:gap-6 reveal reveal-delay-3">
+              <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 bg-gradient-to-br from-tertiary to-amber-400 flex items-center justify-center rounded-2xl text-white font-bold text-xl md:text-2xl group-hover:scale-110 transition-transform">03</div>
               <div>
                 <h3 className="font-headline-lg text-headline-lg mb-2 text-primary">🛠️ التعلم بالمشاريع</h3>
-                <p className="text-on-surface-variant">زيادة الثقة بالنفس من خلال تطبيقات عملية ومشاريع حقيقية</p>
+                <p className="text-on-surface-variant font-body-md">زيادة الثقة بالنفس من خلال تطبيقات عملية ومشاريع حقيقية</p>
               </div>
             </div>
-            <div className="bg-white p-8 rounded-20 card-shadow hover-lift border border-primary/5 flex items-start gap-6 reveal reveal-delay-4">
-              <div className="w-16 h-16 shrink-0 bg-error-container/40 flex items-center justify-center rounded-2xl text-error font-bold text-3xl">04</div>
+            <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-primary-light/10 hover:border-primary-light/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(107,138,255,0.2)] flex items-start gap-4 md:gap-6 reveal reveal-delay-4">
+              <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 bg-gradient-to-br from-primary-light to-primary flex items-center justify-center rounded-2xl text-white font-bold text-xl md:text-2xl group-hover:scale-110 transition-transform">04</div>
               <div>
                 <h3 className="font-headline-lg text-headline-lg mb-2 text-primary">🤖 التعرض المبكر للـ AI</h3>
-                <p className="text-on-surface-variant">إعداد جيل المستقبل بأدوات وتقنيات الذكاء الاصطناعي</p>
+                <p className="text-on-surface-variant font-body-md">إعداد جيل المستقبل بأدوات وتقنيات الذكاء الاصطناعي</p>
               </div>
             </div>
           </div>
@@ -125,14 +138,14 @@ export default function HomePage() {
         <div className="container-inner">
           <div className="text-center mb-16 reveal">
             <span className="font-label-md text-label-md text-primary uppercase tracking-wide mb-2 block">النتائج المتوقعة</span>
-            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">ماذا سيحقق ابنك من خلال Tech Makers؟</h2>
+            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">ماذا سيحقق ابنك من خلال Tech Makers؟</h2>
             <p className="text-on-surface-variant font-body-lg text-body-lg">نتائج ملموسة تؤثر بشكل إيجابي على مستقبل طفلك الأكاديمي والمهني</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            <div className="bg-white p-6 rounded-xl card-shadow text-center reveal reveal-delay-1">
-              <div className="w-14 h-14 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
-                <span className="text-2xl">💻</span>
+            <div className="group bg-white p-6 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(65,105,225,0.15)] text-center reveal reveal-delay-1">
+              <div className="w-14 h-14 mx-auto bg-gradient-to-br from-primary to-primary-deep rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-white text-2xl">code</span>
               </div>
               <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">اكتساب مهارات تقنية متقدمة</h3>
               <ul className="text-right space-y-2">
@@ -140,9 +153,9 @@ export default function HomePage() {
                 <li className="text-on-surface-variant font-body-md text-body-md">• القدرة على التعامل مع مفاهيم الذكاء الاصطناعي وتصميم الروبوتات البسيطة</li>
               </ul>
             </div>
-            <div className="bg-white p-6 rounded-xl card-shadow text-center reveal reveal-delay-2">
-              <div className="w-14 h-14 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
-                <span className="text-2xl">📚</span>
+            <div className="group bg-white p-6 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-secondary/10 hover:border-secondary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(253,118,26,0.15)] text-center reveal reveal-delay-2">
+              <div className="w-14 h-14 mx-auto bg-gradient-to-br from-secondary to-amber-500 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-white text-2xl">school</span>
               </div>
               <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">تحسين الأداء الأكاديمي</h3>
               <ul className="text-right space-y-2">
@@ -150,9 +163,9 @@ export default function HomePage() {
                 <li className="text-on-surface-variant font-body-md text-body-md">• تقوية اللغة الإنجليزية تعزز فهمهم للمواد الدراسية خاصة في المجالات التقنية</li>
               </ul>
             </div>
-            <div className="bg-white p-6 rounded-xl card-shadow text-center reveal reveal-delay-3">
-              <div className="w-14 h-14 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
-                <span className="text-2xl">🧠</span>
+            <div className="group bg-white p-6 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-tertiary/10 hover:border-tertiary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(247,190,29,0.15)] text-center reveal reveal-delay-3">
+              <div className="w-14 h-14 mx-auto bg-gradient-to-br from-tertiary to-amber-400 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-white text-2xl">psychology</span>
               </div>
               <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">تنمية المهارات الشخصية</h3>
               <ul className="text-right space-y-2">
@@ -160,9 +173,9 @@ export default function HomePage() {
                 <li className="text-on-surface-variant font-body-md text-body-md">• تعزيز العمل الجماعي والقيادة من خلال المشاركة في أنشطة تعاونية</li>
               </ul>
             </div>
-            <div className="bg-white p-6 rounded-xl card-shadow text-center reveal reveal-delay-1">
-              <div className="w-14 h-14 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
-                <span className="text-2xl">💪</span>
+            <div className="group bg-white p-6 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-primary-light/10 hover:border-primary-light/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(107,138,255,0.15)] text-center reveal reveal-delay-1">
+              <div className="w-14 h-14 mx-auto bg-gradient-to-br from-primary-light to-primary rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-white text-2xl">emoji_events</span>
               </div>
               <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">زيادة الثقة بالنفس</h3>
               <ul className="text-right space-y-2">
@@ -170,9 +183,9 @@ export default function HomePage() {
                 <li className="text-on-surface-variant font-body-md text-body-md">• المشاركة في أنشطة تعليمية متقدمة تشجعهم على تحقيق أهداف أكبر</li>
               </ul>
             </div>
-            <div className="bg-white p-6 rounded-xl card-shadow text-center">
-              <div className="w-14 h-14 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
-                <span className="text-2xl">🔭</span>
+            <div className="group bg-white p-6 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-rose-200 hover:border-rose-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(244,63,94,0.15)] text-center reveal reveal-delay-2">
+              <div className="w-14 h-14 mx-auto bg-gradient-to-br from-rose-400 to-rose-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-white text-2xl">explore</span>
               </div>
               <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">فتح آفاق جديدة للتعلم</h3>
               <ul className="text-right space-y-2">
@@ -180,9 +193,9 @@ export default function HomePage() {
                 <li className="text-on-surface-variant font-body-md text-body-md">• استعداد أكبر لمواجهة تحديات المستقبل في سوق العمل التقني</li>
               </ul>
             </div>
-            <div className="bg-white p-6 rounded-xl card-shadow text-center">
-              <div className="w-14 h-14 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
-                <span className="text-2xl">🚀</span>
+            <div className="group bg-white p-6 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-emerald-200 hover:border-emerald-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(16,185,129,0.15)] text-center reveal reveal-delay-3">
+              <div className="w-14 h-14 mx-auto bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-white text-2xl">rocket_launch</span>
               </div>
               <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">بناء جيل مبتكر</h3>
               <ul className="text-right space-y-2">
@@ -190,9 +203,9 @@ export default function HomePage() {
                 <li className="text-on-surface-variant font-body-md text-body-md">• أساس قوي في التكنولوجيا والذكاء الاصطناعي يؤهلهم لقيادة مشاريع تكنولوجية</li>
               </ul>
             </div>
-            <div className="bg-white p-6 rounded-xl card-shadow text-center sm:col-span-2 lg:col-span-3">
-              <div className="w-14 h-14 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
-                <span className="text-2xl">🌍</span>
+            <div className="group bg-white p-6 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-violet-200 hover:border-violet-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(139,92,246,0.15)] text-center sm:col-span-2 lg:col-span-3">
+              <div className="w-14 h-14 mx-auto bg-gradient-to-br from-violet-400 to-violet-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-white text-2xl">public</span>
               </div>
               <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">تأثير إيجابي على المجتمع</h3>
               <ul className="text-right space-y-2 max-w-2xl mx-auto">
@@ -207,65 +220,112 @@ export default function HomePage() {
       <section className="section-padding" id="tracks">
         <div className="container-inner">
           <div className="text-center mb-16">
-            <span className="font-label-md text-label-md text-primary uppercase tracking-wide mb-2 block">المسارات التعليمية</span>
-            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">اختار مسار الطالب المناسب لعمره</h2>
+          <span className="inline-block bg-primary/5 text-primary font-label-md text-label-md px-5 py-2 rounded-full mb-4">المسارات التعليمية</span>
+            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">اختار مسار الطالب المناسب لعمره</h2>
             <p className="text-on-surface-variant font-body-lg text-body-lg">علشان كل طالب يتعلم بالطريقة المناسبة لسنه ومستواه — فرق كبير في طريقة التفكير، سرعة التعلم، والقدرة على الاستيعاب التقني</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            <div className="relative bg-white rounded-24 overflow-hidden card-shadow group">
-              <div className="h-3 bg-secondary"></div>
-              <div className="p-8">
-                <div className="flex justify-between items-start mb-6">
-                  <div className="bg-secondary/10 p-4 rounded-2xl">
-                    <span className="font-label-md text-label-md text-secondary font-bold">Track A</span>
+            {/* Track A - 8-11 years - Green/Teal theme */}
+            <div className="relative bg-white rounded-32 overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-emerald-100 group transition-all duration-500 hover:-translate-y-4 hover:shadow-[0_20px_60px_rgba(16,185,129,0.25)]">
+              <div className="h-2 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400"></div>
+              <div className="p-5 md:p-8">
+                <div className="flex items-center justify-between mb-4 md:mb-6">
+                  <div className="bg-gradient-to-br from-emerald-50 to-teal-50 p-3 md:p-4 rounded-2xl border border-emerald-100">
+                    <span className="font-label-lg text-emerald-600 font-bold">Track A</span>
                   </div>
+                  <span className="material-symbols-outlined text-4xl md:text-5xl text-emerald-400 group-hover:scale-125 transition-transform duration-500">rocket_launch</span>
                 </div>
-                <h3 className="font-headline-lg text-headline-lg text-primary mb-2">Junior Tech Explorers</h3>
-                <p className="text-on-surface-variant font-body-md text-body-md mb-4">من 8 إلى 11 سنة</p>
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">🎮 Visual Learning</li>
-                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">🕹️ Gamification</li>
-                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">🎨 Creative Projects</li>
-                </ul>
-                <Link href="/tracks?track=a" className="w-full block text-center py-3 border-2 border-secondary text-secondary rounded-xl font-bold group-hover:bg-secondary group-hover:text-white transition-all">شاهد الرحلة ←</Link>
+                <h3 className="font-headline-xl text-headline-lg md:text-headline-xl text-emerald-700 mb-2 font-extrabold">استكشاف التكنولوجيا</h3>
+                <p className="text-emerald-600 font-headline-md text-headline-sm md:text-headline-md mb-1 font-bold">Junior Tech Explorers</p>
+                <p className="text-gray-500 font-body-md text-body-sm md:text-body-md mb-4 md:mb-6 flex items-center gap-2">
+                  <span className="material-symbols-outlined text-emerald-500 text-lg">child_care</span>
+                  من 8 إلى 11 سنة
+                </p>
+                <div className="space-y-2 md:space-y-3 mb-6 md:mb-8">
+                  {[
+                    { icon: 'visibility', text: 'تعلم مرئي تفاعلي' },
+                    { icon: 'sports_esports', text: 'ألعاب تعليمية ذكية' },
+                    { icon: 'palette', text: 'مشاريع إبداعية ممتعة' },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 md:gap-3 bg-gradient-to-r from-emerald-50 to-teal-50 p-2.5 md:p-3 rounded-xl border border-emerald-50">
+                      <span className="material-symbols-outlined text-emerald-500 text-lg md:text-xl">{item.icon}</span>
+                      <span className="text-gray-700 font-body-md text-body-sm md:text-body-md">{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+                <Link href="/tracks?track=a" className="w-full block text-center py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-2xl font-bold text-lg shadow-lg shadow-emerald-200 group-hover:shadow-xl group-hover:shadow-emerald-300 group-hover:-translate-y-1 transition-all duration-300">
+                  ابدأ الرحلة
+                </Link>
               </div>
             </div>
-            <div className="relative bg-white rounded-24 overflow-hidden card-shadow group">
-              <div className="h-3 bg-primary-light"></div>
-              <div className="p-8">
-                <div className="flex justify-between items-start mb-6">
-                  <div className="bg-primary-light/10 p-4 rounded-2xl">
-                    <span className="font-label-md text-label-md text-primary-light font-bold">Track B</span>
+
+            {/* Track B - 12-15 years - Blue/Royal theme */}
+            <div className="relative bg-white rounded-32 overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-blue-100 group transition-all duration-500 hover:-translate-y-4 hover:shadow-[0_20px_60px_rgba(59,130,246,0.25)]">
+              <div className="h-2 bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500"></div>
+              <div className="p-5 md:p-8">
+                <div className="flex items-center justify-between mb-4 md:mb-6">
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-3 md:p-4 rounded-2xl border border-blue-100">
+                    <span className="font-label-lg text-blue-600 font-bold">Track B</span>
                   </div>
+                  <span className="material-symbols-outlined text-4xl md:text-5xl text-blue-400 group-hover:scale-125 transition-transform duration-500">smart_toy</span>
                 </div>
-                <h3 className="font-headline-lg text-headline-lg text-primary mb-2">Future AI Engineers</h3>
-                <p className="text-on-surface-variant font-body-md text-body-md mb-4">من 12 إلى 15 سنة</p>
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">💻 Real Coding</li>
-                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">🤖 AI Workflows</li>
-                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">🧠 Tech Thinking</li>
-                </ul>
-                <Link href="/tracks?track=b" className="w-full block text-center py-3 border-2 border-primary-light text-primary-light rounded-xl font-bold group-hover:bg-primary-light group-hover:text-white transition-all">شاهد الرحلة ←</Link>
+                <h3 className="font-headline-xl text-headline-lg md:text-headline-xl text-blue-700 mb-2 font-extrabold">مهندس الذكاء الاصطناعي</h3>
+                <p className="text-blue-600 font-headline-md text-headline-sm md:text-headline-md mb-1 font-bold">Future AI Engineers</p>
+                <p className="text-gray-500 font-body-md text-body-sm md:text-body-md mb-4 md:mb-6 flex items-center gap-2">
+                  <span className="material-symbols-outlined text-blue-500 text-lg">psychology</span>
+                  من 12 إلى 15 سنة
+                </p>
+                <div className="space-y-2 md:space-y-3 mb-6 md:mb-8">
+                  {[
+                    { icon: 'code', text: 'برمجة حقيقية ومواقع' },
+                    { icon: 'smart_toy', text: 'مسارات عمل الذكاء الاصطناعي' },
+                    { icon: 'psychology', text: 'تفكير تقني متقدم' },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 md:gap-3 bg-gradient-to-r from-blue-50 to-indigo-50 p-2.5 md:p-3 rounded-xl border border-blue-50">
+                      <span className="material-symbols-outlined text-blue-500 text-lg md:text-xl">{item.icon}</span>
+                      <span className="text-gray-700 font-body-md text-body-sm md:text-body-md">{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+                <Link href="/tracks?track=b" className="w-full block text-center py-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-2xl font-bold text-lg shadow-lg shadow-blue-200 group-hover:shadow-xl group-hover:shadow-blue-300 group-hover:-translate-y-1 transition-all duration-300">
+                  ابدأ الرحلة
+                </Link>
               </div>
             </div>
-            <div className="relative bg-white rounded-24 overflow-hidden card-shadow group">
-              <div className="h-3 bg-tertiary"></div>
-              <div className="p-8">
-                <div className="flex justify-between items-start mb-6">
-                  <div className="bg-tertiary/10 p-4 rounded-2xl">
-                    <span className="font-label-md text-label-md text-tertiary font-bold">Track C</span>
+
+            {/* Track C - 16-20 years - Purple/Violet theme */}
+            <div className="relative bg-white rounded-32 overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-purple-100 group transition-all duration-500 hover:-translate-y-4 hover:shadow-[0_20px_60px_rgba(139,92,246,0.25)]">
+              <div className="h-2 bg-gradient-to-r from-purple-500 via-fuchsia-500 to-pink-500"></div>
+              <div className="p-5 md:p-8">
+                <div className="flex items-center justify-between mb-4 md:mb-6">
+                  <div className="bg-gradient-to-br from-purple-50 to-fuchsia-50 p-3 md:p-4 rounded-2xl border border-purple-100">
+                    <span className="font-label-lg text-purple-600 font-bold">Track C</span>
                   </div>
+                  <span className="material-symbols-outlined text-4xl md:text-5xl text-purple-400 group-hover:scale-125 transition-transform duration-500">bolt</span>
                 </div>
-                <h3 className="font-headline-lg text-headline-lg text-primary mb-2">Future Tech Engineers</h3>
-                <p className="text-on-surface-variant font-body-md text-body-md mb-4">من 16 إلى 20 سنة</p>
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">🚀 Full Stack</li>
-                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">🤖 AI Engineering</li>
-                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">📱 Mobile Dev</li>
-                  <li className="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">📊 Data Analytics</li>
-                </ul>
-                <Link href="/tracks?track=c" className="w-full block text-center py-3 border-2 border-tertiary text-tertiary rounded-xl font-bold group-hover:bg-tertiary group-hover:text-white transition-all">شاهد الرحلة ←</Link>
+                <h3 className="font-headline-xl text-headline-lg md:text-headline-xl text-purple-700 mb-2 font-extrabold">مهندس التكنولوجيا</h3>
+                <p className="text-purple-600 font-headline-md text-headline-sm md:text-headline-md mb-1 font-bold">Future Tech Engineers</p>
+                <p className="text-gray-500 font-body-md text-body-sm md:text-body-md mb-4 md:mb-6 flex items-center gap-2">
+                  <span className="material-symbols-outlined text-purple-500 text-lg">engineering</span>
+                  من 16 إلى 20 سنة
+                </p>
+                <div className="space-y-2 md:space-y-3 mb-6 md:mb-8">
+                  {[
+                    { icon: 'rocket_launch', text: 'تطوير ويب شامل' },
+                    { icon: 'smart_toy', text: 'هندسة الذكاء الاصطناعي' },
+                    { icon: 'phone_iphone', text: 'تطوير تطبيقات الموبايل' },
+                    { icon: 'analytics', text: 'تحليل البيانات المتقدم' },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 md:gap-3 bg-gradient-to-r from-purple-50 to-fuchsia-50 p-2.5 md:p-3 rounded-xl border border-purple-50">
+                      <span className="material-symbols-outlined text-purple-500 text-lg md:text-xl">{item.icon}</span>
+                      <span className="text-gray-700 font-body-md text-body-sm md:text-body-md">{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+                <Link href="/tracks?track=c" className="w-full block text-center py-4 bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white rounded-2xl font-bold text-lg shadow-lg shadow-purple-200 group-hover:shadow-xl group-hover:shadow-purple-300 group-hover:-translate-y-1 transition-all duration-300">
+                  ابدأ الرحلة
+                </Link>
               </div>
             </div>
           </div>
@@ -276,7 +336,7 @@ export default function HomePage() {
         <div className="container-inner">
           <div className="text-center mb-16">
             <span className="inline-block bg-primary/5 text-primary font-label-md text-label-md px-5 py-2 rounded-full mb-4">قصص نجاح</span>
-            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">بعض طلابنا المتميزين</h2>
+            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">بعض طلابنا المتميزين</h2>
             <p className="text-on-surface-variant font-body-lg text-body-lg">نماذج حية من دفعات سابقة — بأسماء حقيقية وشهادات موثقة</p>
             <div className="h-1.5 w-24 bg-secondary-container mx-auto rounded-full mt-4"></div>
           </div>
@@ -295,7 +355,7 @@ export default function HomePage() {
               { name: 'Youssef Ali', cert: '400183 AU', img: '10.jpeg' },
               { name: 'Lina Mahmoud', cert: '400184 AU', img: '11.jpeg' },
             ].map((s, i) => (
-              <div className="group bg-white rounded-2xl hover:shadow-2xl transition-all overflow-hidden border-2 border-secondary-container/40 hover:border-secondary-container" key={i}>
+              <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-secondary/10 hover:border-secondary/30 hover:shadow-[0_12px_40px_rgba(253,118,26,0.15)] transition-all duration-300 hover:-translate-y-2 overflow-hidden" key={i}>
                 <div className="relative overflow-hidden">
                   <Image src={`/student/${s.img}`} alt={s.name} width={300} height={220} loading="lazy" className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
@@ -304,13 +364,13 @@ export default function HomePage() {
                   <div className="flex items-center gap-2 mb-1">
                     <svg viewBox="0 0 40 40" className="w-8 h-8 flex-shrink-0 drop-shadow-md">
                       <defs>
-                        <linearGradient id="mg" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <linearGradient id={`mg-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
                           <stop offset="0%" stopColor="#ffd700"/>
                           <stop offset="50%" stopColor="#ffec8b"/>
                           <stop offset="100%" stopColor="#daa520"/>
                         </linearGradient>
                       </defs>
-                      <circle cx="20" cy="20" r="18" fill="url(#mg)" stroke="#b8860b" strokeWidth="1.5"/>
+                      <circle cx="20" cy="20" r="18" fill={`url(#mg-${i})`} stroke="#b8860b" strokeWidth="1.5"/>
                       <circle cx="20" cy="23" r="8" fill="none" stroke="#b8860b" strokeWidth="0.8"/>
                       <text x="20" y="20" textAnchor="middle" fill="#8b6914" fontSize="9" fontWeight="bold">★</text>
                       <text x="20" y="31" textAnchor="middle" fill="#8b6914" fontSize="5" fontWeight="bold">تميز</text>
@@ -337,24 +397,24 @@ export default function HomePage() {
         <div className="container-inner">
           <div className="text-center mb-16">
             <span className="inline-block bg-secondary-container/20 text-secondary px-5 py-2 rounded-full font-label-md mb-4">ماذا يقول أولياء الأمور؟</span>
-            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">قصص حقيقية من عائلات تثق بنا</h2>
+            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">قصص حقيقية من عائلات تثق بنا</h2>
             <p className="text-on-surface-variant font-body-lg text-body-lg">من مصر والخليج — آباء شاهدوا تطور أبنائهم بأعينهم</p>
             <div className="h-1.5 w-24 bg-secondary-container mx-auto rounded-full mt-4"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <div className="bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 hover-lift">
+            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 hover:border-secondary/30 hover:shadow-[0_12px_40px_rgba(253,118,26,0.15)] transition-all duration-300 hover:-translate-y-2">
               <div className="flex items-center gap-1 mb-4">
                 {[1,2,3,4,5].map(i => (
-                  <span key={i} className="text-yellow-400 text-lg">★</span>
+                  <span key={i} className="material-symbols-outlined text-yellow-400 text-lg" style={{fontVariationSettings: "'FILL' 1"}}>star</span>
                 ))}
               </div>
               <p className="text-on-surface-variant font-body-md leading-relaxed mb-6">
                 &quot;ابني اتعلم البرمجة من الصفر وعمل أول مشروع ويب في خلال 3 شهور فقط. الفريق محترم والمتابعة ممتازة.&quot;
               </p>
               <div className="flex items-center gap-3 border-t border-outline-variant/20 pt-4">
-                <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                  <span className="text-primary font-bold text-sm">أم</span>
+                <div className="w-10 h-10 bg-gradient-to-br from-secondary to-amber-500 rounded-full flex items-center justify-center">
+                  <span className="material-symbols-outlined text-white text-lg">person</span>
                 </div>
                 <div>
                   <span className="font-label-md text-on-surface block">أم محمد</span>
@@ -363,18 +423,18 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 hover-lift">
+            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 hover:border-primary/30 hover:shadow-[0_12px_40px_rgba(65,105,225,0.15)] transition-all duration-300 hover:-translate-y-2">
               <div className="flex items-center gap-1 mb-4">
                 {[1,2,3,4,5].map(i => (
-                  <span key={i} className="text-yellow-400 text-lg">★</span>
+                  <span key={i} className="material-symbols-outlined text-yellow-400 text-lg" style={{fontVariationSettings: "'FILL' 1"}}>star</span>
                 ))}
               </div>
               <p className="text-on-surface-variant font-body-md leading-relaxed mb-6">
                 &quot;أفضل قرار خذيته لبنتي. صارت تحب الذكاء الاصطناعي وتصمم تطبيقات بنفسها. الأسعار مناسبة جداً للجودة.&quot;
               </p>
               <div className="flex items-center gap-3 border-t border-outline-variant/20 pt-4">
-                <div className="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center">
-                  <span className="text-secondary font-bold text-sm">أب</span>
+                <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-deep rounded-full flex items-center justify-center">
+                  <span className="material-symbols-outlined text-white text-lg">person</span>
                 </div>
                 <div>
                   <span className="font-label-md text-on-surface block">أبو عبدالله</span>
@@ -383,18 +443,18 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 hover-lift">
+            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 hover:border-tertiary/30 hover:shadow-[0_12px_40px_rgba(247,190,29,0.15)] transition-all duration-300 hover:-translate-y-2">
               <div className="flex items-center gap-1 mb-4">
                 {[1,2,3,4,5].map(i => (
-                  <span key={i} className="text-yellow-400 text-lg">★</span>
+                  <span key={i} className="material-symbols-outlined text-yellow-400 text-lg" style={{fontVariationSettings: "'FILL' 1"}}>star</span>
                 ))}
               </div>
               <p className="text-on-surface-variant font-body-md leading-relaxed mb-6">
                 &quot;محتوى عملي وحقيقي، مش مجرد كلام. بنتي بقت بتعمل مشاريع روبوتيكس وعرضت في مدرستها. شكراً TKA!&quot;
               </p>
               <div className="flex items-center gap-3 border-t border-outline-variant/20 pt-4">
-                <div className="w-10 h-10 bg-tertiary/10 rounded-full flex items-center justify-center">
-                  <span className="text-tertiary font-bold text-sm">م</span>
+                <div className="w-10 h-10 bg-gradient-to-br from-tertiary to-amber-400 rounded-full flex items-center justify-center">
+                  <span className="material-symbols-outlined text-white text-lg">person</span>
                 </div>
                 <div>
                   <span className="font-label-md text-on-surface block">م. سارة أحمد</span>
@@ -410,30 +470,30 @@ export default function HomePage() {
         <div className="max-w-container-max mx-auto">
           <div className="text-center mb-16">
             <span className="inline-block bg-primary/5 text-primary font-label-md text-label-md px-5 py-2 rounded-full mb-4">لماذا تثق بنا؟</span>
-            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">لماذا يثق بنا أولياء الأمور؟</h2>
+            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">لماذا يثق بنا أولياء الأمور؟</h2>
             <p className="text-on-surface-variant font-body-lg text-body-lg max-w-2xl mx-auto">نتعامل مع أبنائكم بمسؤولية كاملة ونلتزم بأعلى معايير الجودة والأمان التعليمي.</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 text-center hover-lift">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-5">
-                <span className="material-symbols-outlined text-primary text-3xl">school</span>
+            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-primary/10 p-8 text-center hover:border-primary/30 hover:shadow-[0_12px_40px_rgba(65,105,225,0.15)] transition-all duration-300 hover:-translate-y-2">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary-deep rounded-full flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-white text-3xl">school</span>
               </div>
               <h3 className="font-headline-md text-headline-md text-primary-deep mb-3">مدربون معتمدون</h3>
               <p className="text-on-surface-variant font-body-md">نخبة من خبراء البرمجة والذكاء الاصطناعي بخبرة تدريسية حقيقية للأطفال والناشئين.</p>
             </div>
 
-            <div className="bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 text-center hover-lift">
-              <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-5">
-                <span className="material-symbols-outlined text-secondary text-3xl">workspace_premium</span>
+            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-secondary/10 p-8 text-center hover:border-secondary/30 hover:shadow-[0_12px_40px_rgba(253,118,26,0.15)] transition-all duration-300 hover:-translate-y-2">
+              <div className="w-16 h-16 bg-gradient-to-br from-secondary to-amber-500 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-white text-3xl">workspace_premium</span>
               </div>
               <h3 className="font-headline-md text-headline-md text-primary-deep mb-3">شهادة معتمدة</h3>
               <p className="text-on-surface-variant font-body-md">شهادة موثقة بعد كل برنامج تعزز السيرة الذاتية لطفلك في رحلته الأكاديمية.</p>
             </div>
 
-            <div className="bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 text-center hover-lift">
-              <div className="w-16 h-16 bg-tertiary/10 rounded-full flex items-center justify-center mx-auto mb-5">
-                <span className="material-symbols-outlined text-tertiary text-3xl">support_agent</span>
+            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-tertiary/10 p-8 text-center hover:border-tertiary/30 hover:shadow-[0_12px_40px_rgba(247,190,29,0.15)] transition-all duration-300 hover:-translate-y-2">
+              <div className="w-16 h-16 bg-gradient-to-br from-tertiary to-amber-400 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-white text-3xl">support_agent</span>
               </div>
               <h3 className="font-headline-md text-headline-md text-primary-deep mb-3">دعم عبر واتساب 7/24</h3>
               <p className="text-on-surface-variant font-body-md">فريق متابعة مخصص لأولياء الأمور للرد على كل استفسار خلال دقائق.</p>
@@ -446,41 +506,41 @@ export default function HomePage() {
         <div className="container-inner">
           <div className="text-center mb-16">
             <span className="font-label-md text-label-md text-primary uppercase tracking-wide mb-2 block">المزيد من القيمة</span>
-            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">مميزات إضافية وبرامج تطويرية</h2>
+            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">مميزات إضافية وبرامج تطويرية</h2>
             <p className="text-on-surface-variant font-body-lg text-body-lg">مش بس منهج تقني — بنهتم بالشخصية والمهارات الداعمة كاملة</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/20 hover:border-primary transition-colors group">
-              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
-                <span className="text-2xl">🧠</span>
+            <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-primary-light/10 hover:border-primary-light/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(107,138,255,0.15)]">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-primary-light to-primary rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-white text-xl md:text-2xl">calculate</span>
               </div>
               <span className="font-label-sm text-label-sm text-primary-light bg-primary-light/10 px-3 py-1 rounded-full mb-3 inline-block">إضافة مستقلة</span>
               <h3 className="font-headline-lg text-headline-lg text-primary mb-2">Techno Math</h3>
               <p className="text-on-surface-variant font-body-md text-body-md mb-4">برنامج تطويري لتعزيز التفكير الرياضي والمنطقي بربطه بالتكنولوجيا. تفاصيل الاشتراك والرسوم عند التواصل معنا.</p>
                <Link href="#plans" className="text-primary font-headline-lg text-headline-lg inline-flex items-center gap-1 hover:gap-2 transition-all">استفسر عن البرنامج ←</Link>
             </div>
-            <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/20 hover:border-primary transition-colors group">
-              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
-                <span className="text-2xl">🗣️</span>
+            <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-secondary/10 hover:border-secondary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(253,118,26,0.15)]">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-secondary to-amber-500 rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-white text-xl md:text-2xl">translate</span>
               </div>
               <span className="font-label-sm text-label-sm text-primary-light bg-primary-light/10 px-3 py-1 rounded-full mb-3 inline-block">إضافة مستقلة</span>
               <h3 className="font-headline-lg text-headline-lg text-primary mb-2">Tech English</h3>
               <p className="text-on-surface-variant font-body-md text-body-md mb-4">برنامج تطويري لبناء ثقة الطالب في التواصل التقني باللغة الإنجليزية. تفاصيل الاشتراك والرسوم عند التواصل معنا.</p>
                <Link href="#plans" className="text-primary font-headline-lg text-headline-lg inline-flex items-center gap-1 hover:gap-2 transition-all">استفسر عن البرنامج ←</Link>
             </div>
-            <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/20 hover:border-primary transition-colors group">
-              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
-                <span className="text-2xl">🛡️</span>
+            <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-emerald-200 hover:border-emerald-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(16,185,129,0.15)]">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-white text-xl md:text-2xl">shield</span>
               </div>
               <span className="font-label-sm text-label-sm text-green-600 bg-green-100 px-3 py-1 rounded-full mb-3 inline-block">مضمّن</span>
               <h3 className="font-headline-lg text-headline-lg text-primary mb-2">إخصائي سلوكي وإرشادي</h3>
               <p className="text-on-surface-variant font-body-md text-body-md mb-4">إخصائي متخصص لمتابعة الجانب النفسي للطالب، مساعدته في التخلص من الضغوط، ودعمه طوال الرحلة التعليمية بأمان.</p>
               <span className="text-green-600 font-label-md text-label-md">مشمول في الباقة الأساسية</span>
             </div>
-            <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/20 hover:border-primary transition-colors group">
-              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
-                <span className="text-2xl">💙</span>
+            <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-violet-200 hover:border-violet-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(139,92,246,0.15)]">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-violet-400 to-violet-600 rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-white text-xl md:text-2xl">favorite</span>
               </div>
               <h3 className="font-headline-lg text-headline-lg text-primary mb-2">مدعوم من TKA-Egypt</h3>
               <p className="text-on-surface-variant font-body-md text-body-md mb-4">البرنامج مدعوم جزئياً من TKA-Egypt، مما يضمن جودة عالية مع أسعار مناسبة للأسر المصرية.</p>
@@ -497,7 +557,7 @@ export default function HomePage() {
               <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="material-symbols-outlined text-primary text-4xl">payments</span>
               </div>
-              <h2 className="font-headline-xl text-headline-xl text-primary mb-4">خطط أسعار مرنة تناسب كل أسرة</h2>
+              <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">خطط أسعار مرنة تناسب كل أسرة</h2>
               <p className="text-on-surface-variant font-body-lg text-body-lg mb-8 max-w-2xl mx-auto">
                 نؤمن إن التعلم ملوش عوائق مالية — عشان كده عندنا خطط اشتراك مرنة تختار منها الأنسب لميزانيتك
               </p>
@@ -514,17 +574,17 @@ export default function HomePage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                 <div className="bg-surface-container-low rounded-2xl p-5">
-                  <span className="text-2xl mb-2 block">📅</span>
+                  <span className="material-symbols-outlined text-primary text-3xl mb-2 block">calendar_month</span>
                   <span className="font-label-md text-on-surface font-bold block mb-1">اشتراك شهري</span>
                   <span className="text-on-surface-variant text-sm">مناسبة للتجربة</span>
                 </div>
                 <div className="bg-surface-container-low rounded-2xl p-5">
-                  <span className="text-2xl mb-2 block">📊</span>
+                  <span className="material-symbols-outlined text-secondary text-3xl mb-2 block">analytics</span>
                   <span className="font-label-md text-on-surface font-bold block mb-1">اشتراك ربع سنوي</span>
                   <span className="text-on-surface-variant text-sm">الأكثر اختياراً</span>
                 </div>
                 <div className="bg-surface-container-low rounded-2xl p-5">
-                  <span className="text-2xl mb-2 block">🏆</span>
+                  <span className="material-symbols-outlined text-tertiary text-3xl mb-2 block">emoji_events</span>
                   <span className="font-label-md text-on-surface font-bold block mb-1">اشتراك سنوي</span>
                   <span className="text-on-surface-variant text-sm">الأوفر والأشمل</span>
                 </div>
@@ -550,7 +610,7 @@ export default function HomePage() {
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
             <span className="font-label-md text-label-md text-primary uppercase tracking-wide mb-2 block">الأسئلة الشائعة</span>
-            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">إجابات على أهم أسئلة الأهالي</h2>
+            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">إجابات على أهم أسئلة الأهالي</h2>
           </div>
 
           <div className="space-y-4">
