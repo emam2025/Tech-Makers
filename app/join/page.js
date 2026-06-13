@@ -314,7 +314,7 @@ export default function JoinPage() {
                 <span className="material-symbols-outlined text-whatsapp text-4xl">chat</span>
               </div>
               <h4 className="font-headline-lg text-headline-lg mb-2">واتساب</h4>
-              <p className="text-on-surface-variant font-label-md">+20 106 254 0164</p>
+              <p className="text-on-surface-variant font-label-md">0106 254 0164</p>
             </a>
             <div className="flex flex-col items-center text-center p-10 bg-white rounded-3xl shadow-sm hover:shadow-md transition-shadow group">
               <div className="w-20 h-20 bg-secondary-container/10 rounded-full flex items-center justify-center mb-6">

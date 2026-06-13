@@ -60,7 +60,7 @@ export default function RootLayout({ children }) {
                 <h5 className="font-label-md text-label-md text-white mb-6">اتصل بنا</h5>
                 <ul className="flex flex-col gap-3">
                   <li className="flex items-center gap-2 text-surface-variant/70"><span className="material-symbols-outlined text-sm">mail</span> info@tka-egypt.com</li>
-                  <li><a href="https://wa.me/201062540164" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-surface-variant/70 hover:text-secondary-fixed transition-colors"><span className="material-symbols-outlined text-sm">chat</span> +20 106 254 0164</a></li>
+                  <li><a href="https://wa.me/201062540164" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-surface-variant/70 hover:text-secondary-fixed transition-colors"><span className="material-symbols-outlined text-sm">chat</span> 0106 254 0164</a></li>
                   <li className="flex items-center gap-2 text-surface-variant/70"><span className="material-symbols-outlined text-sm">location_on</span> القاهرة، مصر</li>
                 </ul>
               </div>
