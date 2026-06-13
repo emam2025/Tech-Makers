@@ -717,32 +717,103 @@ export default function TracksPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={() => setShowConfirm(false)}>
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
           <div
-            className="relative bg-white rounded-32 shadow-2xl max-w-md w-full p-6 md:p-8 text-center animate-scaleIn"
+            className="relative bg-white rounded-32 shadow-2xl max-w-lg w-full max-h-[90vh] flex flex-col text-center animate-scaleIn"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="w-16 h-16 md:w-20 md:h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
-              <span className="material-symbols-outlined text-primary text-3xl md:text-4xl">help</span>
-            </div>
-            <h3 className="font-headline-md md:font-headline-lg text-headline-md md:text-headline-lg text-primary-deep mb-4">تأكيد التسجيل</h3>
-            <p className="text-on-surface-variant font-body-sm md:font-body-md mb-2">أنت على وشك التسجيل في:</p>
-            <div className="bg-surface-container-low rounded-2xl p-4 md:p-5 mb-5 md:mb-6">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <span className="material-symbols-outlined text-primary text-lg md:text-xl">route</span>
-                <span className="font-bold text-primary-deep text-sm md:text-base">{track?.title}</span>
+            {/* Header */}
+            <div className="p-6 md:p-8 pb-0">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+                <span className="material-symbols-outlined text-primary text-3xl md:text-4xl">help</span>
               </div>
-              <div className="flex items-center justify-center gap-2">
-                <span className="material-symbols-outlined text-secondary text-lg md:text-xl">payments</span>
-                <span className="text-on-surface-variant text-sm md:text-base">{selectedPlan?.name} — {selectedPlan?.price} {selectedPlan?.unit}</span>
+              <h3 className="font-headline-md md:font-headline-lg text-headline-md md:text-headline-lg text-primary-deep mb-4">تأكيد التسجيل</h3>
+              <p className="text-on-surface-variant font-body-sm md:font-body-md mb-2">أنت على وشك التسجيل في:</p>
+              <div className="bg-surface-container-low rounded-2xl p-4 md:p-5 mb-5 md:mb-6">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <span className="material-symbols-outlined text-primary text-lg md:text-xl">route</span>
+                  <span className="font-bold text-primary-deep text-sm md:text-base">{track?.title}</span>
+                </div>
+                <div className="flex items-center justify-center gap-2">
+                  <span className="material-symbols-outlined text-secondary text-lg md:text-xl">payments</span>
+                  <span className="text-on-surface-variant text-sm md:text-base">{selectedPlan?.name} — {selectedPlan?.price} {selectedPlan?.unit}</span>
+                </div>
               </div>
             </div>
-            <p className="text-on-surface-variant font-body-sm md:font-body-md mb-6 md:mb-8">هل تريد المتابعة؟</p>
-            <div className="flex gap-3">
-              <button onClick={() => setShowConfirm(false)} className="flex-1 py-3 border-2 border-outline-variant text-on-surface-variant rounded-xl font-bold hover:bg-surface-container-low transition-all text-sm md:text-base">
-                إلغاء
-              </button>
-              <button onClick={confirmRegister} className="flex-1 py-3 bg-primary text-white rounded-xl font-bold hover:shadow-lg transition-all text-sm md:text-base">
-                نعم، المتابعة
-              </button>
+
+            {/* Scrollable Policy */}
+            <div className="flex-1 overflow-y-auto px-6 md:px-8 text-right">
+              <div className="bg-surface-container-low rounded-2xl p-5 mb-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="material-symbols-outlined text-primary text-lg">policy</span>
+                  <h4 className="font-label-md text-primary font-bold">سياسة الانضمام لبرنامج Tech Makers</h4>
+                </div>
+                <p className="text-on-surface-variant font-body-sm mb-4 leading-relaxed">
+                  تهدف Tech Makers إلى بناء بيئة تعليمية احترافية تساعد الطلاب على تطوير مهاراتهم التقنية والشخصية، لذلك نرجو الالتزام بالسياسات التالية:
+                </p>
+                <div className="space-y-3">
+                  <div className="bg-white rounded-xl p-3">
+                    <h5 className="font-label-sm text-primary font-bold mb-1 flex items-center gap-1.5">
+                      <span className="material-symbols-outlined text-sm">event_available</span>
+                      الالتزام بالحضور
+                    </h5>
+                    <p className="text-on-surface-variant text-xs leading-relaxed">البرنامج يعتمد على التفاعل والممارسة المستمرة. في حال تجاوز نسبة غياب الطالب 70% من إجمالي المحاضرات، يحق للإدارة حرمان الطالب من الشهادة المجانية، كما يؤثر الغياب المتكرر على مستوى الطالب وتقييمه.</p>
+                  </div>
+                  <div className="bg-white rounded-xl p-3">
+                    <h5 className="font-label-sm text-primary font-bold mb-1 flex items-center gap-1.5">
+                      <span className="material-symbols-outlined text-sm">gpp_good</span>
+                      الالتزام بالسلوك والانضباط
+                    </h5>
+                    <p className="text-on-surface-variant text-xs leading-relaxed">نحرص على توفير بيئة آمنة ومحترمة. أي سلوك غير منضبط أو إساءة للمدربين أو الطلاب قد يعرض الطالب للتحذير أو إيقاف الحساب.</p>
+                  </div>
+                  <div className="bg-white rounded-xl p-3">
+                    <h5 className="font-label-sm text-primary font-bold mb-1 flex items-center gap-1.5">
+                      <span className="material-symbols-outlined text-sm">schedule</span>
+                      الالتزام بالمواعيد
+                    </h5>
+                    <p className="text-on-surface-variant text-xs leading-relaxed">يجب حضور المحاضرات في المواعيد المحددة. التأخير المستمر قد يؤثر على تقييم الطالب داخل البرنامج.</p>
+                  </div>
+                  <div className="bg-white rounded-xl p-3">
+                    <h5 className="font-label-sm text-primary font-bold mb-1 flex items-center gap-1.5">
+                      <span className="material-symbols-outlined text-sm">task_alt</span>
+                      الالتزام بالتاسكات والمشاريع
+                    </h5>
+                    <p className="text-on-surface-variant text-xs leading-relaxed">يعتمد البرنامج على التطبيق العملي وليس المشاهدة فقط. يجب تنفيذ المهام والمشاريع بانتظام.</p>
+                  </div>
+                  <div className="bg-white rounded-xl p-3">
+                    <h5 className="font-label-sm text-primary font-bold mb-1 flex items-center gap-1.5">
+                      <span className="material-symbols-outlined text-sm">analytics</span>
+                      المتابعة والتقييم
+                    </h5>
+                    <p className="text-on-surface-variant text-xs leading-relaxed">يتم عمل تقييمات دورية لقياس تطور الطالب، وبعض الباقات تشمل تقارير متابعة دورية لولي الأمر.</p>
+                  </div>
+                  <div className="bg-white rounded-xl p-3">
+                    <h5 className="font-label-sm text-primary font-bold mb-1 flex items-center gap-1.5">
+                      <span className="material-symbols-outlined text-sm">favorite</span>
+                      بيئة تعليمية داعمة
+                    </h5>
+                    <p className="text-on-surface-variant text-xs leading-relaxed">نهتم بالجانب النفسي والسلوكي، لذلك نوفر إشراف تربوي، متابعة سلوكية، ومرشد دعم نفسي وتربوي.</p>
+                  </div>
+                  <div className="bg-primary/5 border border-primary/10 rounded-xl p-3">
+                    <h5 className="font-label-sm text-primary font-bold mb-1 flex items-center gap-1.5">
+                      <span className="material-symbols-outlined text-sm">flag</span>
+                      هدف البرنامج
+                    </h5>
+                    <p className="text-on-surface-variant text-xs leading-relaxed">Tech Makers ليس مجرد كورس تقني، بل رحلة تعليمية تساعد الطلاب على التفكير المنطقي، حل المشكلات، بناء الثقة، استخدام التكنولوجيا بشكل صحيح والاستعداد لمهارات المستقبل.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="p-6 md:p-8 pt-4">
+              <p className="text-on-surface-variant font-body-sm mb-4">هل تريد المتابعة؟</p>
+              <div className="flex gap-3">
+                <button onClick={() => setShowConfirm(false)} className="flex-1 py-3 border-2 border-outline-variant text-on-surface-variant rounded-xl font-bold hover:bg-surface-container-low transition-all text-sm md:text-base">
+                  إلغاء
+                </button>
+                <button onClick={confirmRegister} className="flex-1 py-3 bg-primary text-white rounded-xl font-bold hover:shadow-lg transition-all text-sm md:text-base">
+                  نعم، المتابعة
+                </button>
+              </div>
             </div>
           </div>
         </div>
