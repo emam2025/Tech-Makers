@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { rateLimit, checkOrigin, sanitize, sanitizePlain, validateEmail, validatePhone, validateName, validateInputLength, getClientIp } from '../../../lib/security';
 
 const TRACK_NAMES = {
   a: 'Track A — Junior Tech Explorers (8–11 سنة)',
@@ -12,7 +13,26 @@ const PLAN_NAMES = {
   yearly: 'اشتراك سنوي — 690 جنيه/شهرياً (إجمالي 8280)',
 };
 
+const ALLOWED_TRACKS = ['a', 'b', 'c'];
+const ALLOWED_PLANS = ['monthly', 'quarterly', 'yearly'];
+
 export async function POST(request) {
+  const ip = getClientIp(request);
+
+  if (!rateLimit(ip, 5, 60000)) {
+    return NextResponse.json(
+      { error: 'تم تجاوز الحد المسموح من الطلبات، حاول بعد دقيقة' },
+      { status: 429 }
+    );
+  }
+
+  if (!checkOrigin(request)) {
+    return NextResponse.json(
+      { error: 'طلب غير مصرح به' },
+      { status: 403 }
+    );
+  }
+
   try {
     const body = await request.json();
     const { name, birth_date, email, phone, whatsapp, grade, country, governorate, city, track, plan } = body;
@@ -22,6 +42,30 @@ export async function POST(request) {
         { error: 'جميع الحقول المطلوبة يجب أن تكون مكتملة' },
         { status: 400 }
       );
+    }
+
+    const lengthError = validateInputLength(body);
+    if (lengthError) {
+      return NextResponse.json({ error: lengthError }, { status: 400 });
+    }
+
+    if (!validateName(name)) {
+      return NextResponse.json({ error: 'الاسم غير صحيح' }, { status: 400 });
+    }
+    if (!validateEmail(email)) {
+      return NextResponse.json({ error: 'البريد الإلكتروني غير صحيح' }, { status: 400 });
+    }
+    if (!validatePhone(phone)) {
+      return NextResponse.json({ error: 'رقم الهاتف غير صحيح' }, { status: 400 });
+    }
+    if (!validatePhone(whatsapp)) {
+      return NextResponse.json({ error: 'رقم الواتساب غير صحيح' }, { status: 400 });
+    }
+    if (!ALLOWED_TRACKS.includes(track)) {
+      return NextResponse.json({ error: 'المسار غير صحيح' }, { status: 400 });
+    }
+    if (!ALLOWED_PLANS.includes(plan)) {
+      return NextResponse.json({ error: 'الاشتراك غير صحيح' }, { status: 400 });
     }
 
     const supabaseUrl = process.env.SUPABASE_URL;
@@ -35,7 +79,6 @@ export async function POST(request) {
       );
     }
 
-    // Check for duplicate (name + email)
     const checkRes = await fetch(
       `${supabaseUrl}/rest/v1/students?name=eq.${encodeURIComponent(name)}&email=eq.${encodeURIComponent(email)}&select=id`,
       {
@@ -65,15 +108,15 @@ export async function POST(request) {
         Prefer: 'return=minimal',
       },
       body: JSON.stringify({
-        name,
+        name: sanitizePlain(name),
         birth_date,
-        email,
-        phone,
-        whatsapp,
+        email: sanitizePlain(email),
+        phone: sanitizePlain(phone),
+        whatsapp: sanitizePlain(whatsapp),
         grade: Number(grade),
-        country: country || null,
-        governorate: governorate || null,
-        city: city || null,
+        country: country ? sanitizePlain(country) : null,
+        governorate: governorate ? sanitizePlain(governorate) : null,
+        city: city ? sanitizePlain(city) : null,
         track,
         plan,
         status: 'pending',
@@ -105,7 +148,7 @@ export async function POST(request) {
     </div>
     <div style="padding: 32px;">
       <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: center;">
-        <span style="font-size: 20px;">✅</span>
+        <span style="font-size: 20px;">&#9989;</span>
         <p style="color: #065f46; font-weight: 800; font-size: 18px; margin: 8px 0 0;">تم استلام طلب التسجيل بنجاح!</p>
       </div>
 
@@ -115,7 +158,7 @@ export async function POST(request) {
       <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
         <tr>
           <td style="padding: 10px 14px; border-bottom: 1px solid #e5e7eb; font-weight: 700; color: #1e3a8a; width: 40%;">اسم الطالب</td>
-          <td style="padding: 10px 14px; border-bottom: 1px solid #e5e7eb; color: #374151;">${name}</td>
+          <td style="padding: 10px 14px; border-bottom: 1px solid #e5e7eb; color: #374151;">${sanitize(name)}</td>
         </tr>
         <tr>
           <td style="padding: 10px 14px; border-bottom: 1px solid #e5e7eb; font-weight: 700; color: #1e3a8a;">المسار</td>
@@ -128,14 +171,14 @@ export async function POST(request) {
       </table>
 
       <div style="background: #fef3c7; border: 1px solid #fde68a; border-radius: 12px; padding: 16px; margin: 20px 0;">
-        <p style="color: #92400e; font-size: 14px; font-weight: 700; margin: 0 0 8px;">📌 الخطوات القادمة:</p>
+        <p style="color: #92400e; font-size: 14px; font-weight: 700; margin: 0 0 8px;">&#x1F4CC; الخطوات القادمة:</p>
         <p style="color: #92400e; font-size: 14px; margin: 0; line-height: 1.8;">سيقوم فريق الإدارة بالتواصل معكم خلال أقرب وقت لتحديد موعد <strong>المقابلة الشخصية للطالب واختبار القبول</strong>، بالإضافة إلى حجز موعد <strong>المحاضرة المجانية</strong> لتقييم المستوى والتأكد من ملاءمة المسار.</p>
       </div>
 
-      <p style="color: #6b7280; font-size: 13px; line-height: 1.8; text-align: center; margin-top: 24px;">نحن في Tech Makers Egypt نؤمن أن كل طفل يستحق فرصة لبناء مستقبله التكنولوجي.<br>نتشرف بانضمامكم إلينا 💙</p>
+      <p style="color: #6b7280; font-size: 13px; line-height: 1.8; text-align: center; margin-top: 24px;">نحن في Tech Makers Egypt نؤمن أن كل طفل يستحق فرصة لبناء مستقبله التكنولوجي.<br>نتشرف بانضمامكم إلينا &#x1F499;</p>
     </div>
     <div style="background: #f9fafb; padding: 20px; text-align: center; border-top: 1px solid #e5e7eb;">
-      <p style="color: #9ca3af; font-size: 12px; margin: 0;">© 2026 Tech Makers Egypt — بالشراكة مع TKA-Egypt</p>
+      <p style="color: #9ca3af; font-size: 12px; margin: 0;">&copy; 2026 Tech Makers Egypt — بالشراكة مع TKA-Egypt</p>
     </div>
   </div>
 </body>
@@ -151,8 +194,8 @@ export async function POST(request) {
           },
           body: JSON.stringify({
             sender: { name: 'Tech Makers Egypt', email: 'info@tka-egypt.com' },
-            to: [{ email }],
-            subject: `✅ تم تسجيل ${name} في Tech Makers Egypt`,
+            to: [{ email: sanitizePlain(email) }],
+            subject: `تم تسجيل ${sanitizePlain(name)} في Tech Makers Egypt`,
             htmlContent: emailHtml,
           }),
         });
@@ -168,7 +211,7 @@ export async function POST(request) {
 
     return NextResponse.json({
       success: true,
-      message: '✅ تم تسجيل الطالب بنجاح! سيتم التواصل معك لتحديد موعد المقابلة.',
+      message: 'تم تسجيل الطالب بنجاح! سيتم التواصل معك لتحديد موعد المقابلة.',
     });
   } catch (err) {
     console.error('Server error:', err);

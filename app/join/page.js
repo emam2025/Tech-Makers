@@ -5,6 +5,68 @@ import { useState } from 'react';
 
 export default function JoinPage() {
   const [activeTab, setActiveTab] = useState('trainer');
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (e, formType) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setError(null);
+
+    const formData = new FormData(e.target);
+    const data = {
+      formType,
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      country: formData.get('country'),
+      specialty: formData.get('specialty'),
+      experience: formData.get('experience'),
+      portfolio: formData.get('portfolio'),
+      bio: formData.get('bio'),
+      onlineWork: formData.get('onlineWork'),
+      studentInteraction: formData.get('studentInteraction'),
+      gulfExperience: formData.get('gulfExperience'),
+      certificate: formData.get('certificate'),
+      department: formData.get('department'),
+    };
+
+    try {
+      const res = await fetch('/api/join', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      if (json.success) {
+        setSubmitted(true);
+        e.target.reset();
+      } else {
+        setError(json.error || 'حدث خطأ');
+      }
+    } catch {
+      setError('فشل الاتصال بالخادم');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  if (submitted) {
+    return (
+      <>
+        <section className="relative bg-gradient-to-br from-primary-deep to-primary text-on-primary overflow-hidden py-24 md:py-32">
+          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-center">
+            <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6">شكراً لتواصلك معنا</h1>
+            <p className="font-body-lg text-body-lg max-w-2xl mx-auto opacity-90">تم استلام طلبك بنجاح! سيتواصل معك فريق التوظيف قريباً.</p>
+            <div className="mt-10">
+              <Link href="/" className="bg-secondary-container text-on-secondary-container px-10 py-4 rounded-full font-headline-lg shadow-xl hover:scale-105 active:scale-95 transition-all inline-block">العودة للرئيسية</Link>
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
 
   return (
     <>
@@ -92,23 +154,29 @@ export default function JoinPage() {
                   <h3 className="font-headline-lg text-headline-lg text-primary mb-2">تسجيل المدربين</h3>
                   <p className="text-on-surface-variant">أكمل البيانات التالية للتقديم على وظيفة المدرب</p>
                 </div>
-              <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); alert('تم استلام طلبك بنجاح! سيتواصل معك فريق التوظيف قريباً.'); e.target.reset(); }}>
+                {error && (
+                  <div className="mb-6 p-4 bg-red-50 border-r-4 border-red-500 rounded-xl text-red-700 font-body-md text-body-md flex items-center gap-3">
+                    <span className="material-symbols-outlined text-red-500">error</span>
+                    {error}
+                  </div>
+                )}
+              <form className="space-y-6" onSubmit={(e) => handleSubmit(e, 'trainer')}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="trainer-name">الاسم الكامل *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" id="trainer-name" placeholder="أدخل اسمك الثلاثي" required />
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="name" id="trainer-name" placeholder="أدخل اسمك الثلاثي" required />
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="trainer-email">البريد الإلكتروني *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="email" id="trainer-email" placeholder="example@techmakers.com" required />
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="email" name="email" id="trainer-email" placeholder="example@techmakers.com" required />
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="trainer-phone">رقم الهاتف *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" id="trainer-phone" placeholder="+20 123 456 7890" required />
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" name="phone" id="trainer-phone" placeholder="+20 123 456 7890" required />
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="trainer-country">الدولة *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="trainer-country" required>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="country" id="trainer-country" required>
                       <option value="">اختر الدولة</option>
                       <option value="egypt">مصر</option>
                       <option value="jordan">الأردن</option>
@@ -119,7 +187,7 @@ export default function JoinPage() {
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="trainer-specialty">التخصص *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="trainer-specialty" required>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="specialty" id="trainer-specialty" required>
                       <option value="">اختر التخصص</option>
                       <option value="programming">برمجة (Python / Scratch)</option>
                       <option value="web">تطوير الويب</option>
@@ -132,7 +200,7 @@ export default function JoinPage() {
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="trainer-experience">سنوات الخبرة *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="trainer-experience" required>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="experience" id="trainer-experience" required>
                       <option value="">اختر مستوى الخبرة</option>
                       <option value="0-1">أقل من سنة</option>
                       <option value="1-3">1-3 سنوات</option>
@@ -143,16 +211,16 @@ export default function JoinPage() {
                 </div>
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="trainer-portfolio">رابط ملف الأعمال (Portfolio) / LinkedIn</label>
-                  <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="url" id="trainer-portfolio" placeholder="https://linkedin.com/in/username" />
+                  <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="url" name="portfolio" id="trainer-portfolio" placeholder="https://linkedin.com/in/username" />
                 </div>
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="trainer-bio">نبذة عنك *</label>
-                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="trainer-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." required></textarea>
+                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="bio" id="trainer-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." required></textarea>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="trainer-online">هل تجيد العمل أونلاين؟ *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="trainer-online" required>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="onlineWork" id="trainer-online" required>
                       <option value="">اختر الإجابة</option>
                       <option value="yes">نعم، أجيد العمل أونلاين</option>
                       <option value="no">لا، أفضل العمل أوفلاين</option>
@@ -161,7 +229,7 @@ export default function JoinPage() {
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="trainer-students">هل لديك القدرة للتعامل مع الطلاب؟ *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="trainer-students" required>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="studentInteraction" id="trainer-students" required>
                       <option value="">اختر الإجابة</option>
                       <option value="yes">نعم، لدي خبرة في التعامل مع الطلاب</option>
                       <option value="no">لا، لكنني متحمس للتعلم</option>
@@ -171,7 +239,7 @@ export default function JoinPage() {
                 </div>
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="trainer-gulf">هل لديك خبرات سابقة مع التعامل مع طلاب وأطفال بالخليج العربي؟ *</label>
-                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="trainer-gulf" required>
+                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="gulfExperience" id="trainer-gulf" required>
                     <option value="">اختر الإجابة</option>
                     <option value="yes">نعم، لدي خبرة سابقة</option>
                     <option value="no">لا، لكنني مستعد للعمل معهم</option>
@@ -179,7 +247,9 @@ export default function JoinPage() {
                   </select>
                 </div>
                 <div className="pt-6">
-                  <button type="submit" className="w-full bg-primary text-on-primary py-4 rounded-full font-headline-lg hover:shadow-lg active:scale-95 transition-all">إرسال الطلب</button>
+                  <button type="submit" disabled={submitting} className="w-full bg-primary text-on-primary py-4 rounded-full font-headline-lg hover:shadow-lg active:scale-95 transition-all disabled:opacity-50">
+                    {submitting ? 'جاري الإرسال...' : 'إرسال الطلب'}
+                  </button>
                 </div>
               </form>
               </div>
@@ -192,23 +262,29 @@ export default function JoinPage() {
                 <h3 className="font-headline-lg text-headline-lg text-primary mb-2">تسجيل المتخصصين</h3>
                 <p className="text-on-surface-variant">أكمل البيانات التالية للتقديم على وظيفة المتخصص</p>
               </div>
-              <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); alert('تم استلام طلبك بنجاح! سيتواصل معك فريق التوظيف قريباً.'); e.target.reset(); }}>
+              {error && (
+                <div className="mb-6 p-4 bg-red-50 border-r-4 border-red-500 rounded-xl text-red-700 font-body-md text-body-md flex items-center gap-3">
+                  <span className="material-symbols-outlined text-red-500">error</span>
+                  {error}
+                </div>
+              )}
+              <form className="space-y-6" onSubmit={(e) => handleSubmit(e, 'specialist')}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="spec-name">الاسم الكامل *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" id="spec-name" placeholder="أدخل اسمك الثلاثي" required />
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="name" id="spec-name" placeholder="أدخل اسمك الثلاثي" required />
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="spec-email">البريد الإلكتروني *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="email" id="spec-email" placeholder="example@techmakers.com" required />
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="email" name="email" id="spec-email" placeholder="example@techmakers.com" required />
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="spec-phone">رقم الهاتف *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" id="spec-phone" placeholder="+20 123 456 7890" required />
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" name="phone" id="spec-phone" placeholder="+20 123 456 7890" required />
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="spec-country">الدولة *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="spec-country" required>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="country" id="spec-country" required>
                       <option value="">اختر الدولة</option>
                       <option value="egypt">مصر</option>
                       <option value="jordan">الأردن</option>
@@ -219,7 +295,7 @@ export default function JoinPage() {
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="spec-type">نوع التخصص *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="spec-type" required>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="specialty" id="spec-type" required>
                       <option value="">اختر نوع التخصص</option>
                       <option value="behavioral">إخصائي سلوكي</option>
                       <option value="educational">إخصائي إرشادي</option>
@@ -229,7 +305,7 @@ export default function JoinPage() {
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="spec-experience">سنوات الخبرة *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="spec-experience" required>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="experience" id="spec-experience" required>
                       <option value="">اختر مستوى الخبرة</option>
                       <option value="0-1">أقل من سنة</option>
                       <option value="1-3">1-3 سنوات</option>
@@ -240,16 +316,16 @@ export default function JoinPage() {
                 </div>
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="spec-certificate">الشهادات المهنية</label>
-                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="spec-certificate" rows="3" placeholder="اذكر الشهادات المهنية التي تمتلكها"></textarea>
+                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="certificate" id="spec-certificate" rows="3" placeholder="اذكر الشهادات المهنية التي تمتلكها"></textarea>
                 </div>
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="spec-bio">نبذة عنك *</label>
-                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="spec-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." required></textarea>
+                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="bio" id="spec-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." required></textarea>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="spec-online">هل تجيد العمل أونلاين؟ *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="spec-online" required>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="onlineWork" id="spec-online" required>
                       <option value="">اختر الإجابة</option>
                       <option value="yes">نعم، أجيد العمل أونلاين</option>
                       <option value="no">لا، أفضل العمل أوفلاين</option>
@@ -258,7 +334,7 @@ export default function JoinPage() {
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="spec-students">هل لديك القدرة للتعامل مع الطلاب؟ *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="spec-students" required>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="studentInteraction" id="spec-students" required>
                       <option value="">اختر الإجابة</option>
                       <option value="yes">نعم، لدي خبرة في التعامل مع الطلاب</option>
                       <option value="no">لا، لكنني متحمس للتعلم</option>
@@ -268,7 +344,7 @@ export default function JoinPage() {
                 </div>
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="spec-gulf">هل لديك خبرات سابقة مع التعامل مع طلاب وأطفال بالخليج العربي؟ *</label>
-                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="spec-gulf" required>
+                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="gulfExperience" id="spec-gulf" required>
                     <option value="">اختر الإجابة</option>
                     <option value="yes">نعم، لدي خبرة سابقة</option>
                     <option value="no">لا، لكنني مستعد للعمل معهم</option>
@@ -276,7 +352,9 @@ export default function JoinPage() {
                   </select>
                 </div>
                 <div className="pt-6">
-                  <button type="submit" className="w-full bg-primary text-on-primary py-4 rounded-full font-headline-lg hover:shadow-lg active:scale-95 transition-all">إرسال الطلب</button>
+                  <button type="submit" disabled={submitting} className="w-full bg-primary text-on-primary py-4 rounded-full font-headline-lg hover:shadow-lg active:scale-95 transition-all disabled:opacity-50">
+                    {submitting ? 'جاري الإرسال...' : 'إرسال الطلب'}
+                  </button>
                 </div>
               </form>
             </div>
@@ -288,23 +366,29 @@ export default function JoinPage() {
                 <h3 className="font-headline-lg text-headline-lg text-primary mb-2">تسجيل الإداريين</h3>
                 <p className="text-on-surface-variant">أكمل البيانات التالية للتقديم على وظائف الإدارة</p>
               </div>
-              <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); alert('تم استلام طلبك بنجاح! سيتواصل معك فريق التوظيف قريباً.'); e.target.reset(); }}>
+              {error && (
+                <div className="mb-6 p-4 bg-red-50 border-r-4 border-red-500 rounded-xl text-red-700 font-body-md text-body-md flex items-center gap-3">
+                  <span className="material-symbols-outlined text-red-500">error</span>
+                  {error}
+                </div>
+              )}
+              <form className="space-y-6" onSubmit={(e) => handleSubmit(e, 'admin')}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="admin-name">الاسم الكامل *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" id="admin-name" placeholder="أدخل اسمك الثلاثي" required />
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="name" id="admin-name" placeholder="أدخل اسمك الثلاثي" required />
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="admin-email">البريد الإلكتروني *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="email" id="admin-email" placeholder="example@techmakers.com" required />
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="email" name="email" id="admin-email" placeholder="example@techmakers.com" required />
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="admin-phone">رقم الهاتف *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" id="admin-phone" placeholder="+20 123 456 7890" required />
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" name="phone" id="admin-phone" placeholder="+20 123 456 7890" required />
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="admin-country">الدولة *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="admin-country" required>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="country" id="admin-country" required>
                       <option value="">اختر الدولة</option>
                       <option value="egypt">مصر</option>
                       <option value="jordan">الأردن</option>
@@ -315,7 +399,7 @@ export default function JoinPage() {
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="admin-dept">القسم *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="admin-dept" required>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="department" id="admin-dept" required>
                       <option value="">اختر القسم</option>
                       <option value="hr">الموارد البشرية</option>
                       <option value="marketing">التسويق والمبيعات</option>
@@ -327,7 +411,7 @@ export default function JoinPage() {
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="admin-experience">سنوات الخبرة *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="admin-experience" required>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="experience" id="admin-experience" required>
                       <option value="">اختر مستوى الخبرة</option>
                       <option value="0-1">أقل من سنة</option>
                       <option value="1-3">1-3 سنوات</option>
@@ -338,16 +422,16 @@ export default function JoinPage() {
                 </div>
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="admin-portfolio">LinkedIn</label>
-                  <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="url" id="admin-portfolio" placeholder="https://linkedin.com/in/username" />
+                  <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="url" name="portfolio" id="admin-portfolio" placeholder="https://linkedin.com/in/username" />
                 </div>
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="admin-bio">نبذة عنك *</label>
-                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="admin-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." required></textarea>
+                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="bio" id="admin-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." required></textarea>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="admin-online">هل تجيد العمل أونلاين؟ *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="admin-online" required>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="onlineWork" id="admin-online" required>
                       <option value="">اختر الإجابة</option>
                       <option value="yes">نعم، أجيد العمل أونلاين</option>
                       <option value="no">لا، أفضل العمل أوفلاين</option>
@@ -356,7 +440,7 @@ export default function JoinPage() {
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="admin-students">هل لديك القدرة للتعامل مع الطلاب؟ *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="admin-students" required>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="studentInteraction" id="admin-students" required>
                       <option value="">اختر الإجابة</option>
                       <option value="yes">نعم، لدي خبرة في التعامل مع الطلاب</option>
                       <option value="no">لا، لكنني متحمس للتعلم</option>
@@ -366,7 +450,7 @@ export default function JoinPage() {
                 </div>
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="admin-gulf">هل لديك خبرات سابقة مع التعامل مع طلاب وأطفال بالخليج العربي؟ *</label>
-                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="admin-gulf" required>
+                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="gulfExperience" id="admin-gulf" required>
                     <option value="">اختر الإجابة</option>
                     <option value="yes">نعم، لدي خبرة سابقة</option>
                     <option value="no">لا، لكنني مستعد للعمل معهم</option>
@@ -374,7 +458,9 @@ export default function JoinPage() {
                   </select>
                 </div>
                 <div className="pt-6">
-                  <button type="submit" className="w-full bg-primary text-on-primary py-4 rounded-full font-headline-lg hover:shadow-lg active:scale-95 transition-all">إرسال الطلب</button>
+                  <button type="submit" disabled={submitting} className="w-full bg-primary text-on-primary py-4 rounded-full font-headline-lg hover:shadow-lg active:scale-95 transition-all disabled:opacity-50">
+                    {submitting ? 'جاري الإرسال...' : 'إرسال الطلب'}
+                  </button>
                 </div>
               </form>
             </div>

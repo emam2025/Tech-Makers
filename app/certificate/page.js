@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 
-const API_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwil60umtWD1EXqdw7S6MycmHKSgzBGHWwrGw-sKdVFXGF1yfqpWM5KBqnyOUp6rDk/exec'
 const WHATSAPP_NUMBER = '201062540164'
 const COUNTRY_CODES = [
   { code: '+20', name: 'مصر' },
@@ -56,7 +55,7 @@ export default function CertificatePage() {
     try {
       const controller = new AbortController()
       const timeoutId = setTimeout(() => controller.abort(), 15000)
-      const res = await fetch(`${API_ENDPOINT}?search=${encodeURIComponent(input)}&type=${searchType}`, { signal: controller.signal })
+      const res = await fetch(`/api/certificate?search=${encodeURIComponent(input)}&type=${searchType}`, { signal: controller.signal })
       clearTimeout(timeoutId)
       if (!res.ok) throw new Error('HTTP error ' + res.status)
       const data = await res.json()
