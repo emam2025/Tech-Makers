@@ -269,6 +269,37 @@
     z-index: 1;
     background-clip: padding-box;
   }
+
+  .golden-glow-border {
+    position: relative;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3), 0 0 60px rgba(212, 175, 55, 0.15);
+  }
+  .golden-glow-border::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(from 0deg,
+      transparent, #d4af37, #ffd700, #f0c420, #d4af37, transparent,
+      transparent, #ffd700, #f0c420, #d4af37, transparent
+    );
+    animation: spin-glow 3s linear infinite;
+    z-index: 0;
+  }
+  .golden-glow-border::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 30px;
+    background: white;
+    z-index: 1;
+  }
+  .golden-glow-border > * {
+    position: relative;
+    z-index: 2;
+    background-clip: padding-box;
+  }
 }
 
 @layer utilities {

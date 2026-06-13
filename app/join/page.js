@@ -86,11 +86,12 @@ export default function JoinPage() {
           </div>
 
           {activeTab === 'trainer' && (
-            <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-outline-variant/20">
-              <div className="text-center mb-8">
-                <h3 className="font-headline-lg text-headline-lg text-primary mb-2">تسجيل المدربين</h3>
-                <p className="text-on-surface-variant">أكمل البيانات التالية للتقديم على وظيفة المدرب</p>
-              </div>
+            <div className="golden-glow-border p-1">
+              <div className="bg-white p-8 md:p-12 rounded-3xl">
+                <div className="text-center mb-8">
+                  <h3 className="font-headline-lg text-headline-lg text-primary mb-2">تسجيل المدربين</h3>
+                  <p className="text-on-surface-variant">أكمل البيانات التالية للتقديم على وظيفة المدرب</p>
+                </div>
               <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); alert('تم استلام طلبك بنجاح! سيتواصل معك فريق التوظيف قريباً.'); e.target.reset(); }}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
@@ -152,6 +153,7 @@ export default function JoinPage() {
                   <button type="submit" className="w-full bg-primary text-on-primary py-4 rounded-full font-headline-lg hover:shadow-lg active:scale-95 transition-all">إرسال الطلب</button>
                 </div>
               </form>
+              </div>
             </div>
           )}
 
