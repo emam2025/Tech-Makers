@@ -12,11 +12,18 @@ const LANG_LEVELS = [
 ];
 
 const QUALIFICATIONS = [
-  { value: 'high_school', label: 'ثانوية عامة' },
-  { value: 'diploma', label: 'دبلومة' },
   { value: 'bachelor', label: 'بكالوريوس' },
+  { value: 'license', label: 'ليسانس' },
+  { value: 'high_diploma', label: 'دبلومة عليا' },
   { value: 'master', label: 'ماجستير' },
   { value: 'phd', label: 'دكتوراه' },
+];
+
+const MARITAL_STATUS = [
+  { value: 'single', label: 'أعزب' },
+  { value: 'married', label: 'متزوج' },
+  { value: 'widowed', label: 'أرمل' },
+  { value: 'divorced', label: 'مطلق' },
   { value: 'other', label: 'أخرى' },
 ];
 
@@ -137,8 +144,17 @@ function SharedFields({ prefix }) {
         </div>
       </div>
 
-      <div className="space-y-2">
-        <PhotoUpload name="photo" label="الصورة الشخصية" onPhotoChange={() => {}} />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <label className="font-label-md text-on-surface" htmlFor={`${prefix}-marital`}>الحالة الاجتماعية *</label>
+          <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="maritalStatus" id={`${prefix}-marital`} required>
+            <option value="">اختر الحالة</option>
+            {MARITAL_STATUS.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
+          </select>
+        </div>
+        <div className="space-y-2">
+          <PhotoUpload name="photo" label="الصورة الشخصية" onPhotoChange={() => {}} />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -150,23 +166,33 @@ function SharedFields({ prefix }) {
           </select>
         </div>
         <div className="space-y-2">
-          <label className="font-label-md text-on-surface" htmlFor={`${prefix}-gradYear`}>سنة التخرج *</label>
-          <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="graduationYear" id={`${prefix}-gradYear`} required>
-            <option value="">اختر السنة</option>
-            {GRADUATION_YEARS.map(y => <option key={y.value} value={y.value}>{y.label}</option>)}
-          </select>
+          <label className="font-label-md text-on-surface" htmlFor={`${prefix}-college`}>اسم الكليه / المعهد *</label>
+          <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="college" id={`${prefix}-college`} placeholder="مثال: كلية الحاسبات والمعلومات" minLength="3" maxLength="150" required />
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <label className="font-label-md text-on-surface" htmlFor={`${prefix}-university`}>الجامعة *</label>
-          <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="university" id={`${prefix}-university`} placeholder="اسم الجامعة" minLength="3" maxLength="150" required />
+          <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="university" id={`${prefix}-university`} placeholder="مثال: جامعة القاهرة" minLength="3" maxLength="150" required />
         </div>
         <div className="space-y-2">
-          <label className="font-label-md text-on-surface" htmlFor={`${prefix}-major`}>التخصص الجامعي *</label>
-          <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="major" id={`${prefix}-major`} placeholder="التخصص الجامعي" minLength="3" maxLength="150" required />
+          <label className="font-label-md text-on-surface" htmlFor={`${prefix}-major`}>التخصص *</label>
+          <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="major" id={`${prefix}-major`} placeholder="مثال: ذكاء اصطناعي" minLength="3" maxLength="150" required />
         </div>
+      </div>
+
+      <div className="space-y-2">
+        <label className="font-label-md text-on-surface" htmlFor={`${prefix}-qualificationName`}>اسم المؤهل التفصيلي (اختياري)</label>
+        <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="qualificationName" id={`${prefix}-qualificationName`} placeholder="مثال: بكالوريوس الحاسبات والمعلومات جامعة القاهرة تخصص ذكاء اصطناعي" maxLength="300" />
+      </div>
+
+      <div className="space-y-2">
+        <label className="font-label-md text-on-surface" htmlFor={`${prefix}-gradYear`}>سنة التخرج *</label>
+        <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="graduationYear" id={`${prefix}-gradYear`} required>
+          <option value="">اختر السنة</option>
+          {GRADUATION_YEARS.map(y => <option key={y.value} value={y.value}>{y.label}</option>)}
+        </select>
       </div>
 
       <div className="space-y-2">
@@ -197,6 +223,34 @@ function SharedFields({ prefix }) {
         <label className="font-label-md text-on-surface" htmlFor={`${prefix}-skills`}>المهارات والهوايات *</label>
         <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="skills" id={`${prefix}-skills`} rows="3" placeholder="اذكر مهاراتك وهواياتك (مثال: البرمجة، التصميم، كرة القدم...)" minLength="5" maxLength="1000" required></textarea>
       </div>
+
+      <div className="space-y-2">
+        <label className="font-label-md text-on-surface" htmlFor={`${prefix}-experience`}>الخبرات السابقة / أماكن العمل *</label>
+        <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="experienceHistory" id={`${prefix}-experience`} rows="4" placeholder="اذكر أماكن العمل السابقة والمناصب التي شغلتها (مثال: 2020-2023: مبرمج في شركة X...)" minLength="5" maxLength="2000" required></textarea>
+      </div>
+
+      <div className="space-y-2">
+        <label className="font-label-md text-on-surface" htmlFor={`${prefix}-certificates`}>الشهادات التي حصلت عليها</label>
+        <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="obtainedCertificates" id={`${prefix}-certificates`} rows="3" placeholder="اذكر الشهادات المهنية والدورات التي حصلت عليها (مثال: AWS Certified, Google Analytics...)" maxLength="2000"></textarea>
+      </div>
+
+      <div className="space-y-2">
+        <label className="font-label-md text-on-surface">رغبة العمل *</label>
+        <div className="flex gap-4">
+          <label className="flex items-center gap-2 bg-bg-off-white rounded-xl px-4 py-3 cursor-pointer hover:bg-surface-container-high transition-colors flex-1">
+            <input type="radio" name="workPreference" value="online" className="accent-primary" required />
+            <span className="font-label-md text-on-surface">أونلاين</span>
+          </label>
+          <label className="flex items-center gap-2 bg-bg-off-white rounded-xl px-4 py-3 cursor-pointer hover:bg-surface-container-high transition-colors flex-1">
+            <input type="radio" name="workPreference" value="offline" className="accent-primary" />
+            <span className="font-label-md text-on-surface">أوفلاين</span>
+          </label>
+          <label className="flex items-center gap-2 bg-bg-off-white rounded-xl px-4 py-3 cursor-pointer hover:bg-surface-container-high transition-colors flex-1">
+            <input type="radio" name="workPreference" value="both" className="accent-primary" />
+            <span className="font-label-md text-on-surface">كلاهما</span>
+          </label>
+        </div>
+      </div>
     </>
   );
 }
@@ -222,7 +276,10 @@ export default function JoinPage() {
       phone: formData.get('phone'),
       address: formData.get('address'),
       country: formData.get('country'),
+      maritalStatus: formData.get('maritalStatus'),
       qualification: formData.get('qualification'),
+      college: formData.get('college'),
+      qualificationName: formData.get('qualificationName') || '',
       graduationYear: formData.get('graduationYear'),
       university: formData.get('university'),
       major: formData.get('major'),
@@ -230,16 +287,16 @@ export default function JoinPage() {
       langEnglish: formData.get('lang_english'),
       langFrench: formData.get('lang_french'),
       skills: formData.get('skills'),
+      experienceHistory: formData.get('experienceHistory'),
+      obtainedCertificates: formData.get('obtainedCertificates') || '',
+      workPreference: formData.get('workPreference'),
       photo: formData.get('photo')?.name || null,
       specialty: formData.get('specialty') || null,
-      experience: formData.get('experience') || null,
       department: formData.get('department') || null,
       portfolio: formData.get('portfolio') || null,
       bio: formData.get('bio') || '',
-      onlineWork: formData.get('onlineWork') || null,
       studentInteraction: formData.get('studentInteraction') || null,
       gulfExperience: formData.get('gulfExperience') || null,
-      certificate: formData.get('certificate') || null,
     };
 
     try {
@@ -410,15 +467,6 @@ export default function JoinPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="trainer-online">هل تجيد العمل أونلاين؟ *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="onlineWork" id="trainer-online" required>
-                      <option value="">اختر الإجابة</option>
-                      <option value="yes">نعم، أجيد العمل أونلاين</option>
-                      <option value="no">لا، أفضل العمل أوفلاين</option>
-                      <option value="both">أعمل بالطريقتين</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="trainer-students">هل لديك القدرة للتعامل مع الطلاب؟ *</label>
                     <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="studentInteraction" id="trainer-students" required>
                       <option value="">اختر الإجابة</option>
@@ -427,16 +475,15 @@ export default function JoinPage() {
                       <option value="some">لدي بعض الخبرة</option>
                     </select>
                   </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="font-label-md text-on-surface" htmlFor="trainer-gulf">هل لديك خبرات سابقة مع التعامل مع طلاب وأطفال بالخليج العربي؟ *</label>
-                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="gulfExperience" id="trainer-gulf" required>
-                    <option value="">اختر الإجابة</option>
-                    <option value="yes">نعم، لدي خبرة سابقة</option>
-                    <option value="no">لا، لكنني مستعد للعمل معهم</option>
-                    <option value="some">لدي بعض الخبرة في التعامل مع أطفال الخليج</option>
-                  </select>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="trainer-gulf">هل لديك خبرات سابقة مع التعامل مع طلاب وأطفال بالخليج العربي؟ *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="gulfExperience" id="trainer-gulf" required>
+                      <option value="">اختر الإجابة</option>
+                      <option value="yes">نعم، لدي خبرة سابقة</option>
+                      <option value="no">لا، لكنني مستعد للعمل معهم</option>
+                      <option value="some">لدي بعض الخبرة في التعامل مع أطفال الخليج</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div className="pt-6">
@@ -503,15 +550,6 @@ export default function JoinPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="spec-online">هل تجيد العمل أونلاين؟ *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="onlineWork" id="spec-online" required>
-                      <option value="">اختر الإجابة</option>
-                      <option value="yes">نعم، أجيد العمل أونلاين</option>
-                      <option value="no">لا، أفضل العمل أوفلاين</option>
-                      <option value="both">أعمل بالطريقتين</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="spec-students">هل لديك القدرة للتعامل مع الطلاب؟ *</label>
                     <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="studentInteraction" id="spec-students" required>
                       <option value="">اختر الإجابة</option>
@@ -520,16 +558,15 @@ export default function JoinPage() {
                       <option value="some">لدي بعض الخبرة</option>
                     </select>
                   </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="font-label-md text-on-surface" htmlFor="spec-gulf">هل لديك خبرات سابقة مع التعامل مع طلاب وأطفال بالخليج العربي؟ *</label>
-                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="gulfExperience" id="spec-gulf" required>
-                    <option value="">اختر الإجابة</option>
-                    <option value="yes">نعم، لدي خبرة سابقة</option>
-                    <option value="no">لا، لكنني مستعد للعمل معهم</option>
-                    <option value="some">لدي بعض الخبرة في التعامل مع أطفال الخليج</option>
-                  </select>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="spec-gulf">هل لديك خبرات سابقة مع التعامل مع طلاب وأطفال بالخليج العربي؟ *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="gulfExperience" id="spec-gulf" required>
+                      <option value="">اختر الإجابة</option>
+                      <option value="yes">نعم، لدي خبرة سابقة</option>
+                      <option value="no">لا، لكنني مستعد للعمل معهم</option>
+                      <option value="some">لدي بعض الخبرة في التعامل مع أطفال الخليج</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div className="pt-6">
@@ -592,15 +629,6 @@ export default function JoinPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="admin-online">هل تجيد العمل أونلاين؟ *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="onlineWork" id="admin-online" required>
-                      <option value="">اختر الإجابة</option>
-                      <option value="yes">نعم، أجيد العمل أونلاين</option>
-                      <option value="no">لا، أفضل العمل أوفلاين</option>
-                      <option value="both">أعمل بالطريقتين</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="admin-students">هل لديك القدرة للتعامل مع الطلاب؟ *</label>
                     <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="studentInteraction" id="admin-students" required>
                       <option value="">اختر الإجابة</option>
@@ -609,16 +637,15 @@ export default function JoinPage() {
                       <option value="some">لدي بعض الخبرة</option>
                     </select>
                   </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="font-label-md text-on-surface" htmlFor="admin-gulf">هل لديك خبرات سابقة مع التعامل مع طلاب وأطفال بالخليج العربي؟ *</label>
-                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="gulfExperience" id="admin-gulf" required>
-                    <option value="">اختر الإجابة</option>
-                    <option value="yes">نعم، لدي خبرة سابقة</option>
-                    <option value="no">لا، لكنني مستعد للعمل معهم</option>
-                    <option value="some">لدي بعض الخبرة في التعامل مع أطفال الخليج</option>
-                  </select>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="admin-gulf">هل لديك خبرات سابقة مع التعامل مع طلاب وأطفال بالخليج العربي؟ *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="gulfExperience" id="admin-gulf" required>
+                      <option value="">اختر الإجابة</option>
+                      <option value="yes">نعم، لدي خبرة سابقة</option>
+                      <option value="no">لا، لكنني مستعد للعمل معهم</option>
+                      <option value="some">لدي بعض الخبرة في التعامل مع أطفال الخليج</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div className="pt-6">

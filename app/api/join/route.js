@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { rateLimit, checkOrigin, sanitizePlain, validateEmail, validatePhone, validateName, validateInputLength, getClientIp } from '../../../lib/security';
+import { rateLimit, checkOrigin, sanitizePlain, validateEmail, validatePhone, getClientIp } from '../../../lib/security';
 
 const ALLOWED_FORM_TYPES = ['trainer', 'specialist', 'admin'];
 
@@ -24,15 +24,15 @@ export async function POST(request) {
     const body = await request.json();
     const {
       formType, firstName, middleName, lastName, email, phone, address, country,
-      qualification, graduationYear, university, major,
-      langArabic, langEnglish, langFrench, skills, photo,
-      specialty, experience, department, portfolio, bio,
-      onlineWork, studentInteraction, gulfExperience, certificate
+      maritalStatus, qualification, college, qualificationName, graduationYear,
+      university, major, langArabic, langEnglish, langFrench, skills,
+      experienceHistory, obtainedCertificates, workPreference, photo,
+      specialty, department, portfolio, bio, studentInteraction, gulfExperience
     } = body;
 
     const fullName = [firstName, middleName, lastName].filter(Boolean).join(' ');
 
-    if (!formType || !firstName || !lastName || !email || !phone || !address || !country || !qualification || !graduationYear || !university || !major || !skills) {
+    if (!formType || !firstName || !lastName || !email || !phone || !address || !country || !qualification || !college || !graduationYear || !university || !major || !skills || !experienceHistory || !workPreference || !maritalStatus) {
       return NextResponse.json(
         { error: 'جميع الحقول المطلوبة يجب أن تكون مكتملة' },
         { status: 400 }
@@ -58,11 +58,17 @@ export async function POST(request) {
     if (university.length < 3 || university.length > 150) {
       return NextResponse.json({ error: 'اسم الجامعة غير صحيح' }, { status: 400 });
     }
+    if (college.length < 3 || college.length > 150) {
+      return NextResponse.json({ error: 'اسم الكليه غير صحيح' }, { status: 400 });
+    }
     if (major.length < 3 || major.length > 150) {
       return NextResponse.json({ error: 'التخصص غير صحيح' }, { status: 400 });
     }
     if (skills.length < 5 || skills.length > 1000) {
       return NextResponse.json({ error: 'المهارات غير صحيحة' }, { status: 400 });
+    }
+    if (experienceHistory.length < 5 || experienceHistory.length > 2000) {
+      return NextResponse.json({ error: 'الخبرات غير صحيحة' }, { status: 400 });
     }
 
     const supabaseUrl = process.env.SUPABASE_URL;
@@ -113,7 +119,10 @@ export async function POST(request) {
         phone: sanitizePlain(phone),
         address: sanitizePlain(address),
         country: sanitizePlain(country),
+        marital_status: sanitizePlain(maritalStatus),
         qualification: sanitizePlain(qualification),
+        college: sanitizePlain(college),
+        qualification_name: qualificationName ? sanitizePlain(qualificationName) : null,
         graduation_year: graduationYear,
         university: sanitizePlain(university),
         major: sanitizePlain(major),
@@ -121,16 +130,16 @@ export async function POST(request) {
         lang_english: langEnglish || null,
         lang_french: langFrench || null,
         skills: sanitizePlain(skills),
+        experience_history: sanitizePlain(experienceHistory),
+        obtained_certificates: obtainedCertificates ? sanitizePlain(obtainedCertificates) : null,
+        work_preference: sanitizePlain(workPreference),
         photo_url: photo || null,
         specialty: specialty ? sanitizePlain(specialty) : null,
-        experience: experience ? sanitizePlain(experience) : null,
         department: department ? sanitizePlain(department) : null,
         portfolio: portfolio ? sanitizePlain(portfolio) : null,
         bio: bio ? sanitizePlain(bio) : null,
-        online_work: onlineWork || null,
         student_interaction: studentInteraction || null,
         gulf_experience: gulfExperience || null,
-        certificate: certificate ? sanitizePlain(certificate) : null,
         status: 'pending',
         created_at: new Date().toISOString(),
       }),
