@@ -406,6 +406,42 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="py-20 px-margin-mobile md:px-margin-desktop bg-surface">
+        <div className="max-w-container-max mx-auto">
+          <div className="text-center mb-16">
+            <span className="inline-block bg-primary/5 text-primary font-label-md text-label-md px-5 py-2 rounded-full mb-4">لماذا تثق بنا؟</span>
+            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">لماذا يثق بنا أولياء الأمور؟</h2>
+            <p className="text-on-surface-variant font-body-lg text-body-lg max-w-2xl mx-auto">نتعامل مع أبنائكم بمسؤولية كاملة ونلتزم بأعلى معايير الجودة والأمان التعليمي.</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 text-center hover-lift">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-5">
+                <span className="material-symbols-outlined text-primary text-3xl">school</span>
+              </div>
+              <h3 className="font-headline-md text-headline-md text-primary-deep mb-3">مدربون معتمدون</h3>
+              <p className="text-on-surface-variant font-body-md">نخبة من خبراء البرمجة والذكاء الاصطناعي بخبرة تدريسية حقيقية للأطفال والناشئين.</p>
+            </div>
+
+            <div className="bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 text-center hover-lift">
+              <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-5">
+                <span className="material-symbols-outlined text-secondary text-3xl">workspace_premium</span>
+              </div>
+              <h3 className="font-headline-md text-headline-md text-primary-deep mb-3">شهادة معتمدة</h3>
+              <p className="text-on-surface-variant font-body-md">شهادة موثقة بعد كل برنامج تعزز السيرة الذاتية لطفلك في رحلته الأكاديمية.</p>
+            </div>
+
+            <div className="bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 text-center hover-lift">
+              <div className="w-16 h-16 bg-tertiary/10 rounded-full flex items-center justify-center mx-auto mb-5">
+                <span className="material-symbols-outlined text-tertiary text-3xl">support_agent</span>
+              </div>
+              <h3 className="font-headline-md text-headline-md text-primary-deep mb-3">دعم عبر واتساب 7/24</h3>
+              <p className="text-on-surface-variant font-body-md">فريق متابعة مخصص لأولياء الأمور للرد على كل استفسار خلال دقائق.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section-padding" id="why">
         <div className="container-inner">
           <div className="text-center mb-16">
