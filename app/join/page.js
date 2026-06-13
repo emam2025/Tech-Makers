@@ -497,7 +497,8 @@ export default function JoinPage() {
           )}
 
           {activeTab === 'specialist' && (
-            <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-outline-variant/20">
+            <div className="golden-glow-border p-1">
+              <div className="bg-white p-8 md:p-12 rounded-3xl">
               <div className="text-center mb-8">
                 <h3 className="font-headline-lg text-headline-lg text-primary mb-2">تسجيل المتخصصين</h3>
                 <p className="text-on-surface-variant">أكمل البيانات التالية للتقديم على وظيفة المتخصص</p>
@@ -575,11 +576,13 @@ export default function JoinPage() {
                   </button>
                 </div>
               </form>
+              </div>
             </div>
           )}
 
           {activeTab === 'admin' && (
-            <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-outline-variant/20">
+            <div className="golden-glow-border p-1">
+              <div className="bg-white p-8 md:p-12 rounded-3xl">
               <div className="text-center mb-8">
                 <h3 className="font-headline-lg text-headline-lg text-primary mb-2">تسجيل الإداريين</h3>
                 <p className="text-on-surface-variant">أكمل البيانات التالية للتقديم على وظائف الإدارة</p>
@@ -654,6 +657,7 @@ export default function JoinPage() {
                   </button>
                 </div>
               </form>
+              </div>
             </div>
           )}
         </div>
