@@ -149,6 +149,35 @@ export default function JoinPage() {
                   <label className="font-label-md text-on-surface" htmlFor="trainer-bio">نبذة عنك *</label>
                   <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="trainer-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." required></textarea>
                 </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="trainer-online">هل تجيد العمل أونلاين؟ *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="trainer-online" required>
+                      <option value="">اختر الإجابة</option>
+                      <option value="yes">نعم، أجيد العمل أونلاين</option>
+                      <option value="no">لا، أفضل العمل أوفلاين</option>
+                      <option value="both">أعمل بالطريقتين</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="trainer-students">هل لديك القدرة للتعامل مع الطلاب؟ *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="trainer-students" required>
+                      <option value="">اختر الإجابة</option>
+                      <option value="yes">نعم، لدي خبرة في التعامل مع الطلاب</option>
+                      <option value="no">لا، لكنني متحمس للتعلم</option>
+                      <option value="some">لدي بعض الخبرة</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="font-label-md text-on-surface" htmlFor="trainer-gulf">هل لديك خبرات سابقة مع التعامل مع طلاب وأطفال بالخليج العربي؟ *</label>
+                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="trainer-gulf" required>
+                    <option value="">اختر الإجابة</option>
+                    <option value="yes">نعم، لدي خبرة سابقة</option>
+                    <option value="no">لا، لكنني مستعد للعمل معهم</option>
+                    <option value="some">لدي بعض الخبرة في التعامل مع أطفال الخليج</option>
+                  </select>
+                </div>
                 <div className="pt-6">
                   <button type="submit" className="w-full bg-primary text-on-primary py-4 rounded-full font-headline-lg hover:shadow-lg active:scale-95 transition-all">إرسال الطلب</button>
                 </div>
@@ -216,6 +245,35 @@ export default function JoinPage() {
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="spec-bio">نبذة عنك *</label>
                   <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="spec-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." required></textarea>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="spec-online">هل تجيد العمل أونلاين؟ *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="spec-online" required>
+                      <option value="">اختر الإجابة</option>
+                      <option value="yes">نعم، أجيد العمل أونلاين</option>
+                      <option value="no">لا، أفضل العمل أوفلاين</option>
+                      <option value="both">أعمل بالطريقتين</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="spec-students">هل لديك القدرة للتعامل مع الطلاب؟ *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="spec-students" required>
+                      <option value="">اختر الإجابة</option>
+                      <option value="yes">نعم، لدي خبرة في التعامل مع الطلاب</option>
+                      <option value="no">لا، لكنني متحمس للتعلم</option>
+                      <option value="some">لدي بعض الخبرة</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="font-label-md text-on-surface" htmlFor="spec-gulf">هل لديك خبرات سابقة مع التعامل مع طلاب وأطفال بالخليج العربي؟ *</label>
+                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="spec-gulf" required>
+                    <option value="">اختر الإجابة</option>
+                    <option value="yes">نعم، لدي خبرة سابقة</option>
+                    <option value="no">لا، لكنني مستعد للعمل معهم</option>
+                    <option value="some">لدي بعض الخبرة في التعامل مع أطفال الخليج</option>
+                  </select>
                 </div>
                 <div className="pt-6">
                   <button type="submit" className="w-full bg-primary text-on-primary py-4 rounded-full font-headline-lg hover:shadow-lg active:scale-95 transition-all">إرسال الطلب</button>
@@ -285,6 +343,35 @@ export default function JoinPage() {
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="admin-bio">نبذة عنك *</label>
                   <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="admin-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." required></textarea>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="admin-online">هل تجيد العمل أونلاين؟ *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="admin-online" required>
+                      <option value="">اختر الإجابة</option>
+                      <option value="yes">نعم، أجيد العمل أونلاين</option>
+                      <option value="no">لا، أفضل العمل أوفلاين</option>
+                      <option value="both">أعمل بالطريقتين</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-label-md text-on-surface" htmlFor="admin-students">هل لديك القدرة للتعامل مع الطلاب؟ *</label>
+                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="admin-students" required>
+                      <option value="">اختر الإجابة</option>
+                      <option value="yes">نعم، لدي خبرة في التعامل مع الطلاب</option>
+                      <option value="no">لا، لكنني متحمس للتعلم</option>
+                      <option value="some">لدي بعض الخبرة</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="font-label-md text-on-surface" htmlFor="admin-gulf">هل لديك خبرات سابقة مع التعامل مع طلاب وأطفال بالخليج العربي؟ *</label>
+                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" id="admin-gulf" required>
+                    <option value="">اختر الإجابة</option>
+                    <option value="yes">نعم، لدي خبرة سابقة</option>
+                    <option value="no">لا، لكنني مستعد للعمل معهم</option>
+                    <option value="some">لدي بعض الخبرة في التعامل مع أطفال الخليج</option>
+                  </select>
                 </div>
                 <div className="pt-6">
                   <button type="submit" className="w-full bg-primary text-on-primary py-4 rounded-full font-headline-lg hover:shadow-lg active:scale-95 transition-all">إرسال الطلب</button>
