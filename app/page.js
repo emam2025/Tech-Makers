@@ -333,6 +333,79 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section-padding bg-bg-off-white" id="parents">
+        <div className="container-inner">
+          <div className="text-center mb-16">
+            <span className="inline-block bg-secondary-container/20 text-secondary px-5 py-2 rounded-full font-label-md mb-4">ماذا يقول أولياء الأمور؟</span>
+            <h2 className="font-headline-xl text-headline-xl text-primary mb-4">قصص حقيقية من عائلات تثق بنا</h2>
+            <p className="text-on-surface-variant font-body-lg text-body-lg">من مصر والخليج — آباء شاهدوا تطور أبنائهم بأعينهم</p>
+            <div className="h-1.5 w-24 bg-secondary-container mx-auto rounded-full mt-4"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 hover-lift">
+              <div className="flex items-center gap-1 mb-4">
+                {[1,2,3,4,5].map(i => (
+                  <span key={i} className="text-yellow-400 text-lg">★</span>
+                ))}
+              </div>
+              <p className="text-on-surface-variant font-body-md leading-relaxed mb-6">
+                &quot;ابني اتعلم البرمجة من الصفر وعمل أول مشروع ويب في خلال 3 شهور فقط. الفريق محترم والمتابعة ممتازة.&quot;
+              </p>
+              <div className="flex items-center gap-3 border-t border-outline-variant/20 pt-4">
+                <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                  <span className="text-primary font-bold text-sm">أم</span>
+                </div>
+                <div>
+                  <span className="font-label-md text-on-surface block">أم محمد</span>
+                  <span className="text-on-surface-variant text-sm">🇸🇦 الرياض، السعودية</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 hover-lift">
+              <div className="flex items-center gap-1 mb-4">
+                {[1,2,3,4,5].map(i => (
+                  <span key={i} className="text-yellow-400 text-lg">★</span>
+                ))}
+              </div>
+              <p className="text-on-surface-variant font-body-md leading-relaxed mb-6">
+                &quot;أفضل قرار خذيته لبنتي. صارت تحب الذكاء الاصطناعي وتصمم تطبيقات بنفسها. الأسعار مناسبة جداً للجودة.&quot;
+              </p>
+              <div className="flex items-center gap-3 border-t border-outline-variant/20 pt-4">
+                <div className="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center">
+                  <span className="text-secondary font-bold text-sm">أب</span>
+                </div>
+                <div>
+                  <span className="font-label-md text-on-surface block">أبو عبدالله</span>
+                  <span className="text-on-surface-variant text-sm">🇰🇼 الكويت</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 hover-lift">
+              <div className="flex items-center gap-1 mb-4">
+                {[1,2,3,4,5].map(i => (
+                  <span key={i} className="text-yellow-400 text-lg">★</span>
+                ))}
+              </div>
+              <p className="text-on-surface-variant font-body-md leading-relaxed mb-6">
+                &quot;محتوى عملي وحقيقي، مش مجرد كلام. بنتي بقت بتعمل مشاريع روبوتيكس وعرضت في مدرستها. شكراً TKA!&quot;
+              </p>
+              <div className="flex items-center gap-3 border-t border-outline-variant/20 pt-4">
+                <div className="w-10 h-10 bg-tertiary/10 rounded-full flex items-center justify-center">
+                  <span className="text-tertiary font-bold text-sm">م</span>
+                </div>
+                <div>
+                  <span className="font-label-md text-on-surface block">م. سارة أحمد</span>
+                  <span className="text-on-surface-variant text-sm">🇪🇬 القاهرة، مصر</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section-padding" id="why">
         <div className="container-inner">
           <div className="text-center mb-16">
