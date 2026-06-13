@@ -374,8 +374,8 @@ export default function TracksPage() {
                 const c = colorMap[t.color];
                 const trackFull = trackData[t.id];
                 return (
-                  <div key={t.id} className="relative bg-white rounded-24 overflow-hidden card-shadow group hover-lift">
-                    <div className={`h-2 ${c.solid}`} />
+                  <div key={t.id} className="relative bg-white rounded-24 overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 group hover-lift">
+                    <div className={`h-2.5 ${c.solid}`} />
                     <div className="p-8">
                       <div className="flex justify-between items-start mb-6">
                         <div className={`${c.bg} p-4 rounded-2xl`}>
@@ -443,7 +443,7 @@ export default function TracksPage() {
                             </div>
                             <div className={`md:w-[calc(50%-2.5rem)] ${li % 2 === 0 ? 'md:mr-auto md:ml-0' : 'md:ml-auto md:mr-0'}`}>
                               <div
-                                className={`bg-white rounded-24 overflow-hidden card-shadow transition-all duration-300 cursor-pointer ${isActive ? 'ring-2 ring-primary/30 scale-[1.01]' : 'hover:shadow-lg'}`}
+                                className={`bg-white rounded-24 overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 transition-all duration-300 cursor-pointer ${isActive ? 'ring-2 ring-primary/30 scale-[1.01]' : 'hover:shadow-lg'}`}
                                 onClick={() => setSelectedLevel(isActive ? 0 : level.id)}
                               >
                                 <div className={`p-6 md:p-8 ${isActive ? 'bg-primary/5' : ''}`}>
@@ -563,7 +563,7 @@ export default function TracksPage() {
                     {year.specializations.map((spec) => {
                       const c = colorMap[spec.color];
                       return (
-                        <div key={spec.id} className={`bg-white rounded-24 overflow-hidden card-shadow hover-lift border-t-4 ${c.border}`}>
+                        <div key={spec.id} className={`bg-white rounded-24 overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 hover-lift border-t-4 ${c.border}`}>
                           <div className="p-6">
                             <div className={`${c.bg} w-14 h-14 rounded-2xl flex items-center justify-center mb-4`}>
                               <span className={`material-symbols-outlined ${c.text} text-3xl`}>{spec.icon}</span>
@@ -592,7 +592,7 @@ export default function TracksPage() {
 
             {/* Next Steps (Track B only) */}
             {track.nextSteps && (
-              <div className="bg-white rounded-24 card-shadow p-6 md:p-12 mb-12">
+              <div className="bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-6 md:p-12 mb-12">
                 <h3 className="font-headline-lg md:font-headline-xl text-headline-lg md:text-headline-xl text-primary-deep text-center mb-4">بعد إنهاء المسار</h3>
                 <p className="text-on-surface-variant font-body-md md:font-body-lg text-center mb-6 md:mb-8">يستطيع الطالب الانتقال لمسارات التخصص</p>
                 <div className="flex flex-wrap justify-center gap-2 md:gap-3">
@@ -604,7 +604,7 @@ export default function TracksPage() {
             )}
 
             {/* Soft Skills */}
-            <div className="bg-white rounded-24 card-shadow p-6 md:p-12 mb-12">
+            <div className="bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-6 md:p-12 mb-12">
               <h3 className="font-headline-lg md:font-headline-xl text-headline-lg md:text-headline-xl text-primary-deep text-center mb-4 md:mb-8">
                 {track.id === 'a' ? 'الجانب النفسي والسلوكي' : 'الجانب الشخصي والمهني'}
               </h3>
@@ -667,7 +667,7 @@ export default function TracksPage() {
                 <div
                   key={plan.id}
                   className={`relative bg-white rounded-24 overflow-hidden transition-all duration-300 ${
-                    plan.highlight ? 'ring-2 ring-primary shadow-xl md:scale-110 z-10' : 'card-shadow hover-lift'
+                    plan.highlight ? 'ring-2 ring-primary shadow-xl md:scale-110 z-10 border border-primary/30' : 'shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 hover-lift'
                   }`}
                 >
                   {plan.badge && (
