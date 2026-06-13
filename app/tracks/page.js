@@ -567,6 +567,100 @@ export default function TracksPage() {
               العودة لاختيار المسار
             </button>
 
+            {/* ── EDUCATIONAL SYSTEM ── */}
+            <div className="mb-16">
+              <div className="text-center mb-10">
+                <span className="inline-block bg-primary/5 text-primary px-5 py-2 rounded-full font-label-md mb-4">
+                  <span className="material-symbols-outlined text-sm align-middle">school</span> النظام التعليمي
+                </span>
+                <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary-deep mb-3">كيف نعلّم؟</h2>
+                <p className="text-on-surface-variant font-body-lg max-w-2xl mx-auto">منهج متكامل يجمع بين التعلم العملي والتقييم المستمر والتقنيات الحديثة</p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                {/* Tasks */}
+                <div className="bg-white rounded-24 p-5 md:p-6 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary-deep rounded-2xl flex items-center justify-center mb-4">
+                    <span className="material-symbols-outlined text-white text-xl">task_alt</span>
+                  </div>
+                  <h3 className="font-headline-md text-headline-md text-primary-deep mb-2">مهام بعد كل محاضرة</h3>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Easy</span>
+                    <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold">Medium</span>
+                    <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold">Hard</span>
+                  </div>
+                </div>
+
+                {/* Projects */}
+                <div className="bg-white rounded-24 p-5 md:p-6 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-secondary/10 hover:border-secondary/30 transition-all duration-300 hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-gradient-to-br from-secondary to-amber-500 rounded-2xl flex items-center justify-center mb-4">
+                    <span className="material-symbols-outlined text-white text-xl">deployed_code</span>
+                  </div>
+                  <h3 className="font-headline-md text-headline-md text-primary-deep mb-2">مشاريع حقيقية</h3>
+                  <p className="text-on-surface-variant font-body-sm text-sm">مشروع لكل مستوى + مشروع نهائي يجمع كل ما تعلمه الطالب</p>
+                </div>
+
+                {/* Evaluation */}
+                <div className="bg-white rounded-24 p-5 md:p-6 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-tertiary/10 hover:border-tertiary/30 transition-all duration-300 hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-gradient-to-br from-tertiary to-amber-400 rounded-2xl flex items-center justify-center mb-4">
+                    <span className="material-symbols-outlined text-white text-xl">grading</span>
+                  </div>
+                  <h3 className="font-headline-md text-headline-md text-primary-deep mb-2">تقييم مستمر</h3>
+                  <p className="text-on-surface-variant font-body-sm text-sm">تقييم كل جلسة + اختبار نهاية مستوى لقياس التقدم</p>
+                </div>
+
+                {/* Gamification */}
+                <div className="bg-white rounded-24 p-5 md:p-6 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-emerald-200 hover:border-emerald-400 transition-all duration-300 hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center mb-4">
+                    <span className="material-symbols-outlined text-white text-xl">emoji_events</span>
+                  </div>
+                  <h3 className="font-headline-md text-headline-md text-primary-deep mb-2">تحفيز و gamification</h3>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">نقاط</span>
+                    <span className="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">Leaderboard</span>
+                    <span className="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">Badges</span>
+                  </div>
+                </div>
+
+                {/* AI Assistant */}
+                <div className="bg-white rounded-24 p-5 md:p-6 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-violet-200 hover:border-violet-400 transition-all duration-300 hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-gradient-to-br from-violet-400 to-violet-600 rounded-2xl flex items-center justify-center mb-4">
+                    <span className="material-symbols-outlined text-white text-xl">smart_toy</span>
+                  </div>
+                  <h3 className="font-headline-md text-headline-md text-primary-deep mb-2">مساعد ذكاء اصطناعي</h3>
+                  <ul className="space-y-1.5">
+                    <li className="flex items-center gap-2 text-on-surface-variant font-body-sm text-sm"><span className="material-symbols-outlined text-violet-500 text-base">check</span> شرح الدروس</li>
+                    <li className="flex items-center gap-2 text-on-surface-variant font-body-sm text-sm"><span className="material-symbols-outlined text-violet-500 text-base">check</span> حل التمارين</li>
+                    <li className="flex items-center gap-2 text-on-surface-variant font-body-sm text-sm"><span className="material-symbols-outlined text-violet-500 text-base">check</span> دعم الطالب</li>
+                  </ul>
+                </div>
+
+                {/* Dashboard */}
+                <div className="bg-white rounded-24 p-5 md:p-6 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-rose-200 hover:border-rose-400 transition-all duration-300 hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-gradient-to-br from-rose-400 to-rose-600 rounded-2xl flex items-center justify-center mb-4">
+                    <span className="material-symbols-outlined text-white text-xl">dashboard</span>
+                  </div>
+                  <h3 className="font-headline-md text-headline-md text-primary-deep mb-2">لوحة تحكم متكاملة</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <span className="text-xs font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">للمدرب</span>
+                      <ul className="mt-1 space-y-1">
+                        <li className="text-on-surface-variant font-body-sm text-sm flex items-center gap-1.5"><span className="material-symbols-outlined text-rose-400 text-sm">check</span> متابعة الطلاب</li>
+                        <li className="text-on-surface-variant font-body-sm text-sm flex items-center gap-1.5"><span className="material-symbols-outlined text-rose-400 text-sm">check</span> تحليل الأداء</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">لولي الأمر</span>
+                      <ul className="mt-1 space-y-1">
+                        <li className="text-on-surface-variant font-body-sm text-sm flex items-center gap-1.5"><span className="material-symbols-outlined text-rose-400 text-sm">check</span> متابعة التقدم</li>
+                        <li className="text-on-surface-variant font-body-sm text-sm flex items-center gap-1.5"><span className="material-symbols-outlined text-rose-400 text-sm">check</span> تقييم المستوى</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {track.years.map((year, yi) => (
               <div key={yi} className="mb-20">
                 <div className="text-center mb-12">
