@@ -1,7 +1,205 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+
+const LANG_LEVELS = [
+  { value: 'none', label: 'لا أملك' },
+  { value: 'beginner', label: 'مبتدئ' },
+  { value: 'intermediate', label: 'متوسط' },
+  { value: 'advanced', label: 'متقدم' },
+  { value: 'native', label: 'لغة أم' },
+];
+
+const QUALIFICATIONS = [
+  { value: 'high_school', label: 'ثانوية عامة' },
+  { value: 'diploma', label: 'دبلومة' },
+  { value: 'bachelor', label: 'بكالوريوس' },
+  { value: 'master', label: 'ماجستير' },
+  { value: 'phd', label: 'دكتوراه' },
+  { value: 'other', label: 'أخرى' },
+];
+
+const COUNTRIES = [
+  { value: 'egypt', label: 'مصر' },
+  { value: 'jordan', label: 'الأردن' },
+  { value: 'saudi', label: 'السعودية' },
+  { value: 'kuwait', label: 'الكويت' },
+  { value: 'uae', label: 'الإمارات' },
+  { value: 'qatar', label: 'قطر' },
+  { value: 'bahrain', label: 'البحرين' },
+  { value: 'oman', label: 'عمان' },
+  { value: 'libya', label: 'ليبيا' },
+  { value: 'sudan', label: 'السودان' },
+  { value: 'palestine', label: 'فلسطين' },
+  { value: 'lebanon', label: 'لبنان' },
+  { value: 'iraq', label: 'العراق' },
+  { value: 'tunisia', label: 'تونس' },
+  { value: 'algeria', label: 'الجزائر' },
+  { value: 'morocco', label: 'المغرب' },
+];
+
+const GRADUATION_YEARS = Array.from({ length: 30 }, (_, i) => {
+  const year = 2026 - i;
+  return { value: String(year), label: String(year) };
+});
+
+function PhotoUpload({ name, label, required, onPhotoChange }) {
+  const [preview, setPreview] = useState(null);
+  const inputRef = useRef(null);
+
+  const handleFile = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 2 * 1024 * 1024) {
+      alert('الحجم الأقصى 2 ميجا');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreview(reader.result);
+      onPhotoChange?.(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const removePhoto = () => {
+    setPreview(null);
+    onPhotoChange?.(null);
+    if (inputRef.current) inputRef.current.value = '';
+  };
+
+  return (
+    <div className="space-y-2">
+      <label className="font-label-md text-on-surface">{label} {required && '*'}</label>
+      <div className="flex items-center gap-4">
+        {preview ? (
+          <div className="relative">
+            <img src={preview} alt="الصورة الشخصية" className="w-24 h-24 rounded-full object-cover border-2 border-primary" />
+            <button type="button" onClick={removePhoto} className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-xs hover:bg-red-600">✕</button>
+          </div>
+        ) : (
+          <div onClick={() => inputRef.current?.click()} className="w-24 h-24 rounded-full border-2 border-dashed border-outline-variant/40 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors bg-bg-off-white">
+            <span className="material-symbols-outlined text-on-surface-variant/50 text-2xl">person</span>
+            <span className="text-xs text-on-surface-variant/50 mt-1">صورة</span>
+          </div>
+        )}
+        <div className="flex-1">
+          <input ref={inputRef} type="file" name={name} accept="image/*" onChange={handleFile} className="hidden" />
+          <button type="button" onClick={() => inputRef.current?.click()} className="text-sm text-primary font-bold hover:underline">اختر صورة شخصية</button>
+          <p className="text-xs text-on-surface-variant/60 mt-1">JPG/PNG، الحد الأقصى 2MB</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SharedFields({ prefix }) {
+  return (
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="space-y-2">
+          <label className="font-label-md text-on-surface" htmlFor={`${prefix}-fname`}>الاسم الأول *</label>
+          <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="firstName" id={`${prefix}-fname`} placeholder="الاسم الأول" minLength="2" maxLength="50" required />
+        </div>
+        <div className="space-y-2">
+          <label className="font-label-md text-on-surface" htmlFor={`${prefix}-mname`}>الاسم الأوسط</label>
+          <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="middleName" id={`${prefix}-mname`} placeholder="الاسم الأوسط (اختياري)" maxLength="50" />
+        </div>
+        <div className="space-y-2">
+          <label className="font-label-md text-on-surface" htmlFor={`${prefix}-lname`}>الاسم الأخير *</label>
+          <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="lastName" id={`${prefix}-lname`} placeholder="الاسم الأخير" minLength="2" maxLength="50" required />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <label className="font-label-md text-on-surface" htmlFor={`${prefix}-email`}>البريد الإلكتروني *</label>
+          <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="email" name="email" id={`${prefix}-email`} placeholder="example@email.com" required />
+        </div>
+        <div className="space-y-2">
+          <label className="font-label-md text-on-surface" htmlFor={`${prefix}-phone`}>رقم الهاتف *</label>
+          <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" name="phone" id={`${prefix}-phone`} placeholder="+20 123 456 7890" pattern="[\+0][0-9\s\-]{7,15}" required />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <label className="font-label-md text-on-surface" htmlFor={`${prefix}-address`}>العنوان التفصيلي *</label>
+          <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="address" id={`${prefix}-address`} placeholder="الشارع، المنطقة، المدينة" minLength="5" maxLength="200" required />
+        </div>
+        <div className="space-y-2">
+          <label className="font-label-md text-on-surface" htmlFor={`${prefix}-country`}>الدولة *</label>
+          <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="country" id={`${prefix}-country`} required>
+            <option value="">اختر الدولة</option>
+            {COUNTRIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
+          </select>
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <PhotoUpload name="photo" label="الصورة الشخصية" onPhotoChange={() => {}} />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <label className="font-label-md text-on-surface" htmlFor={`${prefix}-qualification`}>المؤهل الدراسي *</label>
+          <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="qualification" id={`${prefix}-qualification`} required>
+            <option value="">اختر المؤهل</option>
+            {QUALIFICATIONS.map(q => <option key={q.value} value={q.value}>{q.label}</option>)}
+          </select>
+        </div>
+        <div className="space-y-2">
+          <label className="font-label-md text-on-surface" htmlFor={`${prefix}-gradYear`}>سنة التخرج *</label>
+          <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="graduationYear" id={`${prefix}-gradYear`} required>
+            <option value="">اختر السنة</option>
+            {GRADUATION_YEARS.map(y => <option key={y.value} value={y.value}>{y.label}</option>)}
+          </select>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <label className="font-label-md text-on-surface" htmlFor={`${prefix}-university`}>الجامعة *</label>
+          <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="university" id={`${prefix}-university`} placeholder="اسم الجامعة" minLength="3" maxLength="150" required />
+        </div>
+        <div className="space-y-2">
+          <label className="font-label-md text-on-surface" htmlFor={`${prefix}-major`}>التخصص الجامعي *</label>
+          <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="major" id={`${prefix}-major`} placeholder="التخصص الجامعي" minLength="3" maxLength="150" required />
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <label className="font-label-md text-on-surface">اللغات *</label>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-bg-off-white rounded-xl p-4 space-y-2">
+            <span className="font-label-sm text-on-surface-variant">العربية</span>
+            <select className="w-full bg-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg px-3 py-2 transition-all text-sm" name="lang_arabic" required>
+              {LANG_LEVELS.map(l => <option key={l.value} value={l.value}>{l.label}</option>)}
+            </select>
+          </div>
+          <div className="bg-bg-off-white rounded-xl p-4 space-y-2">
+            <span className="font-label-sm text-on-surface-variant">الإنجليزية</span>
+            <select className="w-full bg-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg px-3 py-2 transition-all text-sm" name="lang_english" required>
+              {LANG_LEVELS.map(l => <option key={l.value} value={l.value}>{l.label}</option>)}
+            </select>
+          </div>
+          <div className="bg-bg-off-white rounded-xl p-4 space-y-2">
+            <span className="font-label-sm text-on-surface-variant">الفرنسية</span>
+            <select className="w-full bg-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg px-3 py-2 transition-all text-sm" name="lang_french" required>
+              {LANG_LEVELS.map(l => <option key={l.value} value={l.value}>{l.label}</option>)}
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <label className="font-label-md text-on-surface" htmlFor={`${prefix}-skills`}>المهارات والهوايات *</label>
+        <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="skills" id={`${prefix}-skills`} rows="3" placeholder="اذكر مهاراتك وهواياتك (مثال: البرمجة، التصميم، كرة القدم...)" minLength="5" maxLength="1000" required></textarea>
+      </div>
+    </>
+  );
+}
 
 export default function JoinPage() {
   const [activeTab, setActiveTab] = useState('trainer');
@@ -17,19 +215,31 @@ export default function JoinPage() {
     const formData = new FormData(e.target);
     const data = {
       formType,
-      name: formData.get('name'),
+      firstName: formData.get('firstName'),
+      middleName: formData.get('middleName') || '',
+      lastName: formData.get('lastName'),
       email: formData.get('email'),
       phone: formData.get('phone'),
+      address: formData.get('address'),
       country: formData.get('country'),
-      specialty: formData.get('specialty'),
-      experience: formData.get('experience'),
-      portfolio: formData.get('portfolio'),
-      bio: formData.get('bio'),
-      onlineWork: formData.get('onlineWork'),
-      studentInteraction: formData.get('studentInteraction'),
-      gulfExperience: formData.get('gulfExperience'),
-      certificate: formData.get('certificate'),
-      department: formData.get('department'),
+      qualification: formData.get('qualification'),
+      graduationYear: formData.get('graduationYear'),
+      university: formData.get('university'),
+      major: formData.get('major'),
+      langArabic: formData.get('lang_arabic'),
+      langEnglish: formData.get('lang_english'),
+      langFrench: formData.get('lang_french'),
+      skills: formData.get('skills'),
+      photo: formData.get('photo')?.name || null,
+      specialty: formData.get('specialty') || null,
+      experience: formData.get('experience') || null,
+      department: formData.get('department') || null,
+      portfolio: formData.get('portfolio') || null,
+      bio: formData.get('bio') || '',
+      onlineWork: formData.get('onlineWork') || null,
+      studentInteraction: formData.get('studentInteraction') || null,
+      gulfExperience: formData.get('gulfExperience') || null,
+      certificate: formData.get('certificate') || null,
     };
 
     try {
@@ -126,7 +336,7 @@ export default function JoinPage() {
             <p className="text-on-surface-variant">اختر الفئة التي تناسب خبراتك واملأ النموذج</p>
           </div>
 
-          <div className="flex justify-center gap-4 mb-12">
+          <div className="flex justify-center gap-4 mb-12 flex-wrap">
             <button
               className={`px-8 py-3 rounded-full font-label-md transition-all duration-300 ${activeTab === 'trainer' ? 'bg-primary text-on-primary shadow-lg scale-105' : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high'}`}
               onClick={() => setActiveTab('trainer')}
@@ -161,62 +371,43 @@ export default function JoinPage() {
                   </div>
                 )}
               <form className="space-y-6" onSubmit={(e) => handleSubmit(e, 'trainer')}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="trainer-name">الاسم الكامل *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="name" id="trainer-name" placeholder="أدخل اسمك الثلاثي" minLength="5" maxLength="100" required />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="trainer-email">البريد الإلكتروني *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="email" name="email" id="trainer-email" placeholder="example@techmakers.com" required />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="trainer-phone">رقم الهاتف *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" name="phone" id="trainer-phone" placeholder="+20 123 456 7890" pattern="[\+0][0-9\s\-]{7,15}" required />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="trainer-country">الدولة *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="country" id="trainer-country" required>
-                      <option value="">اختر الدولة</option>
-                      <option value="egypt">مصر</option>
-                      <option value="jordan">الأردن</option>
-                      <option value="saudi">السعودية</option>
-                      <option value="kuwait">الكويت</option>
-                      <option value="uae">الإمارات</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="trainer-specialty">التخصص *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="specialty" id="trainer-specialty" required>
-                      <option value="">اختر التخصص</option>
-                      <option value="programming">برمجة (Python / Scratch)</option>
-                      <option value="web">تطوير الويب</option>
-                      <option value="ai">ذكاء اصطناعي</option>
-                      <option value="mobile">تطوير تطبيقات الموبايل</option>
-                      <option value="iot">إنترنت الأشياء (IoT)</option>
-                      <option value="data">تحليل البيانات</option>
-                      <option value="other">أخرى</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="trainer-experience">سنوات الخبرة *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="experience" id="trainer-experience" required>
-                      <option value="">اختر مستوى الخبرة</option>
-                      <option value="0-1">أقل من سنة</option>
-                      <option value="1-3">1-3 سنوات</option>
-                      <option value="3-5">3-5 سنوات</option>
-                      <option value="5+">أكثر من 5 سنوات</option>
-                    </select>
-                  </div>
-                </div>
+                <SharedFields prefix="trainer" />
+
                 <div className="space-y-2">
-                  <label className="font-label-md text-on-surface" htmlFor="trainer-portfolio">رابط ملف الأعمال (Portfolio) / LinkedIn</label>
+                  <label className="font-label-md text-on-surface" htmlFor="trainer-specialty">التخصص المطلوب *</label>
+                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="specialty" id="trainer-specialty" required>
+                    <option value="">اختر التخصص</option>
+                    <option value="programming">برمجة (Python / Scratch)</option>
+                    <option value="web">تطوير الويب</option>
+                    <option value="ai">ذكاء اصطناعي</option>
+                    <option value="mobile">تطوير تطبيقات الموبايل</option>
+                    <option value="iot">إنترنت الأشياء (IoT)</option>
+                    <option value="data">تحليل البيانات</option>
+                    <option value="other">أخرى</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="font-label-md text-on-surface" htmlFor="trainer-experience">سنوات الخبرة *</label>
+                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="experience" id="trainer-experience" required>
+                    <option value="">اختر مستوى الخبرة</option>
+                    <option value="0-1">أقل من سنة</option>
+                    <option value="1-3">1-3 سنوات</option>
+                    <option value="3-5">3-5 سنوات</option>
+                    <option value="5+">أكثر من 5 سنوات</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="font-label-md text-on-surface" htmlFor="trainer-portfolio">رابط LinkedIn / ملف الأعمال</label>
                   <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="url" name="portfolio" id="trainer-portfolio" placeholder="https://linkedin.com/in/username" />
                 </div>
+
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="trainer-bio">نبذة عنك *</label>
-                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="bio" id="trainer-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." required></textarea>
+                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="bio" id="trainer-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." minLength="10" maxLength="2000" required></textarea>
                 </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="trainer-online">هل تجيد العمل أونلاين؟ *</label>
@@ -237,6 +428,7 @@ export default function JoinPage() {
                     </select>
                   </div>
                 </div>
+
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="trainer-gulf">هل لديك خبرات سابقة مع التعامل مع طلاب وأطفال بالخليج العربي؟ *</label>
                   <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="gulfExperience" id="trainer-gulf" required>
@@ -246,6 +438,7 @@ export default function JoinPage() {
                     <option value="some">لدي بعض الخبرة في التعامل مع أطفال الخليج</option>
                   </select>
                 </div>
+
                 <div className="pt-6">
                   <button type="submit" disabled={submitting} className="w-full bg-primary text-on-primary py-4 rounded-full font-headline-lg hover:shadow-lg active:scale-95 transition-all disabled:opacity-50">
                     {submitting ? 'جاري الإرسال...' : 'إرسال الطلب'}
@@ -269,59 +462,45 @@ export default function JoinPage() {
                 </div>
               )}
               <form className="space-y-6" onSubmit={(e) => handleSubmit(e, 'specialist')}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="spec-name">الاسم الكامل *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="name" id="spec-name" placeholder="أدخل اسمك الثلاثي" minLength="5" maxLength="100" required />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="spec-email">البريد الإلكتروني *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="email" name="email" id="spec-email" placeholder="example@techmakers.com" required />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="spec-phone">رقم الهاتف *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" name="phone" id="spec-phone" placeholder="+20 123 456 7890" pattern="[\+0][0-9\s\-]{7,15}" required />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="spec-country">الدولة *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="country" id="spec-country" required>
-                      <option value="">اختر الدولة</option>
-                      <option value="egypt">مصر</option>
-                      <option value="jordan">الأردن</option>
-                      <option value="saudi">السعودية</option>
-                      <option value="kuwait">الكويت</option>
-                      <option value="uae">الإمارات</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="spec-type">نوع التخصص *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="specialty" id="spec-type" required>
-                      <option value="">اختر نوع التخصص</option>
-                      <option value="behavioral">إخصائي سلوكي</option>
-                      <option value="educational">إخصائي إرشادي</option>
-                      <option value="counselor">مرشد نفسي</option>
-                      <option value="other">أخرى</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="spec-experience">سنوات الخبرة *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="experience" id="spec-experience" required>
-                      <option value="">اختر مستوى الخبرة</option>
-                      <option value="0-1">أقل من سنة</option>
-                      <option value="1-3">1-3 سنوات</option>
-                      <option value="3-5">3-5 سنوات</option>
-                      <option value="5+">أكثر من 5 سنوات</option>
-                    </select>
-                  </div>
+                <SharedFields prefix="spec" />
+
+                <div className="space-y-2">
+                  <label className="font-label-md text-on-surface" htmlFor="spec-type">نوع التخصص *</label>
+                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="specialty" id="spec-type" required>
+                    <option value="">اختر نوع التخصص</option>
+                    <option value="behavioral">إخصائي سلوكي</option>
+                    <option value="educational">إخصائي إرشادي</option>
+                    <option value="counselor">مرشد نفسي</option>
+                    <option value="other">أخرى</option>
+                  </select>
                 </div>
+
+                <div className="space-y-2">
+                  <label className="font-label-md text-on-surface" htmlFor="spec-experience">سنوات الخبرة *</label>
+                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="experience" id="spec-experience" required>
+                    <option value="">اختر مستوى الخبرة</option>
+                    <option value="0-1">أقل من سنة</option>
+                    <option value="1-3">1-3 سنوات</option>
+                    <option value="3-5">3-5 سنوات</option>
+                    <option value="5+">أكثر من 5 سنوات</option>
+                  </select>
+                </div>
+
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="spec-certificate">الشهادات المهنية</label>
-                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="certificate" id="spec-certificate" rows="3" placeholder="اذكر الشهادات المهنية التي تمتلكها"></textarea>
+                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="certificate" id="spec-certificate" rows="3" placeholder="اذكر الشهادات المهنية التي تمتلكها" maxLength="1000"></textarea>
                 </div>
+
+                <div className="space-y-2">
+                  <label className="font-label-md text-on-surface" htmlFor="spec-portfolio">رابط LinkedIn / ملف الأعمال</label>
+                  <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="url" name="portfolio" id="spec-portfolio" placeholder="https://linkedin.com/in/username" />
+                </div>
+
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="spec-bio">نبذة عنك *</label>
-                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="bio" id="spec-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." required></textarea>
+                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="bio" id="spec-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." minLength="10" maxLength="2000" required></textarea>
                 </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="spec-online">هل تجيد العمل أونلاين؟ *</label>
@@ -342,6 +521,7 @@ export default function JoinPage() {
                     </select>
                   </div>
                 </div>
+
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="spec-gulf">هل لديك خبرات سابقة مع التعامل مع طلاب وأطفال بالخليج العربي؟ *</label>
                   <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="gulfExperience" id="spec-gulf" required>
@@ -351,6 +531,7 @@ export default function JoinPage() {
                     <option value="some">لدي بعض الخبرة في التعامل مع أطفال الخليج</option>
                   </select>
                 </div>
+
                 <div className="pt-6">
                   <button type="submit" disabled={submitting} className="w-full bg-primary text-on-primary py-4 rounded-full font-headline-lg hover:shadow-lg active:scale-95 transition-all disabled:opacity-50">
                     {submitting ? 'جاري الإرسال...' : 'إرسال الطلب'}
@@ -373,61 +554,42 @@ export default function JoinPage() {
                 </div>
               )}
               <form className="space-y-6" onSubmit={(e) => handleSubmit(e, 'admin')}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="admin-name">الاسم الكامل *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="name" id="admin-name" placeholder="أدخل اسمك الثلاثي" minLength="5" maxLength="100" required />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="admin-email">البريد الإلكتروني *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="email" name="email" id="admin-email" placeholder="example@techmakers.com" required />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="admin-phone">رقم الهاتف *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" name="phone" id="admin-phone" placeholder="+20 123 456 7890" pattern="[\+0][0-9\s\-]{7,15}" required />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="admin-country">الدولة *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="country" id="admin-country" required>
-                      <option value="">اختر الدولة</option>
-                      <option value="egypt">مصر</option>
-                      <option value="jordan">الأردن</option>
-                      <option value="saudi">السعودية</option>
-                      <option value="kuwait">الكويت</option>
-                      <option value="uae">الإمارات</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="admin-dept">القسم *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="department" id="admin-dept" required>
-                      <option value="">اختر القسم</option>
-                      <option value="hr">الموارد البشرية</option>
-                      <option value="marketing">التسويق والمبيعات</option>
-                      <option value="support">خدمة العملاء</option>
-                      <option value="finance">المالية</option>
-                      <option value="tech">الدعم الفني</option>
-                      <option value="other">أخرى</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="font-label-md text-on-surface" htmlFor="admin-experience">سنوات الخبرة *</label>
-                    <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="experience" id="admin-experience" required>
-                      <option value="">اختر مستوى الخبرة</option>
-                      <option value="0-1">أقل من سنة</option>
-                      <option value="1-3">1-3 سنوات</option>
-                      <option value="3-5">3-5 سنوات</option>
-                      <option value="5+">أكثر من 5 سنوات</option>
-                    </select>
-                  </div>
-                </div>
+                <SharedFields prefix="admin" />
+
                 <div className="space-y-2">
-                  <label className="font-label-md text-on-surface" htmlFor="admin-portfolio">LinkedIn</label>
+                  <label className="font-label-md text-on-surface" htmlFor="admin-dept">القسم *</label>
+                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="department" id="admin-dept" required>
+                    <option value="">اختر القسم</option>
+                    <option value="hr">الموارد البشرية</option>
+                    <option value="marketing">التسويق والمبيعات</option>
+                    <option value="support">خدمة العملاء</option>
+                    <option value="finance">المالية</option>
+                    <option value="tech">الدعم الفني</option>
+                    <option value="other">أخرى</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="font-label-md text-on-surface" htmlFor="admin-experience">سنوات الخبرة *</label>
+                  <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="experience" id="admin-experience" required>
+                    <option value="">اختر مستوى الخبرة</option>
+                    <option value="0-1">أقل من سنة</option>
+                    <option value="1-3">1-3 سنوات</option>
+                    <option value="3-5">3-5 سنوات</option>
+                    <option value="5+">أكثر من 5 سنوات</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="font-label-md text-on-surface" htmlFor="admin-portfolio">رابط LinkedIn / ملف الأعمال</label>
                   <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="url" name="portfolio" id="admin-portfolio" placeholder="https://linkedin.com/in/username" />
                 </div>
+
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="admin-bio">نبذة عنك *</label>
-                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="bio" id="admin-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." required></textarea>
+                  <textarea className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="bio" id="admin-bio" rows="4" placeholder="تحدث بإيجاز عن خبراتك وأبرز إنجازاتك..." minLength="10" maxLength="2000" required></textarea>
                 </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="admin-online">هل تجيد العمل أونلاين؟ *</label>
@@ -448,6 +610,7 @@ export default function JoinPage() {
                     </select>
                   </div>
                 </div>
+
                 <div className="space-y-2">
                   <label className="font-label-md text-on-surface" htmlFor="admin-gulf">هل لديك خبرات سابقة مع التعامل مع طلاب وأطفال بالخليج العربي؟ *</label>
                   <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="gulfExperience" id="admin-gulf" required>
@@ -457,6 +620,7 @@ export default function JoinPage() {
                     <option value="some">لدي بعض الخبرة في التعامل مع أطفال الخليج</option>
                   </select>
                 </div>
+
                 <div className="pt-6">
                   <button type="submit" disabled={submitting} className="w-full bg-primary text-on-primary py-4 rounded-full font-headline-lg hover:shadow-lg active:scale-95 transition-all disabled:opacity-50">
                     {submitting ? 'جاري الإرسال...' : 'إرسال الطلب'}
