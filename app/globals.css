@@ -387,3 +387,41 @@
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Mobile optimizations */
+@media (max-width: 767px) {
+  /* Larger touch targets */
+  button, a, [role="button"] {
+    min-height: 44px;
+  }
+
+  /* Better form inputs on mobile */
+  input, select, textarea {
+    font-size: 16px !important; /* Prevent iOS zoom */
+    min-height: 48px;
+  }
+
+  /* Reduce section padding on mobile */
+  .section-padding {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  /* Better card spacing */
+  .card-shadow {
+    box-shadow: 0 4px 16px rgba(65, 105, 225, 0.08);
+  }
+
+  /* Smoother scrolling */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Better tap highlight */
+  a, button {
+    -webkit-tap-highlight-color: rgba(65, 105, 225, 0.1);
+  }
+}

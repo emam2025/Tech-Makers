@@ -190,13 +190,13 @@ export default function RegisterPage() {
   }
 
   return (
-    <section className="relative py-12 px-margin-mobile md:px-margin-desktop flex flex-col items-center min-h-screen bg-bg-off-white" dir="rtl">
+    <section className="relative py-8 md:py-12 px-margin-mobile md:px-margin-desktop flex flex-col items-center min-h-screen bg-bg-off-white" dir="rtl">
       <div className="w-full max-w-2xl mx-auto">
 
         {/* Registration Form Card */}
           <div className="drop-shadow-xl">
           <div className="glow-border" style={{padding:3}}>
-            <section className="w-full bg-white rounded-20 p-8 md:p-12 relative transition-all duration-500">
+            <section className="w-full bg-white rounded-20 p-6 md:p-12 relative transition-all duration-500">
               {/* Form Header */}
           <div className="mb-10 text-right">
             <span className="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-high text-primary-light font-label-md text-label-sm mb-3">

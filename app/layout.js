@@ -25,8 +25,8 @@ export default function RootLayout({ children }) {
 
         <main id="main-content">{children}</main>
 
-        <footer className="bg-on-background text-surface-bright py-16 px-margin-mobile md:px-margin-desktop w-full rtl">
-          <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+        <footer className="bg-on-background text-surface-bright py-12 md:py-16 px-margin-mobile md:px-margin-desktop w-full rtl">
+          <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-start gap-8 md:gap-12">
             <div className="max-w-sm">
               <div className="font-headline-lg text-headline-lg text-primary-fixed mb-6">تك ميكرز مصر</div>
               <p className="text-surface-variant/70 font-body-md text-body-md mb-6">

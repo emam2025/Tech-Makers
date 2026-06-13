@@ -18,13 +18,13 @@ export default function JoinPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-bg-off-white">
+      <section className="py-16 md:py-24 bg-bg-off-white">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 md:mb-16">
             <h2 className="font-headline-xl text-headline-xl text-primary mb-4">لماذا تنضم إلينا؟</h2>
             <div className="h-1.5 w-24 bg-secondary-container mx-auto rounded-full"></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-gutter">
             <div className="bg-white p-8 rounded-xl shadow-card border border-primary-light/10 hover:-translate-y-2 transition-transform duration-300">
               <div className="w-16 h-16 bg-surface-container-high rounded-full flex items-center justify-center mb-6">
                 <span className="material-symbols-outlined text-primary text-3xl">schedule</span>
@@ -295,13 +295,13 @@ export default function JoinPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-bg-off-white">
+      <section className="py-16 md:py-24 bg-bg-off-white">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 md:mb-16">
             <h2 className="font-headline-xl text-headline-xl text-primary">تواصل مباشر</h2>
             <p className="text-on-surface-variant mt-2">نحن هنا للإجابة على استفساراتك حول الانضمام</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
             <a className="flex flex-col items-center text-center p-10 bg-white rounded-3xl shadow-sm hover:shadow-md transition-shadow group" href="mailto:info@tka-egypt.com">
               <div className="w-20 h-20 bg-primary/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors">
                 <span className="material-symbols-outlined text-primary text-4xl">mail</span>

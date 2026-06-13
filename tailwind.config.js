@@ -92,8 +92,8 @@ module.exports = {
       },
       spacing: {
         "margin-desktop": "80px",
-        "margin-mobile": "20px",
-        gutter: "24px",
+        "margin-mobile": "16px",
+        gutter: "16px",
         '280': '280px',
         '400': '400px',
         '618': '618px',

@@ -5,8 +5,8 @@ import HeroWithHalo from '../components/HeroWithHalo';
 export default function HomePage() {
   return (
     <>
-      <section role="banner" aria-label="Hero" className="relative py-16 md:py-24 px-margin-mobile md:px-margin-desktop hero-gradient overflow-hidden">
-        <div className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
+      <section role="banner" aria-label="Hero" className="relative py-12 md:py-24 px-margin-mobile md:px-margin-desktop hero-gradient overflow-hidden">
+        <div className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 relative z-10">
           {/* Logo */}
           <div className="col-span-1 md:col-span-2 inline-flex items-center gap-2 px-4 py-1.5 bg-primary/5 border border-primary/10 rounded-full w-fit">
             <span className="text-lg">🌟</span>
@@ -129,7 +129,7 @@ export default function HomePage() {
             <p className="text-on-surface-variant font-body-lg text-body-lg">نتائج ملموسة تؤثر بشكل إيجابي على مستقبل طفلك الأكاديمي والمهني</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             <div className="bg-white p-6 rounded-xl card-shadow text-center reveal reveal-delay-1">
               <div className="w-14 h-14 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
                 <span className="text-2xl">💻</span>
@@ -212,7 +212,7 @@ export default function HomePage() {
             <p className="text-on-surface-variant font-body-lg text-body-lg">علشان كل طالب يتعلم بالطريقة المناسبة لسنه ومستواه — فرق كبير في طريقة التفكير، سرعة التعلم، والقدرة على الاستيعاب التقني</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <div className="relative bg-white rounded-24 overflow-hidden card-shadow group">
               <div className="h-3 bg-secondary"></div>
               <div className="p-8">
@@ -281,7 +281,7 @@ export default function HomePage() {
             <div className="h-1.5 w-24 bg-secondary-container mx-auto rounded-full mt-4"></div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
             {[
               { name: 'Tala Nasser Abdelfatah', cert: '400179 AU', img: '1.jpeg' },
               { name: 'Ahmed Mohamed Fouad', cert: '400122 AU', img: '2.jpeg' },
@@ -341,7 +341,7 @@ export default function HomePage() {
             <p className="text-on-surface-variant font-body-lg text-body-lg">مش بس منهج تقني — بنهتم بالشخصية والمهارات الداعمة كاملة</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/20 hover:border-primary transition-colors group">
               <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
                 <span className="text-2xl">🧠</span>
@@ -388,7 +388,7 @@ export default function HomePage() {
             <p className="text-on-surface-variant font-body-lg text-body-lg">تقدر تختار نظام الاشتراك الأنسب لك من بين الخطط التالية:</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
             <div className="bg-white p-8 rounded-32 card-shadow flex flex-col items-center">
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-2xl">✅</span>
@@ -524,7 +524,7 @@ export default function HomePage() {
       </section>
 
       <section className="section-padding">
-        <div className="container-inner bg-gradient-to-br from-primary-deep to-primary-container rounded-40 p-12 md:p-24 text-center text-white relative overflow-hidden">
+        <div className="container-inner bg-gradient-to-br from-primary-deep to-primary-container rounded-3xl md:rounded-40 p-8 md:p-12 lg:p-24 text-center text-white relative overflow-hidden">
           <div className="relative z-10">
             <span className="font-label-md text-label-md text-primary-fixed-dim mb-4 block">مستقبل ابنك يبدأ من هنا</span>
             <h2 className="font-headline-xl text-headline-xl text-display-lg-mobile md:text-display-lg mb-6">🚀 سجّل اهتمامك في Tech Makers Egypt</h2>
