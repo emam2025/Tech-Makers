@@ -278,12 +278,12 @@ export default function RegisterPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
               <div className="space-y-2">
                 <label className="block font-label-md text-label-md text-on-surface-variant">رقم تليفون ولي الأمر *</label>
-                <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="010xxxxxxxx" required className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary rtl-input shadow-inner" />
+                <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="010xxxxxxxx" required minLength="10" maxLength="15" pattern="[\+0][0-9\s\-]{7,15}" className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary rtl-input shadow-inner" />
                 {errors.phone && <span className="font-label-sm text-label-sm text-error">{errors.phone}</span>}
               </div>
               <div className="space-y-2">
                 <label className="block font-label-md text-label-md text-on-surface-variant">رقم واتساب للمتابعة *</label>
-                <input type="tel" value={whatsapp} onChange={e => setWhatsapp(e.target.value)} placeholder="010xxxxxxxx" required className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary rtl-input shadow-inner" />
+                <input type="tel" value={whatsapp} onChange={e => setWhatsapp(e.target.value)} placeholder="010xxxxxxxx" required minLength="10" maxLength="15" pattern="[\+0][0-9\s\-]{7,15}" className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary rtl-input shadow-inner" />
                 {errors.whatsapp && <span className="font-label-sm text-label-sm text-error">{errors.whatsapp}</span>}
               </div>
             </div>

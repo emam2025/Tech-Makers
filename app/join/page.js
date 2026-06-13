@@ -164,7 +164,7 @@ export default function JoinPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="trainer-name">الاسم الكامل *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="name" id="trainer-name" placeholder="أدخل اسمك الثلاثي" required />
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="name" id="trainer-name" placeholder="أدخل اسمك الثلاثي" minLength="5" maxLength="100" required />
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="trainer-email">البريد الإلكتروني *</label>
@@ -172,7 +172,7 @@ export default function JoinPage() {
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="trainer-phone">رقم الهاتف *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" name="phone" id="trainer-phone" placeholder="+20 123 456 7890" required />
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" name="phone" id="trainer-phone" placeholder="+20 123 456 7890" pattern="[\+0][0-9\s\-]{7,15}" required />
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="trainer-country">الدولة *</label>
@@ -272,7 +272,7 @@ export default function JoinPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="spec-name">الاسم الكامل *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="name" id="spec-name" placeholder="أدخل اسمك الثلاثي" required />
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="name" id="spec-name" placeholder="أدخل اسمك الثلاثي" minLength="5" maxLength="100" required />
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="spec-email">البريد الإلكتروني *</label>
@@ -280,7 +280,7 @@ export default function JoinPage() {
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="spec-phone">رقم الهاتف *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" name="phone" id="spec-phone" placeholder="+20 123 456 7890" required />
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" name="phone" id="spec-phone" placeholder="+20 123 456 7890" pattern="[\+0][0-9\s\-]{7,15}" required />
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="spec-country">الدولة *</label>
@@ -376,7 +376,7 @@ export default function JoinPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="admin-name">الاسم الكامل *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="name" id="admin-name" placeholder="أدخل اسمك الثلاثي" required />
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="text" name="name" id="admin-name" placeholder="أدخل اسمك الثلاثي" minLength="5" maxLength="100" required />
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="admin-email">البريد الإلكتروني *</label>
@@ -384,7 +384,7 @@ export default function JoinPage() {
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="admin-phone">رقم الهاتف *</label>
-                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" name="phone" id="admin-phone" placeholder="+20 123 456 7890" required />
+                    <input className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" type="tel" name="phone" id="admin-phone" placeholder="+20 123 456 7890" pattern="[\+0][0-9\s\-]{7,15}" required />
                   </div>
                   <div className="space-y-2">
                     <label className="font-label-md text-on-surface" htmlFor="admin-country">الدولة *</label>
