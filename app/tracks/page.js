@@ -421,8 +421,8 @@ export default function TracksPage() {
               </div>
 
               <div className="mt-10 md:mt-12 bg-surface-container-low border border-outline-variant/20 rounded-24 p-5 md:p-6 text-center">
-                <p className="text-on-surface-variant font-body-sm md:text-body-md">
-                  Tech Makers هو برنامج مدعوم جزئيًا من <strong className="text-primary">TKA-Egypt</strong>
+                  <p className="text-on-surface-variant font-body-sm md:text-body-md">
+                  تك ميكرز - مصر : هو برنامج مدعوم جزئيًا من <strong className="text-primary">TKA-Egypt</strong>
                   ويأتي ضمن رؤيتنا لدعم بناء جيل يمتلك مهارات المستقبل والمساهمة في التحول الرقمي وتنمية رأس المال البشري.
                 </p>
               </div>
