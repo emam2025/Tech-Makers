@@ -732,7 +732,7 @@ export default function TracksPage() {
               </div>
               <div className="flex items-center justify-center gap-2">
                 <span className="material-symbols-outlined text-secondary">payments</span>
-                <span className="text-on-surface-variant">{selectedPlan?.name} — {selectedPlan?.price} {selectedPlan?.unit.split(' ')[0]}</span>
+                <span className="text-on-surface-variant">{selectedPlan?.name} — {selectedPlan?.price} {selectedPlan?.unit}</span>
               </div>
             </div>
             <p className="text-on-surface-variant font-body-md mb-8 text-sm">هل تريد المتابعة؟</p>
