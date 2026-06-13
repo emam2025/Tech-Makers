@@ -1,23 +1,22 @@
 "use client"
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import Image from 'next/image'
 
 export default function HeroWithHalo() {
-  const [seed, setSeed] = useState(12345)
-  useEffect(() => setSeed(Math.floor(Math.random() * 90000) + 1000), [])
-
   return (
     <div className="halo-wrapper reveal mx-auto md:col-start-2 md:row-span-3">
-      <svg className="halo-svg-inner" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <defs>
-          <filter id={`turb-${seed}`} x="-20%" y="-20%" width="140%" height="140%">
-            <feTurbulence baseFrequency="0.009" numOctaves="3" seed={seed} result="turb" />
-            <feDisplacementMap in="SourceGraphic" in2="turb" scale="26" xChannelSelector="R" yChannelSelector="G" />
-          </filter>
-        </defs>
-        <circle cx="150" cy="150" r="150" fill="#FFDD57" filter={`url(#turb-${seed})`} />
-      </svg>
+      <div className="halo-svg-inner" style={{ background: 'radial-gradient(circle, #FFDD57 0%, #FFE680 40%, transparent 70%)' }} aria-hidden="true" />
 
-      <img src="/tech-1.png" alt="طفل يتعلم البرمجة" loading="lazy" className="halo-image-inner hero-img" />
+      <div className="halo-image-inner hero-img">
+        <Image
+          src="/tech-1.png"
+          alt="طفل يتعلم البرمجة"
+          fill
+          sizes="(max-width: 480px) 192px, (max-width: 768px) 256px, 384px"
+          priority
+          style={{ objectFit: 'cover' }}
+        />
+      </div>
 
       <div className="orbit-inner" aria-hidden="true">
         <div className="orb spin" style={{ ['--r']: '140px', ['--size']: '40px', ['--d']: '10s' }}>

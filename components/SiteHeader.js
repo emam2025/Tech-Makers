@@ -10,7 +10,9 @@ export default function SiteHeader() {
     <>
       <header className="bg-surface/95 border-b border-outline-variant/30 shadow-sm sticky top-0 z-40 w-full">
         <div className="flex items-center justify-between px-margin-mobile md:px-margin-desktop py-4 w-full max-w-container-max mx-auto">
-          <Link href="/" className="font-headline-lg text-headline-lg font-bold text-primary">تك ميكرز</Link>
+          <Link href="/" className="flex items-center gap-2">
+            <img src="/logo.png" alt="تك ميكرز" className="h-10 w-auto" />
+          </Link>
           <button className="md:hidden text-primary p-3 hover:bg-primary/10 rounded-xl min-w-[44px] min-h-[44px] flex items-center justify-center" onClick={() => setOpen(true)} aria-label="القائمة">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -23,9 +25,6 @@ export default function SiteHeader() {
             <Link href="/certificate" className="text-on-surface-variant font-medium hover:text-primary-light transition-all duration-300">الشهادات</Link>
             <Link href="/join" className="text-on-surface-variant font-medium hover:text-primary-light transition-all duration-300">انضم إلينا</Link>
           </nav>
-          <Link href="/join" className="hidden md:inline-flex bg-primary-container text-on-primary-container px-6 py-2 rounded-full hover:opacity-90 transition-opacity">
-            تسجيل
-          </Link>
         </div>
       </header>
 
