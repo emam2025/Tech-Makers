@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { registerStudent } from '@/lib/supabase';
 
 const GRADES = [
   { v: 2, l: 'الصف الثاني الابتدائي' },
@@ -131,13 +130,18 @@ export default function RegisterPage() {
     const data = { name, birth_date: birthDate, email, phone, whatsapp, grade, country, governorate, city, track, plan };
 
     try {
-      const result = await registerStudent(data);
-      if (result.success) {
+      const res = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      if (json.success) {
         setDone(true);
       } else {
         const errs = {};
-        if (result.field) errs[result.field] = result.error;
-        else errs._form = result.error || 'حدث خطأ';
+        if (json.field) errs[json.field] = json.error;
+        else errs._form = json.error || 'حدث خطأ';
         setErrors(errs);
       }
     } catch {
