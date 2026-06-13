@@ -302,12 +302,12 @@ export default function JoinPage() {
             <p className="text-on-surface-variant mt-2">نحن هنا للإجابة على استفساراتك حول الانضمام</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <a className="flex flex-col items-center text-center p-10 bg-white rounded-3xl shadow-sm hover:shadow-md transition-shadow group" href="mailto:careers@techmakers.com">
+            <a className="flex flex-col items-center text-center p-10 bg-white rounded-3xl shadow-sm hover:shadow-md transition-shadow group" href="mailto:info@tka-egypt.com">
               <div className="w-20 h-20 bg-primary/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors">
                 <span className="material-symbols-outlined text-primary text-4xl">mail</span>
               </div>
               <h4 className="font-headline-lg text-headline-lg mb-2">البريد الإلكتروني</h4>
-              <p className="text-on-surface-variant font-label-md">careers@techmakers.com</p>
+              <p className="text-on-surface-variant font-label-md">info@tka-egypt.com</p>
             </a>
             <a className="flex flex-col items-center text-center p-10 bg-white rounded-3xl shadow-sm hover:shadow-md transition-shadow group" href="https://wa.me/201062540164" target="_blank" rel="noopener noreferrer">
               <div className="w-20 h-20 bg-whatsapp/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-whatsapp/10 transition-colors">
