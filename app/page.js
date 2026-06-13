@@ -57,8 +57,8 @@ export default function HomePage() {
 
             {/* Detailed Description */}
             <div className="text-white/80 font-body-sm md:font-body-lg text-xs md:text-body-lg leading-relaxed md:leading-loose space-y-3 md:space-y-4">
-              <p>في عالم تتغير فيه التكنولوجيا بسرعة، أصبح امتلاك المهارات الرقمية ليس اختيارًا… بل ضرورة لصناعة المستقبل. Tech Makers هو برنامج تعليمي متكامل يهدف إلى إعداد جيل جديد من المبدعين والقادة التقنيين.</p>
-              <p className="font-bold text-white text-sm md:text-base">نؤمن أن التكنولوجيا لا يجب أن تكون مجرد أداة للاستهلاك، بل وسيلة للإبداع، الابتكار، وحل المشكلات.</p>
+              <p>تك ميكرز مصر برنامج تدريبي مصمم للأطفال والناشئين من 8 إلى 20 سنة، علشان يساعدهم يبدأوا رحلتهم في البرمجة والتكنولوجيا خطوة بخطوة، من الأساسيات وحتى بناء المشاريع والتخصصات المتقدمة مستقبلاً.</p>
+              <p className="font-bold text-white text-sm md:text-base">انطلاق الدفعة الخامسة لعام 2026بداية شهر يونيو. المؤهلة لأولمبيات البرمجة الدولية.</p>
               
               <div className="bg-white/10 backdrop-blur-sm p-4 md:p-6 rounded-20 border border-white/20">
                 <p className="font-bold mb-2 md:mb-3 text-white text-sm md:text-base">يركز البرنامج على:</p>
