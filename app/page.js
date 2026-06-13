@@ -383,63 +383,55 @@ export default function HomePage() {
 
       <section className="section-padding bg-surface-container-highest/20" id="plans">
         <div className="container-inner">
-          <div className="text-center mb-16">
-            <span className="font-label-md text-label-md text-primary uppercase tracking-wide mb-2 block">📌 خطط الاشتراك المتاحة</span>
-            <p className="text-on-surface-variant font-body-lg text-body-lg">تقدر تختار نظام الاشتراك الأنسب لك من بين الخطط التالية:</p>
-          </div>
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-32 card-shadow p-8 md:p-12 text-center border border-outline-variant/20">
+              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="material-symbols-outlined text-primary text-4xl">payments</span>
+              </div>
+              <h2 className="font-headline-xl text-headline-xl text-primary mb-4">خطط أسعار مرنة تناسب كل أسرة</h2>
+              <p className="text-on-surface-variant font-body-lg text-body-lg mb-8 max-w-2xl mx-auto">
+                نؤمن إن التعلم ملوش عوائق مالية — عشان كده عندنا خطط اشتراك مرنة تختار منها الأنسب لميزانيتك
+              </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
-            <div className="bg-white p-8 rounded-32 card-shadow flex flex-col items-center">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-2xl">✅</span>
-                <span className="font-label-md text-label-md text-on-surface-variant">اشتراك شهري</span>
+              <div className="bg-gradient-to-l from-primary/5 to-secondary/5 rounded-2xl p-6 md:p-8 mb-8 border border-primary/10">
+                <div className="flex items-center justify-center gap-3 mb-4">
+                  <span className="material-symbols-outlined text-primary text-3xl">volunteer_activism</span>
+                  <span className="font-headline-lg text-headline-lg text-primary">جزء من القيمة الفعلية</span>
+                </div>
+                <p className="text-on-surface-variant font-body-md text-body-md leading-relaxed">
+                  الاشتراك المدفوع هو <strong className="text-primary">جزء من القيمة الفعلية</strong> للبرنامج فقط — حيث إن برنامج Tech Makers Egypt <strong className="text-primary">ممول جزئياً من TKA-Egypt بأكثر من 40%</strong> من تكلفة البرنامج الفعلية. الحمد لله، ده بيمكننا من تقديم تعليم بجودة عالية وسعر في متناول كل أسرة مصرية.
+                </p>
               </div>
-              <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-4xl font-bold text-primary">1200</span>
-                <span className="text-on-surface-variant">جنيه</span>
-                <span className="text-on-surface-variant">/ شهر</span>
-              </div>
-              <span className="bg-green-100 text-green-700 px-4 py-1 rounded-full text-sm font-bold mb-6">مناسب للتجربة - البرايفت سيشن</span>
-              <Link href="/register?plan=monthly" className="w-full py-3 bg-surface-container-high text-primary font-bold rounded-2xl hover:bg-primary-container hover:text-white transition-colors text-center">اشترك الآن</Link>
-            </div>
 
-            <div className="bg-white p-8 rounded-32 card-shadow flex flex-col items-center border-2 border-secondary relative scale-105 z-10">
-              <div className="absolute -top-4 bg-secondary text-on-secondary px-6 py-1 rounded-full text-sm font-bold">⭐ الأكثر اختيارًا</div>
-              <div className="flex items-center gap-2 mb-4 mt-2">
-                <span className="text-2xl">✅</span>
-                <span className="font-label-md text-label-md text-on-surface-variant">اشتراك ربع سنوي</span>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                <div className="bg-surface-container-low rounded-2xl p-5">
+                  <span className="text-2xl mb-2 block">📅</span>
+                  <span className="font-label-md text-on-surface font-bold block mb-1">اشتراك شهري</span>
+                  <span className="text-on-surface-variant text-sm">مناسبة للتجربة</span>
+                </div>
+                <div className="bg-surface-container-low rounded-2xl p-5">
+                  <span className="text-2xl mb-2 block">📊</span>
+                  <span className="font-label-md text-on-surface font-bold block mb-1">اشتراك ربع سنوي</span>
+                  <span className="text-on-surface-variant text-sm">الأكثر اختياراً</span>
+                </div>
+                <div className="bg-surface-container-low rounded-2xl p-5">
+                  <span className="text-2xl mb-2 block">🏆</span>
+                  <span className="font-label-md text-on-surface font-bold block mb-1">اشتراك سنوي</span>
+                  <span className="text-on-surface-variant text-sm">الأوفر والأشمل</span>
+                </div>
               </div>
-              <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-5xl font-bold text-primary">890</span>
-                <span className="text-on-surface-variant">جنيه</span>
-                <span className="text-on-surface-variant">/ شهريًا</span>
-              </div>
-              <div className="text-sm text-on-surface-variant mb-6">اجمالي 2670 جنيه لكل 3 شهور <span className="text-green-600 font-bold">(ستوفر 930 جنيه)</span></div>
-              <Link href="/register?plan=quarterly" className="w-full py-4 bg-secondary text-on-secondary font-bold rounded-2xl shadow-lg shadow-secondary/20 hover:opacity-90 transition-opacity text-center">اشترك دلوقتي</Link>
-            </div>
 
-            <div className="bg-gradient-to-br from-primary-deep to-primary p-8 rounded-32 card-shadow flex flex-col items-center text-white">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-2xl">✅</span>
-                <span className="font-label-md text-label-md text-primary-fixed-dim">اشتراك سنوي</span>
-              </div>
-              <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-4xl font-bold text-secondary-container">690</span>
-                <span className="text-primary-fixed-dim">جنيه</span>
-                <span className="text-primary-fixed-dim">/ شهريًا</span>
-              </div>
-              <span className="bg-white/10 text-secondary-container px-4 py-1 rounded-full text-sm font-bold mb-2">🏆 الأوفر</span>
-              <div className="text-sm text-primary-fixed-dim mb-6">اجمالي 8280 جنيه سنويًا <span className="text-secondary-container font-bold">(ستوفر 6120 جنيه)</span></div>
-              <Link href="/register?plan=yearly" className="w-full py-3 bg-white text-primary font-bold rounded-2xl hover:bg-secondary-container transition-colors text-center">اشترك سنوي</Link>
-            </div>
-          </div>
+              <p className="text-on-surface-variant font-body-md text-body-md mb-6">
+                التفاصيل الدقيقة للأسعار والباقات هتظهر لك عند اختيار المسار المناسب
+              </p>
 
-          <div className="mt-12 max-w-3xl mx-auto space-y-4">
-            <div className="bg-white p-6 rounded-2xl card-shadow">
-              <p className="text-on-surface-variant font-body-md text-body-md">🎯 <strong className="text-primary">ميزة الاشتراك السنوي:</strong> الاشتراك السنوي بيوفر لك 6120 جنيه مقارنة بالاشتراك الشهري، وده مش مجرد توفير مالي، لكنه كمان استثمار في استمرارية تعليم أفضل وخطة أوضح لابنك على مدار السنة.</p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl card-shadow">
-              <p className="text-on-surface-variant font-body-md text-body-md">✅ <strong className="text-primary">رسوم تسجيل إدارية</strong> 200 جنيه تدفع لمرة واحدة</p>
+              <Link
+                href="/tracks"
+                className="inline-flex items-center gap-2 btn-primary"
+              >
+                <span className="material-symbols-outlined">route</span>
+                اختر مسارك الآن
+              </Link>
             </div>
           </div>
         </div>
