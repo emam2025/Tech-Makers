@@ -76,7 +76,7 @@ export default function RootLayout({ children }) {
                 <ul className="flex flex-col gap-1.5">
                   <li><Link href="/about" className="text-surface-variant/70 hover:text-secondary-fixed transition-colors text-xs">من نحن</Link></li>
                   <li><Link href="/tracks" className="text-surface-variant/70 hover:text-secondary-fixed transition-colors text-xs">المسارات التعليمية</Link></li>
-                  <li><Link href="/#faq" className="text-surface-variant/70 hover:text-secondary-fixed transition-colors text-xs">الأسئلة الشائعة</Link></li>
+
                 </ul>
               </div>
               <div>
