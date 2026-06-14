@@ -324,40 +324,77 @@ export default function HomePage() {
       </section>
 
       {/* Secondary School Banner */}
-      <section className="py-12 md:py-16 px-margin-mobile md:px-margin-desktop" style={{ background: 'linear-gradient(135deg, #1a3fa0 0%, #4169e1 50%, #6b8aff 100%)' }}>
+      <section className="py-12 md:py-20 px-margin-mobile md:px-margin-desktop overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a3fa0 0%, #4169e1 50%, #6b8aff 100%)' }}>
         <div className="max-w-container-max mx-auto">
-          <div className="bg-white/10 backdrop-blur-md rounded-32 p-8 md:p-12 border border-white/20 flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-1">
-              <span className="inline-block bg-[#f7be1d]/20 text-[#f7be1d] text-sm font-bold px-4 py-1.5 rounded-full mb-4 border border-[#f7be1d]/30">
-                برنامج خاص
-              </span>
-              <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-white mb-4">
-                مسار الثانوية العامة
-              </h2>
-              <p className="text-white/80 font-body-lg text-body-lg mb-6 leading-relaxed">
-                برنامج متكامل مُصمم خصيصاً لطلاب الثانوية العامة — تعلم البرمجة وتطوير التطبيقات والمهارات التقنية المتقدمة مع تحضير قوي للمستقبل الجامعي والمهني.
-              </p>
-              <div className="flex flex-wrap gap-3 mb-6">
-                <div className="flex items-center gap-2 bg-white/15 text-white px-4 py-2 rounded-xl text-sm font-bold border border-white/20">
-                  <span className="material-symbols-outlined text-lg">school</span>
-                  15 — 18 سنة
-                </div>
-                <div className="flex items-center gap-2 bg-white/15 text-white px-4 py-2 rounded-xl text-sm font-bold border border-white/20">
-                  <span className="material-symbols-outlined text-lg">computer</span>
-                  أونلاين / أوفلاين
-                </div>
-                <div className="flex items-center gap-2 bg-white/15 text-white px-4 py-2 rounded-xl text-sm font-bold border border-white/20">
-                  <span className="material-symbols-outlined text-lg">workspace_premium</span>
-                  شهادات معتمدة
+          <div className="relative bg-white/10 backdrop-blur-md rounded-3xl md:rounded-[32px] border border-white/20 overflow-hidden">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-10 right-10 w-40 h-40 bg-white/20 rounded-full blur-3xl" />
+              <div className="absolute bottom-10 left-10 w-56 h-56 bg-[#f7be1d]/20 rounded-full blur-3xl" />
+            </div>
+            <div className="relative flex flex-col md:flex-row items-center gap-0">
+              {/* Image Side */}
+              <div className="w-full md:w-2/5 h-64 md:h-[420px] relative overflow-hidden flex-shrink-0">
+                <img src="/secondary-banner.png" alt="كورس برمجة الثانوية العامة" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#1a3fa0]/60 hidden md:block" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a3fa0]/80 to-transparent md:hidden" />
+                <div className="absolute top-4 right-4 md:top-6 md:right-6">
+                  <span className="inline-block bg-[#f7be1d] text-[#1a3fa0] text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                    كورس خاص
+                  </span>
                 </div>
               </div>
-              <Link href="/secondary" className="inline-flex items-center gap-3 bg-[#f7be1d] text-[#1a3fa0] px-8 py-3.5 rounded-full font-bold text-lg shadow-xl hover:scale-105 active:scale-95 transition-all">
-                <span className="material-symbols-outlined">arrow_forward</span>
-                اعرف المزيد وسجّل
-              </Link>
-            </div>
-            <div className="w-full md:w-80 h-48 md:h-64 rounded-2xl overflow-hidden flex-shrink-0 border-4 border-white/20">
-              <img src="/secondary-banner.png" alt="مسار الثانوية العامة" className="w-full h-full object-cover" />
+
+              {/* Content Side */}
+              <div className="flex-1 p-6 md:p-10 lg:p-12">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-[#f7be1d]/20 rounded-xl flex items-center justify-center border border-[#f7be1d]/30">
+                    <span className="material-symbols-outlined text-[#f7be1d] text-xl md:text-2xl">code</span>
+                  </div>
+                  <span className="text-[#f7be1d] text-xs md:text-sm font-bold bg-[#f7be1d]/15 px-3 py-1 rounded-full border border-[#f7be1d]/25">
+                    اعتماد رسمي من وزارة التربية والتعليم
+                  </span>
+                </div>
+
+                <h2 className="font-headline-xl text-2xl md:text-3xl lg:text-4xl text-white mb-3 leading-tight" style={{ fontFamily: 'Tajawal, sans-serif' }}>
+                  اتقن لغة المستقبل
+                </h2>
+                <p className="text-[#f7be1d] font-bold text-base md:text-lg mb-4" style={{ fontFamily: 'Cairo, sans-serif' }}>
+                  كورس برمجة ثانوية عامة شامل — الصف الثالث الثانوي
+                </p>
+                <p className="text-white/75 font-body-md text-sm md:text-base mb-6 leading-relaxed max-w-lg" style={{ fontFamily: 'Cairo, sans-serif' }}>
+                  دورة برمجة متكاملة تتوافق مع المنهج الوطني المصري. محتوى تفاعلي عبر منصة QUREO اليابانية + شهادة معتمدة دوليًا + مدربون معتمدون.
+                </p>
+
+                <div className="flex flex-wrap gap-2 md:gap-3 mb-6 md:mb-8">
+                  <div className="flex items-center gap-1.5 bg-white/10 text-white px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium border border-white/15">
+                    <span className="material-symbols-outlined text-sm">verified</span>
+                    اعتماد رسمي
+                  </div>
+                  <div className="flex items-center gap-1.5 bg-white/10 text-white px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium border border-white/15">
+                    <span className="material-symbols-outlined text-sm">workspace_premium</span>
+                    شهادة دولية
+                  </div>
+                  <div className="flex items-center gap-1.5 bg-white/10 text-white px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium border border-white/15">
+                    <span className="material-symbols-outlined text-sm">devices</span>
+                    منصة QUREO
+                  </div>
+                  <div className="flex items-center gap-1.5 bg-white/10 text-white px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium border border-white/15">
+                    <span className="material-symbols-outlined text-sm">computer</span>
+                    أونلاين / أوفلاين
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link href="/secondary#register" className="inline-flex items-center justify-center gap-2 bg-[#f7be1d] text-[#1a3fa0] px-7 py-3.5 rounded-full font-bold text-base shadow-xl shadow-[#f7be1d]/20 hover:scale-105 active:scale-95 transition-all">
+                    <span className="material-symbols-outlined">app_registration</span>
+                    سجّل الآن
+                  </Link>
+                  <Link href="/secondary" className="inline-flex items-center justify-center gap-2 bg-white/15 text-white px-7 py-3.5 rounded-full font-bold text-base border border-white/25 hover:bg-white/25 transition-all">
+                    <span className="material-symbols-outlined">info</span>
+                    تفاصيل الكورس
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
