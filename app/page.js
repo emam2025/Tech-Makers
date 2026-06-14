@@ -524,14 +524,20 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-            <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-secondary/10 hover:border-secondary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(253,118,26,0.15)]">
-              <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-secondary to-amber-500 rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform">
+            <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-blue-200 hover:border-blue-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(59,130,246,0.15)]">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-blue-500 to-primary rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform">
                 <span className="material-symbols-outlined text-white text-xl md:text-2xl">translate</span>
               </div>
-              <span className="font-label-sm text-label-sm text-primary-light bg-primary-light/10 px-3 py-1 rounded-full mb-3 inline-block">إضافة مستقلة</span>
+              <div className="flex items-center gap-2 mb-3">
+                <span className="font-label-sm text-label-sm text-blue-600 bg-blue-100 px-3 py-1 rounded-full">برنامج جديد</span>
+                <span className="font-label-sm text-label-sm text-amber-700 bg-amber-100 px-3 py-1 rounded-full">عرض حصري</span>
+              </div>
               <h3 className="font-headline-lg text-headline-lg text-primary mb-2">Tech English</h3>
-              <p className="text-on-surface-variant font-body-md text-body-md mb-4">برنامج تطويري لبناء ثقة الطالب في التواصل التقني باللغة الإنجليزية. تفاصيل الاشتراك والرسوم عند التواصل معنا.</p>
-               <Link href="#plans" className="text-primary font-headline-lg text-headline-lg inline-flex items-center gap-1 hover:gap-2 transition-all">استفسر عن البرنامج ←</Link>
+              <p className="text-on-surface-variant font-body-md text-body-md mb-4">لغة المستقبل لأطفال المستقبل. لا تتعلم الإنجليزية لكي تنجح في اختبار... بل لكي تدخل عالم التكنولوجيا بثقة. 12 شهر، 4 مستويات، من A1 إلى B2.</p>
+              <Link href="/techenglish" className="text-blue-600 font-bold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all group-hover:text-primary">
+                اكتشف البرنامج
+                <span className="material-symbols-outlined text-base transition-transform group-hover:translate-x-1 rtl:rotate-180">arrow_back</span>
+              </Link>
             </div>
             <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-emerald-200 hover:border-emerald-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(16,185,129,0.15)]">
               <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform">

@@ -284,6 +284,12 @@ const technomathPlans = [
   { id: 'yearly', name: 'اشتراك سنوي', price: '500', unit: 'جنيه / شهريًا', badge: <><span className="material-symbols-outlined text-sm align-middle">emoji_events</span> الأوفر</>, highlight: false, note: 'إجمالي 6,000 جنيه سنويًا — توفر 3,600 جنيه' },
 ];
 
+const techenglishPlans = [
+  { id: 'monthly', name: 'اشتراك شهري', price: '1000', unit: 'جنيه / شهر', badge: null, highlight: false, note: 'مناسب للتجربة' },
+  { id: 'quarterly', name: 'اشتراك ربع سنوي', price: '750', unit: 'جنيه / شهريًا', badge: <><span className="material-symbols-outlined text-sm align-middle">star</span> الأكثر اختيارًا</>, highlight: true, note: 'إجمالي 2,250 جنيه لكل 3 شهور — توفر 750 جنيه' },
+  { id: 'yearly', name: 'اشتراك سنوي', price: '600', unit: 'جنيه / شهريًا', badge: <><span className="material-symbols-outlined text-sm align-middle">emoji_events</span> الأوفر</>, highlight: false, note: 'إجمالي 7,200 جنيه سنويًا — توفر 4,800 جنيه' },
+];
+
 const colorMap = {
   primary: { bg: 'bg-primary/10', text: 'text-primary', border: 'border-primary', solid: 'bg-primary' },
   secondary: { bg: 'bg-secondary/10', text: 'text-secondary', border: 'border-secondary', solid: 'bg-secondary' },
@@ -585,6 +591,52 @@ export default function TracksPage() {
                     ابدأ الرحلة
                   </button>
                 </div>
+              </div>
+            </div>
+
+            {/* Additional Programs */}
+            <div className="mt-8">
+              <div className="text-center mb-6">
+                <span className="inline-block bg-tertiary/10 text-tertiary px-5 py-2 rounded-full font-label-md mb-4 border border-tertiary/20">
+                  <span className="material-symbols-outlined text-sm align-middle">auto_awesome</span> برامج إضافية
+                </span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Techno Math */}
+                <Link href="/technomath" className="group bg-white p-6 rounded-32 shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-amber-100 hover:border-amber-300 transition-all duration-500 hover:-translate-y-4 hover:shadow-[0_20px_60px_rgba(245,158,11,0.25)]">
+                  <div className="h-2 bg-gradient-to-r from-amber-400 via-orange-400 to-yellow-400 rounded-full mb-4"></div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-3 rounded-2xl border border-amber-100">
+                      <span className="font-label-lg text-amber-600 font-bold">جديد</span>
+                    </div>
+                    <span className="material-symbols-outlined text-4xl text-amber-400 group-hover:scale-125 transition-transform duration-500">calculate</span>
+                  </div>
+                  <h3 className="font-headline-xl text-headline-lg md:text-headline-xl text-amber-700 mb-2 font-extrabold">الحساب الذهني</h3>
+                  <p className="text-amber-600 font-headline-md text-headline-sm md:text-headline-md mb-1 font-bold">Techno Math</p>
+                  <p className="text-gray-500 font-body-md text-body-sm md:text-body-md mb-4">من العداد إلى التخيل والسرعة الاحترافية خلال 12 شهر</p>
+                  <div className="flex items-center gap-2 text-amber-600 font-bold text-sm">
+                    <span>اكتشف البرنامج</span>
+                    <span className="material-symbols-outlined text-base transition-transform group-hover:translate-x-1 rtl:rotate-180">arrow_back</span>
+                  </div>
+                </Link>
+
+                {/* Tech English */}
+                <Link href="/techenglish" className="group bg-white p-6 rounded-32 shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-blue-100 hover:border-blue-300 transition-all duration-500 hover:-translate-y-4 hover:shadow-[0_20px_60px_rgba(59,130,246,0.25)]">
+                  <div className="h-2 bg-gradient-to-r from-blue-500 via-primary to-blue-400 rounded-full mb-4"></div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="bg-gradient-to-br from-blue-50 to-primary/5 p-3 rounded-2xl border border-blue-100">
+                      <span className="font-label-lg text-blue-600 font-bold">جديد</span>
+                    </div>
+                    <span className="material-symbols-outlined text-4xl text-blue-400 group-hover:scale-125 transition-transform duration-500">translate</span>
+                  </div>
+                  <h3 className="font-headline-xl text-headline-lg md:text-headline-xl text-blue-700 mb-2 font-extrabold">لغة المستقبل</h3>
+                  <p className="text-blue-600 font-headline-md text-headline-sm md:text-headline-md mb-1 font-bold">Tech English</p>
+                  <p className="text-gray-500 font-body-md text-body-sm md:text-body-md mb-4">اللغة الإنجليزية التكنولوجية — من A1 إلى B2 خلال 12 شهر</p>
+                  <div className="flex items-center gap-2 text-blue-600 font-bold text-sm">
+                    <span>اكتشف البرنامج</span>
+                    <span className="material-symbols-outlined text-base transition-transform group-hover:translate-x-1 rtl:rotate-180">arrow_back</span>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -970,7 +1022,7 @@ export default function TracksPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
-              {(track.id === 'technomath' ? technomathPlans : plans).map((plan) => (
+              {(track.id === 'technomath' ? technomathPlans : track.id === 'techenglish' ? techenglishPlans : plans).map((plan) => (
                 <div
                   key={plan.id}
                   className={`relative bg-white rounded-24 overflow-hidden transition-all duration-300 ${
