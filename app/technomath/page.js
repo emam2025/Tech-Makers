@@ -98,16 +98,16 @@ export default function TechnoMathPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
             {[
-              { icon: 'speed', text: 'تنمية مهارات الحساب الذهني السريع', color: 'primary' },
-              { icon: 'center_focus_strong', text: 'تعزيز التركيز والانتباه العقلي', color: 'secondary' },
-              { icon: 'bolt', text: 'تطوير سرعة معالجة المعلومات', color: 'tertiary' },
-              { icon: 'architecture', text: 'بناء أساس رياضي قوي للأطفال', color: 'primary' },
-              { icon: 'visibility', text: 'تدريب الدماغ على التخيل الحسابي', color: 'secondary' },
-              { icon: 'trending_up', text: 'رفع مستوى الثقة في حل المسائل', color: 'tertiary' },
+              { icon: 'speed', text: 'تنمية مهارات الحساب الذهني السريع', bg: 'bg-primary/10', txt: 'text-primary' },
+              { icon: 'center_focus_strong', text: 'تعزيز التركيز والانتباه العقلي', bg: 'bg-secondary/10', txt: 'text-secondary' },
+              { icon: 'bolt', text: 'تطوير سرعة معالجة المعلومات', bg: 'bg-tertiary/10', txt: 'text-tertiary' },
+              { icon: 'architecture', text: 'بناء أساس رياضي قوي للأطفال', bg: 'bg-primary/10', txt: 'text-primary' },
+              { icon: 'visibility', text: 'تدريب الدماغ على التخيل الحسابي', bg: 'bg-secondary/10', txt: 'text-secondary' },
+              { icon: 'trending_up', text: 'رفع مستوى الثقة في حل المسائل', bg: 'bg-tertiary/10', txt: 'text-tertiary' },
             ].map((item, i) => (
               <div key={i} className="group bg-white p-5 md:p-6 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 flex items-start gap-4">
-                <div className={`w-10 h-10 bg-${item.color}/10 rounded-xl flex items-center justify-center shrink-0`}>
-                  <span className={`material-symbols-outlined text-${item.color}`}>{item.icon}</span>
+                <div className={`w-10 h-10 ${item.bg} rounded-xl flex items-center justify-center shrink-0`}>
+                  <span className={`material-symbols-outlined ${item.txt}`}>{item.icon}</span>
                 </div>
                 <p className="text-on-surface font-body-md text-sm leading-relaxed">{item.text}</p>
               </div>
@@ -143,13 +143,13 @@ export default function TechnoMathPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <h4 className="font-headline-md text-headline-md text-emerald-700 mb-3 flex items-center gap-2">
-                      <span className="material-symbols-outlined text-lg">track_targets</span>
+                      <span className="material-symbols-outlined text-lg">gps_fixed</span>
                       الأهداف
                     </h4>
                     <ul className="space-y-2">
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-emerald-500 text-base">check_circle</span> التعرف على الأرقام</li>
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-emerald-500 text-base">check_circle</span> استخدام العداد</li>
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-emerald-500 text-base">check_circle</span> الجمع والطرح البسيط</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-emerald-500 text-base">check</span> التعرف على الأرقام</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-emerald-500 text-base">check</span> استخدام العداد</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-emerald-500 text-base">check</span> الجمع والطرح البسيط</li>
                     </ul>
                   </div>
                   <div>
@@ -158,8 +158,8 @@ export default function TechnoMathPage() {
                       المخرجات
                     </h4>
                     <ul className="space-y-2">
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-emerald-500 text-base">arrow_left</span> فهم بصري للأرقام</li>
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-emerald-500 text-base">arrow_left</span> إجراء عمليات حسابية بسيطة</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-emerald-500 text-base">arrow_back</span> فهم بصري للأرقام</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-emerald-500 text-base">arrow_back</span> إجراء عمليات حسابية بسيطة</li>
                     </ul>
                   </div>
                 </div>
@@ -184,13 +184,13 @@ export default function TechnoMathPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <h4 className="font-headline-md text-headline-md text-yellow-700 mb-3 flex items-center gap-2">
-                      <span className="material-symbols-outlined text-lg">track_targets</span>
+                      <span className="material-symbols-outlined text-lg">gps_fixed</span>
                       الأهداف
                     </h4>
                     <ul className="space-y-2">
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-yellow-500 text-base">check_circle</span> تدريب الذاكرة البصرية</li>
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-yellow-500 text-base">check_circle</span> تصور العداد ذهنياً</li>
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-yellow-500 text-base">check_circle</span> تنفيذ عمليات أسرع</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-yellow-500 text-base">check</span> تدريب الذاكرة البصرية</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-yellow-500 text-base">check</span> تصور العداد ذهنياً</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-yellow-500 text-base">check</span> تنفيذ عمليات أسرع</li>
                     </ul>
                   </div>
                   <div>
@@ -199,8 +199,8 @@ export default function TechnoMathPage() {
                       المخرجات
                     </h4>
                     <ul className="space-y-2">
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-yellow-500 text-base">arrow_left</span> حساب ذهني بسيط بدون أدوات</li>
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-yellow-500 text-base">arrow_left</span> تحسين التركيز العقلي</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-yellow-500 text-base">arrow_back</span> حساب ذهني بسيط بدون أدوات</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-yellow-500 text-base">arrow_back</span> تحسين التركيز العقلي</li>
                     </ul>
                   </div>
                 </div>
@@ -225,13 +225,13 @@ export default function TechnoMathPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <h4 className="font-headline-md text-headline-md text-orange-700 mb-3 flex items-center gap-2">
-                      <span className="material-symbols-outlined text-lg">track_targets</span>
+                      <span className="material-symbols-outlined text-lg">gps_fixed</span>
                       الأهداف
                     </h4>
                     <ul className="space-y-2">
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-orange-500 text-base">check_circle</span> تسريع العمليات الحسابية</li>
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-orange-500 text-base">check_circle</span> الجمع والطرح والضرب السريع</li>
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-orange-500 text-base">check_circle</span> تقليل الاعتماد على الورق</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-orange-500 text-base">check</span> تسريع العمليات الحسابية</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-orange-500 text-base">check</span> الجمع والطرح والضرب السريع</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-orange-500 text-base">check</span> تقليل الاعتماد على الورق</li>
                     </ul>
                   </div>
                   <div>
@@ -240,8 +240,8 @@ export default function TechnoMathPage() {
                       المخرجات
                     </h4>
                     <ul className="space-y-2">
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-orange-500 text-base">arrow_left</span> سرعة عالية في الحساب</li>
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-orange-500 text-base">arrow_left</span> دقة في النتائج</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-orange-500 text-base">arrow_back</span> سرعة عالية في الحساب</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-orange-500 text-base">arrow_back</span> دقة في النتائج</li>
                     </ul>
                   </div>
                 </div>
@@ -266,13 +266,13 @@ export default function TechnoMathPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <h4 className="font-headline-md text-headline-md text-red-700 mb-3 flex items-center gap-2">
-                      <span className="material-symbols-outlined text-lg">track_targets</span>
+                      <span className="material-symbols-outlined text-lg">gps_fixed</span>
                       الأهداف
                     </h4>
                     <ul className="space-y-2">
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-red-500 text-base">check_circle</span> حل مسائل مركبة بسرعة</li>
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-red-500 text-base">check_circle</span> تطوير التفكير المنطقي</li>
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-red-500 text-base">check_circle</span> الوصول لسرعة ذهنية عالية جدًا</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-red-500 text-base">check</span> حل مسائل مركبة بسرعة</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-red-500 text-base">check</span> تطوير التفكير المنطقي</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-red-500 text-base">check</span> الوصول لسرعة ذهنية عالية جدًا</li>
                     </ul>
                   </div>
                   <div>
@@ -281,8 +281,8 @@ export default function TechnoMathPage() {
                       المخرجات
                     </h4>
                     <ul className="space-y-2">
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-red-500 text-base">arrow_left</span> مستوى احترافي في الحساب الذهني</li>
-                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-red-500 text-base">arrow_left</span> قدرة على حل مسائل خلال ثواني</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-red-500 text-base">arrow_back</span> مستوى احترافي في الحساب الذهني</li>
+                      <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-red-500 text-base">arrow_back</span> قدرة على حل مسائل خلال ثواني</li>
                     </ul>
                   </div>
                 </div>
