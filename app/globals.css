@@ -10,6 +10,12 @@
 @layer base {
   * { border-color: theme('colors.outline-variant'); }
 
+  /* Material Symbols swap to prevent emoji flash */
+  .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-display: swap;
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
@@ -185,9 +191,9 @@
     100% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.88; }
   }
 
-  .halo-wrapper { position: relative; width: 16rem; height: 16rem; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; margin: 1rem auto; }
-  @media (min-width: 640px) { .halo-wrapper { width: 20rem; height: 20rem; margin: 2rem auto; } }
-  @media (min-width: 768px) { .halo-wrapper { width: 28rem; height: 28rem; margin: 0; } }
+  .halo-wrapper { position: relative; width: 18rem !important; height: 18rem !important; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; margin: 1rem auto; }
+  @media (min-width: 640px) { .halo-wrapper { width: 22rem !important; height: 22rem !important; margin: 2rem auto; } }
+  @media (min-width: 768px) { .halo-wrapper { width: 30rem !important; height: 30rem !important; margin: 0; } }
 
   .halo-svg-inner { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; filter: blur(3px) saturate(1.08); opacity: 0.99; pointer-events: none; }
   .halo-image-inner { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 5; clip-path: circle(50%); object-fit: cover; }
@@ -563,12 +569,35 @@
   .rounded-24 { border-radius: 16px !important; }
 
   /* Reduce excessive spacing */
-  .mb-16 { margin-bottom: 32px !important; }
-  .mb-20 { margin-bottom: 40px !important; }
-  .py-20 { padding-top: 40px !important; padding-bottom: 40px !important; }
-  .py-24 { padding-top: 48px !important; padding-bottom: 48px !important; }
-  .gap-8 { gap: 16px !important; }
-  .gap-12 { gap: 24px !important; }
+  .mb-16 { margin-bottom: 24px !important; }
+  .mb-20 { margin-bottom: 32px !important; }
+  .py-20 { padding-top: 32px !important; padding-bottom: 32px !important; }
+  .py-24 { padding-top: 40px !important; padding-bottom: 40px !important; }
+  .gap-8 { gap: 12px !important; }
+  .gap-12 { gap: 20px !important; }
+
+  /* Card padding */
+  .p-8 { padding: 16px !important; }
+  .p-10 { padding: 20px !important; }
+  .p-12 { padding: 24px !important; }
+  .p-5 { padding: 12px !important; }
+
+  /* Card text */
+  .text-headline-xl { font-weight: 700 !important; }
+  .text-headline-lg { font-weight: 700 !important; }
+  .text-headline-md { font-weight: 700 !important; }
+
+  /* Disable heavy animations on mobile */
+  .orbit-inner, .spin, .spin-rev { animation: none !important; }
+  .glow-border::before { animation: none !important; }
+  .golden-glow-border::before { animation: none !important; }
+  .btn-shine::before { animation: none !important; }
+  .reveal { transition: opacity 0.3s ease-out !important; transform: none !important; }
+  .reveal.revealed { opacity: 1 !important; }
+
+  /* Reduce blur for performance */
+  .backdrop-blur-sm { backdrop-filter: blur(4px) !important; }
+  .backdrop-blur-md { backdrop-filter: blur(6px) !important; }
 
   html {
     scroll-behavior: smooth;

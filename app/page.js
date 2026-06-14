@@ -5,7 +5,7 @@ import HeroWithHalo from '../components/HeroWithHalo';
 export default function HomePage() {
   return (
     <>
-      <section role="banner" aria-label="Hero" className="relative py-10 md:py-24 px-margin-mobile md:px-margin-desktop text-white overflow-hidden">
+      <section role="banner" aria-label="Hero" className="relative py-8 md:py-24 px-4 md:px-margin-desktop text-white overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/hero-bg.jpg"
@@ -89,7 +89,7 @@ export default function HomePage() {
           
           {/* CTA Buttons - Full Width */}
           <div className="col-span-1 md:col-span-2 flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 mt-2 md:mt-8">
-            <Link href="/#plans" aria-label="شاهد خطط الاشتراك" className="bg-tertiary text-primary-deep px-6 md:px-8 py-3 md:py-3.5 rounded-full font-bold hover:shadow-xl transition-all hover:-translate-y-1 w-full sm:w-auto text-center text-sm md:text-base">اشترك الآن</Link>
+            <Link href="/#plans" aria-label="شاهد خطط الاشتراك" style={{ backgroundColor: '#f7be1d', color: '#1a3fa0' }} className="px-6 md:px-8 py-3 md:py-3.5 rounded-full font-bold hover:shadow-xl transition-all hover:-translate-y-1 w-full sm:w-auto text-center text-sm md:text-base">اشترك الآن</Link>
             <Link href="#tracks" className="border-2 border-white/40 text-white px-6 md:px-8 py-3 md:py-3.5 rounded-full font-bold hover:bg-white/15 transition-all w-full sm:w-auto text-center text-sm md:text-base">استكشف المسارات</Link>
           </div>
         </div>
@@ -691,7 +691,7 @@ export default function HomePage() {
             <h2 className="font-headline-xl text-headline-xl text-display-lg-mobile md:text-display-lg mb-6">🚀 سجّل اهتمامك في Tech Makers Egypt</h2>
             <p className="text-primary-fixed-dim font-body-lg text-body-lg mb-12 max-w-2xl mx-auto">ابدأ رحلة ابنك في عالم التكنولوجيا، البرمجة، والذكاء الاصطناعي. مقاعد محدودة في كل دفعة.</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/#plans" className="bg-tertiary text-primary-deep px-12 py-5 rounded-full font-headline-lg text-headline-lg shadow-xl shadow-tertiary/30 hover:scale-105 transition-transform active:scale-95">سجّل الآن</Link>
+              <Link href="/#plans" style={{ backgroundColor: '#f7be1d', color: '#1a3fa0' }} className="px-12 py-5 rounded-full font-headline-lg text-headline-lg shadow-xl hover:scale-105 transition-transform active:scale-95">سجّل الآن</Link>
                <Link href="#tracks" className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-12 py-5 rounded-full font-headline-lg text-headline-lg hover:bg-white/20 transition-all active:scale-95">استكشف المسارات</Link>
             </div>
           </div>
