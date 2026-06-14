@@ -89,7 +89,7 @@ export default function HomePage() {
           
           {/* CTA Buttons - Full Width */}
           <div className="col-span-1 md:col-span-2 flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 mt-2 md:mt-8">
-            <Link href="/register" aria-label="سجل الآن في Tech Makers" className="bg-white text-primary-deep px-6 md:px-8 py-3 md:py-3.5 rounded-full font-bold hover:shadow-xl transition-all hover:-translate-y-1 w-full sm:w-auto text-center text-sm md:text-base">اشترك الآن</Link>
+            <Link href="/#plans" aria-label="شاهد خطط الاشتراك" className="bg-white text-primary-deep px-6 md:px-8 py-3 md:py-3.5 rounded-full font-bold hover:shadow-xl transition-all hover:-translate-y-1 w-full sm:w-auto text-center text-sm md:text-base">اشترك الآن</Link>
             <Link href="#tracks" className="border-2 border-white/40 text-white px-6 md:px-8 py-3 md:py-3.5 rounded-full font-bold hover:bg-white/15 transition-all w-full sm:w-auto text-center text-sm md:text-base">استكشف المسارات</Link>
           </div>
         </div>
@@ -691,7 +691,7 @@ export default function HomePage() {
             <h2 className="font-headline-xl text-headline-xl text-display-lg-mobile md:text-display-lg mb-6">🚀 سجّل اهتمامك في Tech Makers Egypt</h2>
             <p className="text-primary-fixed-dim font-body-lg text-body-lg mb-12 max-w-2xl mx-auto">ابدأ رحلة ابنك في عالم التكنولوجيا، البرمجة، والذكاء الاصطناعي. مقاعد محدودة في كل دفعة.</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/register" className="bg-secondary text-on-secondary px-12 py-5 rounded-full font-headline-lg text-headline-lg shadow-xl shadow-secondary/30 hover:scale-105 transition-transform active:scale-95">سجّل الآن</Link>
+              <Link href="/#plans" className="bg-secondary text-on-secondary px-12 py-5 rounded-full font-headline-lg text-headline-lg shadow-xl shadow-secondary/30 hover:scale-105 transition-transform active:scale-95">سجّل الآن</Link>
                <Link href="#tracks" className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-12 py-5 rounded-full font-headline-lg text-headline-lg hover:bg-white/20 transition-all active:scale-95">استكشف المسارات</Link>
             </div>
           </div>
