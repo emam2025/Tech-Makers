@@ -92,10 +92,10 @@ export default function SecondaryPage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative py-16 md:py-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a3fa0 0%, #4169e1 50%, #6b8aff 100%)' }}>
+      <section className="relative py-10 md:py-14 overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a3fa0 0%, #4169e1 50%, #6b8aff 100%)' }}>
         <div className="absolute inset-0">
-          <Image src="/secondary-banner.jpg" alt="" fill priority className="object-cover opacity-30" />
-          <div className="absolute inset-0 bg-gradient-to-l from-[#1a3fa0]/95 via-[#4169e1]/85 to-[#6b8aff]/80" />
+          <Image src="/secondary-banner.jpg" alt="" fill priority className="object-cover opacity-20" />
+          <div className="absolute inset-0 bg-gradient-to-l from-[#1a3fa0]/60 via-[#4169e1]/50 to-[#6b8aff]/40" />
         </div>
         <div className="max-w-6xl mx-auto px-4 md:px-8 relative z-10">
           <div className="flex items-center gap-3 mb-6">
