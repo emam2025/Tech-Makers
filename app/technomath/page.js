@@ -24,7 +24,7 @@ export default function TechnoMathPage() {
               </div>
               <div>
                 <span className="font-label-sm text-label-sm text-primary-light bg-primary-light/10 px-3 py-1 rounded-full inline-block mb-1">إضافة مستقلة</span>
-                <h1 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary">برنامج الحساب الذهني — تكنو ماس</h1>
+                <h1 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary">برنامج الحساب الذهني — Techno Math</h1>
               </div>
             </div>
             <p className="text-on-surface-variant font-body-lg text-body-lg leading-relaxed mb-8">
@@ -47,7 +47,7 @@ export default function TechnoMathPage() {
           </div>
           <div className="flex justify-center md:justify-end">
             <div className="relative w-72 h-72 md:w-96 md:h-96">
-              <Image src="/technomath.png" alt="برنامج تكنو ماس للحساب الذهني" fill sizes="(max-width: 768px) 288px, 384px" style={{ objectFit: 'contain', mixBlendMode: 'multiply' }} />
+              <Image src="/technomath.png" alt="برنامج Techno Math للحساب الذهني" fill sizes="(max-width: 768px) 288px, 384px" style={{ objectFit: 'contain', mixBlendMode: 'multiply' }} />
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@ export default function TechnoMathPage() {
                 <span className="material-symbols-outlined text-white text-2xl">psychology</span>
               </div>
               <div>
-                <h2 className="font-headline-lg text-headline-lg text-primary">برنامج الحساب الذهني "تكنو ماس"</h2>
+                <h2 className="font-headline-lg text-headline-lg text-primary">برنامج الحساب الذهني "Techno Math"</h2>
                 <p className="text-on-surface-variant text-sm">Smart Kids Brain Training Program</p>
               </div>
             </div>
@@ -342,7 +342,7 @@ export default function TechnoMathPage() {
       <section className="py-20 px-margin-mobile md:px-margin-desktop hero-gradient text-white text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="font-headline-xl text-headline-lg md:text-headline-xl mb-6">ابدأ رحلة طفلك مع الحساب الذهني</h2>
-          <p className="text-white/80 font-body-lg text-body-lg mb-8">سجل الآن في برنامج تكنو ماس واعكس مهارات طفلكognitive skills</p>
+          <p className="text-white/80 font-body-lg text-body-lg mb-8">سجل الآن في برنامج Techno Math واعكس مهارات طفلكognitive skills</p>
           <Link
             href="/register"
             className="inline-flex items-center gap-2 btn-primary"

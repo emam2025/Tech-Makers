@@ -594,13 +594,23 @@ export default function HomePage() {
                 التفاصيل الدقيقة للأسعار والباقات هتظهر لك عند اختيار المسار المناسب
               </p>
 
-              <Link
-                href="/tracks"
-                className="inline-flex items-center gap-2 btn-primary"
-              >
-                <span className="material-symbols-outlined">route</span>
-                اختر مسارك الآن
-              </Link>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link
+                  href="/tracks"
+                  className="inline-flex items-center gap-2 btn-primary"
+                >
+                  <span className="material-symbols-outlined">route</span>
+                  اختر مسارك الآن
+                </Link>
+                <Link
+                  href="/register"
+                  style={{ backgroundColor: '#f7be1d', color: '#1a3fa0' }}
+                  className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-bold hover:shadow-xl transition-all hover:-translate-y-1"
+                >
+                  <span className="material-symbols-outlined">how_to_reg</span>
+                  سجّل الآن
+                </Link>
+              </div>
             </div>
           </div>
         </div>

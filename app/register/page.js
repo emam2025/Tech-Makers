@@ -223,6 +223,7 @@ export default function RegisterPage() {
                   <option value="a">Track A — Junior Tech Explorers (8–11 سنة)</option>
                   <option value="b">Track B — Future AI Engineers (12–15 سنة)</option>
                   <option value="c">Track C — Future Tech Engineers (16–20 سنة)</option>
+                  <option value="technomath">Techno Math — الحساب الذهني (8–15 سنة)</option>
                 </select>
               </div>
               <div className="space-y-2">
