@@ -11,7 +11,7 @@ export default function SiteHeader() {
       <header className="bg-surface/95 border-b border-outline-variant/30 shadow-sm sticky top-0 z-40 w-full">
         <div className="flex items-center justify-between px-margin-mobile md:px-margin-desktop py-4 w-full max-w-container-max mx-auto">
           <Link href="/" className="flex items-center gap-2">
-            <img src="/logo.png" alt="تك ميكرز" className="h-10 w-auto" />
+            <img src="/logo.png" alt="تك ميكرز" className="h-10 w-auto" loading="lazy" />
           </Link>
           <button className="md:hidden text-primary p-3 hover:bg-primary/10 rounded-xl min-w-[44px] min-h-[44px] flex items-center justify-center" onClick={() => setOpen(true)} aria-label="القائمة">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>

@@ -94,7 +94,7 @@ export default function SecondaryPage() {
       {/* HERO */}
       <section className="relative py-16 md:py-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a3fa0 0%, #4169e1 50%, #6b8aff 100%)' }}>
         <div className="absolute inset-0">
-          <Image src="/secondary-banner.png" alt="" fill priority className="object-cover opacity-30" />
+          <Image src="/secondary-banner.jpg" alt="" fill priority className="object-cover opacity-30" />
           <div className="absolute inset-0 bg-gradient-to-l from-[#1a3fa0]/95 via-[#4169e1]/85 to-[#6b8aff]/80" />
         </div>
         <div className="max-w-6xl mx-auto px-4 md:px-8 relative z-10">
@@ -110,18 +110,18 @@ export default function SecondaryPage() {
             </div>
             <div>
               <span className="text-sm text-[#f7be1d] bg-[#f7be1d]/20 px-3 py-1 rounded-full inline-block mb-1 border border-[#f7be1d]/30 font-bold">
-                كورس برمجة شامل — الصف الثالث الثانوي
+                مسار البرمجة والذكاء الاصطناعي — الصفوف الثلاثة
               </span>
               <h1 className="text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Tajawal, sans-serif' }}>
                 اتقن لغة المستقبل
               </h1>
               <p className="text-white/80 text-lg mt-1" style={{ fontFamily: 'Cairo, sans-serif' }}>
-                كورس برمجة ثانوية عامة شامل — يتوافق مع المنهج الوطني المصري
+                مسار سنوي متدرج من تأسيس علوم الحاسب إلى البرمجة المتقدمة والمشروعات
               </p>
             </div>
           </div>
           <p className="text-white/80 text-lg leading-relaxed mb-8 max-w-3xl" style={{ fontFamily: 'Cairo, sans-serif' }}>
-            دورة برمجة متكاملة لطلاب الثانوية العامة (الصف الثالث الثانوي) تتوافق مع المنهج الوطني المصري. يحصل المتدربون الناجحون على شهادة معترف بها دوليًا تفتح أمامهم فرصًا وظيفية واسعة.
+            يبدأ من فهم المعلومات وأمنها والاتصالات والأنظمة الرقمية في الصف الأول الثانوي، ثم ينتقل إلى البرمجة العملية والذكاء الاصطناعي في الصف الثاني، وينتهي في الثالث بمراجعة متقدمة ومشروعات تطبيقية تؤهل الطالب للفهم العملي الحقيقي.
           </p>
           <div className="flex flex-wrap gap-3 mb-8">
             <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-xl text-sm font-bold border border-white/20">
@@ -311,44 +311,162 @@ export default function SecondaryPage() {
         </div>
       </section>
 
-      {/* REGISTRATION FORM */}
-      <section id="register" className="py-16 bg-gradient-to-br from-gray-50 to-white">
-        <div className="max-w-2xl mx-auto px-4 md:px-8">
-          <div className="text-center mb-8">
+      {/* GRADE PATHS */}
+      <section className="py-16 md:py-20 px-margin-mobile md:px-margin-desktop bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
             <span className="inline-block bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-4 border border-primary/20">
-              سجّل الآن
+              المنهج الدراسي
             </span>
-            <h2 className="text-3xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Tajawal, sans-serif' }}>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Tajawal, sans-serif' }}>
+              اختر الصف الدراسي
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg" style={{ fontFamily: 'Cairo, sans-serif' }}>
+              مسار متكامل لكل صف يشمل المنهج الرسمي، الأنشطة العملية، ومعايير التقييم
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* First Grade */}
+            <Link href="/secondary/first" className="group bg-gradient-to-br from-[#4169e1]/5 to-white rounded-3xl p-8 border-2 border-[#4169e1]/20 hover:border-[#4169e1] hover:shadow-xl hover:shadow-[#4169e1]/10 transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-14 h-14 rounded-2xl bg-[#4169e1] flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <span className="material-symbols-outlined text-white text-2xl">looks_one</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-[#4169e1]" style={{ fontFamily: 'Tajawal, sans-serif' }}>الصف الأول الثانوي</h3>
+                  <p className="text-sm text-gray-500">تأسيس علوم الحاسب والتفكير البرمجي</p>
+                </div>
+              </div>
+              <p className="text-gray-600 text-sm mb-4" style={{ fontFamily: 'Cairo, sans-serif' }}>
+                فهم المعلومات وأمنها والاتصالات والأنظمة الرقمية — 8 وحدات
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="text-xs bg-[#4169e1]/10 text-[#4169e1] px-2 py-1 rounded-full font-bold">8 وحدات</span>
+                <span className="text-xs bg-[#4169e1]/10 text-[#4169e1] px-2 py-1 rounded-full font-bold">فصلان دراسيان</span>
+              </div>
+              <div className="space-y-2">
+                {['المعلومات والبيانات', 'أمن المعلومات', 'أساسيات الحاسب', 'الشبكات والمنطق الرقمي', 'مدخل البرمجة'].map((topic, i) => (
+                  <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
+                    <span className="material-symbols-outlined text-[#4169e1] text-sm">check_circle</span>
+                    {topic}
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 flex items-center gap-2 text-[#4169e1] font-bold text-sm group-hover:gap-3 transition-all">
+                <span>عرض المنهج التفصيلي</span>
+                <span className="material-symbols-outlined text-lg">arrow_forward</span>
+              </div>
+            </Link>
+
+            {/* Second Grade */}
+            <Link href="/secondary/second" className="group bg-gradient-to-br from-[#fd761a]/5 to-white rounded-3xl p-8 border-2 border-[#fd761a]/20 hover:border-[#fd761a] hover:shadow-xl hover:shadow-[#fd761a]/10 transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-14 h-14 rounded-2xl bg-[#fd761a] flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <span className="material-symbols-outlined text-white text-2xl">looks_two</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-[#fd761a]" style={{ fontFamily: 'Tajawal, sans-serif' }}>الصف الثاني الثانوي</h3>
+                  <p className="text-sm text-gray-500">البرمجة والتطبيقات المتقدمة</p>
+                </div>
+              </div>
+              <p className="text-gray-600 text-sm mb-4" style={{ fontFamily: 'Cairo, sans-serif' }}>
+                البرمجة العملية بالـ Python والذكاء الاصطناعي — 8 وحدات
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="text-xs bg-[#fd761a]/10 text-[#fd761a] px-2 py-1 rounded-full font-bold">8 وحدات</span>
+                <span className="text-xs bg-[#fd761a]/10 text-[#fd761a] px-2 py-1 rounded-full font-bold">فصلان دراسيان</span>
+              </div>
+              <div className="space-y-2">
+                {['أساسيات Python', 'التحكم والتكرار', 'هياكل البيانات', 'البرمجة الكائنية OOP', 'مدخل الذكاء الاصطناعي'].map((topic, i) => (
+                  <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
+                    <span className="material-symbols-outlined text-[#fd761a] text-sm">check_circle</span>
+                    {topic}
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 flex items-center gap-2 text-[#fd761a] font-bold text-sm group-hover:gap-3 transition-all">
+                <span>عرض المنهج التفصيلي</span>
+                <span className="material-symbols-outlined text-lg">arrow_forward</span>
+              </div>
+            </Link>
+
+            {/* Third Grade */}
+            <Link href="/secondary/third" className="group bg-gradient-to-br from-[#2ecc71]/5 to-white rounded-3xl p-8 border-2 border-[#2ecc71]/20 hover:border-[#2ecc71] hover:shadow-xl hover:shadow-[#2ecc71]/10 transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-14 h-14 rounded-2xl bg-[#2ecc71] flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <span className="material-symbols-outlined text-white text-2xl">looks_3</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-[#2ecc71]" style={{ fontFamily: 'Tajawal, sans-serif' }}>الصف الثالث الثانوي</h3>
+                  <p className="text-sm text-gray-500">الاحتراف والمشروعات والاستعداد الجامعي</p>
+                </div>
+              </div>
+              <p className="text-gray-600 text-sm mb-4" style={{ fontFamily: 'Cairo, sans-serif' }}>
+                مراجعة متقدمة وبناء تطبيقات ومشروعات تطبيقية — 7 وحدات
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="text-xs bg-[#2ecc71]/10 text-[#2ecc71] px-2 py-1 rounded-full font-bold">7 وحدات</span>
+                <span className="text-xs bg-[#2ecc71]/10 text-[#2ecc71] px-2 py-1 rounded-full font-bold">فصلان دراسيان</span>
+              </div>
+              <div className="space-y-2">
+                {['مراجعة البرمجة المتقدمة', 'بناء التطبيقات', 'قواعد البيانات', 'مشروعات عملية', 'المشروع النهائي'].map((topic, i) => (
+                  <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
+                    <span className="material-symbols-outlined text-[#2ecc71] text-sm">check_circle</span>
+                    {topic}
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 flex items-center gap-2 text-[#2ecc71] font-bold text-sm group-hover:gap-3 transition-all">
+                <span>عرض المنهج التفصيلي</span>
+                <span className="material-symbols-outlined text-lg">arrow_forward</span>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* REGISTRATION FORM */}
+      <section id="register" className="py-16 md:py-20 px-margin-mobile md:px-margin-desktop" style={{ background: 'linear-gradient(135deg, #1a3fa0 0%, #4169e1 50%, #6b8aff 100%)' }}>
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-10">
+            <span className="inline-block bg-[#f7be1d] text-[#1a3fa0] px-5 py-1.5 rounded-full text-sm font-bold mb-4 shadow-lg">
+              سجّل الآن — مقاعد محدودة
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3" style={{ fontFamily: 'Tajawal, sans-serif' }}>
               تسجيل بيانات الطالب
             </h2>
-            <p className="text-gray-600" style={{ fontFamily: 'Cairo, sans-serif' }}>
-              املأ البيانات التالية وسنتواصل معك قريباً لتأكيد التسجيل وتفاصيل الدورة
+            <p className="text-white/75 text-lg" style={{ fontFamily: 'Cairo, sans-serif' }}>
+              املأ البيانات التالية وسنتواصل معك فوراً لتأكيد التسجيل
             </p>
           </div>
 
           {done ? (
-            <div className="bg-white rounded-2xl p-8 border border-green-200 text-center shadow-sm">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="material-symbols-outlined text-green-600 text-3xl">check_circle</span>
+            <div className="bg-white rounded-3xl p-10 text-center shadow-2xl">
+              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                <span className="material-symbols-outlined text-green-600 text-4xl">check_circle</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'Tajawal, sans-serif' }}>تم التسجيل بنجاح!</h3>
-              <p className="text-gray-600 mb-6" style={{ fontFamily: 'Cairo, sans-serif' }}>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Tajawal, sans-serif' }}>تم التسجيل بنجاح!</h3>
+              <p className="text-gray-600 mb-8 text-lg" style={{ fontFamily: 'Cairo, sans-serif' }}>
                 شكراً لك! سنتواصل معك خلال 24 ساعة لتأكيد التسجيل وتفاصيل الدورة.
               </p>
-              <button onClick={resetForm} className="bg-primary text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-primary/90 transition-colors cursor-pointer">
+              <button onClick={resetForm} className="bg-[#1a3fa0] text-white px-8 py-3 rounded-xl font-bold hover:bg-[#1a3fa0]/90 transition-colors cursor-pointer">
                 تسجيل طالب آخر
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-6 md:p-8 border border-gray-100 shadow-sm space-y-5">
+            <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
+              {/* Decorative top border */}
+              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#f7be1d] via-[#fd761a] to-[#f7be1d]" />
+
               {errors._form && (
-                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
+                <div className="bg-red-50 border-2 border-red-200 text-red-700 px-5 py-3 rounded-xl text-sm font-medium mb-4">
                   {errors._form}
                 </div>
               )}
 
               {/* Name */}
-              <div>
+              <div className="mb-5">
                 <label className="block text-sm font-bold text-gray-700 mb-2">الاسم الثلاثي *</label>
                 <div className="grid grid-cols-3 gap-3">
                   <div>
@@ -367,14 +485,14 @@ export default function SecondaryPage() {
               </div>
 
               {/* School */}
-              <div>
+              <div className="mb-5">
                 <label className="block text-sm font-bold text-gray-700 mb-2">المدرسة *</label>
                 <input type="text" placeholder="اسم المدرسة" value={form.school} onChange={e => setForm({...form, school: e.target.value})} className={inputClass('school')} />
                 {errors.school && <span className="text-red-500 text-xs mt-1 block">{errors.school}</span>}
               </div>
 
               {/* Grade */}
-              <div>
+              <div className="mb-5">
                 <label className="block text-sm font-bold text-gray-700 mb-2">الصف الدراسي *</label>
                 <select value={form.grade} onChange={e => setForm({...form, grade: e.target.value})} className={inputClass('grade')}>
                   <option value="">اختر الصف</option>
@@ -384,7 +502,7 @@ export default function SecondaryPage() {
               </div>
 
               {/* Governorate */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-3 mb-5">
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-2">المحافظة *</label>
                   <select value={form.governorate} onChange={e => setForm({...form, governorate: e.target.value})} className={inputClass('governorate')}>
@@ -400,7 +518,7 @@ export default function SecondaryPage() {
               </div>
 
               {/* Study Mode */}
-              <div>
+              <div className="mb-5">
                 <label className="block text-sm font-bold text-gray-700 mb-2">طريقة الدراسة *</label>
                 <div className="grid grid-cols-2 gap-3">
                   {[
@@ -413,13 +531,13 @@ export default function SecondaryPage() {
                       onClick={() => setForm({...form, studyMode: mode.v})}
                       className={`flex items-center gap-3 p-4 rounded-xl border-2 transition-all cursor-pointer ${
                         form.studyMode === mode.v
-                          ? 'border-primary bg-primary/5 shadow-sm'
+                          ? 'border-[#1a3fa0] bg-[#1a3fa0]/5 shadow-md'
                           : 'border-gray-200 bg-white hover:border-gray-300'
                       }`}
                     >
-                      <span className={`material-symbols-outlined text-2xl ${form.studyMode === mode.v ? 'text-primary' : 'text-gray-400'}`}>{mode.icon}</span>
+                      <span className={`material-symbols-outlined text-2xl ${form.studyMode === mode.v ? 'text-[#1a3fa0]' : 'text-gray-400'}`}>{mode.icon}</span>
                       <div className="text-right">
-                        <div className={`text-sm font-bold ${form.studyMode === mode.v ? 'text-primary' : 'text-gray-700'}`}>{mode.label}</div>
+                        <div className={`text-sm font-bold ${form.studyMode === mode.v ? 'text-[#1a3fa0]' : 'text-gray-700'}`}>{mode.label}</div>
                         <div className="text-xs text-gray-500">{mode.desc}</div>
                       </div>
                     </button>
@@ -429,7 +547,7 @@ export default function SecondaryPage() {
               </div>
 
               {/* Phone */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-3 mb-6">
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-2">رقم التليفون *</label>
                   <input type="tel" placeholder="01012345678" value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} className={inputClass('phone')} dir="ltr" />
@@ -445,7 +563,7 @@ export default function SecondaryPage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full bg-[#f7be1d] text-[#1a3fa0] py-3.5 rounded-xl font-bold text-lg hover:bg-[#e6a80e] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shadow-lg shadow-[#f7be1d]/20"
+                className="w-full bg-gradient-to-r from-[#f7be1d] to-[#e6a80e] text-[#1a3fa0] py-4 rounded-xl font-bold text-lg hover:from-[#e6a80e] hover:to-[#d49b0c] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shadow-xl shadow-[#f7be1d]/30"
               >
                 {submitting ? (
                   <span className="flex items-center justify-center gap-2">
@@ -455,7 +573,7 @@ export default function SecondaryPage() {
                 ) : (
                   <span className="flex items-center justify-center gap-2">
                     <span className="material-symbols-outlined">how_to_reg</span>
-                    تسجيل
+                    تسجيل الآن
                   </span>
                 )}
               </button>

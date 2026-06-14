@@ -1,8 +1,30 @@
 import Link from 'next/link';
+import { Tajawal, Cairo, Poppins } from 'next/font/google';
 import './globals.css';
 import SiteHeader from '@/components/SiteHeader';
 import RevealObserverClient from '@/components/RevealObserverClient';
 import PromoPopup from '@/components/PromoPopup';
+
+const tajawal = Tajawal({
+  subsets: ['arabic'],
+  weight: ['400', '500', '700', '800', '900'],
+  display: 'swap',
+  variable: '--font-tajawal',
+});
+
+const cairo = Cairo({
+  subsets: ['arabic'],
+  weight: ['400', '500', '600', '700', '800'],
+  display: 'swap',
+  variable: '--font-cairo',
+});
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  display: 'swap',
+  variable: '--font-poppins',
+});
 
 export const metadata = {
   title: 'Tech Makers Egypt — Building Future Tech Leaders',
@@ -11,12 +33,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="ar" dir="rtl" className={`${tajawal.variable} ${cairo.variable} ${poppins.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" />
       </head>
       <body className="bg-surface text-on-surface font-body-md text-body-md min-h-dvh overflow-x-hidden">
@@ -30,7 +51,7 @@ export default function RootLayout({ children }) {
         <footer className="bg-on-background text-surface-bright py-8 md:py-10 px-margin-mobile md:px-margin-desktop w-full rtl">
           <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-start gap-5 md:gap-8">
             <div className="max-w-sm">
-              <img src="/w-%20logo.png" alt="تك ميكرز" className="h-8 w-auto mb-4" />
+              <img src="/w-%20logo.png" alt="تك ميكرز" className="h-8 w-auto mb-4" loading="lazy" />
               <p className="text-surface-variant/70 font-body-md text-xs leading-relaxed mb-4">
                 مبادرة تعليمية رائدة تهدف إلى تمكين جيل الغد بأدوات التكنولوجيا المتقدمة وبناء عقليات مبتكرة قادرة على المنافسة عالمياً.
               </p>

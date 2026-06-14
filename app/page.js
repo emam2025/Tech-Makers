@@ -143,67 +143,40 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            <div className="group bg-white p-6 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(65,105,225,0.15)] text-center reveal reveal-delay-1">
-              <div className="w-14 h-14 mx-auto bg-gradient-to-br from-primary to-primary-deep rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-white text-2xl">code</span>
-              </div>
-              <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">اكتساب مهارات تقنية متقدمة</h3>
-              <ul className="text-right space-y-2">
-                <li className="text-on-surface-variant font-body-md text-body-md">• فهم أساسيات البرمجة وتطبيقاتها العملية مما يؤهلهم لمواكبة التطورات التكنولوجية</li>
-                <li className="text-on-surface-variant font-body-md text-body-md">• القدرة على التعامل مع مفاهيم الذكاء الاصطناعي وتصميم الروبوتات البسيطة</li>
-              </ul>
-            </div>
-            <div className="group bg-white p-6 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-secondary/10 hover:border-secondary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(253,118,26,0.15)] text-center reveal reveal-delay-2">
-              <div className="w-14 h-14 mx-auto bg-gradient-to-br from-secondary to-amber-500 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-white text-2xl">school</span>
-              </div>
-              <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">تحسين الأداء الأكاديمي</h3>
-              <ul className="text-right space-y-2">
-                <li className="text-on-surface-variant font-body-md text-body-md">• تحسين مهارات الحساب الذهني ينعكس إيجابًا على قدرتهم في الرياضيات والعلوم</li>
-                <li className="text-on-surface-variant font-body-md text-body-md">• تقوية اللغة الإنجليزية تعزز فهمهم للمواد الدراسية خاصة في المجالات التقنية</li>
-              </ul>
-            </div>
-            <div className="group bg-white p-6 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-tertiary/10 hover:border-tertiary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(247,190,29,0.15)] text-center reveal reveal-delay-3">
-              <div className="w-14 h-14 mx-auto bg-gradient-to-br from-tertiary to-amber-400 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-white text-2xl">psychology</span>
-              </div>
-              <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">تنمية المهارات الشخصية</h3>
-              <ul className="text-right space-y-2">
-                <li className="text-on-surface-variant font-body-md text-body-md">• تطوير مهارات التفكير النقدي وحل المشكلات من خلال المشاريع العملية</li>
-                <li className="text-on-surface-variant font-body-md text-body-md">• تعزيز العمل الجماعي والقيادة من خلال المشاركة في أنشطة تعاونية</li>
-              </ul>
-            </div>
-            <div className="group bg-white p-6 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-primary-light/10 hover:border-primary-light/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(107,138,255,0.15)] text-center reveal reveal-delay-1">
-              <div className="w-14 h-14 mx-auto bg-gradient-to-br from-primary-light to-primary rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-white text-2xl">emoji_events</span>
-              </div>
-              <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">زيادة الثقة بالنفس</h3>
-              <ul className="text-right space-y-2">
-                <li className="text-on-surface-variant font-body-md text-body-md">• إنجاز مشاريع تقنية يعزز ثقة الأطفال بأنفسهم وقدرتهم على الإبداع</li>
-                <li className="text-on-surface-variant font-body-md text-body-md">• المشاركة في أنشطة تعليمية متقدمة تشجعهم على تحقيق أهداف أكبر</li>
-              </ul>
-            </div>
-            <div className="group bg-white p-6 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-rose-200 hover:border-rose-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(244,63,94,0.15)] text-center reveal reveal-delay-2">
-              <div className="w-14 h-14 mx-auto bg-gradient-to-br from-rose-400 to-rose-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-white text-2xl">explore</span>
-              </div>
-              <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">فتح آفاق جديدة للتعلم</h3>
-              <ul className="text-right space-y-2">
-                <li className="text-on-surface-variant font-body-md text-body-md">• تحفيز الأطفال على استكشاف مجالات جديدة في العلوم والتكنولوجيا</li>
-                <li className="text-on-surface-variant font-body-md text-body-md">• استعداد أكبر لمواجهة تحديات المستقبل في سوق العمل التقني</li>
-              </ul>
-            </div>
-            <div className="group bg-white p-6 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-emerald-200 hover:border-emerald-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(16,185,129,0.15)] text-center reveal reveal-delay-3">
-              <div className="w-14 h-14 mx-auto bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-white text-2xl">rocket_launch</span>
-              </div>
-              <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">بناء جيل مبتكر</h3>
-              <ul className="text-right space-y-2">
-                <li className="text-on-surface-variant font-body-md text-body-md">• إعداد جيل من الأطفال القادرين على الابتكار والإسهام في تطوير المجتمع</li>
-                <li className="text-on-surface-variant font-body-md text-body-md">• أساس قوي في التكنولوجيا والذكاء الاصطناعي يؤهلهم لقيادة مشاريع تكنولوجية</li>
-              </ul>
-            </div>
-
+            {[
+              { icon: 'code', color: 'primary', title: 'اكتساب مهارات تقنية متقدمة', items: ['فهم أساسيات البرمجة وتطبيقاتها العملية مما يؤهلهم لمواكبة التطورات التكنولوجية', 'القدرة على التعامل مع مفاهيم الذكاء الاصطناعي وتصميم الروبوتات البسيطة'], delay: '1' },
+              { icon: 'school', color: 'secondary', title: 'تحسين الأداء الأكاديمي', items: ['تحسين مهارات الحساب الذهني ينعكس إيجابًا على قدرتهم في الرياضيات والعلوم', 'تقوية اللغة الإنجليزية تعزز فهمهم للمواد الدراسية خاصة في المجالات التقنية'], delay: '2' },
+              { icon: 'psychology', color: 'tertiary', title: 'تنمية المهارات الشخصية', items: ['تطوير مهارات التفكير النقدي وحل المشكلات من خلال المشاريع العملية', 'تعزيز العمل الجماعي والقيادة من خلال المشاركة في أنشطة تعاونية'], delay: '3' },
+              { icon: 'emoji_events', color: 'primary-light', title: 'زيادة الثقة بالنفس', items: ['إنجاز مشاريع تقنية يعزز ثقة الأطفال بأنفسهم وقدرتهم على الإبداع', 'المشاركة في أنشطة تعليمية متقدمة تشجعهم على تحقيق أهداف أكبر'], delay: '1' },
+              { icon: 'explore', color: 'rose', title: 'فتح آفاق جديدة للتعلم', items: ['تحفيز الأطفال على استكشاف مجالات جديدة في العلوم والتكنولوجيا', 'استعداد أكبر لمواجهة تحديات المستقبل في سوق العمل التقني'], delay: '2' },
+              { icon: 'rocket_launch', color: 'emerald', title: 'بناء جيل مبتكر', items: ['إعداد جيل من الأطفال القادرين على الابتكار والإسهام في تطوير المجتمع', 'أساس قوي في التكنولوجيا والذكاء الاصطناعي يؤهلهم لقيادة مشاريع تكنولوجية'], delay: '3' },
+            ].map((card, i) => {
+              const colors = {
+                primary: { bg: 'from-primary to-primary-deep', border: 'border-primary/10', hover: 'hover:border-primary/30 hover:shadow-[0_12px_40px_rgba(65,105,225,0.15)]', num: 'from-primary/10 to-primary/5' },
+                secondary: { bg: 'from-secondary to-amber-500', border: 'border-secondary/10', hover: 'hover:border-secondary/30 hover:shadow-[0_12px_40px_rgba(253,118,26,0.15)]', num: 'from-secondary/10 to-secondary/5' },
+                tertiary: { bg: 'from-tertiary to-amber-400', border: 'border-tertiary/10', hover: 'hover:border-tertiary/30 hover:shadow-[0_12px_40px_rgba(247,190,29,0.15)]', num: 'from-tertiary/10 to-tertiary/5' },
+                'primary-light': { bg: 'from-primary-light to-primary', border: 'border-primary-light/10', hover: 'hover:border-primary-light/30 hover:shadow-[0_12px_40px_rgba(107,138,255,0.15)]', num: 'from-primary-light/10 to-primary-light/5' },
+                rose: { bg: 'from-rose-400 to-rose-600', border: 'border-rose-200', hover: 'hover:border-rose-400 hover:shadow-[0_12px_40px_rgba(244,63,94,0.15)]', num: 'from-rose-100 to-rose-50' },
+                emerald: { bg: 'from-emerald-400 to-emerald-600', border: 'border-emerald-200', hover: 'hover:border-emerald-400 hover:shadow-[0_12px_40px_rgba(16,185,129,0.15)]', num: 'from-emerald-100 to-emerald-50' },
+              };
+              const c = colors[card.color];
+              return (
+                <div key={i} className={`group bg-white p-6 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border ${c.border} ${c.hover} transition-all duration-300 hover:-translate-y-2 text-center reveal reveal-delay-${card.delay}`}>
+                  <div className={`w-14 h-14 mx-auto bg-gradient-to-br ${c.bg} rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                    <span className="material-symbols-outlined text-white text-2xl">{card.icon}</span>
+                  </div>
+                  <h3 className="font-headline-lg text-headline-lg mb-4 text-primary">{card.title}</h3>
+                  <ul className="text-right space-y-2">
+                    {card.items.map((item, j) => (
+                      <li key={j} className="flex items-start gap-2 text-on-surface-variant font-body-md text-body-md">
+                        <span className="material-symbols-outlined text-tertiary text-base mt-0.5 shrink-0">check_circle</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -334,7 +307,7 @@ export default function HomePage() {
             <div className="relative flex flex-col md:flex-row items-center gap-0">
               {/* Image Side */}
               <div className="w-full md:w-2/5 h-64 md:h-[420px] relative overflow-hidden flex-shrink-0">
-                <img src="/secondary-banner.png" alt="كورس برمجة الثانوية العامة" className="w-full h-full object-cover" />
+                <Image src="/secondary-banner.jpg" alt="كورس برمجة الثانوية العامة" fill sizes="(max-width: 768px) 100vw, 40vw" className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#1a3fa0]/60 hidden md:block" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a3fa0]/80 to-transparent md:hidden" />
                 <div className="absolute top-4 right-4 md:top-6 md:right-6">
