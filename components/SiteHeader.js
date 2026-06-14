@@ -21,6 +21,7 @@ export default function SiteHeader() {
           <nav className="hidden md:flex items-center gap-8">
             <Link href="/" className="text-primary font-bold border-b-2 border-primary py-1">الرئيسية</Link>
             <Link href="/about" className="text-on-surface-variant font-medium hover:text-primary-light transition-all duration-300">من نحن</Link>
+            <Link href="/secondary" className="text-on-surface-variant font-medium hover:text-primary-light transition-all duration-300">الثانوية العامة</Link>
             <Link href="/certificate" className="text-on-surface-variant font-medium hover:text-primary-light transition-all duration-300">الشهادات</Link>
             <Link href="/join" className="text-on-surface-variant font-medium hover:text-primary-light transition-all duration-300">انضم إلينا</Link>
           </nav>
@@ -53,6 +54,12 @@ export default function SiteHeader() {
               <Link href="/about" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-container-high transition-colors" onClick={() => setOpen(false)}>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 من نحن
+              </Link>
+            </li>
+            <li>
+              <Link href="/secondary" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-container-high transition-colors" onClick={() => setOpen(false)}>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                الثانوية العامة
               </Link>
             </li>
             <li>

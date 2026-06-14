@@ -323,6 +323,46 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Secondary School Banner */}
+      <section className="py-12 md:py-16 px-margin-mobile md:px-margin-desktop" style={{ background: 'linear-gradient(135deg, #1a3fa0 0%, #4169e1 50%, #6b8aff 100%)' }}>
+        <div className="max-w-container-max mx-auto">
+          <div className="bg-white/10 backdrop-blur-md rounded-32 p-8 md:p-12 border border-white/20 flex flex-col md:flex-row items-center gap-8">
+            <div className="flex-1">
+              <span className="inline-block bg-[#f7be1d]/20 text-[#f7be1d] text-sm font-bold px-4 py-1.5 rounded-full mb-4 border border-[#f7be1d]/30">
+                برنامج خاص
+              </span>
+              <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-white mb-4">
+                مسار الثانوية العامة
+              </h2>
+              <p className="text-white/80 font-body-lg text-body-lg mb-6 leading-relaxed">
+                برنامج متكامل مُصمم خصيصاً لطلاب الثانوية العامة — تعلم البرمجة وتطوير التطبيقات والمهارات التقنية المتقدمة مع تحضير قوي للمستقبل الجامعي والمهني.
+              </p>
+              <div className="flex flex-wrap gap-3 mb-6">
+                <div className="flex items-center gap-2 bg-white/15 text-white px-4 py-2 rounded-xl text-sm font-bold border border-white/20">
+                  <span className="material-symbols-outlined text-lg">school</span>
+                  15 — 18 سنة
+                </div>
+                <div className="flex items-center gap-2 bg-white/15 text-white px-4 py-2 rounded-xl text-sm font-bold border border-white/20">
+                  <span className="material-symbols-outlined text-lg">computer</span>
+                  أونلاين / أوفلاين
+                </div>
+                <div className="flex items-center gap-2 bg-white/15 text-white px-4 py-2 rounded-xl text-sm font-bold border border-white/20">
+                  <span className="material-symbols-outlined text-lg">workspace_premium</span>
+                  شهادات معتمدة
+                </div>
+              </div>
+              <Link href="/secondary" className="inline-flex items-center gap-3 bg-[#f7be1d] text-[#1a3fa0] px-8 py-3.5 rounded-full font-bold text-lg shadow-xl hover:scale-105 active:scale-95 transition-all">
+                <span className="material-symbols-outlined">arrow_forward</span>
+                اعرف المزيد وسجّل
+              </Link>
+            </div>
+            <div className="w-full md:w-80 h-48 md:h-64 rounded-2xl overflow-hidden flex-shrink-0 border-4 border-white/20">
+              <img src="/secondary-banner.png" alt="مسار الثانوية العامة" className="w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section-padding bg-surface" id="students">
         <div className="container-inner">
           <div className="text-center mb-16">

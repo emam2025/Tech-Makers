@@ -7,6 +7,7 @@ const TRACK_NAMES = {
   c: 'Track C — Future Tech Engineers (16–20 سنة)',
   technomath: 'Techno Math — الحساب الذهني (8–15 سنة)',
   techenglish: 'Tech English — اللغة الإنجليزية التكنولوجية',
+  secondary: 'الثانوية العامة — Tech Academy (15–18 سنة)',
 };
 
 const PLAN_NAMES = {
@@ -27,7 +28,7 @@ const PLAN_NAMES_TECHENGLISH = {
   yearly: 'اشتراك سنوي — 600 جنيه/شهرياً (إجمالي 7200)',
 };
 
-const ALLOWED_TRACKS = ['a', 'b', 'c', 'technomath', 'techenglish'];
+const ALLOWED_TRACKS = ['a', 'b', 'c', 'technomath', 'techenglish', 'secondary'];
 const ALLOWED_PLANS = ['monthly', 'quarterly', 'yearly'];
 
 export async function POST(request) {
@@ -49,13 +50,24 @@ export async function POST(request) {
 
   try {
     const body = await request.json();
-    const { name, birth_date, email, phone, whatsapp, grade, country, governorate, city, track, plan } = body;
+    const { name, birth_date, email, phone, whatsapp, grade, country, governorate, city, track, plan, school, study_mode } = body;
 
-    if (!name || !birth_date || !email || !phone || !whatsapp || !grade || !track || !plan) {
-      return NextResponse.json(
-        { error: 'جميع الحقول المطلوبة يجب أن تكون مكتملة' },
-        { status: 400 }
-      );
+    const isSecondary = track === 'secondary';
+
+    if (isSecondary) {
+      if (!name || !phone || !grade || !governorate || !study_mode) {
+        return NextResponse.json(
+          { error: 'جميع الحقول المطلوبة يجب أن تكون مكتملة' },
+          { status: 400 }
+        );
+      }
+    } else {
+      if (!name || !birth_date || !email || !phone || !whatsapp || !grade || !track || !plan) {
+        return NextResponse.json(
+          { error: 'جميع الحقول المطلوبة يجب أن تكون مكتملة' },
+          { status: 400 }
+        );
+      }
     }
 
     const lengthError = validateInputLength(body);
@@ -66,19 +78,21 @@ export async function POST(request) {
     if (!validateName(name)) {
       return NextResponse.json({ error: 'الاسم غير صحيح' }, { status: 400 });
     }
-    if (!validateEmail(email)) {
-      return NextResponse.json({ error: 'البريد الإلكتروني غير صحيح' }, { status: 400 });
-    }
     if (!validatePhone(phone)) {
       return NextResponse.json({ error: 'رقم الهاتف غير صحيح' }, { status: 400 });
     }
-    if (!validatePhone(whatsapp)) {
-      return NextResponse.json({ error: 'رقم الواتساب غير صحيح' }, { status: 400 });
+    if (!isSecondary) {
+      if (!validateEmail(email)) {
+        return NextResponse.json({ error: 'البريد الإلكتروني غير صحيح' }, { status: 400 });
+      }
+      if (!validatePhone(whatsapp)) {
+        return NextResponse.json({ error: 'رقم الواتساب غير صحيح' }, { status: 400 });
+      }
     }
     if (!ALLOWED_TRACKS.includes(track)) {
       return NextResponse.json({ error: 'المسار غير صحيح' }, { status: 400 });
     }
-    if (!ALLOWED_PLANS.includes(plan)) {
+    if (!isSecondary && !ALLOWED_PLANS.includes(plan)) {
       return NextResponse.json({ error: 'الاشتراك غير صحيح' }, { status: 400 });
     }
 
@@ -123,16 +137,18 @@ export async function POST(request) {
       },
       body: JSON.stringify({
         name: sanitizePlain(name),
-        birth_date,
-        email: sanitizePlain(email),
+        birth_date: isSecondary ? null : birth_date,
+        email: isSecondary ? null : sanitizePlain(email),
         phone: sanitizePlain(phone),
-        whatsapp: sanitizePlain(whatsapp),
-        grade: Number(grade),
-        country: country ? sanitizePlain(country) : null,
+        whatsapp: isSecondary ? sanitizePlain(phone) : sanitizePlain(whatsapp),
+        grade: isSecondary ? grade : Number(grade),
+        country: isSecondary ? 'مصر' : (country ? sanitizePlain(country) : null),
         governorate: governorate ? sanitizePlain(governorate) : null,
         city: city ? sanitizePlain(city) : null,
+        school: school ? sanitizePlain(school) : null,
+        study_mode: study_mode ? sanitizePlain(study_mode) : null,
         track,
-        plan,
+        plan: isSecondary ? null : plan,
         status: 'pending',
         created_at: new Date().toISOString(),
       }),
