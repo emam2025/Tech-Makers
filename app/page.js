@@ -517,8 +517,8 @@ export default function HomePage() {
               </div>
               <span className="font-label-sm text-label-sm text-primary-light bg-primary-light/10 px-3 py-1 rounded-full mb-3 inline-block">إضافة مستقلة</span>
               <h3 className="font-headline-lg text-headline-lg text-primary mb-2">Techno Math</h3>
-              <p className="text-on-surface-variant font-body-md text-body-md mb-4">برنامج تطويري لتعزيز التفكير الرياضي والمنطقي بربطه بالتكنولوجيا. تفاصيل الاشتراك والرسوم عند التواصل معنا.</p>
-               <Link href="#plans" className="text-primary font-headline-lg text-headline-lg inline-flex items-center gap-1 hover:gap-2 transition-all">استفسر عن البرنامج ←</Link>
+              <p className="text-on-surface-variant font-body-md text-body-md mb-4">برنامج الحساب الذهني للأطفال من 8 إلى 15 سنة — من العداد إلى التخيل والسرعة الاحترافية خلال 12 شهر.</p>
+               <Link href="/technomath" className="text-primary font-headline-lg text-headline-lg inline-flex items-center gap-1 hover:gap-2 transition-all">اكتشف البرنامج ←</Link>
             </div>
             <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-secondary/10 hover:border-secondary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(253,118,26,0.15)]">
               <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-secondary to-amber-500 rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform">
