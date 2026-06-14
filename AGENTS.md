@@ -25,6 +25,7 @@ Next.js 16 landing page for Tech Makers Egypt (TKA). Arabic RTL site deploying t
 - `RESEND_API_KEY` - Resend API key
 - `GOOGLE_SCRIPT_URL` - Google Apps Script URL (proxied via `/api/certificate`)
 - `GEMINI_API_KEY` - Google Gemini AI API key (for English test)
+- `GEMINI_API_KEY_BACKUP` - Backup Gemini API key (fallback for rate limits)
 
 ## Key Files
 - `app/page.js` - Homepage (hero, stats, tracks, results, testimonials, FAQ, pricing)
