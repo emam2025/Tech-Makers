@@ -1,14 +1,210 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 
+const levels = [
+  {
+    num: 'L1',
+    title: 'Tech English Starter',
+    subtitle: 'A1 Foundation',
+    duration: '3 أشهر',
+    color: 'blue',
+    gradient: 'from-blue-400 to-blue-600',
+    border: 'border-blue-100',
+    hoverShadow: 'hover:shadow-[0_12px_40px_rgba(59,130,246,0.2)]',
+    bgLight: 'bg-blue-50',
+    textAccent: 'text-blue-500',
+    tagBg: 'bg-blue-100',
+    tagText: 'text-blue-600',
+    dotBg: 'bg-blue-500',
+    dotShadow: 'shadow-blue-500/30',
+    description: 'بناء أساس لغوي بسيط يجعل الطالب قادرًا على فهم والتحدث في مواقف يومية وتقنية بسيطة.',
+    topics: [
+      { icon: 'record_voice_over', name: 'Speaking Confidence', items: ['تقديم النفس والحديث عن الهوايات', 'وصف الأشياء وطرح الأسئلة'] },
+      { icon: 'hearing', name: 'Listening Skills', items: ['فهم المحادثات البسيطة', 'التقاط الكلمات الأساسية'] },
+      { icon: 'devices', name: 'Vocabulary: Technology Basics', items: ['Computer Parts, Internet, Apps, Devices'] },
+    ],
+    skills: ['تقديم النفس بثقة', 'فهم محادثات قصيرة', 'كلمات تقنية أساسية', 'التعامل مع واجهات البرامج', 'بناء جمل بسيطة'],
+  },
+  {
+    num: 'L2',
+    title: 'Tech Explorer',
+    subtitle: 'A2 Communication',
+    duration: '3 أشهر',
+    color: 'primary',
+    gradient: 'from-primary to-primary-deep',
+    border: 'border-primary/10',
+    hoverShadow: 'hover:shadow-[0_12px_40px_rgba(65,130,225,0.2)]',
+    bgLight: 'bg-primary/5',
+    textAccent: 'text-primary',
+    tagBg: 'bg-primary/10',
+    tagText: 'text-primary',
+    dotBg: 'bg-primary',
+    dotShadow: 'shadow-primary/30',
+    description: 'نقل الطالب من فهم الكلمات إلى التواصل الحقيقي. التعبير عن الرأي وشرح الأفكار التقنية.',
+    topics: [
+      { icon: 'chat', name: 'Conversation', items: ['التعبير عن الرأي وشرح فكرة', 'وصف مشكلة وطلب المساعدة'] },
+      { icon: 'play_circle', name: 'Listening', items: ['فيديوهات قصيرة ومقاطع تقنية مبسطة', 'محادثات واقعية'] },
+      { icon: 'code', name: 'Vocabulary: Technology', items: ['Coding, Programming, AI, Robots, Digital World'] },
+    ],
+    skills: ['يتحدث في مواقف يومية', 'يشرح فكرة تقنية', 'يفهم محتوى تقني مبسط', 'يزيد الثقة أثناء الكلام'],
+  },
+  {
+    num: 'L3',
+    title: 'Future Tech Communicator',
+    subtitle: 'B1 Intermediate',
+    duration: '3 أشهر',
+    color: 'violet',
+    gradient: 'from-violet-400 to-violet-600',
+    border: 'border-violet-100',
+    hoverShadow: 'hover:shadow-[0_12px_40px_rgba(139,92,246,0.2)]',
+    bgLight: 'bg-violet-50',
+    textAccent: 'text-violet-500',
+    tagBg: 'bg-violet-100',
+    tagText: 'text-violet-600',
+    dotBg: 'bg-violet-500',
+    dotShadow: 'shadow-violet-500/30',
+    description: 'استخدام الإنجليزية للتعلم والتعاون في المجال التقني. العروض النقاشات والكتابة.',
+    topics: [
+      { icon: 'mic', name: 'Speaking', items: ['Presentations & Discussions', 'Team Communication'] },
+      { icon: 'edit_note', name: 'Writing', items: ['كتابة وصف مشروع وأفكار ورسائل'] },
+      { icon: 'smart_toy', name: 'Technology Topics', items: ['AI, Cybersecurity, Web Dev, Future Jobs'] },
+    ],
+    skills: ['يتحدث بطلاقة أفضل', 'يشرح مشاريع تقنية', 'يفهم المحتوى التعليمي الإنجليزي', 'يشارك في نقاشات بسيطة'],
+  },
+  {
+    num: 'L4',
+    title: 'Tech Professional',
+    subtitle: 'B2 Advanced Communication',
+    duration: '3 أشهر + مشروع نهائي',
+    color: 'amber',
+    gradient: 'from-amber-400 to-orange-500',
+    border: 'border-amber-100',
+    hoverShadow: 'hover:shadow-[0_12px_40px_rgba(245,158,11,0.2)]',
+    bgLight: 'bg-amber-50',
+    textAccent: 'text-amber-600',
+    tagBg: 'bg-amber-100',
+    tagText: 'text-amber-600',
+    dotBg: 'bg-gradient-to-br from-amber-400 to-orange-500',
+    dotShadow: 'shadow-amber-500/30',
+    description: 'تجهيز الطالب لاستخدام الإنجليزية في الدراسة والمستقبل التقني. المهارات المهنية والمشاريع.',
+    topics: [
+      { icon: 'record_voice_over', name: 'Advanced Speaking', items: ['Presentations, Problem Solving, Debates'] },
+      { icon: 'work', name: 'Professional English', items: ['كتابة CV، Interview Skills، Email Communication'] },
+      { icon: 'precision_manufacturing', name: 'AI & Technology English', items: ['قراءة مقالات تقنية وفهم أدوات الذكاء الاصطناعي'] },
+    ],
+    skills: ['يتحدث بثقة', 'يتعلم من مصادر أجنبية', 'يفهم مصطلحات البرمجة والـ AI', 'يقدم أفكاره ومشاريعه بالإنجليزية', 'مشروع نهائي'],
+  },
+];
+
+function LevelCard({ level, isOpen, onToggle, index, isLeft }) {
+  return (
+    <div className={`relative flex flex-col md:flex-row gap-8 ${index < levels.length - 1 ? 'mb-16' : ''} items-center`}>
+      {isLeft ? (
+        <>
+          <div className="md:w-1/2 md:text-right">
+            <CardContent level={level} isOpen={isOpen} onToggle={onToggle} />
+          </div>
+          <div className={`hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 ${level.dotBg} rounded-full items-center justify-center shadow-lg ${level.dotShadow} z-10`}>
+            <span className="text-white font-bold">{index + 1}</span>
+          </div>
+          <div className="md:w-1/2"></div>
+        </>
+      ) : (
+        <>
+          <div className="md:w-1/2"></div>
+          <div className={`hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 ${level.dotBg} rounded-full items-center justify-center shadow-lg ${level.dotShadow} z-10`}>
+            <span className="text-white font-bold">{index + 1}</span>
+          </div>
+          <div className="md:w-1/2">
+            <CardContent level={level} isOpen={isOpen} onToggle={onToggle} />
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+function CardContent({ level, isOpen, onToggle }) {
+  return (
+    <div
+      className={`bg-white rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.06)] border ${level.border} hover:${level.hoverShadow} transition-all duration-300 cursor-pointer overflow-hidden`}
+      onClick={onToggle}
+    >
+      {/* Header - always visible */}
+      <div className="p-5 md:p-6">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className={`w-11 h-11 bg-gradient-to-br ${level.gradient} rounded-xl flex items-center justify-center flex-shrink-0`}>
+              <span className="text-white font-bold text-sm">{level.num}</span>
+            </div>
+            <div>
+              <h3 className="font-headline-md md:text-headline-lg text-primary-deep">{level.title}</h3>
+              <div className="flex items-center gap-2 mt-0.5">
+                <span className={`text-xs font-bold ${level.tagText} ${level.tagBg} px-2 py-0.5 rounded-full`}>{level.subtitle}</span>
+                <span className="text-xs text-on-surface-variant">{level.duration}</span>
+              </div>
+            </div>
+          </div>
+          <span className={`material-symbols-outlined text-on-surface-variant transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+            expand_more
+          </span>
+        </div>
+      </div>
+
+      {/* Content - expandable */}
+      <div className={`transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="px-5 md:px-6 pb-6 border-t border-gray-100">
+          <p className="text-on-surface-variant text-sm mt-4 mb-4">{level.description}</p>
+
+          <div className="space-y-3">
+            {level.topics.map((topic, i) => (
+              <div key={i} className={`${level.bgLight} rounded-xl p-3`}>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className={`material-symbols-outlined ${level.textAccent} text-lg`}>{topic.icon}</span>
+                  <span className="font-bold text-sm text-primary-deep">{topic.name}</span>
+                </div>
+                <ul className="text-xs text-on-surface-variant space-y-1">
+                  {topic.items.map((item, j) => <li key={j}>• {item}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 pt-4 border-t border-gray-100">
+            <p className={`text-xs font-bold ${level.tagText} mb-2`}>المهارات المكتسبة:</p>
+            <div className="flex flex-wrap gap-1.5">
+              {level.skills.map((skill, i) => (
+                <span key={i} className="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">{skill}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function TechEnglishPage() {
+  const [openLevel, setOpenLevel] = useState(null);
+
+  const toggleLevel = (index) => {
+    setOpenLevel(openLevel === index ? null : index);
+  };
+
   return (
     <>
       {/* HERO */}
-      <section className="relative py-16 md:py-24 px-margin-mobile md:px-margin-desktop bg-gradient-to-br from-primary-deep via-primary to-primary-light overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 right-10 w-72 h-72 bg-white rounded-full blur-3xl" />
-          <div className="absolute bottom-10 left-10 w-96 h-96 bg-tertiary rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl" />
+      <section className="relative py-16 md:py-24 px-margin-mobile md:px-margin-desktop overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="/english-banner-opt.jpg" 
+            alt="" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-deep/90 via-primary/85 to-primary-light/80"></div>
         </div>
         <div className="max-w-container-max mx-auto relative z-10">
           <div className="flex items-center gap-3 mb-6">
@@ -101,276 +297,28 @@ export default function TechEnglishPage() {
         </div>
       </section>
 
-      {/* JOURNEY */}
+      {/* JOURNEY - ACCORDION */}
       <section className="py-16 md:py-24 px-margin-mobile md:px-margin-desktop bg-bg-off-white">
-        <div className="max-w-container-max mx-auto">
-          <div className="text-center mb-16">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-12">
             <span className="inline-block bg-primary/10 text-primary px-5 py-2 rounded-full font-label-md mb-4 border border-primary/20">
               <span className="material-symbols-outlined text-sm align-middle">route</span> رحلة التعلم
             </span>
             <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-3">Tech English Journey</h2>
-            <p className="text-on-surface-variant font-body-lg max-w-2xl mx-auto">4 مستويات متدرجة من A1 إلى B2، كل مستوى 3 أشهر، تصميم مخصص لجعل الطالب يتحدث الإنجليزية بثقة في عالم التكنولوجيا</p>
+            <p className="text-on-surface-variant font-body-lg">اضغط على أي مستوى لعرض التفاصيل</p>
           </div>
 
-          {/* Timeline */}
-          <div className="relative">
-            {/* Vertical line */}
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 via-primary to-primary-deep -translate-x-1/2 rounded-full"></div>
-
-            {/* Level 1 */}
-            <div className="relative flex flex-col md:flex-row gap-8 mb-16 items-center">
-              <div className="md:w-1/2 md:text-right">
-                <div className="bg-white rounded-3xl p-6 md:p-8 shadow-[0_8px_32px_rgba(59,130,246,0.1)] border border-blue-100 hover:shadow-[0_12px_40px_rgba(59,130,246,0.2)] transition-all duration-300">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">L1</span>
-                    </div>
-                    <div>
-                      <span className="text-xs font-bold text-blue-600 bg-blue-100 px-3 py-1 rounded-full">3 أشهر</span>
-                    </div>
-                  </div>
-                  <h3 className="font-headline-lg text-headline-lg text-primary-deep mb-2">Tech English Starter</h3>
-                  <span className="text-blue-500 font-bold text-sm">A1 Foundation</span>
-                  <p className="text-on-surface-variant text-sm mt-3 mb-4">بناء أساس لغوي بسيط يجعل الطالب قادرًا على فهم والتحدث في مواقف يومية وتقنية بسيطة.</p>
-
-                  <div className="space-y-3">
-                    <div className="bg-blue-50 rounded-xl p-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="material-symbols-outlined text-blue-500 text-lg">record_voice_over</span>
-                        <span className="font-bold text-sm text-primary-deep">Speaking Confidence</span>
-                      </div>
-                      <ul className="text-xs text-on-surface-variant space-y-1">
-                        <li>• تقديم النفس والحديث عن الهوايات</li>
-                        <li>• وصف الأشياء وطرح الأسئلة</li>
-                      </ul>
-                    </div>
-                    <div className="bg-blue-50 rounded-xl p-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="material-symbols-outlined text-blue-500 text-lg">hearing</span>
-                        <span className="font-bold text-sm text-primary-deep">Listening Skills</span>
-                      </div>
-                      <ul className="text-xs text-on-surface-variant space-y-1">
-                        <li>• فهم المحادثات البسيطة</li>
-                        <li>• التقاط الكلمات الأساسية</li>
-                      </ul>
-                    </div>
-                    <div className="bg-blue-50 rounded-xl p-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="material-symbols-outlined text-blue-500 text-lg">devices</span>
-                        <span className="font-bold text-sm text-primary-deep">Vocabulary: Technology Basics</span>
-                      </div>
-                      <ul className="text-xs text-on-surface-variant space-y-1">
-                        <li>• Computer Parts, Internet, Apps, Devices</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 pt-4 border-t border-blue-100">
-                    <p className="text-xs font-bold text-blue-600 mb-2">المهارات المكتسبة:</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      <span className="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">تقديم النفس بثقة</span>
-                      <span className="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">فهم محادثات قصيرة</span>
-                      <span className="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">كلمات تقنية أساسية</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* Timeline dot */}
-              <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 bg-blue-500 rounded-full items-center justify-center shadow-lg shadow-blue-500/30 z-10">
-                <span className="text-white font-bold">1</span>
-              </div>
-              <div className="md:w-1/2"></div>
-            </div>
-
-            {/* Level 2 */}
-            <div className="relative flex flex-col md:flex-row gap-8 mb-16 items-center">
-              <div className="md:w-1/2"></div>
-              <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 bg-primary rounded-full items-center justify-center shadow-lg shadow-primary/30 z-10">
-                <span className="text-white font-bold">2</span>
-              </div>
-              <div className="md:w-1/2">
-                <div className="bg-white rounded-3xl p-6 md:p-8 shadow-[0_8px_32px_rgba(65,105,225,0.1)] border border-primary/10 hover:shadow-[0_12px_40px_rgba(65,130,225,0.2)] transition-all duration-300">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary-deep rounded-xl flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">L2</span>
-                    </div>
-                    <div>
-                      <span className="text-xs font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">3 أشهر</span>
-                    </div>
-                  </div>
-                  <h3 className="font-headline-lg text-headline-lg text-primary-deep mb-2">Tech Explorer</h3>
-                  <span className="text-primary font-bold text-sm">A2 Communication</span>
-                  <p className="text-on-surface-variant text-sm mt-3 mb-4">نقل الطالب من فهم الكلمات إلى التواصل الحقيقي. التعبير عن الرأي وشرح الأفكار التقنية.</p>
-
-                  <div className="space-y-3">
-                    <div className="bg-primary/5 rounded-xl p-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="material-symbols-outlined text-primary text-lg">chat</span>
-                        <span className="font-bold text-sm text-primary-deep">Conversation</span>
-                      </div>
-                      <ul className="text-xs text-on-surface-variant space-y-1">
-                        <li>• التعبير عن الرأي وشرح فكرة</li>
-                        <li>• وصف مشكلة وطلب المساعدة</li>
-                      </ul>
-                    </div>
-                    <div className="bg-primary/5 rounded-xl p-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="material-symbols-outlined text-primary text-lg">play_circle</span>
-                        <span className="font-bold text-sm text-primary-deep">Listening</span>
-                      </div>
-                      <ul className="text-xs text-on-surface-variant space-y-1">
-                        <li>• فيديوهات قصيرة ومقاطع تقنية مبسطة</li>
-                        <li>• محادثات واقعية</li>
-                      </ul>
-                    </div>
-                    <div className="bg-primary/5 rounded-xl p-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="material-symbols-outlined text-primary text-lg">code</span>
-                        <span className="font-bold text-sm text-primary-deep">Vocabulary: Technology</span>
-                      </div>
-                      <ul className="text-xs text-on-surface-variant space-y-1">
-                        <li>• Coding, Programming, AI, Robots, Digital World</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 pt-4 border-t border-primary/10">
-                    <p className="text-xs font-bold text-primary mb-2">المهارات المكتسبة:</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      <span className="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">يتحدث في مواقف يومية</span>
-                      <span className="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">يشرح فكرة تقنية</span>
-                      <span className="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">يزيد الثقة</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Level 3 */}
-            <div className="relative flex flex-col md:flex-row gap-8 mb-16 items-center">
-              <div className="md:w-1/2 md:text-right">
-                <div className="bg-white rounded-3xl p-6 md:p-8 shadow-[0_8px_32px_rgba(139,92,246,0.1)] border border-violet-100 hover:shadow-[0_12px_40px_rgba(139,92,246,0.2)] transition-all duration-300">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-violet-400 to-violet-600 rounded-xl flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">L3</span>
-                    </div>
-                    <div>
-                      <span className="text-xs font-bold text-violet-600 bg-violet-100 px-3 py-1 rounded-full">3 أشهر</span>
-                    </div>
-                  </div>
-                  <h3 className="font-headline-lg text-headline-lg text-primary-deep mb-2">Future Tech Communicator</h3>
-                  <span className="text-violet-500 font-bold text-sm">B1 Intermediate</span>
-                  <p className="text-on-surface-variant text-sm mt-3 mb-4">استخدام الإنجليزية للتعلم والتعاون في المجال التقني. العروض النقاشات والكتابة.</p>
-
-                  <div className="space-y-3">
-                    <div className="bg-violet-50 rounded-xl p-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="material-symbols-outlined text-violet-500 text-lg">mic</span>
-                        <span className="font-bold text-sm text-primary-deep">Speaking</span>
-                      </div>
-                      <ul className="text-xs text-on-surface-variant space-y-1">
-                        <li>• Presentations & Discussions</li>
-                        <li>• Team Communication</li>
-                      </ul>
-                    </div>
-                    <div className="bg-violet-50 rounded-xl p-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="material-symbols-outlined text-violet-500 text-lg">edit_note</span>
-                        <span className="font-bold text-sm text-primary-deep">Writing</span>
-                      </div>
-                      <ul className="text-xs text-on-surface-variant space-y-1">
-                        <li>• كتابة وصف مشروع وأفكار ورسائل</li>
-                      </ul>
-                    </div>
-                    <div className="bg-violet-50 rounded-xl p-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="material-symbols-outlined text-violet-500 text-lg">smart_toy</span>
-                        <span className="font-bold text-sm text-primary-deep">Technology Topics</span>
-                      </div>
-                      <ul className="text-xs text-on-surface-variant space-y-1">
-                        <li>• AI, Cybersecurity, Web Dev, Future Jobs</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 pt-4 border-t border-violet-100">
-                    <p className="text-xs font-bold text-violet-600 mb-2">المهارات المكتسبة:</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      <span className="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">يتحدث بطلاقة أفضل</span>
-                      <span className="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">يشرح مشاريع تقنية</span>
-                      <span className="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">يشارك في نقاشات</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 bg-violet-500 rounded-full items-center justify-center shadow-lg shadow-violet-500/30 z-10">
-                <span className="text-white font-bold">3</span>
-              </div>
-              <div className="md:w-1/2"></div>
-            </div>
-
-            {/* Level 4 */}
-            <div className="relative flex flex-col md:flex-row gap-8 items-center">
-              <div className="md:w-1/2"></div>
-              <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full items-center justify-center shadow-lg shadow-amber-500/30 z-10">
-                <span className="text-white font-bold">4</span>
-              </div>
-              <div className="md:w-1/2">
-                <div className="bg-white rounded-3xl p-6 md:p-8 shadow-[0_8px_32px_rgba(245,158,11,0.1)] border border-amber-100 hover:shadow-[0_12px_40px_rgba(245,158,11,0.2)] transition-all duration-300">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">L4</span>
-                    </div>
-                    <div>
-                      <span className="text-xs font-bold text-amber-600 bg-amber-100 px-3 py-1 rounded-full">3 أشهر</span>
-                      <span className="text-xs font-bold text-orange-600 bg-orange-100 px-2 py-0.5 rounded-full mr-2">+ مشروع نهائي</span>
-                    </div>
-                  </div>
-                  <h3 className="font-headline-lg text-headline-lg text-primary-deep mb-2">Tech Professional</h3>
-                  <span className="text-amber-600 font-bold text-sm">B2 Advanced Communication</span>
-                  <p className="text-on-surface-variant text-sm mt-3 mb-4">تجهيز الطالب لاستخدام الإنجليزية في الدراسة والمستقبل التقني. المهارات المهنية والمشاريع.</p>
-
-                  <div className="space-y-3">
-                    <div className="bg-amber-50 rounded-xl p-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="material-symbols-outlined text-amber-600 text-lg">record_voice_over</span>
-                        <span className="font-bold text-sm text-primary-deep">Advanced Speaking</span>
-                      </div>
-                      <ul className="text-xs text-on-surface-variant space-y-1">
-                        <li>• Presentations, Problem Solving, Debates</li>
-                      </ul>
-                    </div>
-                    <div className="bg-amber-50 rounded-xl p-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="material-symbols-outlined text-amber-600 text-lg">work</span>
-                        <span className="font-bold text-sm text-primary-deep">Professional English</span>
-                      </div>
-                      <ul className="text-xs text-on-surface-variant space-y-1">
-                        <li>• كتابة CV، Interview Skills، Email Communication</li>
-                      </ul>
-                    </div>
-                    <div className="bg-amber-50 rounded-xl p-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="material-symbols-outlined text-amber-600 text-lg">precision_manufacturing</span>
-                        <span className="font-bold text-sm text-primary-deep">AI & Technology English</span>
-                      </div>
-                      <ul className="text-xs text-on-surface-variant space-y-1">
-                        <li>• قراءة مقالات تقنية وفهم أدوات الذكاء الاصطناعي</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 pt-4 border-t border-amber-100">
-                    <p className="text-xs font-bold text-amber-600 mb-2">المخرجات النهائية:</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      <span className="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">يتحدث بثقة</span>
-                      <span className="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">يتعلم من مصادر أجنبية</span>
-                      <span className="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">مشروع نهائي</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="space-y-4">
+            {levels.map((level, index) => (
+              <LevelCard
+                key={index}
+                level={level}
+                index={index}
+                isOpen={openLevel === index}
+                onToggle={() => toggleLevel(index)}
+                isLeft={index % 2 === 0}
+              />
+            ))}
           </div>
         </div>
       </section>
