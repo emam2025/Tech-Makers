@@ -24,63 +24,69 @@ export default function PromoPopup() {
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4" onClick={dismiss}>
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
       <div
-        className="relative bg-gradient-to-br from-white via-amber-50 to-yellow-50 rounded-3xl shadow-2xl max-w-md w-full overflow-hidden border-2 border-tertiary/30 animate-[scaleIn_0.3s_ease-out]"
+        className="relative bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden animate-[scaleIn_0.3s_ease-out]"
         onClick={e => e.stopPropagation()}
       >
         {/* Close button */}
-        <button onClick={dismiss} className="absolute top-3 left-3 z-10 w-8 h-8 bg-white/80 rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-md">
-          <span className="material-symbols-outlined text-lg">close</span>
+        <button onClick={dismiss} className="absolute top-4 left-4 z-10 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
+          <span className="material-symbols-outlined text-gray-500 text-lg">close</span>
         </button>
 
         {/* Badge */}
-        <div className="absolute top-3 right-3 z-10">
-          <span className="inline-flex items-center gap-1 bg-gradient-to-r from-tertiary to-amber-500 text-primary-deep text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+        <div className="absolute top-4 right-4 z-10">
+          <span className="inline-flex items-center gap-1 bg-tertiary/10 text-amber-700 text-xs font-bold px-3 py-1.5 rounded-full">
             <span className="material-symbols-outlined text-sm">local_offer</span>
             عرض حصري
           </span>
         </div>
 
-        {/* Header */}
-        <div className="bg-gradient-to-br from-tertiary to-amber-500 p-6 text-center">
-          <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
-            <span className="material-symbols-outlined text-white text-3xl">celebration</span>
+        {/* Header — clean white with yellow accent icon */}
+        <div className="pt-12 pb-6 px-8 text-center">
+          <div className="w-14 h-14 bg-tertiary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <span className="material-symbols-outlined text-tertiary text-3xl">celebration</span>
           </div>
-          <h2 className="text-white text-xl font-bold mb-1">سجّل في تك ميكرز مصر</h2>
-          <p className="text-white/80 text-sm">واحصل على مميزات حصرية</p>
+          <h2 className="text-on-surface text-xl font-bold mb-1">
+            سجّل في <span className="text-tertiary">تك ميكرز مصر</span>
+          </h2>
+          <p className="text-on-surface-variant text-sm">واحصل على مميزات حصرية</p>
         </div>
 
-        {/* Content */}
-        <div className="p-6">
-          <div className="space-y-3 mb-6">
-            <div className="flex items-start gap-3 bg-white rounded-xl p-3 border border-tertiary/20">
-              <div className="w-8 h-8 bg-tertiary/15 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
-                <span className="material-symbols-outlined text-tertiary text-lg">calculate</span>
+        {/* Divider */}
+        <div className="mx-8 border-t border-gray-100" />
+
+        {/* Content — clean cards */}
+        <div className="px-8 py-6">
+          <div className="space-y-3 mb-8">
+            <div className="flex items-start gap-3 bg-surface-container-lowest rounded-xl p-4">
+              <div className="w-9 h-9 bg-tertiary/10 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+                <span className="material-symbols-outlined text-tertiary text-xl">calculate</span>
               </div>
               <div>
-                <p className="font-bold text-sm text-amber-700">كورس Techno Math مجاناً</p>
-                <p className="text-xs text-on-surface-variant">3 شهور برنامج الحساب الذهني هدية لك</p>
+                <p className="font-bold text-sm text-on-surface">كورس Techno Math مجاناً</p>
+                <p className="text-xs text-on-surface-variant mt-0.5">3 شهور برنامج الحساب الذهني هدية لك</p>
               </div>
             </div>
-            <div className="flex items-start gap-3 bg-white rounded-xl p-3 border border-primary/20">
-              <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
-                <span className="material-symbols-outlined text-primary text-lg">translate</span>
+            <div className="flex items-start gap-3 bg-surface-container-lowest rounded-xl p-4">
+              <div className="w-9 h-9 bg-primary/10 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+                <span className="material-symbols-outlined text-primary text-xl">translate</span>
               </div>
               <div>
-                <p className="font-bold text-sm text-primary">اختبار تحديد مستوى إنجليزي</p>
-                <p className="text-xs text-on-surface-variant">تقييم مجاني لمستوى لغتك الإنجليزية</p>
+                <p className="font-bold text-sm text-on-surface">اختبار تحديد مستوى إنجليزي</p>
+                <p className="text-xs text-on-surface-variant mt-0.5">تقييم مجاني لمستوى لغتك الإنجليزية</p>
               </div>
             </div>
           </div>
 
+          {/* CTA — yellow */}
           <Link
             href="/tracks"
             onClick={dismiss}
-            className="block w-full text-center bg-tertiary text-primary-deep py-3 rounded-xl font-bold text-base hover:shadow-lg transition-all hover:-translate-y-0.5 active:scale-95"
+            className="block w-full text-center bg-tertiary text-primary-deep py-3.5 rounded-xl font-bold text-base hover:shadow-lg transition-all hover:-translate-y-0.5 active:scale-95"
           >
             استكشف المسارات وسجّل الآن
           </Link>
 
-          <button onClick={dismiss} className="w-full text-center text-on-surface-variant text-xs mt-3 hover:text-primary transition-colors">
+          <button onClick={dismiss} className="w-full text-center text-on-surface-variant text-xs mt-4 hover:text-primary transition-colors">
             ربما لاحقاً
           </button>
         </div>
