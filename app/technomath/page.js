@@ -48,6 +48,7 @@ export default function TechnoMathPage() {
           <div className="flex justify-center md:justify-end">
             <div className="relative w-72 h-72 md:w-96 md:h-96">
               <Image src="/technomath.png" alt="برنامج تكنو ماس للحساب الذهني" fill sizes="(max-width: 768px) 288px, 384px" style={{ objectFit: 'contain', mixBlendMode: 'multiply' }} />
+            </div>
           </div>
         </div>
       </section>
