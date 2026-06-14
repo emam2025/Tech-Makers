@@ -45,9 +45,9 @@ export async function POST(request) {
       { status: 400 }
     );
   } catch (err) {
-    console.error('English test API error:', err);
+    console.error('English test API error:', err.message);
     return NextResponse.json(
-      { error: 'حدث خطأ في الخادم، حاول مرة أخرى' },
+      { error: err.message || 'حدث خطأ في الخادم، حاول مرة أخرى' },
       { status: 500 }
     );
   }
