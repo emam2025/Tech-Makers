@@ -2,8 +2,10 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
-import CountdownTimer from '@/components/CountdownTimer';
+
+const CountdownTimer = dynamic(() => import('@/components/CountdownTimer'), { ssr: false });
 
 /* ──────────────────────── TRACK DATA ──────────────────────── */
 
@@ -16,7 +18,7 @@ const trackData = {
     icon: 'child_care',
     color: 'secondary',
     description:
-      'في هذه المرحلة لا نركز فقط على تعليم الطفل البرمجة، بل على بناء علاقة إيجابية مع التكنولوجيا. هدمنا تحويل الطفل من مستخدم للألعاب والمحتوى الرقمي إلى طفل قادر على التفكير، الإبداع، وصناعة أفكاره باستخدام التكنولوجيا.',
+      'في هذه المرحلة لا نركز فقط على تعليم الطفل البرمجة، بل على بناء علاقة إيجابية مع التكنولوجيا. هدفنا تحويل الطفل من مستخدم للألعاب والمحتوى الرقمي إلى طفل قادر على التفكير، الإبداع، وصناعة أفكاره باستخدام التكنولوجيا.',
     objectives: [
       { icon: 'palette', text: 'التعلم البصري' },
       { icon: 'sports_esports', text: 'الأنشطة التفاعلية' },
@@ -93,7 +95,7 @@ const trackData = {
 
   b: {
     id: 'b',
-    title: 'Future AI Developers',
+    title: 'Future AI Engineers',
     subtitle: 'مسار مطوري المستقبل',
     age: '12–15 سنة',
     icon: 'code',
@@ -351,6 +353,7 @@ export default function TracksPage() {
             alt="مسارات التعلم"
             fill
             sizes="100vw"
+            priority
             style={{ objectFit: 'cover' }}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-primary-deep/85 to-primary/80"></div>
@@ -444,7 +447,7 @@ export default function TracksPage() {
                   <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-24 p-5 md:p-6">
                     <div className="flex items-center gap-3 mb-3">
                       <span className="material-symbols-outlined text-blue-600 text-2xl">smart_toy</span>
-                      <h4 className="font-headline-md text-headline-sm md:text-headline-md text-blue-700 font-bold">Future AI Developers</h4>
+                      <h4 className="font-headline-md text-headline-sm md:text-headline-md text-blue-700 font-bold">Future AI Engineers</h4>
                     </div>
                     <p className="text-blue-600 font-label-sm mb-2">للأعمار 12–15 سنة</p>
                     <p className="text-gray-600 font-body-sm text-sm">تعلم البرمجة الحقيقية، تطوير التطبيقات، واستخدام أدوات الذكاء الاصطناعي.</p>

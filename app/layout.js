@@ -3,8 +3,7 @@ import { Tajawal, Cairo, Poppins } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import SiteHeader from '@/components/SiteHeader';
-import RevealObserverClient from '@/components/RevealObserverClient';
-import PromoPopup from '@/components/PromoPopup';
+import ClientShell from '@/components/ClientShell';
 
 const tajawal = Tajawal({
   subsets: ['arabic'],
@@ -28,10 +27,56 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: 'Tech Makers Egypt — Building Future Tech Leaders',
-  description: 'من مستهلك للتكنولوجيا إلى صانع ومطور وقائد',
-  other: {
-    'material-symbols': 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap',
+  title: {
+    default: 'Tech Makers Egypt — بناء قادة التكنولوجيا المستقبليين',
+    template: '%s | Tech Makers Egypt',
+  },
+  description: 'أكاديمية Tech Makers Egypt — من مستهلك للتكنولوجيا إلى صانع ومطور وقائد. برنامج تدريبي مصري للأطفال والناشئين من 8 إلى 20 سنة في البرمجة والذكاء الاصطناعي.',
+  keywords: ['برمجة أطفال', 'تعليم التكنولوجيا', 'ذكاء اصطناعي', 'مسار تكنولوجي', ' Tech Makers', 'TKA Egypt', 'كورس برمجة', 'أكاديمية تكنولوجيا'],
+  authors: [{ name: 'Tech Makers Egypt' }],
+  creator: 'TKA-Egypt',
+  publisher: 'TKA-Egypt',
+  metadataBase: new URL('https://tka-egypt.com'),
+  alternates: {
+    canonical: '/',
+    languages: { 'ar': '/' },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'ar_EG',
+    url: 'https://tka-egypt.com',
+    siteName: 'Tech Makers Egypt',
+    title: 'Tech Makers Egypt — بناء قادة التكنولوجيا المستقبليين',
+    description: 'من مستهلك للتكنولوجيا إلى صانع ومطور وقائد. برنامج تدريبي مصري للأطفال والناشئين من 8 إلى 20 سنة.',
+    images: [
+      {
+        url: '/hero-bg.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Tech Makers Egypt',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Tech Makers Egypt — بناء قادة التكنولوجيا المستقبليين',
+    description: 'من مستهلك للتكنولوجيا إلى صانع ومطور وقائد.',
+    images: ['/hero-bg.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
   },
 };
 
@@ -45,26 +90,52 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
-          media="print"
-          onLoad="this.media='all'"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
         />
-        <noscript>
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
-          />
-        </noscript>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'EducationalOrganization',
+              name: 'Tech Makers Egypt',
+              alternateName: 'TKA-Egypt',
+              url: 'https://tka-egypt.com',
+              logo: 'https://tka-egypt.com/logo.png',
+              description: 'أكاديمية تعليم التكنولوجيا والبرمجة للأطفال والناشئين من 8 إلى 20 سنة',
+              address: {
+                '@type': 'PostalAddress',
+                addressCountry: 'EG',
+                addressLocality: 'القاهرة',
+              },
+              contactPoint: {
+                '@type': 'ContactPoint',
+                telephone: '+201062540164',
+                contactType: 'customer service',
+                availableLanguage: ['Arabic', 'English'],
+              },
+              sameAs: [
+                'https://www.facebook.com/TKA.Egypt/',
+                'https://www.instagram.com/tech.makers.egypt/',
+              ],
+              offers: {
+                '@type': 'AggregateOffer',
+                priceCurrency: 'EGP',
+                lowPrice: '690',
+                offerCount: '3',
+              },
+            }),
+          }}
+        />
       </head>
       <body className="bg-surface text-on-surface font-body-md text-body-md min-h-dvh overflow-x-hidden">
         <a href="#main-content" className="skip-link sr-only focus:not-sr-only">تخطي إلى المحتوى</a>
         <SiteHeader />
-        <RevealObserverClient />
-        <PromoPopup />
+        <ClientShell />
 
         <main id="main-content">{children}</main>
 
-        <footer className="bg-on-background text-surface-bright py-8 md:py-10 px-4 md:px-20 w-full rtl overflow-hidden">
+        <footer className="bg-on-background text-surface-bright py-8 md:py-10 px-4 md:px-20 w-full rtl">
           <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-start gap-5 md:gap-8">
             <div className="max-w-sm">
               <img src="/w-%20logo.png" alt="تك ميكرز" className="h-8 w-auto mb-4" loading="lazy" />
@@ -116,7 +187,7 @@ export default function RootLayout({ children }) {
         </footer>
 
         {/* Material Symbols font loader fallback via JS */}
-        <Script id="ms-font-check" strategy="afterInteractive">{`
+        <Script id="ms-font-check" strategy="lazyOnload">{`
           (function() {
             if (!document.fonts) return;
             document.fonts.ready.then(function() {
@@ -131,7 +202,7 @@ export default function RootLayout({ children }) {
               if (!ff.includes('Material Symbols')) {
                 var link = document.createElement('link');
                 link.rel = 'stylesheet';
-                link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap';
+                link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block';
                 document.head.appendChild(link);
               }
               document.body.removeChild(test);

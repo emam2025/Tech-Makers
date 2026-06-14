@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { rateLimit, checkOrigin, getClientIp } from '../../../../../lib/security';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
@@ -23,6 +24,15 @@ function generatePassword() {
 }
 
 export async function POST(request) {
+  const ip = getClientIp(request);
+  if (!rateLimit(ip, 3, 60000)) {
+    return NextResponse.json({ error: 'تم تجاوز الحد المسموح، حاول بعد دقيقة' }, { status: 429 });
+  }
+
+  if (!checkOrigin(request)) {
+    return NextResponse.json({ error: 'طلب غير مصرح به' }, { status: 403 });
+  }
+
   try {
     if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
       return NextResponse.json(

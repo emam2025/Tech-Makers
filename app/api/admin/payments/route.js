@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { sanitizePlain } from '../../../../lib/security';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
@@ -35,7 +36,11 @@ export async function GET(request) {
     const student_id = searchParams.get('student_id') || '';
 
     let query = `${SUPABASE_URL}/rest/v1/payments?select=*,student:students_enhanced(full_name),subscription:subscriptions(id)&order=payment_date.desc`;
-    if (student_id) query += `&student_id=eq.${student_id}`;
+    if (student_id) {
+      const cleanId = sanitizePlain(student_id);
+      if (cleanId.length > 50) return NextResponse.json({ error: 'معرف غير صالح' }, { status: 400 });
+      query += `&student_id=eq.${cleanId}`;
+    }
     query += '&limit=500';
 
     const res = await fetch(query, {
@@ -44,7 +49,7 @@ export async function GET(request) {
     if (!res.ok) return NextResponse.json({ error: 'فشل جلب البيانات' }, { status: 500 });
     const payments = await res.json();
     return NextResponse.json({ payments });
-  } catch (err) {
+  } catch {
     return NextResponse.json({ error: 'خطأ داخلي' }, { status: 500 });
   }
 }
@@ -58,6 +63,33 @@ export async function POST(request) {
 
   try {
     const body = await request.json();
+
+    if (!body.student_id || typeof body.student_id !== 'string') {
+      return NextResponse.json({ error: 'معرف الطالب مطلوب' }, { status: 400 });
+    }
+    if (!body.amount || typeof body.amount !== 'number' || body.amount <= 0) {
+      return NextResponse.json({ error: 'المبلغ غير صالح' }, { status: 400 });
+    }
+    if (body.amount > 1000000) {
+      return NextResponse.json({ error: 'المبلغ يتجاوز الحد الأقصى' }, { status: 400 });
+    }
+    const validTypes = ['cash', 'card', 'transfer', 'fawry', 'other'];
+    if (body.method && !validTypes.includes(body.method)) {
+      return NextResponse.json({ error: 'نوع الدفع غير صالح' }, { status: 400 });
+    }
+    if (body.notes && typeof body.notes === 'string' && body.notes.length > 500) {
+      return NextResponse.json({ error: 'الملاحظات طويلة جداً' }, { status: 400 });
+    }
+
+    const allowed = {
+      student_id: sanitizePlain(body.student_id),
+      amount: body.amount,
+      method: body.method || 'cash',
+      payment_date: body.payment_date || new Date().toISOString().split('T')[0],
+      subscription_id: body.subscription_id || null,
+      notes: body.notes ? sanitizePlain(body.notes) : null,
+    };
+
     const res = await fetch(`${SUPABASE_URL}/rest/v1/payments`, {
       method: 'POST',
       headers: {
@@ -66,15 +98,14 @@ export async function POST(request) {
         Authorization: `Bearer ${SUPABASE_KEY}`,
         Prefer: 'return=representation',
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(allowed),
     });
     if (!res.ok) {
-      const errText = await res.text();
-      return NextResponse.json({ error: 'فشل الإضافة', details: errText }, { status: 500 });
+      return NextResponse.json({ error: 'فشل الإضافة' }, { status: 500 });
     }
     const payment = await res.json();
     return NextResponse.json({ success: true, payment: payment[0] });
-  } catch (err) {
+  } catch {
     return NextResponse.json({ error: 'خطأ داخلي' }, { status: 500 });
   }
 }

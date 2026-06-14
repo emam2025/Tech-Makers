@@ -21,6 +21,7 @@ export default function SubscriptionsPage() {
   const [form, setForm] = useState({});
   const [saving, setSaving] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(null);
+  const [plans, setPlans] = useState([]);
 
   const loadSubscriptions = useCallback(async () => {
     setLoading(true);
@@ -38,6 +39,19 @@ export default function SubscriptionsPage() {
   }, [filterStatus]);
 
   useEffect(() => { loadSubscriptions(); }, [loadSubscriptions]);
+
+  useEffect(() => {
+    async function fetchPlans() {
+      try {
+        const res = await fetch('/api/admin/subscriptions/plans');
+        if (res.ok) {
+          const data = await res.json();
+          setPlans(data.plans || []);
+        }
+      } catch {}
+    }
+    fetchPlans();
+  }, []);
 
   const handleSave = async () => {
     setSaving(true);
@@ -126,6 +140,7 @@ export default function SubscriptionsPage() {
         footer={<div className="flex gap-3"><Button onClick={handleSave} loading={saving}>حفظ</Button><Button variant="outlined" onClick={() => setDrawer(null)}>إلغاء</Button></div>}>
         <div className="space-y-4">
           <Input label="رقم الهوية" value={form.student_national_id || ''} onChange={(e) => setForm({ ...form, student_national_id: e.target.value })} required />
+          <Select label="الباقة" options={plans.map(p => ({ value: p.id, label: `${p.name} — ${p.amount || ''} ج.م` }))} value={form.plan_id || ''} onChange={(e) => setForm({ ...form, plan_id: e.target.value })} />
           <Input label="تاريخ البداية" type="date" value={form.start_date || ''} onChange={(e) => setForm({ ...form, start_date: e.target.value })} />
           <Input label="تاريخ النهاية" type="date" value={form.end_date || ''} onChange={(e) => setForm({ ...form, end_date: e.target.value })} />
           <Input label="المبلغ" type="number" value={form.amount || ''} onChange={(e) => setForm({ ...form, amount: parseFloat(e.target.value) || 0 })} />

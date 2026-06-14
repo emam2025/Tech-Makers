@@ -44,10 +44,9 @@ export async function POST(request) {
       { error: 'إجراء غير صالح' },
       { status: 400 }
     );
-  } catch (err) {
-    console.error('English test API error:', err.message);
+  } catch {
     return NextResponse.json(
-      { error: err.message || 'حدث خطأ في الخادم، حاول مرة أخرى' },
+      { error: 'حدث خطأ في الخادم، حاول مرة أخرى' },
       { status: 500 }
     );
   }

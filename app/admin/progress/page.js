@@ -5,6 +5,7 @@ import DataTable from '../../../components/ui/DataTable';
 import Select from '../../../components/ui/Select';
 import Badge from '../../../components/ui/Badge';
 import Drawer from '../../../components/ui/Drawer';
+import Button from '../../../components/ui/Button';
 
 export default function ProgressPage() {
   const [progress, setProgress] = useState([]);
@@ -16,7 +17,7 @@ export default function ProgressPage() {
   const loadProgress = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch('/api/admin/progress/overview');
+      const res = await fetch('/api/admin/progress');
       if (res.ok) {
         const data = await res.json();
         setProgress(data.progress || []);
@@ -30,7 +31,7 @@ export default function ProgressPage() {
 
   const openStudent = async (studentId) => {
     try {
-      const res = await fetch(`/api/admin/progress/${studentId}`);
+      const res = await fetch(`/api/admin/progress?student_id=${studentId}`);
       if (res.ok) {
         const data = await res.json();
         setStudentProgress(data.progress);

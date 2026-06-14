@@ -47,15 +47,16 @@ export function ToastProvider({ children }) {
   return (
     <ToastContext.Provider value={toast}>
       {children}
-      <div className="toast-container" dir="rtl">
+      <div className="toast-container" dir="rtl" aria-live="polite" role="log">
         {toasts.map((t) => (
-          <div key={t.id} className={`toast ${t.type}`}>
+          <div key={t.id} className={`toast ${t.type}`} role="status">
             <span className="material-symbols-outlined text-[20px]" style={{ color: colors[t.type] }}>
               {icons[t.type]}
             </span>
             <span className="flex-1 text-[var(--color-text-primary)]">{t.message}</span>
             <button
               onClick={() => removeToast(t.id)}
+              aria-label="إغلاق"
               className="p-1 hover:bg-[var(--color-surface-dim)] rounded cursor-pointer"
             >
               <span className="material-symbols-outlined text-[16px] text-[var(--color-text-tertiary)]">close</span>

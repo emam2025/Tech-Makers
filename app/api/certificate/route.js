@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { rateLimit, getClientIp } from '../../../lib/security';
 
-const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbwil60umtWD1EXqdw7S6MycmHKSgzBGHWwrGw-sKdVFXGF1yfqpWM5KBqnyOUp6rDk/exec';
+const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL;
 
 export async function GET(request) {
   const ip = getClientIp(request);
@@ -9,12 +9,16 @@ export async function GET(request) {
     return NextResponse.json({ error: 'تم تجاوز الحد المسموح' }, { status: 429 });
   }
 
+  if (!GOOGLE_SCRIPT_URL) {
+    return NextResponse.json({ error: 'خطأ في إعدادات الخادم' }, { status: 500 });
+  }
+
   const { searchParams } = new URL(request.url);
   const search = searchParams.get('search');
   const type = searchParams.get('type');
 
   if (!search || !type) {
-    return NextResponse.json({ error: '参数不完整' }, { status: 400 });
+    return NextResponse.json({ error: 'البيانات ناقصة' }, { status: 400 });
   }
 
   if (search.length > 20) {

@@ -23,7 +23,7 @@ const NAV_ITEMS = [
   { label: 'أكواد الاختبار', icon: 'vpn_key', href: '/admin/test-codes', roles: ['admin', 'supervisor'] },
 ];
 
-export default function Sidebar({ collapsed, onToggle, user }) {
+export default function Sidebar({ collapsed, onToggle, user, onClose }) {
   const pathname = usePathname();
   const role = user?.role || 'student';
 
@@ -37,10 +37,16 @@ export default function Sidebar({ collapsed, onToggle, user }) {
           <span className="material-symbols-outlined text-white text-[20px]">academy</span>
         </div>
         {!collapsed && (
-          <div className="overflow-hidden">
+          <div className="flex-1 overflow-hidden">
             <div className="text-sm font-bold text-[var(--color-text-primary)] truncate">TKA-Egypt</div>
             <div className="text-[10px] text-[var(--color-text-tertiary)] truncate">Academy Management</div>
           </div>
+        )}
+        {/* Mobile close button */}
+        {onClose && (
+          <button onClick={onClose} aria-label="إغلاق القائمة" className="lg:hidden p-1.5 rounded-[var(--radius-md)] hover:bg-[var(--color-surface-dim)] transition-colors cursor-pointer">
+            <span className="material-symbols-outlined text-[20px]">close</span>
+          </button>
         )}
       </div>
 

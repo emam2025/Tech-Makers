@@ -2,6 +2,16 @@ import Link from 'next/link';
 import Image from 'next/image';
 import HeroWithHalo from '../components/HeroWithHalo';
 
+export const metadata = {
+  title: 'Tech Makers Egypt — من مستهلك للتكنولوجيا إلى صانع ومطور وقائد',
+  description: 'برنامج تدريبي مصري للأطفال والناشئين من 8 إلى 20 سنة — يحوّل حب التكنولوجيا لمشاريع حقيقية ومهارات مستقبلية. الدفعة الخامسة انطلقت يونيو 2026.',
+  openGraph: {
+    title: 'Tech Makers Egypt — من مستهلك للتكنولوجيا إلى صانع ومطور وقائد',
+    description: 'برنامج تدريبي مصري للأطفال والناشئين من 8 إلى 20 سنة — يحوّل حب التكنولوجيا لمشاريع حقيقية.',
+    url: 'https://tka-egypt.com',
+  },
+};
+
 export default function HomePage() {
   return (
     <>
@@ -32,12 +42,12 @@ export default function HomePage() {
           <div className="flex flex-col gap-6 md:gap-8">
             <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg leading-tight text-white">من <span className="text-tertiary">مستهلك</span> للتكنولوجيا إلى <span className="text-tertiary">صانع</span> <span className="text-tertiary">ومطور</span> و<span className="text-tertiary">قائد</span></h1>
             
-            <p className="text-white/80 font-headline-lg text-headline-sm md:text-headline-lg flex items-center gap-2">Tech Makers • <span className="font-normal opacity-80">Building Future Tech Leaders</span></p>
+            <p className="text-white/80 font-headline-lg text-headline-sm md:text-headline-lg flex items-center gap-2">Tech Makers • <span className="font-normal text-tertiary">Building Future Tech Leaders</span></p>
 
             {/* Student Age Cards */}
-            <div className="grid grid-cols-3 gap-2 md:gap-3 max-w-xs md:max-w-sm">
+            <div className="grid grid-cols-3 gap-2 md:gap-3 max-w-xs md:max-w-sm" style={{gridTemplateColumns: 'repeat(3, 1fr)'}}>
               {['8–11 سنة', '12–15 سنة', '16–20 سنة'].map((age, i) => (
-                <div key={i} className="bg-white/15 backdrop-blur-sm p-2 md:p-3 rounded-lg md:rounded-xl text-center font-label-md text-white text-xs md:text-sm border border-white/20">{age}</div>
+                <div key={i} className="bg-white/15 backdrop-blur-sm p-2 md:p-3 rounded-lg md:rounded-xl text-center font-headline-md font-bold text-white text-sm md:text-base border border-white/20">{age}</div>
               ))}
             </div>
 
@@ -57,13 +67,13 @@ export default function HomePage() {
 
             {/* Detailed Description */}
             <div className="text-white/80 font-body-sm md:font-body-lg text-xs md:text-body-lg leading-relaxed md:leading-loose space-y-3 md:space-y-4">
-              <p>تك ميكرز مصر برنامج تدريبي مصمم للأطفال والناشئين من 8 إلى 20 سنة، علشان يساعدهم يبدأوا رحلتهم في البرمجة والتكنولوجيا خطوة بخطوة، من الأساسيات وحتى بناء المشاريع والتخصصات المتقدمة مستقبلاً.</p>
-              <p className="font-bold text-white text-sm md:text-base">انطلاق الدفعة الخامسة لعام 2026بداية شهر يونيو. المؤهلة لأولمبيات البرمجة الدولية.</p>
+              <p>برنامج تدريبي مصري לילדים من 8 لـ 20 سنة — يحوّل حب التكنولوجيا لمشاريع حقيقية ومهارات مستقبلية.</p>
+              <p className="font-bold text-white text-sm md:text-base">الدفعة الخامسة انطلقت يونيو 2026 — مؤهلة لأولمبيات البرمجة الدولية.</p>
               
               <div className="bg-white/10 backdrop-blur-sm p-4 md:p-6 rounded-20 border border-white/20">
-                <p className="font-bold mb-2 md:mb-3 text-white text-sm md:text-base">يركز البرنامج على:</p>
+                <p className="font-bold mb-2 md:mb-3 text-white text-sm md:text-base">ليه Tech Makers؟</p>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2">
-                  {['بناء عقلية تحليلية ومنهجية', 'تطوير مهارات البرمجة والـ AI', 'التعلم بالمشاريع والتطبيق العملي', 'تعزيز الثقة بالنفس والإبداع', 'إعداد الطلاب لمهارات المستقبل'].map((item, i) => (
+                  {['تفكير منطقي يحل مشاكل حقيقية', 'برمجة + ذكاء اصطناعي عملي', 'مشاريع تطبيقية من أول شهر', 'ثقة بالنفس + إبداع', 'جاهز لأولمبيات البرمجة'].map((item, i) => (
                     <li key={i} className="flex items-center gap-1.5 md:gap-2 text-white/80 text-xs md:text-sm"><span className="material-symbols-outlined text-tertiary text-xs md:text-base">check_circle</span> {item}</li>
                   ))}
                 </ul>
@@ -98,36 +108,48 @@ export default function HomePage() {
       <section className="section-padding" id="about">
         <div className="container-inner">
           <div className="text-center mb-16 reveal">
-            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">إحنا مش بنعلّم برمجة وبس… إحنا بنبني شخصية</h2>
-            <p className="text-on-surface-variant font-body-lg text-body-lg">منهج متكامل مبني على 4 محاور أساسية تُعد جيل المستقبل</p>
+            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">مش بس برمجة — بنبني قائد</h2>
+            <p className="text-on-surface-variant font-body-lg text-body-lg">4 محاور غيرت حياة مئات الأطفال المصريين</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(65,105,225,0.2)] flex items-start gap-4 md:gap-6 reveal reveal-delay-1">
-              <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 bg-gradient-to-br from-primary to-primary-deep flex items-center justify-center rounded-2xl text-white font-bold text-xl md:text-2xl group-hover:scale-110 transition-transform">01</div>
+            <div className="group bg-white p-5 md:p-7 rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(65,105,225,0.1)] flex items-start gap-4 md:gap-6 reveal reveal-delay-1 relative overflow-hidden">
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary/60 to-primary"></div>
+              <div className="w-12 h-12 shrink-0 bg-primary/8 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-primary text-xl">psychology</span>
+              </div>
               <div>
-                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary flex items-center gap-2"><span className="material-symbols-outlined text-2xl text-primary">psychology</span> التفكير المنطقي</h3>
-                <p className="text-on-surface-variant font-body-md">بناء عقلية تحليلية تُمكّن الطالب من فهم المشكلات وتقسيمها بذكاء</p>
+                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary">التفكير المنطقي</h3>
+                <p className="text-on-surface-variant font-body-md text-sm leading-relaxed">بيحل مشاكل زي المهندس — يقسمها ويحلها خطوة خطوة</p>
               </div>
             </div>
-            <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-secondary/10 hover:border-secondary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(253,118,26,0.2)] flex items-start gap-4 md:gap-6 reveal reveal-delay-2">
-              <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 bg-gradient-to-br from-secondary to-amber-500 flex items-center justify-center rounded-2xl text-white font-bold text-xl md:text-2xl group-hover:scale-110 transition-transform">02</div>
+            <div className="group bg-white p-5 md:p-7 rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border border-secondary/10 hover:border-secondary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(253,118,26,0.1)] flex items-start gap-4 md:gap-6 reveal reveal-delay-2 relative overflow-hidden">
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-secondary/60 to-secondary"></div>
+              <div className="w-12 h-12 shrink-0 bg-secondary/8 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-secondary text-xl">palette</span>
+              </div>
               <div>
-                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary flex items-center gap-2"><span className="material-symbols-outlined text-2xl text-secondary">palette</span> الإبداع الرقمي</h3>
-                <p className="text-on-surface-variant font-body-md">تحويل الطالب من مستهلك للتكنولوجيا إلى صانع يُنتج أدواته</p>
+                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary">الإبداع الرقمي</h3>
+                <p className="text-on-surface-variant font-body-md text-sm leading-relaxed">من يلعب ألعاب لمن يصنع ألعاب وتطبيقات</p>
               </div>
             </div>
-            <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-tertiary/10 hover:border-tertiary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(247,190,29,0.2)] flex items-start gap-4 md:gap-6 reveal reveal-delay-3">
-              <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 bg-gradient-to-br from-tertiary to-amber-400 flex items-center justify-center rounded-2xl text-white font-bold text-xl md:text-2xl group-hover:scale-110 transition-transform">03</div>
+            <div className="group bg-white p-5 md:p-7 rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border border-tertiary/10 hover:border-tertiary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(247,190,29,0.1)] flex items-start gap-4 md:gap-6 reveal reveal-delay-3 relative overflow-hidden">
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-tertiary/60 to-tertiary"></div>
+              <div className="w-12 h-12 shrink-0 bg-tertiary/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-tertiary text-xl">handyman</span>
+              </div>
               <div>
-                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary flex items-center gap-2"><span className="material-symbols-outlined text-2xl text-tertiary">handyman</span> التعلم بالمشاريع</h3>
-                <p className="text-on-surface-variant font-body-md">زيادة الثقة بالنفس من خلال تطبيقات عملية ومشاريع حقيقية</p>
+                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary">التعلم بالمشاريع</h3>
+                <p className="text-on-surface-variant font-body-md text-sm leading-relaxed">كل شهر يطلع بمشروع يقدر يوريه لأهله ورفاقه</p>
               </div>
             </div>
-            <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-primary-light/10 hover:border-primary-light/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(107,138,255,0.2)] flex items-start gap-4 md:gap-6 reveal reveal-delay-4">
-              <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 bg-gradient-to-br from-primary-light to-primary flex items-center justify-center rounded-2xl text-white font-bold text-xl md:text-2xl group-hover:scale-110 transition-transform">04</div>
+            <div className="group bg-white p-5 md:p-7 rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border border-primary-light/10 hover:border-primary-light/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(107,138,255,0.1)] flex items-start gap-4 md:gap-6 reveal reveal-delay-4 relative overflow-hidden">
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary-light/60 to-primary-light"></div>
+              <div className="w-12 h-12 shrink-0 bg-primary-light/30 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-primary-light text-xl">smart_toy</span>
+              </div>
               <div>
-                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary flex items-center gap-2"><span className="material-symbols-outlined text-2xl text-primary-light">smart_toy</span> التعرض المبكر للـ AI</h3>
-                <p className="text-on-surface-variant font-body-md">إعداد جيل المستقبل بأدوات وتقنيات الذكاء الاصطناعي</p>
+                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary">التعرض المبكر للـ AI</h3>
+                <p className="text-on-surface-variant font-body-md text-sm leading-relaxed">الذكاء الاصطناعي مش مستقبل — دلوقتي. وابنك يبقى جاهز</p>
               </div>
             </div>
           </div>
@@ -137,38 +159,39 @@ export default function HomePage() {
       <section className="section-padding bg-surface-container-low">
         <div className="container-inner">
           <div className="text-center mb-16 reveal">
-            <span className="font-label-md text-label-md text-primary uppercase tracking-wide mb-2 block">النتائج المتوقعة</span>
-            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">ماذا سيحقق ابنك من خلال Tech Makers؟</h2>
-            <p className="text-on-surface-variant font-body-lg text-body-lg">نتائج ملموسة تؤثر بشكل إيجابي على مستقبل طفلك الأكاديمي والمهني</p>
+            <span className="font-label-md text-label-md text-primary uppercase tracking-wide mb-2 block">النتائج</span>
+            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">ابنك هيعرف يعمل إيه بعد البرنامج؟</h2>
+            <p className="text-on-surface-variant font-body-lg text-body-lg">مش كلام — نتائج أكيدة شفناها مع مئات الطلاب</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
-              { icon: 'code', color: 'primary', title: 'اكتساب مهارات تقنية متقدمة', items: ['فهم أساسيات البرمجة وتطبيقاتها العملية مما يؤهلهم لمواكبة التطورات التكنولوجية', 'القدرة على التعامل مع مفاهيم الذكاء الاصطناعي وتصميم الروبوتات البسيطة'], delay: '1' },
-              { icon: 'school', color: 'secondary', title: 'تحسين الأداء الأكاديمي', items: ['تحسين مهارات الحساب الذهني ينعكس إيجابًا على قدرتهم في الرياضيات والعلوم', 'تقوية اللغة الإنجليزية تعزز فهمهم للمواد الدراسية خاصة في المجالات التقنية'], delay: '2' },
-              { icon: 'psychology', color: 'tertiary', title: 'تنمية المهارات الشخصية', items: ['تطوير مهارات التفكير النقدي وحل المشكلات من خلال المشاريع العملية', 'تعزيز العمل الجماعي والقيادة من خلال المشاركة في أنشطة تعاونية'], delay: '3' },
-              { icon: 'emoji_events', color: 'primary-light', title: 'زيادة الثقة بالنفس', items: ['إنجاز مشاريع تقنية يعزز ثقة الأطفال بأنفسهم وقدرتهم على الإبداع', 'المشاركة في أنشطة تعليمية متقدمة تشجعهم على تحقيق أهداف أكبر'], delay: '1' },
-              { icon: 'explore', color: 'rose', title: 'فتح آفاق جديدة للتعلم', items: ['تحفيز الأطفال على استكشاف مجالات جديدة في العلوم والتكنولوجيا', 'استعداد أكبر لمواجهة تحديات المستقبل في سوق العمل التقني'], delay: '2' },
-              { icon: 'rocket_launch', color: 'emerald', title: 'بناء جيل مبتكر', items: ['إعداد جيل من الأطفال القادرين على الابتكار والإسهام في تطوير المجتمع', 'أساس قوي في التكنولوجيا والذكاء الاصطناعي يؤهلهم لقيادة مشاريع تكنولوجية'], delay: '3' },
+              { icon: 'code', color: 'primary', title: 'يبرم من الصفر', items: ['يفهم أساسيات البرمجة ويبني مشاريع حقيقية', 'يعمل تطبيقات ذكاء اصطناعي وروبوتات'], delay: '1' },
+              { icon: 'school', color: 'secondary', title: 'مدرسته بتتحسن', items: ['الحساب الذهني بيرفع مستواه في الرياضيات', 'الإنجليزية بتقوى من خلال المحتوى التقني'], delay: '2' },
+              { icon: 'psychology', color: 'tertiary', title: 'شخصية أقوى', items: ['تفكير نقدي وحل مشاكل زي الكبير', 'ثقة بالنفس + قيادة فريق'], delay: '3' },
+              { icon: 'emoji_events', color: 'primary-light', title: 'يثق في نفسه', items: ['إنجاز مشاريع يفتخر بيها', 'بيتعرف على قدراته ويستخدمها'], delay: '1' },
+              { icon: 'explore', color: 'rose', title: 'يفتح آفاق جديدة', items: ['بيكتشف مجالات مش كان يعرفها', 'جاهز لسوق العمل التقني'], delay: '2' },
+              { icon: 'rocket_launch', color: 'emerald', title: 'يبتكر ويقّود', items: ['من المستهلك لصانع الحلول', 'جاهز لقيادة مشاريع تكنولوجية'], delay: '3' },
             ].map((card, i) => {
               const colors = {
-                primary: { bg: 'from-primary to-primary-deep', border: 'border-primary/10', hover: 'hover:border-primary/30 hover:shadow-[0_12px_40px_rgba(65,105,225,0.15)]', num: 'from-primary/10 to-primary/5' },
-                secondary: { bg: 'from-secondary to-amber-500', border: 'border-secondary/10', hover: 'hover:border-secondary/30 hover:shadow-[0_12px_40px_rgba(253,118,26,0.15)]', num: 'from-secondary/10 to-secondary/5' },
-                tertiary: { bg: 'from-tertiary to-amber-400', border: 'border-tertiary/10', hover: 'hover:border-tertiary/30 hover:shadow-[0_12px_40px_rgba(247,190,29,0.15)]', num: 'from-tertiary/10 to-tertiary/5' },
-                'primary-light': { bg: 'from-primary-light to-primary', border: 'border-primary-light/10', hover: 'hover:border-primary-light/30 hover:shadow-[0_12px_40px_rgba(107,138,255,0.15)]', num: 'from-primary-light/10 to-primary-light/5' },
-                rose: { bg: 'from-rose-400 to-rose-600', border: 'border-rose-200', hover: 'hover:border-rose-400 hover:shadow-[0_12px_40px_rgba(244,63,94,0.15)]', num: 'from-rose-100 to-rose-50' },
-                emerald: { bg: 'from-emerald-400 to-emerald-600', border: 'border-emerald-200', hover: 'hover:border-emerald-400 hover:shadow-[0_12px_40px_rgba(16,185,129,0.15)]', num: 'from-emerald-100 to-emerald-50' },
+                primary: { accent: 'from-primary to-primary-deep', border: 'border-primary/10', hover: 'hover:border-primary/30 hover:shadow-[0_12px_40px_rgba(65,105,225,0.1)]', bg: 'bg-primary/8' },
+                secondary: { accent: 'from-secondary to-amber-500', border: 'border-secondary/10', hover: 'hover:border-secondary/30 hover:shadow-[0_12px_rgba(253,118,26,0.1)]', bg: 'bg-secondary/8' },
+                tertiary: { accent: 'from-tertiary to-amber-400', border: 'border-tertiary/10', hover: 'hover:border-tertiary/30 hover:shadow-[0_12px_40px_rgba(247,190,29,0.1)]', bg: 'bg-tertiary/10' },
+                'primary-light': { accent: 'from-primary-light to-primary', border: 'border-primary-light/10', hover: 'hover:border-primary-light/30 hover:shadow-[0_12px_40px_rgba(107,138,255,0.1)]', bg: 'bg-primary-light/30' },
+                rose: { accent: 'from-rose-400 to-rose-600', border: 'border-rose-200', hover: 'hover:border-rose-400 hover:shadow-[0_12px_40px_rgba(244,63,94,0.1)]', bg: 'bg-rose-50' },
+                emerald: { accent: 'from-emerald-400 to-emerald-600', border: 'border-emerald-200', hover: 'hover:border-emerald-400 hover:shadow-[0_12px_40px_rgba(16,185,129,0.1)]', bg: 'bg-emerald-50' },
               };
               const c = colors[card.color];
               return (
-                <div key={i} className={`group bg-white p-6 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border ${c.border} ${c.hover} transition-all duration-300 hover:-translate-y-2 text-center reveal reveal-delay-${card.delay}`}>
-                  <div className={`w-14 h-14 mx-auto bg-gradient-to-br ${c.bg} rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                    <span className="material-symbols-outlined text-white text-2xl">{card.icon}</span>
+                <div key={i} className={`group bg-white p-6 rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border ${c.border} ${c.hover} transition-all duration-300 hover:-translate-y-1 text-center reveal reveal-delay-${card.delay} relative overflow-hidden`}>
+                  <div className={`absolute top-0 inset-x-0 h-1 bg-gradient-to-r ${c.accent}`}></div>
+                  <div className={`w-14 h-14 mx-auto ${c.bg} rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                    <span className="material-symbols-outlined text-primary text-2xl">{card.icon}</span>
                   </div>
                   <h3 className="font-headline-lg text-headline-lg mb-4 text-primary">{card.title}</h3>
                   <ul className="text-right space-y-2">
                     {card.items.map((item, j) => (
-                      <li key={j} className="flex items-start gap-2 text-on-surface-variant font-body-md text-body-md">
+                      <li key={j} className="flex items-start gap-2 text-on-surface-variant font-body-md text-sm leading-relaxed">
                         <span className="material-symbols-outlined text-tertiary text-base mt-0.5 shrink-0">check_circle</span>
                         {item}
                       </li>
@@ -184,9 +207,9 @@ export default function HomePage() {
       <section className="section-padding" id="tracks">
         <div className="container-inner">
           <div className="text-center mb-16">
-          <span className="inline-block bg-primary/5 text-primary font-label-md text-label-md px-5 py-2 rounded-full mb-4">المسارات التعليمية</span>
-            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">اختار مسار الطالب المناسب لعمره</h2>
-            <p className="text-on-surface-variant font-body-lg text-body-lg">علشان كل طالب يتعلم بالطريقة المناسبة لسنه ومستواه — فرق كبير في طريقة التفكير، سرعة التعلم، والقدرة على الاستيعاب التقني</p>
+          <span className="inline-block bg-primary/5 text-primary font-label-md text-label-md px-5 py-2 rounded-full mb-4">المسارات</span>
+            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">اختار المسار اللي يناسب ابنك</h2>
+            <p className="text-on-surface-variant font-body-lg text-body-lg">كل عمر ليه الطريقة المناسبة — مش هنخلط بينهم</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
@@ -307,7 +330,7 @@ export default function HomePage() {
             <div className="relative flex flex-col md:flex-row items-center gap-0">
               {/* Image Side */}
               <div className="w-full md:w-2/5 h-64 md:h-[420px] relative overflow-hidden flex-shrink-0">
-                <Image src="/secondary-banner.jpg" alt="كورس برمجة الثانوية العامة" fill sizes="(max-width: 768px) 100vw, 40vw" className="object-cover" />
+                <Image src="/secondary-banner.jpg" alt="كورس برمجة الثانوية العامة" fill sizes="(max-width: 768px) 100vw, 40vw" className="object-cover" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#1a3fa0]/60 hidden md:block" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a3fa0]/80 to-transparent md:hidden" />
                 <div className="absolute top-4 right-4 md:top-6 md:right-6">
@@ -376,9 +399,9 @@ export default function HomePage() {
       <section className="section-padding bg-surface" id="students">
         <div className="container-inner">
           <div className="text-center mb-16">
-            <span className="inline-block bg-primary/5 text-primary font-label-md text-label-md px-5 py-2 rounded-full mb-4">قصص نجاح</span>
-            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">بعض طلابنا المتميزين</h2>
-            <p className="text-on-surface-variant font-body-lg text-body-lg">نماذج حية من دفعات سابقة — بأسماء حقيقية وشهادات موثقة</p>
+            <span className="inline-block bg-primary/5 text-primary font-label-md text-label-md px-5 py-2 rounded-full mb-4">طلاب متميزين</span>
+            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">نماذج نجاح حقيقية</h2>
+            <p className="text-on-surface-variant font-body-lg text-body-lg">طلاب بشهادات معتمدة — ابنك ممكن يكون الجاي</p>
             <div className="h-1.5 w-24 bg-secondary-container mx-auto rounded-full mt-4"></div>
           </div>
 
@@ -437,69 +460,72 @@ export default function HomePage() {
       <section className="section-padding bg-bg-off-white" id="parents">
         <div className="container-inner">
           <div className="text-center mb-16">
-            <span className="inline-block bg-secondary-container/20 text-secondary px-5 py-2 rounded-full font-label-md mb-4">ماذا يقول أولياء الأمور؟</span>
-            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">قصص حقيقية من عائلات تثق بنا</h2>
-            <p className="text-on-surface-variant font-body-lg text-body-lg">من مصر والخليج — آباء شاهدوا تطور أبنائهم بأعينهم</p>
+            <span className="inline-block bg-secondary-container/20 text-secondary px-5 py-2 rounded-full font-label-md mb-4">أهالي قالوا</span>
+            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">آباء شافوا التغيير بعينهم</h2>
+            <p className="text-on-surface-variant font-body-lg text-body-lg">من مصر والخليج — مش محتاج تصدقنا، سمعهم</p>
             <div className="h-1.5 w-24 bg-secondary-container mx-auto rounded-full mt-4"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 hover:border-secondary/30 hover:shadow-[0_12px_40px_rgba(253,118,26,0.15)] transition-all duration-300 hover:-translate-y-2">
-              <div className="flex items-center gap-1 mb-4">
+            <div className="group bg-white rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border border-outline-variant/20 p-7 hover:border-secondary/30 hover:shadow-[0_12px_40px_rgba(253,118,26,0.1)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-secondary/50 to-secondary"></div>
+              <div className="flex items-center gap-0.5 mb-5">
                 {[1,2,3,4,5].map(i => (
                   <span key={i} className="material-symbols-outlined text-yellow-400 text-lg" style={{fontVariationSettings: "'FILL' 1"}}>star</span>
                 ))}
               </div>
-              <p className="text-on-surface-variant font-body-md leading-relaxed mb-6">
-                &quot;ابني اتعلم البرمجة من الصفر وعمل أول مشروع ويب في خلال 3 شهور فقط. الفريق محترم والمتابعة ممتازة.&quot;
+              <p className="text-on-surface-variant font-body-md leading-relaxed mb-6 text-sm">
+                &quot;ابني عمل أول مشروع ويب في 3 شهور. فريق محترم ومتابعة ممتازة.&quot;
               </p>
-              <div className="flex items-center gap-3 border-t border-outline-variant/20 pt-4">
-                <div className="w-10 h-10 bg-gradient-to-br from-secondary to-amber-500 rounded-full flex items-center justify-center">
-                  <span className="material-symbols-outlined text-white text-lg">person</span>
+              <div className="flex items-center gap-3 border-t border-outline-variant/15 pt-5">
+                <div className="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center">
+                  <span className="material-symbols-outlined text-secondary text-lg">person</span>
                 </div>
                 <div>
                   <span className="font-label-md text-on-surface block">أم محمد</span>
-                  <span className="text-on-surface-variant text-sm">🇸🇦 الرياض، السعودية</span>
+                  <span className="text-on-surface-variant text-xs">🇸🇦 الرياض، السعودية</span>
                 </div>
               </div>
             </div>
 
-            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 hover:border-primary/30 hover:shadow-[0_12px_40px_rgba(65,105,225,0.15)] transition-all duration-300 hover:-translate-y-2">
-              <div className="flex items-center gap-1 mb-4">
+            <div className="group bg-white rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border border-outline-variant/20 p-7 hover:border-primary/30 hover:shadow-[0_12px_40px_rgba(65,105,225,0.1)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary/50 to-primary"></div>
+              <div className="flex items-center gap-0.5 mb-5">
                 {[1,2,3,4,5].map(i => (
                   <span key={i} className="material-symbols-outlined text-yellow-400 text-lg" style={{fontVariationSettings: "'FILL' 1"}}>star</span>
                 ))}
               </div>
-              <p className="text-on-surface-variant font-body-md leading-relaxed mb-6">
-                &quot;أفضل قرار خذيته لبنتي. صارت تحب الذكاء الاصطناعي وتصمم تطبيقات بنفسها. الأسعار مناسبة جداً للجودة.&quot;
+              <p className="text-on-surface-variant font-body-md leading-relaxed mb-6 text-sm">
+                &quot;بنتي بقت بتصمم تطبيقات بنفسها. أفضل قرار خذيته.&quot;
               </p>
-              <div className="flex items-center gap-3 border-t border-outline-variant/20 pt-4">
-                <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-deep rounded-full flex items-center justify-center">
-                  <span className="material-symbols-outlined text-white text-lg">person</span>
+              <div className="flex items-center gap-3 border-t border-outline-variant/15 pt-5">
+                <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                  <span className="material-symbols-outlined text-primary text-lg">person</span>
                 </div>
                 <div>
                   <span className="font-label-md text-on-surface block">أبو عبدالله</span>
-                  <span className="text-on-surface-variant text-sm">🇰🇼 الكويت</span>
+                  <span className="text-on-surface-variant text-xs">🇰🇼 الكويت</span>
                 </div>
               </div>
             </div>
 
-            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 p-8 hover:border-tertiary/30 hover:shadow-[0_12px_40px_rgba(247,190,29,0.15)] transition-all duration-300 hover:-translate-y-2">
-              <div className="flex items-center gap-1 mb-4">
+            <div className="group bg-white rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border border-outline-variant/20 p-7 hover:border-tertiary/30 hover:shadow-[0_12px_40px_rgba(247,190,29,0.1)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-tertiary/50 to-tertiary"></div>
+              <div className="flex items-center gap-0.5 mb-5">
                 {[1,2,3,4,5].map(i => (
                   <span key={i} className="material-symbols-outlined text-yellow-400 text-lg" style={{fontVariationSettings: "'FILL' 1"}}>star</span>
                 ))}
               </div>
-              <p className="text-on-surface-variant font-body-md leading-relaxed mb-6">
-                &quot;محتوى عملي وحقيقي، مش مجرد كلام. بنتي بقت بتعمل مشاريع روبوتيكس وعرضت في مدرستها. شكراً TKA!&quot;
+              <p className="text-on-surface-variant font-body-md leading-relaxed mb-6 text-sm">
+                &quot;محتوى عملي حقيقي — بنتي عملت مشاريع روبوتيكس وعرضت في المدرسة.&quot;
               </p>
-              <div className="flex items-center gap-3 border-t border-outline-variant/20 pt-4">
-                <div className="w-10 h-10 bg-gradient-to-br from-tertiary to-amber-400 rounded-full flex items-center justify-center">
-                  <span className="material-symbols-outlined text-white text-lg">person</span>
+              <div className="flex items-center gap-3 border-t border-outline-variant/15 pt-5">
+                <div className="w-10 h-10 bg-tertiary/10 rounded-full flex items-center justify-center">
+                  <span className="material-symbols-outlined text-tertiary text-lg">person</span>
                 </div>
                 <div>
                   <span className="font-label-md text-on-surface block">م. سارة أحمد</span>
-                  <span className="text-on-surface-variant text-sm">🇪🇬 القاهرة، مصر</span>
+                  <span className="text-on-surface-variant text-xs">🇪🇬 القاهرة، مصر</span>
                 </div>
               </div>
             </div>
@@ -510,34 +536,37 @@ export default function HomePage() {
       <section className="py-20 px-margin-mobile md:px-margin-desktop bg-surface">
         <div className="max-w-container-max mx-auto">
           <div className="text-center mb-16">
-            <span className="inline-block bg-primary/5 text-primary font-label-md text-label-md px-5 py-2 rounded-full mb-4">لماذا تثق بنا؟</span>
-            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">لماذا يثق بنا أولياء الأمور؟</h2>
-            <p className="text-on-surface-variant font-body-lg text-body-lg max-w-2xl mx-auto">نتعامل مع أبنائكم بمسؤولية كاملة ونلتزم بأعلى معايير الجودة والأمان التعليمي.</p>
+            <span className="inline-block bg-primary/5 text-primary font-label-md text-label-md px-5 py-2 rounded-full mb-4">ليه تختارنا؟</span>
+            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">مش هنخليك تندم</h2>
+            <p className="text-on-surface-variant font-body-lg text-body-lg max-w-2xl mx-auto">فريق متخصص وأسعار مناسبة — التزامنا بأبنائكم أولًا</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-primary/10 p-5 md:p-8 text-center hover:border-primary/30 hover:shadow-[0_12px_40px_rgba(65,105,225,0.15)] transition-all duration-300 hover:-translate-y-2">
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-primary to-primary-deep rounded-full flex items-center justify-center mx-auto mb-4 md:mb-5 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-white text-2xl md:text-3xl">school</span>
+            <div className="group bg-white rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border border-primary/10 p-6 md:p-8 text-center hover:border-primary/30 hover:shadow-[0_12px_40px_rgba(65,105,225,0.12)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary/60 to-primary"></div>
+              <div className="w-14 h-14 bg-primary/8 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-primary text-2xl">school</span>
               </div>
-              <h3 className="font-headline-md text-headline-md text-primary-deep mb-2 md:mb-3">مدربون معتمدون</h3>
-              <p className="text-on-surface-variant font-body-md text-sm md:text-base">نخبة من خبراء البرمجة والذكاء الاصطناعي بخبرة تدريسية حقيقية للأطفال والناشئين.</p>
+              <h3 className="font-headline-md text-headline-md text-primary-deep mb-2">مدربين مش معلمين</h3>
+              <p className="text-on-surface-variant font-body-md text-sm leading-relaxed">خبراء برمجة وAI بيعلّموا أطفال بجد — مش مجرد ناس بتحلل كتب</p>
             </div>
 
-            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-secondary/10 p-5 md:p-8 text-center hover:border-secondary/30 hover:shadow-[0_12px_40px_rgba(253,118,26,0.15)] transition-all duration-300 hover:-translate-y-2">
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-secondary to-amber-500 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-5 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-white text-2xl md:text-3xl">workspace_premium</span>
+            <div className="group bg-white rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border border-secondary/10 p-6 md:p-8 text-center hover:border-secondary/30 hover:shadow-[0_12px_40px_rgba(253,118,26,0.12)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-secondary/60 to-secondary"></div>
+              <div className="w-14 h-14 bg-secondary/8 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-secondary text-2xl">workspace_premium</span>
               </div>
-              <h3 className="font-headline-md text-headline-md text-primary-deep mb-2 md:mb-3">شهادة معتمدة</h3>
-              <p className="text-on-surface-variant font-body-md text-sm md:text-base">شهادة موثقة بعد كل برنامج تعزز السيرة الذاتية لطفلك في رحلته الأكاديمية.</p>
+              <h3 className="font-headline-md text-headline-md text-primary-deep mb-2">شهادة معتمدة</h3>
+              <p className="text-on-surface-variant font-body-md text-sm leading-relaxed">شهادة دولية بعد كل برنامج — تفرق في السيرة الذاتية</p>
             </div>
 
-            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-tertiary/10 p-5 md:p-8 text-center hover:border-tertiary/30 hover:shadow-[0_12px_40px_rgba(247,190,29,0.15)] transition-all duration-300 hover:-translate-y-2">
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-tertiary to-amber-400 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-5 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-white text-2xl md:text-3xl">support_agent</span>
+            <div className="group bg-white rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border border-tertiary/10 p-6 md:p-8 text-center hover:border-tertiary/30 hover:shadow-[0_12px_40px_rgba(247,190,29,0.12)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-tertiary/60 to-tertiary"></div>
+              <div className="w-14 h-14 bg-tertiary/10 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-tertiary text-2xl">support_agent</span>
               </div>
-              <h3 className="font-headline-md text-headline-md text-primary-deep mb-2 md:mb-3">دعم عبر واتساب 7/24</h3>
-              <p className="text-on-surface-variant font-body-md text-sm md:text-base">فريق متابعة مخصص لأولياء الأمور للرد على كل استفسار خلال دقائق.</p>
+              <h3 className="font-headline-md text-headline-md text-primary-deep mb-2">دعم واتساب 24/7</h3>
+              <p className="text-on-surface-variant font-body-md text-sm leading-relaxed">لسه سؤال؟ ابعت واتساب — فريقنا بيرد في دقائق</p>
             </div>
           </div>
         </div>
@@ -546,13 +575,13 @@ export default function HomePage() {
       <section className="section-padding" id="why">
         <div className="container-inner">
           <div className="text-center mb-16">
-            <span className="font-label-md text-label-md text-primary uppercase tracking-wide mb-2 block">المزيد من القيمة</span>
-            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">مميزات إضافية وبرامج تطويرية</h2>
-            <p className="text-on-surface-variant font-body-lg text-body-lg">مش بس منهج تقني — بنهتم بالشخصية والمهارات الداعمة كاملة</p>
+            <span className="font-label-md text-label-md text-primary uppercase tracking-wide mb-2 block">مميزات إضافية</span>
+            <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">كمان عندنا حاجات تانية</h2>
+            <p className="text-on-surface-variant font-body-lg text-body-lg">مش بس برمجة — بنهتم بكل جوانب طفلك</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            <div className="group relative bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 p-5 md:p-8 rounded-24 shadow-[0_4px_32px_rgba(247,190,29,0.25)] border-2 border-tertiary/40 hover:border-tertiary transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_48px_rgba(247,190,29,0.4)] overflow-hidden">
+            <div className="group relative bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 p-5 md:p-7 rounded-24 shadow-[0_2px_16px_rgba(247,190,29,0.15)] border border-tertiary/20 hover:border-tertiary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(247,190,29,0.2)] overflow-hidden">
               <div className="absolute top-3 left-3 z-10">
                 <span className="inline-flex items-center gap-1 bg-gradient-to-r from-tertiary to-amber-500 text-primary-deep text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
                   <span className="material-symbols-outlined text-xs">local_offer</span>
@@ -562,48 +591,51 @@ export default function HomePage() {
               <div className="absolute -top-8 -left-8 w-24 h-24 bg-tertiary/10 rounded-full blur-2xl"></div>
               <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-amber-400/10 rounded-full blur-2xl"></div>
               <div className="relative z-10">
-                <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-tertiary to-amber-500 rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform shadow-lg shadow-tertiary/30">
-                  <span className="material-symbols-outlined text-white text-xl md:text-2xl">calculate</span>
+                <div className="w-12 h-12 bg-tertiary/10 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <span className="material-symbols-outlined text-tertiary text-xl">calculate</span>
                 </div>
                 <span className="font-label-sm text-label-sm text-tertiary bg-tertiary/15 px-3 py-1 rounded-full mb-3 inline-block font-bold">برنامج جديد</span>
                 <h3 className="font-headline-lg text-headline-lg text-amber-700 mb-2">Techno Math</h3>
-                <p className="text-on-surface-variant font-body-md text-body-md mb-4">برنامج الحساب الذهني للأطفال من 8 إلى 15 سنة — من العداد إلى التخيل والسرعة الاحترافية خلال 12 شهر.</p>
+                <p className="text-on-surface-variant font-body-md text-sm leading-relaxed mb-4">حساب ذهني من العداد للسرعة الاحترافية — 12 شهر، من 8 لـ 15 سنة.</p>
                 <Link href="/technomath" className="text-amber-700 font-bold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all group-hover:text-primary">
                   اكتشف البرنامج
                   <span className="material-symbols-outlined text-base transition-transform group-hover:translate-x-1 rtl:rotate-180">arrow_back</span>
                 </Link>
               </div>
             </div>
-            <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-blue-200 hover:border-blue-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(59,130,246,0.15)]">
-              <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-blue-500 to-primary rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-white text-xl md:text-2xl">translate</span>
+            <div className="group bg-white p-5 md:p-7 rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border border-blue-200 hover:border-blue-400 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(59,130,246,0.1)] relative overflow-hidden">
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-blue-400 to-primary"></div>
+              <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-blue-500 text-xl">translate</span>
               </div>
               <div className="flex items-center gap-2 mb-3">
-                <span className="font-label-sm text-label-sm text-blue-600 bg-blue-100 px-3 py-1 rounded-full">برنامج جديد</span>
-                <span className="font-label-sm text-label-sm text-amber-700 bg-amber-100 px-3 py-1 rounded-full">عرض حصري</span>
+                <span className="font-label-sm text-label-sm text-blue-600 bg-blue-50 px-3 py-1 rounded-full">جديد</span>
+                <span className="font-label-sm text-label-sm text-amber-700 bg-amber-50 px-3 py-1 rounded-full">حصري</span>
               </div>
               <h3 className="font-headline-lg text-headline-lg text-primary mb-2">Tech English</h3>
-              <p className="text-on-surface-variant font-body-md text-body-md mb-4">لغة المستقبل لأطفال المستقبل. لا تتعلم الإنجليزية لكي تنجح في اختبار... بل لكي تدخل عالم التكنولوجيا بثقة. 12 شهر، 4 مستويات، من A1 إلى B2.</p>
+              <p className="text-on-surface-variant font-body-md text-sm leading-relaxed mb-4">إنجليزية التكنولوجيا — مش للمدرسة بس، لعالم البرمجة. 12 شهر من A1 لـ B2.</p>
               <Link href="/techenglish" className="text-blue-600 font-bold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all group-hover:text-primary">
                 اكتشف البرنامج
                 <span className="material-symbols-outlined text-base transition-transform group-hover:translate-x-1 rtl:rotate-180">arrow_back</span>
               </Link>
             </div>
-            <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-emerald-200 hover:border-emerald-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(16,185,129,0.15)]">
-              <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-white text-xl md:text-2xl">shield</span>
+            <div className="group bg-white p-5 md:p-7 rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border border-emerald-200 hover:border-emerald-400 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(16,185,129,0.1)] relative overflow-hidden">
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-emerald-400 to-emerald-600"></div>
+              <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-emerald-500 text-xl">shield</span>
               </div>
-              <span className="font-label-sm text-label-sm text-green-600 bg-green-100 px-3 py-1 rounded-full mb-3 inline-block">مضمّن</span>
-              <h3 className="font-headline-lg text-headline-lg text-primary mb-2">إخصائي سلوكي وإرشادي</h3>
-              <p className="text-on-surface-variant font-body-md text-body-md mb-4">إخصائي متخصص لمتابعة الجانب النفسي للطالب، مساعدته في التخلص من الضغوط، ودعمه طوال الرحلة التعليمية بأمان.</p>
+              <span className="font-label-sm text-label-sm text-green-600 bg-green-50 px-3 py-1 rounded-full mb-3 inline-block">مضمّن</span>
+              <h3 className="font-headline-lg text-headline-lg text-primary mb-2">إخصائي سلوكي</h3>
+              <p className="text-on-surface-variant font-body-md text-sm leading-relaxed mb-4">متابع نفسية للطالب — يساعدك يتعامل مع الضغوط ويكون واثق من نفسه</p>
               <span className="text-green-600 font-label-md text-label-md">مشمول في الباقة الأساسية</span>
             </div>
-            <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-violet-200 hover:border-violet-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(139,92,246,0.15)]">
-              <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-violet-400 to-violet-600 rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-white text-xl md:text-2xl">favorite</span>
+            <div className="group bg-white p-5 md:p-7 rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border border-violet-200 hover:border-violet-400 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(139,92,246,0.1)] relative overflow-hidden">
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-violet-400 to-violet-600"></div>
+              <div className="w-12 h-12 bg-violet-50 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-violet-500 text-xl">favorite</span>
               </div>
               <h3 className="font-headline-lg text-headline-lg text-primary mb-2">مدعوم من TKA-Egypt</h3>
-              <p className="text-on-surface-variant font-body-md text-body-md mb-4">البرنامج مدعوم جزئياً من TKA-Egypt، مما يضمن جودة عالية مع أسعار مناسبة للأسر المصرية.</p>
+              <p className="text-on-surface-variant font-body-md text-sm leading-relaxed mb-4">جزء من التكلفة على حسابنا — عشان التعليم يوصل لكل طفل مصري</p>
               <span className="text-primary font-label-md text-label-md">دعم مستمر للأهالي</span>
             </div>
           </div>
@@ -613,13 +645,14 @@ export default function HomePage() {
       <section className="section-padding bg-surface-container-highest/20" id="plans">
         <div className="container-inner">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-32 card-shadow p-8 md:p-12 text-center border border-outline-variant/20">
+            <div className="bg-white rounded-32 shadow-[0_2px_16px_rgba(0,0,0,0.06)] p-8 md:p-12 text-center border border-outline-variant/20 relative overflow-hidden">
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary via-secondary to-tertiary"></div>
               <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="material-symbols-outlined text-primary text-4xl">payments</span>
               </div>
-              <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">خطط أسعار مرنة تناسب كل أسرة</h2>
+              <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary mb-4">أسعار تبدأ من 690 جنيه/شهر</h2>
               <p className="text-on-surface-variant font-body-lg text-body-lg mb-8 max-w-2xl mx-auto">
-                نؤمن إن التعلم ملوش عوائق مالية — عشان كده عندنا خطط اشتراك مرنة تختار منها الأنسب لميزانيتك
+                مش هنخلي السعر عائق — عندنا خطط مرنة تناسب كل أسرة
               </p>
 
               <div className="bg-gradient-to-l from-primary/5 to-secondary/5 rounded-2xl p-6 md:p-8 mb-8 border border-primary/10">
@@ -632,27 +665,36 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                <Link href="/register" className="bg-surface-container-low rounded-2xl p-5 text-center border border-outline-variant/20 hover:border-primary/40 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer">
-                  <span className="material-symbols-outlined text-primary text-3xl mb-2 block">calendar_month</span>
-                  <span className="font-label-md text-on-surface font-bold block mb-1">اشتراك شهري</span>
-                  <span className="text-on-surface-variant text-sm">مناسبة للتجربة</span>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5 mb-8">
+                <Link href="/register" className="group bg-white rounded-2xl p-6 text-center border border-outline-variant/20 hover:border-primary/40 hover:shadow-[0_8px_30px_rgba(65,105,225,0.12)] transition-all duration-300 hover:-translate-y-1 cursor-pointer relative overflow-hidden">
+                  <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary to-primary-light"></div>
+                  <div className="w-14 h-14 mx-auto bg-primary/8 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <span className="material-symbols-outlined text-primary text-2xl">calendar_month</span>
+                  </div>
+                  <span className="font-headline-md text-headline-md text-primary-deep font-bold block mb-1">اشتراك شهري</span>
+                  <span className="text-on-surface-variant font-body-md text-sm">مناسبة للتجربة</span>
                 </Link>
-                <Link href="/register" className="bg-surface-container-low rounded-2xl p-5 text-center border-2 border-secondary/40 hover:border-secondary hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer relative">
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-secondary text-white text-[10px] font-bold px-3 py-0.5 rounded-full">الأكثر اختياراً</span>
-                  <span className="material-symbols-outlined text-secondary text-3xl mb-2 block">analytics</span>
-                  <span className="font-label-md text-on-surface font-bold block mb-1">اشتراك ربع سنوي</span>
-                  <span className="text-on-surface-variant text-sm">التوازن المثالي</span>
+                <Link href="/register" className="group bg-gradient-to-b from-secondary/5 to-white rounded-2xl p-6 text-center border-2 border-secondary/40 hover:border-secondary hover:shadow-[0_8px_30px_rgba(253,118,26,0.15)] transition-all duration-300 hover:-translate-y-1 cursor-pointer relative overflow-hidden">
+                  <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-secondary to-amber-400"></div>
+                  <span className="absolute top-4 left-1/2 -translate-x-1/2 bg-secondary text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md">الأكثر اختياراً</span>
+                  <div className="w-14 h-14 mx-auto bg-secondary/10 rounded-2xl flex items-center justify-center mb-4 mt-2 group-hover:scale-110 transition-transform">
+                    <span className="material-symbols-outlined text-secondary text-2xl">analytics</span>
+                  </div>
+                  <span className="font-headline-md text-headline-md text-primary-deep font-bold block mb-1">اشتراك ربع سنوي</span>
+                  <span className="text-on-surface-variant font-body-md text-sm">التوازن المثالي</span>
                 </Link>
-                <Link href="/register" className="bg-surface-container-low rounded-2xl p-5 text-center border border-outline-variant/20 hover:border-tertiary/40 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer">
-                  <span className="material-symbols-outlined text-tertiary text-3xl mb-2 block">emoji_events</span>
-                  <span className="font-label-md text-on-surface font-bold block mb-1">اشتراك سنوي</span>
-                  <span className="text-on-surface-variant text-sm">الأوفر والأشمل</span>
+                <Link href="/register" className="group bg-white rounded-2xl p-6 text-center border border-outline-variant/20 hover:border-tertiary/40 hover:shadow-[0_8px_30px_rgba(247,190,29,0.12)] transition-all duration-300 hover:-translate-y-1 cursor-pointer relative overflow-hidden">
+                  <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-tertiary to-amber-300"></div>
+                  <div className="w-14 h-14 mx-auto bg-tertiary/10 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <span className="material-symbols-outlined text-tertiary text-2xl">emoji_events</span>
+                  </div>
+                  <span className="font-headline-md text-headline-md text-primary-deep font-bold block mb-1">اشتراك سنوي</span>
+                  <span className="text-on-surface-variant font-body-md text-sm">الأوفر والأشمل</span>
                 </Link>
               </div>
 
               <p className="text-on-surface-variant font-body-md text-body-md mb-6">
-                التفاصيل الدقيقة للأسعار والباقات هتظهر لك عند اختيار المسار المناسب
+                الأسعار بتختلف حسب المسار — هتختار ويظهرلك كل التفاصيل
               </p>
 
               <div className="flex flex-wrap justify-center gap-4">
@@ -680,9 +722,9 @@ export default function HomePage() {
       <section className="section-padding">
         <div className="container-inner bg-gradient-to-br from-primary-deep to-primary-container rounded-3xl md:rounded-40 p-8 md:p-12 lg:p-24 text-center text-white relative overflow-hidden">
           <div className="relative z-10">
-            <span className="font-label-md text-label-md text-primary-fixed-dim mb-4 block">مستقبل ابنك يبدأ من هنا</span>
-            <h2 className="font-headline-xl text-headline-xl text-display-lg-mobile md:text-display-lg mb-6">🚀 سجّل اهتمامك في Tech Makers Egypt</h2>
-            <p className="text-primary-fixed-dim font-body-lg text-body-lg mb-12 max-w-2xl mx-auto">ابدأ رحلة ابنك في عالم التكنولوجيا، البرمجة، والذكاء الاصطناعي. مقاعد محدودة في كل دفعة.</p>
+            <span className="font-label-md text-label-md text-primary-fixed-dim mb-4 block">الدفعة الخامسة ابتدت</span>
+            <h2 className="font-headline-xl text-headline-xl text-display-lg-mobile md:text-display-lg mb-6">سجّل ابنك في Tech Makers دلوقتي</h2>
+            <p className="text-primary-fixed-dim font-body-lg text-body-lg mb-12 max-w-2xl mx-auto">مقاعد محدودة في كل دفعة — البدري أحسن</p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/#plans" className="bg-tertiary text-primary-deep px-12 py-5 rounded-full font-headline-lg text-headline-lg shadow-xl hover:scale-105 transition-transform active:scale-95">سجّل الآن</Link>
                <Link href="#tracks" className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-12 py-5 rounded-full font-headline-lg text-headline-lg hover:bg-white/20 transition-all active:scale-95">استكشف المسارات</Link>

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { sanitizePlain } from '../../../../../lib/security';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
@@ -55,6 +56,32 @@ export async function PUT(request, { params }) {
   const { id } = await params;
   try {
     const body = await request.json();
+
+    const allowed = {};
+    if (body.amount !== undefined) {
+      if (typeof body.amount !== 'number' || body.amount <= 0 || body.amount > 1000000) {
+        return NextResponse.json({ error: 'المبلغ غير صالح' }, { status: 400 });
+      }
+      allowed.amount = body.amount;
+    }
+    if (body.method !== undefined) {
+      const validTypes = ['cash', 'card', 'transfer', 'fawry', 'other'];
+      if (!validTypes.includes(body.method)) {
+        return NextResponse.json({ error: 'نوع الدفع غير صالح' }, { status: 400 });
+      }
+      allowed.method = body.method;
+    }
+    if (body.notes !== undefined) {
+      allowed.notes = body.notes ? sanitizePlain(body.notes) : null;
+    }
+    if (body.payment_date !== undefined) {
+      allowed.payment_date = body.payment_date;
+    }
+
+    if (Object.keys(allowed).length === 0) {
+      return NextResponse.json({ error: 'لا توجد بيانات للتحديث' }, { status: 400 });
+    }
+
     const res = await fetch(`${SUPABASE_URL}/rest/v1/payments?id=eq.${id}`, {
       method: 'PATCH',
       headers: {
@@ -63,7 +90,7 @@ export async function PUT(request, { params }) {
         Authorization: `Bearer ${SUPABASE_KEY}`,
         Prefer: 'return=representation',
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(allowed),
     });
     if (!res.ok) return NextResponse.json({ error: 'فشل التحديث' }, { status: 500 });
     const payment = await res.json();

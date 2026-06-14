@@ -99,10 +99,10 @@
 @layer base {
   * { border-color: theme('colors.outline-variant'); }
 
-  /* Material Symbols swap to prevent emoji flash */
+  /* Material Symbols — prevent text flash, use Rounded variant */
   .material-symbols-outlined {
-    font-family: 'Material Symbols Outlined';
-    font-display: swap;
+    font-family: 'Material Symbols Rounded';
+    font-display: block;
   }
 
   html {
@@ -327,7 +327,7 @@
 
   /* ── Material Icons ── */
   .material-symbols-outlined {
-    font-family: 'Material Symbols Outlined';
+    font-family: 'Material Symbols Rounded';
     font-weight: normal;
     font-style: normal;
     font-size: 24px;
@@ -1078,10 +1078,11 @@
   input[type="password"], input[type="number"], input[type="date"],
   select, textarea { font-size: 16px !important; min-height: 44px; }
 
-  /* Overflow prevention */
+  /* Overflow prevention — root level only */
   html, body { overflow-x: hidden; max-width: 100vw; }
   img, video, svg { max-width: 100%; height: auto; display: block; }
-  header, section { overflow: hidden; max-width: 100vw; }
+
+  /* Buttons — prevent text overflow */
   button, a { overflow: hidden; text-overflow: ellipsis; }
 
   /* Sections */

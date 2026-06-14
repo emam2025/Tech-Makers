@@ -12,6 +12,7 @@ export default function AdminTeamPage() {
   const [filterType, setFilterType] = useState('');
   const [filterStatus, setFilterStatus] = useState('');
   const [expandedId, setExpandedId] = useState(null);
+  const [updatingId, setUpdatingId] = useState(null);
 
   async function fetchApplications() {
     setLoading(true);
@@ -41,6 +42,22 @@ export default function AdminTeamPage() {
     const timeout = setTimeout(fetchApplications, 400);
     return () => clearTimeout(timeout);
   }, [search, filterType, filterStatus]);
+
+  const updateStatus = async (id, status) => {
+    setUpdatingId(id);
+    try {
+      const res = await fetch('/api/admin/team', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status }),
+      });
+      if (res.ok) fetchApplications();
+    } catch (err) {
+      console.error('Update status error:', err);
+    } finally {
+      setUpdatingId(null);
+    }
+  };
 
   function formatDate(d) {
     if (!d) return '—';
@@ -167,6 +184,34 @@ export default function AdminTeamPage() {
                       <p className="text-sm text-on-surface bg-surface-container-low rounded-xl px-4 py-2">{app.bio}</p>
                     </div>
                   )}
+                  {/* Status Actions */}
+                  <div className="mt-4 flex flex-wrap gap-2 border-t border-outline-variant/10 pt-4">
+                    <span className="text-xs font-bold text-on-surface-variant self-center">تحديث الحالة:</span>
+                    {app.status !== 'accepted' && (
+                      <button onClick={() => updateStatus(app.id, 'accepted')} disabled={updatingId === app.id} className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-success/10 text-success text-xs font-bold hover:bg-success/20 transition-colors disabled:opacity-50">
+                        <span className="material-symbols-outlined text-sm">check_circle</span>
+                        قبول
+                      </button>
+                    )}
+                    {app.status !== 'rejected' && (
+                      <button onClick={() => updateStatus(app.id, 'rejected')} disabled={updatingId === app.id} className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-error/10 text-error text-xs font-bold hover:bg-error/20 transition-colors disabled:opacity-50">
+                        <span className="material-symbols-outlined text-sm">cancel</span>
+                        رفض
+                      </button>
+                    )}
+                    {app.status !== 'interviewed' && (
+                      <button onClick={() => updateStatus(app.id, 'interviewed')} disabled={updatingId === app.id} className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-tertiary/10 text-tertiary text-xs font-bold hover:bg-tertiary/20 transition-colors disabled:opacity-50">
+                        <span className="material-symbols-outlined text-sm">event</span>
+                        تمت المقابلة
+                      </button>
+                    )}
+                    {app.status !== 'pending' && (
+                      <button onClick={() => updateStatus(app.id, 'pending')} disabled={updatingId === app.id} className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-bold hover:bg-surface-container transition-colors disabled:opacity-50">
+                        <span className="material-symbols-outlined text-sm">replay</span>
+                        إعادة للمراجعة
+                      </button>
+                    )}
+                  </div>
                 </div>
               )}
             </div>

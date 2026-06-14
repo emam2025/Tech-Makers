@@ -29,10 +29,18 @@ async function verifyAuth(request) {
 export async function PATCH(request, { params }) {
   const auth = await verifyAuth(request);
   if (auth.error) return NextResponse.json({ error: auth.error }, { status: auth.status });
+  if (!['admin', 'supervisor'].includes(auth.user.role)) {
+    return NextResponse.json({ error: 'غير مصرح' }, { status: 403 });
+  }
 
   const { id } = await params;
   try {
     const body = await request.json();
+    const allowed = {};
+    if (body.is_read !== undefined) allowed.is_read = body.is_read;
+    if (Object.keys(allowed).length === 0) {
+      return NextResponse.json({ error: 'لا توجد بيانات للتحديث' }, { status: 400 });
+    }
     const res = await fetch(`${SUPABASE_URL}/rest/v1/notifications?id=eq.${id}`, {
       method: 'PATCH',
       headers: {
@@ -41,7 +49,7 @@ export async function PATCH(request, { params }) {
         Authorization: `Bearer ${SUPABASE_KEY}`,
         Prefer: 'return=representation',
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(allowed),
     });
     if (!res.ok) return NextResponse.json({ error: 'فشل التحديث' }, { status: 500 });
     const notification = await res.json();

@@ -11,6 +11,7 @@ export default function TechnoMathPage() {
             src="/technomath-opt.jpg" 
             alt="" 
             fill
+            sizes="100vw"
             priority
             className="object-cover"
           />
@@ -327,7 +328,7 @@ export default function TechnoMathPage() {
               { icon: 'child_care', text: 'مناسب للأطفال والناشئة', desc: 'من 8 إلى 15 سنة' },
               { icon: 'trending_up', text: 'تدريج علمي', desc: 'من السهل إلى الاحتراف' },
               { icon: 'psychology', text: 'تنمية الذكاء والتركيز', desc: 'تعزيز القدرات العقلية' },
-              { icon: 'school', text: 'إعداد قوي للرياضيات', desc: ' foundation للمستقبل الأكاديمي' },
+              { icon: 'school', text: 'إعداد قوي للرياضيات', desc: 'أساس قوي للمستقبل الأكاديمي' },
             ].map((item, i) => (
               <div key={i} className="group bg-surface rounded-24 p-6 text-center border border-outline-variant/20 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1">
                 <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
@@ -345,9 +346,9 @@ export default function TechnoMathPage() {
       <section className="py-20 px-margin-mobile md:px-margin-desktop hero-gradient text-white text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="font-headline-xl text-headline-lg md:text-headline-xl mb-6">ابدأ رحلة طفلك مع الحساب الذهني</h2>
-          <p className="text-white/80 font-body-lg text-body-lg mb-8">سجل الآن في برنامج Techno Math واعكس مهارات طفلكognitive skills</p>
+          <p className="text-white/80 font-body-lg text-body-lg mb-8">سجل الآن في برنامج Techno Math واعكس مهارات طفلك العقلية</p>
           <Link
-            href="/register"
+            href="/register?track=technomath"
             className="inline-flex items-center gap-2 btn-primary"
           >
             <span className="material-symbols-outlined">how_to_reg</span>

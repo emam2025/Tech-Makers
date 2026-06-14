@@ -94,7 +94,7 @@ export default function SecondaryPage() {
       {/* HERO */}
       <section className="relative py-10 md:py-14 overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a3fa0 0%, #4169e1 50%, #6b8aff 100%)' }}>
         <div className="absolute inset-0">
-          <Image src="/secondary-banner.jpg" alt="" fill priority className="object-cover opacity-20" />
+          <Image src="/secondary-banner.jpg" alt="" fill sizes="100vw" priority className="object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-l from-[#1a3fa0]/60 via-[#4169e1]/50 to-[#6b8aff]/40" />
         </div>
         <div className="max-w-6xl mx-auto px-4 md:px-8 relative z-10">
@@ -104,12 +104,12 @@ export default function SecondaryPage() {
             </Link>
             <span className="text-white/60 text-sm">العودة للصفحة الرئيسية</span>
           </div>
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/30">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 mb-6">
+            <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/30 shrink-0">
               <span className="material-symbols-outlined text-white text-3xl">code</span>
             </div>
-            <div>
-              <span className="text-sm text-[#f7be1d] bg-[#f7be1d]/20 px-3 py-1 rounded-full inline-block mb-1 border border-[#f7be1d]/30 font-bold">
+            <div className="min-w-0">
+              <span className="text-sm text-[#f7be1d] bg-[#f7be1d]/20 px-3 py-1 rounded-full inline-block mb-1 border border-[#f7be1d]/30 font-bold max-w-full overflow-hidden text-ellipsis whitespace-nowrap">
                 مسار البرمجة والذكاء الاصطناعي — الصفوف الثلاثة
               </span>
               <h1 className="text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Tajawal, sans-serif' }}>
@@ -520,7 +520,7 @@ export default function SecondaryPage() {
               {/* Study Mode */}
               <div className="mb-5">
                 <label className="block text-sm font-bold text-gray-700 mb-2">طريقة الدراسة *</label>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="flex gap-3">
                   {[
                     { v: 'online', label: 'أونلاين', icon: 'computer', desc: 'عبر الإنترنت' },
                     { v: 'offline', label: 'أوفلاين', icon: 'meeting_room', desc: 'في الفصل' },
@@ -529,7 +529,7 @@ export default function SecondaryPage() {
                       key={mode.v}
                       type="button"
                       onClick={() => setForm({...form, studyMode: mode.v})}
-                      className={`flex items-center gap-3 p-4 rounded-xl border-2 transition-all cursor-pointer ${
+                      className={`flex-1 flex items-center gap-3 p-4 rounded-xl border-2 transition-all cursor-pointer ${
                         form.studyMode === mode.v
                           ? 'border-[#1a3fa0] bg-[#1a3fa0]/5 shadow-md'
                           : 'border-gray-200 bg-white hover:border-gray-300'
@@ -547,13 +547,13 @@ export default function SecondaryPage() {
               </div>
 
               {/* Phone */}
-              <div className="grid grid-cols-2 gap-3 mb-6">
-                <div>
+              <div className="flex gap-3 mb-6">
+                <div className="flex-1">
                   <label className="block text-sm font-bold text-gray-700 mb-2">رقم التليفون *</label>
                   <input type="tel" placeholder="01012345678" value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} className={inputClass('phone')} dir="ltr" />
                   {errors.phone && <span className="text-red-500 text-xs mt-1 block">{errors.phone}</span>}
                 </div>
-                <div>
+                <div className="flex-1">
                   <label className="block text-sm font-bold text-gray-700 mb-2">رقم الواتساب</label>
                   <input type="tel" placeholder="01012345678" value={form.whatsapp} onChange={e => setForm({...form, whatsapp: e.target.value})} className={inputClass('whatsapp')} dir="ltr" />
                 </div>

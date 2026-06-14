@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { rateLimit, checkOrigin, getClientIp } from '../../../../lib/security';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY;
@@ -50,13 +51,21 @@ export async function GET(request) {
     }
 
     return NextResponse.json({ user: profiles[0] });
-  } catch (err) {
-    console.error('Auth check error:', err);
+  } catch {
     return NextResponse.json({ error: 'خطأ داخلي' }, { status: 500 });
   }
 }
 
 export async function POST(request) {
+  const ip = getClientIp(request);
+  if (!rateLimit(ip, 5, 60000)) {
+    return NextResponse.json({ error: 'تم تجاوز الحد المسموح، حاول بعد دقيقة' }, { status: 429 });
+  }
+
+  if (!checkOrigin(request)) {
+    return NextResponse.json({ error: 'طلب غير مصرح به' }, { status: 403 });
+  }
+
   try {
     const { email, password } = await request.json();
 
@@ -65,6 +74,14 @@ export async function POST(request) {
         { error: 'البريد الإلكتروني وكلمة المرور مطلوبان' },
         { status: 400 }
       );
+    }
+
+    if (typeof email !== 'string' || typeof password !== 'string') {
+      return NextResponse.json({ error: 'بيانات غير صالحة' }, { status: 400 });
+    }
+
+    if (email.length > 254 || password.length > 128) {
+      return NextResponse.json({ error: 'بيانات غير صالحة' }, { status: 400 });
     }
 
     const authRes = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
@@ -80,7 +97,7 @@ export async function POST(request) {
 
     if (!authRes.ok) {
       return NextResponse.json(
-        { error: authData.error_description || 'البريد الإلكتروني أو كلمة المرور غير صحيحة' },
+        { error: 'البريد الإلكتروني أو كلمة المرور غير صحيحة' },
         { status: 401 }
       );
     }
@@ -132,8 +149,7 @@ export async function POST(request) {
     });
 
     return response;
-  } catch (err) {
-    console.error('Login error:', err);
+  } catch {
     return NextResponse.json({ error: 'خطأ داخلي في الخادم' }, { status: 500 });
   }
 }
@@ -150,8 +166,8 @@ export async function DELETE(request) {
           Authorization: `Bearer ${token}`,
         },
       });
-    } catch (err) {
-      console.error('Logout error:', err);
+    } catch {
+      // ignore
     }
   }
 

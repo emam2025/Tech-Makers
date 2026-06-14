@@ -54,13 +54,25 @@ export default function SessionsPage() {
   const handleSave = async () => {
     setSaving(true);
     try {
-      const res = await fetch('/api/admin/sessions', {
-        method: 'POST',
+      const method = form.id ? 'PUT' : 'POST';
+      const url = form.id ? `/api/admin/sessions/${form.id}` : '/api/admin/sessions';
+      const res = await fetch(url, {
+        method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
       if (res.ok) { setDrawer(null); loadSessions(); }
     } finally { setSaving(false); }
+  };
+
+  const handleDelete = async (id) => {
+    if (!confirm('هل أنت متأكد من حذف هذه الجلسة؟')) return;
+    try {
+      const res = await fetch(`/api/admin/sessions/${id}`, { method: 'DELETE' });
+      if (res.ok) { setDetailDrawer(null); loadSessions(); }
+    } catch (err) {
+      console.error('Delete session error:', err);
+    }
   };
 
   const handleStatus = async (id, status) => {
@@ -195,8 +207,10 @@ export default function SessionsPage() {
             loading={loading}
             actions={[
               { icon: 'visibility', label: 'تفاصيل', onClick: (r) => setDetailDrawer(r) },
+              { icon: 'edit', label: 'تعديل', onClick: (r) => { setForm(r); setDrawer('edit'); } },
               { icon: 'check_circle', label: 'إكمال', onClick: (r) => handleStatus(r.id, 'completed') },
               { icon: 'cancel', label: 'إلغاء', onClick: (r) => handleStatus(r.id, 'cancelled'), color: 'var(--color-danger)' },
+              { icon: 'delete', label: 'حذف', onClick: (r) => handleDelete(r.id), danger: true },
             ]}
             emptyText="لا توجد جلسات"
           />
@@ -253,10 +267,16 @@ export default function SessionsPage() {
       {/* Detail Drawer */}
       <Drawer isOpen={!!detailDrawer} onClose={() => setDetailDrawer(null)} title="تفاصيل الجلسة" size="lg"
         footer={
-          detailDrawer && detailDrawer.status !== 'completed' && detailDrawer.status !== 'cancelled' ? (
+          detailDrawer ? (
             <div className="flex gap-3">
-              <Button onClick={() => { handleStatus(detailDrawer.id, 'completed'); setDetailDrawer(null); }}>إكمال</Button>
-              <Button variant="outlined" onClick={() => { handleStatus(detailDrawer.id, 'cancelled'); setDetailDrawer(null); }} className="text-[var(--color-danger)] border-[var(--color-danger)]">إلغاء الجلسة</Button>
+              <Button onClick={() => { setForm(detailDrawer); setDetailDrawer(null); setDrawer('edit'); }} icon="edit">تعديل</Button>
+              {detailDrawer.status !== 'completed' && detailDrawer.status !== 'cancelled' && (
+                <>
+                  <Button onClick={() => { handleStatus(detailDrawer.id, 'completed'); setDetailDrawer(null); }}>إكمال</Button>
+                  <Button variant="outlined" onClick={() => { handleStatus(detailDrawer.id, 'cancelled'); setDetailDrawer(null); }} className="text-[var(--color-danger)] border-[var(--color-danger)]">إلغاء الجلسة</Button>
+                </>
+              )}
+              <Button variant="outlined" onClick={() => { handleDelete(detailDrawer.id); }} className="text-[var(--color-danger)] border-[var(--color-danger)]">حذف</Button>
             </div>
           ) : null
         }>

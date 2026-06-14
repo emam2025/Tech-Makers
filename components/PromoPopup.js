@@ -28,7 +28,7 @@ export default function PromoPopup() {
         onClick={e => e.stopPropagation()}
       >
         {/* Close button */}
-        <button onClick={dismiss} className="absolute top-4 left-4 z-10 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
+        <button onClick={dismiss} aria-label="إغلاق" className="absolute top-4 left-4 z-10 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
           <span className="material-symbols-outlined text-gray-500 text-lg">close</span>
         </button>
 

@@ -74,3 +74,37 @@ export async function GET(request) {
     return NextResponse.json({ error: 'خطأ داخلي' }, { status: 500 });
   }
 }
+
+export async function PATCH(request) {
+  const auth = await verifyAuth(request);
+  if (auth.error) return NextResponse.json({ error: auth.error }, { status: auth.status });
+  if (!['admin', 'supervisor'].includes(auth.user.role)) {
+    return NextResponse.json({ error: 'غير مصرح' }, { status: 403 });
+  }
+
+  try {
+    const body = await request.json();
+    const { id, status } = body;
+
+    if (!id || !status) {
+      return NextResponse.json({ error: 'بيانات غير مكتملة' }, { status: 400 });
+    }
+
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/team_applications?id=eq.${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        Prefer: 'return=representation',
+      },
+      body: JSON.stringify({ status }),
+    });
+
+    if (!res.ok) return NextResponse.json({ error: 'فشل التحديث' }, { status: 500 });
+    const updated = await res.json();
+    return NextResponse.json({ success: true, application: updated[0] });
+  } catch (err) {
+    return NextResponse.json({ error: 'خطأ داخلي' }, { status: 500 });
+  }
+}

@@ -84,7 +84,7 @@ function PhotoUpload({ name, label, required, onPhotoChange }) {
         {preview ? (
           <div className="relative">
             <img src={preview} alt="الصورة الشخصية" className="w-24 h-24 rounded-full object-cover border-2 border-primary" />
-            <button type="button" onClick={removePhoto} className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-xs hover:bg-red-600">✕</button>
+            <button type="button" onClick={removePhoto} className="absolute -top-1 -right-1 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center text-sm hover:bg-red-600 shadow-md">✕</button>
           </div>
         ) : (
           <div onClick={() => inputRef.current?.click()} className="w-24 h-24 rounded-full border-2 border-dashed border-outline-variant/40 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors bg-bg-off-white">
@@ -345,6 +345,7 @@ export default function JoinPage() {
             alt="فريق Tech Makers"
             fill
             sizes="100vw"
+            priority
             style={{ objectFit: 'cover' }}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-primary-deep/90 to-primary/80"></div>

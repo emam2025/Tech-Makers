@@ -11,6 +11,7 @@ export default function AdminDashboard() {
   const [stats, setStats] = useState(null);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [recentActivity, setRecentActivity] = useState([]);
 
   useEffect(() => {
     async function loadData() {
@@ -53,6 +54,57 @@ export default function AdminDashboard() {
           groups: groupsData.groups?.length || 0,
           sessions: sessionsData.sessions?.length || 0,
         });
+
+        // Build real recent activity
+        const activity = [];
+
+        // Recent students
+        (studentsData.students || []).slice(0, 3).forEach(s => {
+          if (s.created_at) {
+            const diff = now - new Date(s.created_at);
+            if (diff < 7 * 24 * 60 * 60 * 1000) {
+              activity.push({
+                icon: 'person_add',
+                text: `${s.full_name || 'طالب'} سجل في ${s.track || 'البرنامج'}`,
+                time: formatTimeAgo(s.created_at),
+                color: 'var(--color-primary)',
+                date: new Date(s.created_at),
+              });
+            }
+          }
+        });
+
+        // Recent team applications
+        (teamData.applications || []).slice(0, 3).forEach(a => {
+          if (a.created_at) {
+            const diff = now - new Date(a.created_at);
+            if (diff < 7 * 24 * 60 * 60 * 1000) {
+              activity.push({
+                icon: 'groups',
+                text: `طلب جديد من ${a.name || 'مقدم'}`,
+                time: formatTimeAgo(a.created_at),
+                color: 'var(--color-info)',
+                date: new Date(a.created_at),
+              });
+            }
+          }
+        });
+
+        // Recent sessions
+        (sessionsData.sessions || []).slice(0, 3).forEach(s => {
+          if (s.scheduled_date) {
+            activity.push({
+              icon: 'event',
+              text: `جلسة "${s.title || 'بدون عنوان'}" ${s.status === 'completed' ? 'مكتملة' : s.status === 'cancelled' ? 'ملغية' : 'مجدولة'}`,
+              time: s.scheduled_date,
+              color: s.status === 'completed' ? 'var(--color-success)' : s.status === 'cancelled' ? 'var(--color-danger)' : 'var(--color-warning)',
+              date: new Date(s.scheduled_date),
+            });
+          }
+        });
+
+        activity.sort((a, b) => (b.date || 0) - (a.date || 0));
+        setRecentActivity(activity.slice(0, 6));
       } catch (err) {
         console.error('Dashboard load error:', err);
       } finally {
@@ -72,18 +124,23 @@ export default function AdminDashboard() {
 
   const roleLabel = user?.role === 'admin' ? 'مدير' : user?.role === 'supervisor' ? 'مشرف' : 'مدرب';
 
+  function formatTimeAgo(dateStr) {
+    const diff = new Date() - new Date(dateStr);
+    const mins = Math.floor(diff / 60000);
+    if (mins < 1) return 'الآن';
+    if (mins < 60) return `منذ ${mins} دقيقة`;
+    const hours = Math.floor(mins / 60);
+    if (hours < 24) return `منذ ${hours} ساعة`;
+    const days = Math.floor(hours / 24);
+    if (days < 7) return `منذ ${days} يوم`;
+    return new Date(dateStr).toLocaleDateString('ar-EG');
+  }
+
   const quickActions = [
     { label: 'إضافة طالب', icon: 'person_add', href: '/admin/students', color: 'var(--color-primary)' },
     { label: 'إنشاء مجموعة', icon: 'group_add', href: '/admin/groups', color: 'var(--color-success)' },
     { label: 'إنشاء جلسة', icon: 'event', href: '/admin/sessions', color: 'var(--color-secondary)' },
     { label: 'تسجيل حضور', icon: 'fact_check', href: '/admin/attendance', color: 'var(--color-info)' },
-  ];
-
-  const recentActivity = [
-    { icon: 'person_add', text: 'طالب جديد سجل في المسار', time: 'منذ 5 دقائق', color: 'var(--color-primary)' },
-    { icon: 'payment', text: 'دفعة جديدة تم تسجيلها', time: 'منذ 15 دقيقة', color: 'var(--color-success)' },
-    { icon: 'event', text: 'جلسة Track A-1 مكتملة', time: 'منذ ساعة', color: 'var(--color-secondary)' },
-    { icon: 'assignment', text: 'مهمة جديدة تم تعيينها', time: 'منذ 3 ساعات', color: 'var(--color-info)' },
   ];
 
   return (
@@ -168,7 +225,12 @@ export default function AdminDashboard() {
         <div className="card-admin p-5">
           <h2 className="text-base font-bold text-[var(--color-text-primary)] mb-4">النشاط الأخير</h2>
           <div className="space-y-3">
-            {recentActivity.map((activity, i) => (
+            {recentActivity.length === 0 ? (
+              <div className="text-center py-4 text-sm text-[var(--color-text-tertiary)]">
+                <span className="material-symbols-outlined text-[32px] block mb-2">history</span>
+                لا يوجد نشاط حديث
+              </div>
+            ) : recentActivity.map((activity, i) => (
               <div key={i} className="flex items-start gap-3 p-2">
                 <div
                   className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"

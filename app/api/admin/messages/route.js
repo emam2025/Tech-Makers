@@ -60,8 +60,60 @@ export async function POST(request) {
 
   try {
     const body = await request.json();
-    const { conversation_id, content } = body;
+    const { conversation_id, content, title, participant_id } = body;
 
+    // Create new conversation
+    if (conversation_id === 'new') {
+      if (!title) {
+        return NextResponse.json({ error: 'عنوان المحادثة مطلوب' }, { status: 400 });
+      }
+
+      const convRes = await fetch(`${SUPABASE_URL}/rest/v1/conversations`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          Prefer: 'return=representation',
+        },
+        body: JSON.stringify({
+          title,
+          created_by: auth.user.id,
+          last_message: '',
+        }),
+      });
+      if (!convRes.ok) return NextResponse.json({ error: 'فشل إنشاء المحادثة' }, { status: 500 });
+      const conv = await convRes.json();
+      const newConv = conv[0];
+
+      // Add creator as participant
+      await fetch(`${SUPABASE_URL}/rest/v1/conversation_participants`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+        },
+        body: JSON.stringify({ conversation_id: newConv.id, user_id: auth.user.id }),
+      });
+
+      // Add specified participant if provided
+      if (participant_id) {
+        await fetch(`${SUPABASE_URL}/rest/v1/conversation_participants`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            apikey: SUPABASE_KEY,
+            Authorization: `Bearer ${SUPABASE_KEY}`,
+          },
+          body: JSON.stringify({ conversation_id: newConv.id, user_id: participant_id }),
+        });
+      }
+
+      return NextResponse.json({ success: true, conversation: newConv });
+    }
+
+    // Send message to existing conversation
     if (!conversation_id || !content) {
       return NextResponse.json({ error: 'بيانات غير مكتملة' }, { status: 400 });
     }

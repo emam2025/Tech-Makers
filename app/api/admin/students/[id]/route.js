@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { sanitizePlain, validateEmail, validatePhone } from '../../../../../lib/security';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
@@ -55,6 +56,33 @@ export async function PUT(request, { params }) {
 
   try {
     const body = await request.json();
+
+    const allowedFields = ['full_name', 'email', 'phone', 'track', 'status', 'age', 'group_id', 'notes'];
+    const allowed = {};
+    for (const key of allowedFields) {
+      if (body[key] !== undefined) {
+        if (typeof body[key] === 'string') {
+          allowed[key] = sanitizePlain(body[key]);
+        } else {
+          allowed[key] = body[key];
+        }
+      }
+    }
+
+    if (allowed.email && !validateEmail(allowed.email)) {
+      return NextResponse.json({ error: 'البريد الإلكتروني غير صالح' }, { status: 400 });
+    }
+    if (allowed.phone && !validatePhone(allowed.phone)) {
+      return NextResponse.json({ error: 'رقم الهاتف غير صالح' }, { status: 400 });
+    }
+    if (allowed.full_name && (allowed.full_name.length < 2 || allowed.full_name.length > 100)) {
+      return NextResponse.json({ error: 'الاسم غير صالح' }, { status: 400 });
+    }
+
+    if (Object.keys(allowed).length === 0) {
+      return NextResponse.json({ error: 'لا توجد بيانات للتحديث' }, { status: 400 });
+    }
+
     const res = await fetch(`${SUPABASE_URL}/rest/v1/students_enhanced?id=eq.${id}`, {
       method: 'PATCH',
       headers: {
@@ -63,7 +91,7 @@ export async function PUT(request, { params }) {
         Authorization: `Bearer ${SUPABASE_KEY}`,
         Prefer: 'return=representation',
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(allowed),
     });
     if (!res.ok) return NextResponse.json({ error: 'فشل التحديث' }, { status: 500 });
     const student = await res.json();

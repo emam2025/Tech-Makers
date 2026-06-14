@@ -18,6 +18,7 @@ export default function Topbar({ user, onMenuToggle }) {
       <div className="flex items-center gap-3">
         <button
           onClick={onMenuToggle}
+          aria-label="فتح القائمة"
           className="p-2 rounded-[var(--radius-md)] hover:bg-[var(--color-surface-dim)] lg:hidden cursor-pointer"
         >
           <span className="material-symbols-outlined text-[20px] text-[var(--color-text-secondary)]">menu</span>
@@ -29,6 +30,7 @@ export default function Topbar({ user, onMenuToggle }) {
         {/* Notifications */}
         <button
           onClick={() => router.push('/admin/notifications')}
+          aria-label="الإشعارات"
           className="relative p-2 rounded-[var(--radius-md)] hover:bg-[var(--color-surface-dim)] cursor-pointer"
         >
           <span className="material-symbols-outlined text-[20px] text-[var(--color-text-secondary)]">notifications</span>
@@ -38,6 +40,8 @@ export default function Topbar({ user, onMenuToggle }) {
         <div className="relative">
           <button
             onClick={() => setShowUserMenu(!showUserMenu)}
+            aria-label="قائمة المستخدم"
+            aria-expanded={showUserMenu}
             className="flex items-center gap-2 p-1.5 rounded-[var(--radius-md)] hover:bg-[var(--color-surface-dim)] cursor-pointer"
           >
             <div className="w-8 h-8 rounded-full bg-[var(--color-primary-light)] flex items-center justify-center">

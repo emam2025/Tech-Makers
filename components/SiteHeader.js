@@ -37,7 +37,7 @@ export default function SiteHeader() {
         <div className={`absolute top-0 right-0 h-full w-[280px] bg-surface shadow-2xl transition-transform duration-300 ease-in-out ${open ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="flex items-center justify-between p-6 border-b border-outline-variant/20">
             <div className="font-headline-xl text-headline-xl text-primary">تك ميكرز</div>
-            <button onClick={() => setOpen(false)} className="p-2 hover:bg-surface-container-high rounded-lg">
+            <button onClick={() => setOpen(false)} aria-label="إغلاق القائمة" className="p-2 hover:bg-surface-container-high rounded-lg">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>

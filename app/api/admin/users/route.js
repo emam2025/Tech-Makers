@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { sanitizePlain, validateEmail, validatePhone, validateInputLength } from '../../../../lib/security';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
@@ -48,15 +49,12 @@ export async function GET(request) {
     );
 
     if (!res.ok) {
-      const errText = await res.text();
-      console.error('Supabase error:', res.status, errText);
       return NextResponse.json({ error: 'فشل جلب البيانات' }, { status: 500 });
     }
 
     const profiles = await res.json();
     return NextResponse.json({ users: profiles });
-  } catch (err) {
-    console.error('List users error:', err);
+  } catch {
     return NextResponse.json({ error: 'خطأ داخلي' }, { status: 500 });
   }
 }
@@ -78,11 +76,22 @@ export async function POST(request) {
       );
     }
 
+    if (!validateEmail(email)) {
+      return NextResponse.json({ error: 'البريد الإلكتروني غير صالح' }, { status: 400 });
+    }
+    if (password.length < 6 || password.length > 128) {
+      return NextResponse.json({ error: 'كلمة المرور يجب أن تكون بين 6 و 128 حرف' }, { status: 400 });
+    }
+    if (typeof full_name !== 'string' || full_name.length < 2 || full_name.length > 100) {
+      return NextResponse.json({ error: 'الاسم غير صالح' }, { status: 400 });
+    }
+    if (phone && !validatePhone(phone)) {
+      return NextResponse.json({ error: 'رقم الهاتف غير صالح' }, { status: 400 });
+    }
+
     if (!['admin', 'supervisor'].includes(role || 'supervisor')) {
       return NextResponse.json({ error: 'الدور غير صحيح' }, { status: 400 });
     }
-
-    const adminToken = auth.token;
 
     const createRes = await fetch(`${SUPABASE_URL}/auth/v1/admin/users`, {
       method: 'POST',
@@ -92,21 +101,18 @@ export async function POST(request) {
         Authorization: `Bearer ${SUPABASE_KEY}`,
       },
       body: JSON.stringify({
-        email,
+        email: sanitizePlain(email),
         password,
         email_confirm: true,
-        user_metadata: { full_name, role: role || 'supervisor' },
+        user_metadata: { full_name: sanitizePlain(full_name), role: role || 'supervisor' },
       }),
     });
 
-    const createData = await createRes.json();
-
     if (!createRes.ok) {
-      return NextResponse.json(
-        { error: createData.msg || createData.error_description || 'فشل إنشاء المستخدم' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'فشل إنشاء المستخدم — تأكد من البريد الإلكتروني' }, { status: 400 });
     }
+
+    const createData = await createRes.json();
 
     const updateProfileRes = await fetch(
       `${SUPABASE_URL}/rest/v1/profiles?id=eq.${createData.id}`,
@@ -119,7 +125,7 @@ export async function POST(request) {
           Prefer: 'return=representation',
         },
         body: JSON.stringify({
-          full_name,
+          full_name: sanitizePlain(full_name),
           role: role || 'supervisor',
         }),
       }
@@ -131,11 +137,10 @@ export async function POST(request) {
       profile = profiles[0] || null;
     }
 
-    // Update additional fields if supervisor
     if (profile && role === 'supervisor') {
       const extraFields = {};
-      if (branch) extraFields.branch = branch;
-      if (phone) extraFields.phone = phone;
+      if (branch) extraFields.branch = sanitizePlain(branch);
+      if (phone) extraFields.phone = sanitizePlain(phone);
       if (supervised_groups) extraFields.supervised_groups = supervised_groups;
 
       if (Object.keys(extraFields).length > 0) {
@@ -154,9 +159,8 @@ export async function POST(request) {
       }
     }
 
-    return NextResponse.json({ success: true, user: profile || { id: createData.id, email, full_name, role: role || 'supervisor' } });
-  } catch (err) {
-    console.error('Create user error:', err);
+    return NextResponse.json({ success: true, user: profile || { id: createData.id, email: sanitizePlain(email), full_name: sanitizePlain(full_name), role: role || 'supervisor' } });
+  } catch {
     return NextResponse.json({ error: 'خطأ داخلي' }, { status: 500 });
   }
 }
@@ -169,17 +173,15 @@ export async function PUT(request) {
     const body = await request.json();
     const { id, role, full_name, phone, branch, supervised_groups, profile_photo, bio } = body;
 
-    // Admin can update anything, supervisor can only update own profile
     if (auth.user.role !== 'admin' && auth.user.id !== id) {
       return NextResponse.json({ error: 'غير مصرح' }, { status: 403 });
     }
 
-    // Only admin can change roles
     if (role && auth.user.role !== 'admin') {
       return NextResponse.json({ error: 'غير مصرح — للإدارة فقط' }, { status: 403 });
     }
 
-    if (!id) {
+    if (!id || typeof id !== 'string') {
       return NextResponse.json({ error: 'المعرف مطلوب' }, { status: 400 });
     }
 
@@ -190,13 +192,27 @@ export async function PUT(request) {
       }
       updateData.role = role;
     }
-    if (full_name !== undefined) updateData.full_name = full_name;
-    if (phone !== undefined) updateData.phone = phone;
-    if (branch !== undefined) updateData.branch = branch;
+    if (full_name !== undefined) {
+      if (typeof full_name !== 'string' || full_name.length < 2 || full_name.length > 100) {
+        return NextResponse.json({ error: 'الاسم غير صالح' }, { status: 400 });
+      }
+      updateData.full_name = sanitizePlain(full_name);
+    }
+    if (phone !== undefined) {
+      if (phone && !validatePhone(phone)) {
+        return NextResponse.json({ error: 'رقم الهاتف غير صالح' }, { status: 400 });
+      }
+      updateData.phone = phone ? sanitizePlain(phone) : null;
+    }
+    if (branch !== undefined) updateData.branch = branch ? sanitizePlain(branch) : null;
     if (supervised_groups !== undefined) updateData.supervised_groups = supervised_groups;
     if (profile_photo !== undefined) updateData.profile_photo = profile_photo;
-    if (bio !== undefined) updateData.bio = bio;
-    if (profile_completed !== undefined) updateData.profile_completed = profile_completed;
+    if (bio !== undefined) {
+      if (typeof bio === 'string' && bio.length > 2000) {
+        return NextResponse.json({ error: 'السيرة الذاتية طويلة جداً' }, { status: 400 });
+      }
+      updateData.bio = bio ? sanitizePlain(bio) : null;
+    }
 
     if (Object.keys(updateData).length === 0) {
       return NextResponse.json({ error: 'لا توجد بيانات للتحديث' }, { status: 400 });
@@ -222,7 +238,7 @@ export async function PUT(request) {
 
     const profiles = await res.json();
     return NextResponse.json({ success: true, user: profiles[0] });
-  } catch (err) {
+  } catch {
     return NextResponse.json({ error: 'خطأ داخلي' }, { status: 500 });
   }
 }
@@ -238,7 +254,7 @@ export async function DELETE(request) {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
 
-    if (!id) {
+    if (!id || typeof id !== 'string') {
       return NextResponse.json({ error: 'المعرف مطلوب' }, { status: 400 });
     }
 
@@ -260,7 +276,7 @@ export async function DELETE(request) {
       return NextResponse.json({ error: 'المستخدم غير موجود' }, { status: 404 });
     }
 
-    const deleteAuthRes = await fetch(`${SUPABASE_URL}/auth/v1/admin/users/${id}`, {
+    await fetch(`${SUPABASE_URL}/auth/v1/admin/users/${id}`, {
       method: 'DELETE',
       headers: {
         apikey: SUPABASE_KEY,
@@ -268,14 +284,8 @@ export async function DELETE(request) {
       },
     });
 
-    if (!deleteAuthRes.ok) {
-      const errText = await deleteAuthRes.text();
-      console.error('Delete auth user error:', deleteAuthRes.status, errText);
-    }
-
     return NextResponse.json({ success: true });
-  } catch (err) {
-    console.error('Delete user error:', err);
+  } catch {
     return NextResponse.json({ error: 'خطأ داخلي' }, { status: 500 });
   }
 }

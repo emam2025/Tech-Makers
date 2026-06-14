@@ -29,6 +29,14 @@ export default function AdminLayout({ children }) {
 
   useEffect(() => { setSidebarOpen(false); }, [pathname]);
 
+  // Body scroll lock when sidebar is open
+  useEffect(() => {
+    if (sidebarOpen) {
+      document.body.style.overflow = 'hidden';
+      return () => { document.body.style.overflow = ''; };
+    }
+  }, [sidebarOpen]);
+
   if (loading) {
     return (
       <div className="min-h-screen bg-[var(--color-bg)] flex items-center justify-center">
@@ -53,7 +61,7 @@ export default function AdminLayout({ children }) {
 
         {/* Sidebar */}
         <div className={`fixed lg:sticky inset-y-0 right-0 z-50 transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'}`}>
-          <Sidebar collapsed={collapsed} onToggle={() => setCollapsed(!collapsed)} user={user} />
+          <Sidebar collapsed={collapsed} onToggle={() => setCollapsed(!collapsed)} user={user} onClose={() => setSidebarOpen(false)} />
         </div>
 
         {/* Main content */}

@@ -7,6 +7,7 @@ import Button from '../../../components/ui/Button';
 import Input from '../../../components/ui/Input';
 import Select from '../../../components/ui/Select';
 import Badge from '../../../components/ui/Badge';
+import { ConfirmModal } from '../../../components/ui/Modal';
 
 export default function TasksPage() {
   const [tasks, setTasks] = useState([]);
@@ -16,8 +17,8 @@ export default function TasksPage() {
   const [drawer, setDrawer] = useState(null);
   const [form, setForm] = useState({});
   const [saving, setSaving] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
 
-  // Grading
   const [submissions, setSubmissions] = useState([]);
   const [gradingTask, setGradingTask] = useState(null);
   const [gradeForm, setGradeForm] = useState({});
@@ -46,13 +47,22 @@ export default function TasksPage() {
   const handleSave = async () => {
     setSaving(true);
     try {
-      const res = await fetch('/api/admin/tasks', {
-        method: 'POST',
+      const url = form.id ? `/api/admin/tasks/${form.id}` : '/api/admin/tasks';
+      const res = await fetch(url, {
+        method: form.id ? 'PUT' : 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
       if (res.ok) { setDrawer(null); loadTasks(); }
     } finally { setSaving(false); }
+  };
+
+  const handleDelete = async () => {
+    if (!deleteId) return;
+    try {
+      const res = await fetch(`/api/admin/tasks/${deleteId}`, { method: 'DELETE' });
+      if (res.ok) { setDeleteId(null); loadTasks(); }
+    } catch {}
   };
 
   const loadSubmissions = async (task) => {
@@ -63,7 +73,7 @@ export default function TasksPage() {
         const data = await res.json();
         setSubmissions(data.submissions || []);
       }
-    } catch (err) {
+    } catch {
       setSubmissions([]);
     }
   };
@@ -79,7 +89,7 @@ export default function TasksPage() {
         loadSubmissions(gradingTask);
         loadTasks();
       }
-    } catch (err) {}
+    } catch {}
   };
 
   const columns = [
@@ -103,14 +113,15 @@ export default function TasksPage() {
 
   const actions = [
     { icon: 'grading', label: 'تصحيح', onClick: (r) => loadSubmissions(r) },
-    { icon: 'edit', label: 'تعديل', onClick: (r) => { setForm(r); setDrawer('edit'); } },
+    { icon: 'edit', label: 'تعديل', onClick: (r) => { setForm({ ...r }); setDrawer('edit'); } },
+    { icon: 'delete', label: 'حذف', onClick: (r) => setDeleteId(r.id) },
   ];
 
   return (
     <div className="page-container">
       <div className="page-header">
         <div><h1>المهام</h1><p>إدارة المهام والواجبات والتصحيح</p></div>
-        <Button icon="add_task" onClick={() => { setForm({}); setDrawer('edit'); }}>إضافة مهمة</Button>
+        <Button icon="add_task" onClick={() => { setForm({}); setDrawer('new'); }}>إضافة مهمة</Button>
       </div>
 
       <div className="flex flex-wrap gap-3 mb-4">
@@ -119,21 +130,28 @@ export default function TasksPage() {
 
       <DataTable columns={columns} data={tasks} loading={loading} actions={actions} emptyText="لا توجد مهام" />
 
-      {/* Create/Edit Drawer */}
-      <Drawer isOpen={!!drawer} onClose={() => setDrawer(null)} title="إضافة مهمة جديدة"
+      <ConfirmModal
+        isOpen={!!deleteId}
+        onClose={() => setDeleteId(null)}
+        onConfirm={handleDelete}
+        title="حذف المهمة"
+        message="هل أنت متأكد من حذف هذه المهمة؟ لا يمكن التراجع عن هذا الإجراء."
+        confirmText="حذف"
+      />
+
+      <Drawer isOpen={!!drawer} onClose={() => setDrawer(null)} title={drawer === 'edit' ? 'تعديل المهمة' : 'إضافة مهمة جديدة'}
         footer={<div className="flex gap-3"><Button onClick={handleSave} loading={saving}>حفظ</Button><Button variant="outlined" onClick={() => setDrawer(null)}>إلغاء</Button></div>}>
         <div className="space-y-4">
           <Input label="عنوان المهمة" value={form.title || ''} onChange={(e) => setForm({ ...form, title: e.target.value })} required />
           <Input label="الوصف" value={form.description || ''} onChange={(e) => setForm({ ...form, description: e.target.value })} multiline rows={3} />
           <Select label="المجموعة" options={groups.map(g => ({ value: g.id, label: g.name }))} value={form.group_id || ''} onChange={(e) => setForm({ ...form, group_id: e.target.value })} />
           <Select label="النوع" options={[{ value: 'assignment', label: 'واجب' }, { value: 'quiz', label: 'اختبار' }, { value: 'project', label: 'مشروع' }, { value: 'exam', label: 'امتحان' }]} value={form.type || 'assignment'} onChange={(e) => setForm({ ...form, type: e.target.value })} />
-          <Input label="الموعد النهائي" type="date" value={form.due_date || ''} onChange={(e) => setForm({ ...form, due_date: e.target.value })} />
+          <Input label="الموعد النهائي" type="date" value={form.due_date ? form.due_date.split('T')[0] : ''} onChange={(e) => setForm({ ...form, due_date: e.target.value })} />
           <Input label="الدرجة القصوى" type="number" value={form.max_score || ''} onChange={(e) => setForm({ ...form, max_score: parseInt(e.target.value) || 100 })} />
           <Select label="الحالة" options={[{ value: 'draft', label: 'مسودة' }, { value: 'published', label: 'منشورة' }, { value: 'closed', label: 'مغلقة' }]} value={form.status || 'draft'} onChange={(e) => setForm({ ...form, status: e.target.value })} />
         </div>
       </Drawer>
 
-      {/* Grading Drawer */}
       <Drawer isOpen={!!gradingTask} onClose={() => { setGradingTask(null); setSubmissions([]); }} title={`تصحيح: ${gradingTask?.title || ''}`} size="lg"
         footer={<Button variant="outlined" onClick={() => { setGradingTask(null); setSubmissions([]); }}>إغلاق</Button>}>
         <div className="space-y-3">

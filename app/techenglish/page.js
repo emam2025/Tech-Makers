@@ -180,7 +180,7 @@ export default function TechEnglishPage() {
             alt="" 
             width={500}
             height={300}
-            priority
+            loading="lazy"
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-auto object-contain opacity-30"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-deep/90 via-primary/85 to-primary-light/80"></div>

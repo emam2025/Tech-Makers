@@ -1,6 +1,16 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
+export const metadata = {
+  title: 'من نحن',
+  description: 'تعرف على Tech Makers Egypt — أكاديمية تعليم التكنولوجيا والبرمجة للأطفال والناشئين. مناهج CS50 من جامعة هارفارد، مدعومة من الرؤية المصرية 2030.',
+  openGraph: {
+    title: 'Tech Makers Egypt — من نحن',
+    description: 'أكاديمية تعليم التكنولوجيا والبرمجة للأطفال والناشئين. مناهج CS50 من جامعة هارفارد.',
+    url: 'https://tka-egypt.com/about',
+  },
+};
+
 export default function AboutPage() {
   return (
     <>
@@ -28,7 +38,9 @@ export default function AboutPage() {
                 alt="الرؤية المصرية 2030"
                 width={160}
                 height={90}
+                loading="lazy"
                 style={{ objectFit: 'contain' }}
+                className="mix-blend-multiply"
               />
             </div>
           </div>
@@ -114,7 +126,7 @@ export default function AboutPage() {
             {/* Avatar + Name Card */}
             <div className="flex flex-row items-center gap-4 md:gap-6 mb-8">
               <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden shadow-xl flex-shrink-0">
-                <img src="/ceo.jpg" alt="مؤسس TKA-Egypt" className="w-full h-full object-cover object-top hover:scale-110 transition-transform duration-700" />
+                <img src="/ceo.jpg" alt="مؤسس TKA-Egypt" className="w-full h-full object-cover object-top hover:scale-110 transition-transform duration-700" width={96} height={96} />
               </div>
               <div className="text-right">
                 <h3 className="font-headline-xl text-royal mb-1">المهندس / إمام عبد العزيز</h3>
@@ -129,8 +141,8 @@ export default function AboutPage() {
               <p className="text-royal font-bold">دعونا نصنع المستقبل معاً.. خطوة بخطوة، وكوداً بكود.</p>
             </div>
           </div>
+          </div>
         </div>
-      </div>
       </section>
 
       {/* CTA */}

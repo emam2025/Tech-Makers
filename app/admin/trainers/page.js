@@ -51,8 +51,10 @@ export default function TrainersPage() {
   const handleSave = async () => {
     setSaving(true);
     try {
-      const res = await fetch('/api/admin/trainers', {
-        method: 'POST',
+      const method = form.id ? 'PUT' : 'POST';
+      const url = form.id ? `/api/admin/trainers/${form.id}` : '/api/admin/trainers';
+      const res = await fetch(url, {
+        method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
@@ -62,6 +64,16 @@ export default function TrainersPage() {
       }
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleDelete = async (id, name) => {
+    if (!confirm(`هل أنت متأكد من حذف "${name}"؟`)) return;
+    try {
+      const res = await fetch(`/api/admin/trainers/${id}`, { method: 'DELETE' });
+      if (res.ok) loadTrainers();
+    } catch (err) {
+      console.error('Delete trainer error:', err);
     }
   };
 
@@ -83,6 +95,7 @@ export default function TrainersPage() {
 
   const actions = [
     { icon: 'edit', label: 'تعديل', onClick: (r) => { setForm(r); setDrawer('edit'); } },
+    { icon: 'delete', label: 'حذف', onClick: (r) => handleDelete(r.id, r.full_name), danger: true },
   ];
 
   return (
