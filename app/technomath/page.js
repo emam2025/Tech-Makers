@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function TechnoMathPage() {
   return (
@@ -9,14 +10,14 @@ export default function TechnoMathPage() {
           <div className="absolute top-10 right-10 w-72 h-72 bg-primary rounded-full blur-3xl" />
           <div className="absolute bottom-10 left-10 w-96 h-96 bg-tertiary rounded-full blur-3xl" />
         </div>
-        <div className="max-w-container-max mx-auto relative z-10">
-          <div className="flex items-center gap-3 mb-6">
-            <Link href="/#why" className="text-primary hover:text-primary-deep transition-colors">
-              <span className="material-symbols-outlined text-2xl">arrow_forward</span>
-            </Link>
-            <span className="text-on-surface-variant text-sm">العودة للمميزات الإضافية</span>
-          </div>
-          <div className="max-w-3xl">
+        <div className="max-w-container-max mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <div className="flex items-center gap-3 mb-6">
+              <Link href="/#why" className="text-primary hover:text-primary-deep transition-colors">
+                <span className="material-symbols-outlined text-2xl">arrow_forward</span>
+              </Link>
+              <span className="text-on-surface-variant text-sm">العودة للمميزات الإضافية</span>
+            </div>
             <div className="flex items-center gap-4 mb-6">
               <div className="w-16 h-16 bg-gradient-to-br from-primary-light to-primary rounded-2xl flex items-center justify-center">
                 <span className="material-symbols-outlined text-white text-3xl">calculate</span>
@@ -43,6 +44,12 @@ export default function TechnoMathPage() {
                 4 مستويات
               </div>
             </div>
+          </div>
+          <div className="flex justify-center md:justify-end">
+            <div className="relative w-72 h-72 md:w-96 md:h-96">
+              <Image src="/technomath.png" alt="برنامج تكنو ماس للحساب الذهني" fill sizes="(max-width: 768px) 288px, 384px" style={{ objectFit: 'contain', mixBlendMode: 'multiply' }} />
+            </div>
+          </div>
           </div>
         </div>
       </section>
