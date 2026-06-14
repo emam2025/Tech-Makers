@@ -89,7 +89,7 @@ export default function HomePage() {
           
           {/* CTA Buttons - Full Width */}
           <div className="col-span-1 md:col-span-2 flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 mt-2 md:mt-8">
-            <Link href="/#plans" aria-label="شاهد خطط الاشتراك" style={{ backgroundColor: '#f7be1d', color: '#1a3fa0' }} className="px-6 md:px-8 py-3 md:py-3.5 rounded-full font-bold hover:shadow-xl transition-all hover:-translate-y-1 w-full sm:w-auto text-center text-sm md:text-base">اشترك الآن</Link>
+            <Link href="/#plans" aria-label="شاهد خطط الاشتراك" className="bg-tertiary text-primary-deep px-6 md:px-8 py-3 md:py-3.5 rounded-full font-bold hover:shadow-xl transition-all hover:-translate-y-1 w-full sm:w-auto text-center text-sm md:text-base">اشترك الآن</Link>
             <Link href="#tracks" className="border-2 border-white/40 text-white px-6 md:px-8 py-3 md:py-3.5 rounded-full font-bold hover:bg-white/15 transition-all w-full sm:w-auto text-center text-sm md:text-base">استكشف المسارات</Link>
           </div>
         </div>
@@ -573,21 +573,22 @@ export default function HomePage() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                <div className="bg-surface-container-low rounded-2xl p-5">
+                <Link href="/register" className="bg-surface-container-low rounded-2xl p-5 text-center border border-outline-variant/20 hover:border-primary/40 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer">
                   <span className="material-symbols-outlined text-primary text-3xl mb-2 block">calendar_month</span>
                   <span className="font-label-md text-on-surface font-bold block mb-1">اشتراك شهري</span>
                   <span className="text-on-surface-variant text-sm">مناسبة للتجربة</span>
-                </div>
-                <div className="bg-surface-container-low rounded-2xl p-5">
+                </Link>
+                <Link href="/register" className="bg-surface-container-low rounded-2xl p-5 text-center border-2 border-secondary/40 hover:border-secondary hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer relative">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-secondary text-white text-[10px] font-bold px-3 py-0.5 rounded-full">الأكثر اختياراً</span>
                   <span className="material-symbols-outlined text-secondary text-3xl mb-2 block">analytics</span>
                   <span className="font-label-md text-on-surface font-bold block mb-1">اشتراك ربع سنوي</span>
-                  <span className="text-on-surface-variant text-sm">الأكثر اختياراً</span>
-                </div>
-                <div className="bg-surface-container-low rounded-2xl p-5">
+                  <span className="text-on-surface-variant text-sm">التوازن المثالي</span>
+                </Link>
+                <Link href="/register" className="bg-surface-container-low rounded-2xl p-5 text-center border border-outline-variant/20 hover:border-tertiary/40 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer">
                   <span className="material-symbols-outlined text-tertiary text-3xl mb-2 block">emoji_events</span>
                   <span className="font-label-md text-on-surface font-bold block mb-1">اشتراك سنوي</span>
                   <span className="text-on-surface-variant text-sm">الأوفر والأشمل</span>
-                </div>
+                </Link>
               </div>
 
               <p className="text-on-surface-variant font-body-md text-body-md mb-6">
@@ -604,8 +605,7 @@ export default function HomePage() {
                 </Link>
                 <Link
                   href="/register"
-                  style={{ backgroundColor: '#f7be1d', color: '#1a3fa0' }}
-                  className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-bold hover:shadow-xl transition-all hover:-translate-y-1"
+                  className="bg-tertiary text-primary-deep inline-flex items-center gap-2 px-7 py-3 rounded-full font-bold hover:shadow-xl transition-all hover:-translate-y-1"
                 >
                   <span className="material-symbols-outlined">how_to_reg</span>
                   سجّل الآن
@@ -701,7 +701,7 @@ export default function HomePage() {
             <h2 className="font-headline-xl text-headline-xl text-display-lg-mobile md:text-display-lg mb-6">🚀 سجّل اهتمامك في Tech Makers Egypt</h2>
             <p className="text-primary-fixed-dim font-body-lg text-body-lg mb-12 max-w-2xl mx-auto">ابدأ رحلة ابنك في عالم التكنولوجيا، البرمجة، والذكاء الاصطناعي. مقاعد محدودة في كل دفعة.</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/#plans" style={{ backgroundColor: '#f7be1d', color: '#1a3fa0' }} className="px-12 py-5 rounded-full font-headline-lg text-headline-lg shadow-xl hover:scale-105 transition-transform active:scale-95">سجّل الآن</Link>
+              <Link href="/#plans" className="bg-tertiary text-primary-deep px-12 py-5 rounded-full font-headline-lg text-headline-lg shadow-xl hover:scale-105 transition-transform active:scale-95">سجّل الآن</Link>
                <Link href="#tracks" className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-12 py-5 rounded-full font-headline-lg text-headline-lg hover:bg-white/20 transition-all active:scale-95">استكشف المسارات</Link>
             </div>
           </div>

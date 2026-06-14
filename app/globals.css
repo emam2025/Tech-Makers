@@ -76,7 +76,8 @@
   /* ── Buttons ── */
   .btn-primary {
     @apply inline-flex items-center justify-center px-7 py-3 rounded-full font-bold text-white;
-    background-color: theme('colors.primary');
+    background-color: theme('colors.primary') !important;
+    color: #fff !important;
     box-shadow: 0 8px 24px rgba(65, 105, 225, 0.2);
     transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.15s ease;
   }
@@ -149,6 +150,14 @@
   /* ── Hero ── */
   .hero-gradient {
     background: linear-gradient(135deg, #6b8aff 0%, #4169e1 50%, #1a3fa0 100%);
+  }
+
+  /* Register button forced yellow */
+  .btn-register,
+  a[href="/#plans"],
+  a[href="/register"] {
+    background-color: #f7be1d !important;
+    color: #1a3fa0 !important;
   }
 
   .hero-img {
