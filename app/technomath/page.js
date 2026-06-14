@@ -47,7 +47,7 @@ export default function TechnoMathPage() {
           </div>
           <div className="flex justify-center md:justify-end">
             <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem]">
-              <Image src="/technomath.png" alt="برنامج Techno Math للحساب الذهني" fill sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, 448px" style={{ objectFit: 'contain', mixBlendMode: 'multiply' }} />
+              <Image src="/technomath-opt.jpg" alt="برنامج Techno Math للحساب الذهني" fill sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, 448px" style={{ objectFit: 'contain', mixBlendMode: 'multiply' }} />
             </div>
           </div>
         </div>

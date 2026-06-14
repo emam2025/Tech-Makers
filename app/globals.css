@@ -602,8 +602,7 @@
   .glow-border::before { animation: none !important; }
   .golden-glow-border::before { animation: none !important; }
   .btn-shine::before { animation: none !important; }
-  .reveal { transition: opacity 0.3s ease-out !important; transform: none !important; }
-  .reveal.revealed { opacity: 1 !important; }
+  .reveal, .reveal.revealed { opacity: 1 !important; transform: none !important; transition: none !important; }
 
   /* Reduce blur for performance */
   .backdrop-blur-sm { backdrop-filter: blur(4px) !important; }

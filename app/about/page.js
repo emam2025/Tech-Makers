@@ -24,7 +24,7 @@ export default function AboutPage() {
             </div>
             <div className="flex justify-center">
               <Image
-                src="/egypt-2030.png"
+                src="/egypt-2030-opt.jpg"
                 alt="الرؤية المصرية 2030"
                 width={160}
                 height={90}
