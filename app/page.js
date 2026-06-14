@@ -475,28 +475,28 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-primary/10 p-8 text-center hover:border-primary/30 hover:shadow-[0_12px_40px_rgba(65,105,225,0.15)] transition-all duration-300 hover:-translate-y-2">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary-deep rounded-full flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-white text-3xl">school</span>
+            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-primary/10 p-5 md:p-8 text-center hover:border-primary/30 hover:shadow-[0_12px_40px_rgba(65,105,225,0.15)] transition-all duration-300 hover:-translate-y-2">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-primary to-primary-deep rounded-full flex items-center justify-center mx-auto mb-4 md:mb-5 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-white text-2xl md:text-3xl">school</span>
               </div>
-              <h3 className="font-headline-md text-headline-md text-primary-deep mb-3">مدربون معتمدون</h3>
-              <p className="text-on-surface-variant font-body-md">نخبة من خبراء البرمجة والذكاء الاصطناعي بخبرة تدريسية حقيقية للأطفال والناشئين.</p>
+              <h3 className="font-headline-md text-headline-md text-primary-deep mb-2 md:mb-3">مدربون معتمدون</h3>
+              <p className="text-on-surface-variant font-body-md text-sm md:text-base">نخبة من خبراء البرمجة والذكاء الاصطناعي بخبرة تدريسية حقيقية للأطفال والناشئين.</p>
             </div>
 
-            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-secondary/10 p-8 text-center hover:border-secondary/30 hover:shadow-[0_12px_40px_rgba(253,118,26,0.15)] transition-all duration-300 hover:-translate-y-2">
-              <div className="w-16 h-16 bg-gradient-to-br from-secondary to-amber-500 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-white text-3xl">workspace_premium</span>
+            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-secondary/10 p-5 md:p-8 text-center hover:border-secondary/30 hover:shadow-[0_12px_40px_rgba(253,118,26,0.15)] transition-all duration-300 hover:-translate-y-2">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-secondary to-amber-500 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-5 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-white text-2xl md:text-3xl">workspace_premium</span>
               </div>
-              <h3 className="font-headline-md text-headline-md text-primary-deep mb-3">شهادة معتمدة</h3>
-              <p className="text-on-surface-variant font-body-md">شهادة موثقة بعد كل برنامج تعزز السيرة الذاتية لطفلك في رحلته الأكاديمية.</p>
+              <h3 className="font-headline-md text-headline-md text-primary-deep mb-2 md:mb-3">شهادة معتمدة</h3>
+              <p className="text-on-surface-variant font-body-md text-sm md:text-base">شهادة موثقة بعد كل برنامج تعزز السيرة الذاتية لطفلك في رحلته الأكاديمية.</p>
             </div>
 
-            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-tertiary/10 p-8 text-center hover:border-tertiary/30 hover:shadow-[0_12px_40px_rgba(247,190,29,0.15)] transition-all duration-300 hover:-translate-y-2">
-              <div className="w-16 h-16 bg-gradient-to-br from-tertiary to-amber-400 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-white text-3xl">support_agent</span>
+            <div className="group bg-white rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-tertiary/10 p-5 md:p-8 text-center hover:border-tertiary/30 hover:shadow-[0_12px_40px_rgba(247,190,29,0.15)] transition-all duration-300 hover:-translate-y-2">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-tertiary to-amber-400 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-5 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-white text-2xl md:text-3xl">support_agent</span>
               </div>
-              <h3 className="font-headline-md text-headline-md text-primary-deep mb-3">دعم عبر واتساب 7/24</h3>
-              <p className="text-on-surface-variant font-body-md">فريق متابعة مخصص لأولياء الأمور للرد على كل استفسار خلال دقائق.</p>
+              <h3 className="font-headline-md text-headline-md text-primary-deep mb-2 md:mb-3">دعم عبر واتساب 7/24</h3>
+              <p className="text-on-surface-variant font-body-md text-sm md:text-base">فريق متابعة مخصص لأولياء الأمور للرد على كل استفسار خلال دقائق.</p>
             </div>
           </div>
         </div>
