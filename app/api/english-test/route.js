@@ -23,8 +23,6 @@ export async function POST(request) {
     const body = await request.json();
     const { action } = body;
 
-    console.log('English test action:', action, 'keys:', !!process.env.GEMINI_API_KEY, !!process.env.GEMINI_API_KEY_BACKUP);
-
     if (action === 'generate') {
       const data = await generateQuestions();
       return NextResponse.json({ success: true, questions: data.questions });

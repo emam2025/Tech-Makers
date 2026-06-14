@@ -5,51 +5,54 @@ export default function TechnoMathPage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative py-16 md:py-24 px-margin-mobile md:px-margin-desktop bg-surface overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-10 right-10 w-72 h-72 bg-primary rounded-full blur-3xl" />
-          <div className="absolute bottom-10 left-10 w-96 h-96 bg-tertiary rounded-full blur-3xl" />
+      <section className="relative py-16 md:py-24 px-margin-mobile md:px-margin-desktop overflow-hidden">
+        <div className="absolute inset-0">
+          <Image 
+            src="/technomath-opt.jpg" 
+            alt="" 
+            fill
+            priority
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-deep/90 via-primary/85 to-primary-light/80"></div>
         </div>
-        <div className="max-w-container-max mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <Link href="/#why" className="text-primary hover:text-primary-deep transition-colors">
-                <span className="material-symbols-outlined text-2xl">arrow_forward</span>
-              </Link>
-              <span className="text-on-surface-variant text-sm">العودة للمميزات الإضافية</span>
+        <div className="max-w-container-max mx-auto relative z-10">
+          <div className="flex items-center gap-3 mb-6">
+            <Link href="/#why" className="text-white/70 hover:text-white transition-colors">
+              <span className="material-symbols-outlined text-2xl">arrow_forward</span>
+            </Link>
+            <span className="text-white/60 text-sm">العودة للمميزات الإضافية</span>
+          </div>
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/30">
+              <span className="material-symbols-outlined text-white text-3xl">calculate</span>
             </div>
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary-light to-primary rounded-2xl flex items-center justify-center">
-                <span className="material-symbols-outlined text-white text-3xl">calculate</span>
-              </div>
-              <div>
-                <span className="font-label-sm text-label-sm text-primary-light bg-primary-light/10 px-3 py-1 rounded-full inline-block mb-1">إضافة مستقلة</span>
-                <h1 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary">برنامج الحساب الذهني — Techno Math</h1>
-              </div>
-            </div>
-            <p className="text-on-surface-variant font-body-lg text-body-lg leading-relaxed mb-8">
-              برنامج تدريبي ممتد لمدة عام كامل يهدف إلى تطوير مهارات الحساب الذهني لدى الأطفال باستخدام أساليب علمية متدرجة تبدأ من استخدام العداد (Abacus) وصولًا إلى التخيل الذهني والحساب السريع المتقدم، مما يعزز التركيز، سرعة البديهة، والقدرات العقلية.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <div className="flex items-center gap-2 bg-primary/5 text-primary px-4 py-2 rounded-xl text-sm font-bold">
-                <span className="material-symbols-outlined text-lg">schedule</span>
-                12 شهر
-              </div>
-              <div className="flex items-center gap-2 bg-tertiary/10 text-tertiary px-4 py-2 rounded-xl text-sm font-bold">
-                <span className="material-symbols-outlined text-lg">group</span>
-                8 — 15 سنة
-              </div>
-              <div className="flex items-center gap-2 bg-secondary/10 text-secondary px-4 py-2 rounded-xl text-sm font-bold">
-                <span className="material-symbols-outlined text-lg">trending_up</span>
-                4 مستويات
-              </div>
+            <div>
+              <span className="font-label-sm text-sm text-tertiary bg-tertiary/20 px-3 py-1 rounded-full inline-block mb-1 border border-tertiary/30">إضافة مستقلة</span>
+              <h1 className="font-headline-xl text-headline-lg md:text-headline-xl text-white">برنامج الحساب الذهني — Techno Math</h1>
             </div>
           </div>
-          <div className="flex justify-center md:justify-end">
-            <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem]">
-              <Image src="/technomath-opt.jpg" alt="برنامج Techno Math للحساب الذهني" fill sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, 448px" style={{ objectFit: 'contain', mixBlendMode: 'multiply' }} />
+          <p className="text-white/80 font-body-lg text-body-lg leading-relaxed mb-8 max-w-3xl">
+            برنامج تدريبي ممتد لمدة عام كامل يهدف إلى تطوير مهارات الحساب الذهني لدى الأطفال باستخدام أساليب علمية متدرجة تبدأ من استخدام العداد (Abacus) وصولًا إلى التخيل الذهني والحساب السريع المتقدم، مما يعزز التركيز، سرعة البديهة، والقدرات العقلية.
+          </p>
+          <div className="flex flex-wrap gap-3 mb-8">
+            <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-xl text-sm font-bold border border-white/20">
+              <span className="material-symbols-outlined text-lg">schedule</span>
+              12 شهر
+            </div>
+            <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-xl text-sm font-bold border border-white/20">
+              <span className="material-symbols-outlined text-lg">group</span>
+              8 — 15 سنة
+            </div>
+            <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-xl text-sm font-bold border border-white/20">
+              <span className="material-symbols-outlined text-lg">trending_up</span>
+              4 مستويات
             </div>
           </div>
+          <Link href="/register?track=technomath" className="inline-flex items-center gap-3 bg-tertiary text-on-tertiary px-10 py-4 rounded-full font-headline-lg shadow-xl hover:scale-105 active:scale-95 transition-all">
+            <span className="material-symbols-outlined">app_registration</span>
+            سجّل الآن
+          </Link>
         </div>
       </section>
 

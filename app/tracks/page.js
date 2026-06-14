@@ -389,7 +389,7 @@ export default function TracksPage() {
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 bg-white/15 rounded-2xl flex items-center justify-center shrink-0 border border-white/20">
-                  <span className="material-symbols-outlined text-white text-2xl">local_offer</span>
+                  <span className="material-symbols-outlined text-red-500 text-2xl">local_offer</span>
                 </div>
                 <div>
                   <h3 className="text-white font-bold text-sm md:text-lg mb-1">سجّل الآن واحصل على كورس Techno Math مجاناً 3 شهور + اختبار تحديد مستوى إنجليزي</h3>
@@ -789,130 +789,127 @@ export default function TracksPage() {
 
                 {/* Levels */}
                 {year.levels && (
-                  <div className="relative">
-                    <div className="hidden md:block absolute right-1/2 top-0 bottom-0 w-0.5 bg-outline-variant/30 -translate-x-1/2" />
-                    <div className="space-y-12">
-                      {year.levels.map((level, li) => {
-                        const isActive = selectedLevel === level.id;
-                        const isLast = li === year.levels.length - 1;
-                        return (
-                          <div key={level.id} className="relative">
-                            <div className="hidden md:flex absolute right-1/2 -translate-x-1/2 top-8 w-12 h-12 rounded-full bg-white border-2 border-primary items-center justify-center z-10 shadow-md">
-                              <span className="font-bold text-primary text-sm">{level.id}</span>
+                  <div className="space-y-6">
+                    {year.levels.map((level, li) => {
+                      const isActive = selectedLevel === level.id;
+                      const isLast = li === year.levels.length - 1;
+                      return (
+                        <div key={level.id} className="relative flex gap-4 md:gap-6 items-start">
+                          {/* Timeline */}
+                          <div className="flex flex-col items-center flex-shrink-0">
+                            <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center z-10 shadow-md ${isActive ? 'bg-primary text-white' : 'bg-white border-2 border-primary text-primary'}`}>
+                              <span className="font-bold text-xs md:text-sm">{level.id}</span>
                             </div>
-                            <div className={`md:w-[calc(50%-2.5rem)] ${li % 2 === 0 ? 'md:mr-auto md:ml-0' : 'md:ml-auto md:mr-0'}`}>
-                              <div
-                                className={`bg-white rounded-24 overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-outline-variant/20 transition-all duration-300 cursor-pointer ${isActive ? 'ring-2 ring-primary/30 scale-[1.01]' : 'hover:shadow-lg'}`}
-                                onClick={() => setSelectedLevel(isActive ? 0 : level.id)}
-                              >
-                                <div className={`p-6 md:p-8 ${isActive ? 'bg-primary/5' : ''}`}>
-                                  <div className="flex items-center justify-between mb-3">
-                                    <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-bold">
-                                      المستوى {level.id}
-                                    </span>
-                                    <span className={`material-symbols-outlined transition-transform duration-300 ${isActive ? 'rotate-180' : ''}`}>
-                                      expand_more
-                                    </span>
+                            {!isLast && <div className="w-0.5 h-full min-h-[40px] bg-primary/20" />}
+                          </div>
+
+                          {/* Card */}
+                          <div
+                            className={`flex-1 bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-outline-variant/20 transition-all duration-300 cursor-pointer ${isActive ? 'ring-2 ring-primary/30 shadow-[0_6px_24px_rgba(65,105,225,0.12)]' : 'hover:shadow-[0_6px_24px_rgba(0,0,0,0.08)]'}`}
+                            onClick={() => setSelectedLevel(isActive ? 0 : level.id)}
+                          >
+                            <div className={`p-4 md:p-5 ${isActive ? 'bg-primary/5' : ''}`}>
+                              <div className="flex items-center justify-between">
+                                <div>
+                                  <h3 className="font-headline-md md:text-headline-lg text-primary-deep">{level.titleAr}</h3>
+                                  <p className="text-on-surface-variant text-sm mt-0.5">{level.description}</p>
+                                </div>
+                                <span className={`material-symbols-outlined text-on-surface-variant transition-transform duration-300 ${isActive ? 'rotate-180' : ''}`}>
+                                  expand_more
+                                </span>
+                              </div>
+
+                              {/* Expandable */}
+                              <div className={`transition-all duration-400 ease-in-out ${isActive ? 'max-h-[2000px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
+                                {/* Topics */}
+                                <div className="mb-4">
+                                  <h4 className="font-label-sm text-on-surface mb-2 flex items-center gap-2">
+                                    <span className="material-symbols-outlined text-primary text-base">menu_book</span>
+                                    ماذا يتعلم الطالب
+                                  </h4>
+                                  <div className="flex flex-wrap gap-1.5">
+                                    {level.topics.map((t, i) => (
+                                      <span key={i} className="bg-primary/5 text-primary px-2.5 py-1 rounded-full text-xs font-bold">{t}</span>
+                                    ))}
                                   </div>
-                                  <h3 className="font-headline-md md:font-headline-lg text-headline-md md:text-headline-lg text-primary-deep mb-2">{level.titleAr}</h3>
-                                  <p className="text-on-surface-variant font-body-md">{level.description}</p>
                                 </div>
 
-                                <div className={`transition-all duration-500 overflow-hidden ${isActive ? 'max-h-[1200px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                                  <div className="px-6 md:px-8 pb-8">
-                                    <div className="h-px bg-outline-variant/20 mb-6" />
+                                {/* Content + Tools + Projects */}
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+                                  <div className="bg-surface-container-low rounded-xl p-3">
+                                    <h5 className="font-label-sm text-on-surface-variant mb-2 flex items-center gap-1.5">
+                                      <span className="material-symbols-outlined text-sm">checklist</span>
+                                      المحتوى
+                                    </h5>
+                                    <ul className="space-y-1">
+                                      {level.content.map((c, i) => (
+                                        <li key={i} className="text-xs text-on-surface-variant flex items-start gap-1">
+                                          <span className="text-primary mt-0.5">✓</span> {c}
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                  <div className="bg-surface-container-low rounded-xl p-3">
+                                    <h5 className="font-label-sm text-on-surface-variant mb-2 flex items-center gap-1.5">
+                                      <span className="material-symbols-outlined text-sm">build</span>
+                                      الأدوات
+                                    </h5>
+                                    <ul className="space-y-1">
+                                      {level.tools.map((t, i) => (
+                                        <li key={i} className="text-xs text-on-surface-variant flex items-start gap-1">
+                                          <span className="text-secondary mt-0.5">▸</span> {t}
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                  <div className="bg-surface-container-low rounded-xl p-3">
+                                    <h5 className="font-label-sm text-on-surface-variant mb-2 flex items-center gap-1.5">
+                                      <span className="material-symbols-outlined text-sm">rocket_launch</span>
+                                      المشاريع
+                                    </h5>
+                                    <ul className="space-y-1">
+                                      {level.projects.map((p, i) => (
+                                        <li key={i} className="text-xs text-on-surface-variant flex items-start gap-1">
+                                          <span className="material-symbols-outlined text-tertiary text-xs mt-0.5">rocket_launch</span> {p}
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                </div>
 
-                                    {/* Topics */}
-                                    <div className="mb-6">
-                                      <h4 className="font-label-md text-on-surface mb-3 flex items-center gap-2">
-                                        <span className="material-symbols-outlined text-primary text-lg">menu_book</span>
-                                        ماذا يتعلم الطالب
-                                      </h4>
-                                      <div className="flex flex-wrap gap-2">
-                                        {level.topics.map((t, i) => (
-                                          <span key={i} className="bg-primary/5 text-primary px-3 py-1.5 rounded-full text-sm font-body-md">{t}</span>
-                                        ))}
-                                      </div>
-                                    </div>
-
-                                    {/* Content + Tools + Projects */}
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                                      <div className="bg-surface-container-low rounded-16 p-4">
-                                        <h5 className="font-label-sm text-on-surface-variant mb-3 flex items-center gap-1.5">
-                                          <span className="material-symbols-outlined text-sm">checklist</span>
-                                          المحتوى
-                                        </h5>
-                                        <ul className="space-y-1.5">
-                                          {level.content.map((c, i) => (
-                                            <li key={i} className="text-sm text-on-surface-variant font-body-md flex items-start gap-1.5">
-                                              <span className="text-primary mt-0.5">✓</span> {c}
-                                            </li>
-                                          ))}
-                                        </ul>
-                                      </div>
-                                      <div className="bg-surface-container-low rounded-16 p-4">
-                                        <h5 className="font-label-sm text-on-surface-variant mb-3 flex items-center gap-1.5">
-                                          <span className="material-symbols-outlined text-sm">build</span>
-                                          الأدوات
-                                        </h5>
-                                        <ul className="space-y-1.5">
-                                          {level.tools.map((t, i) => (
-                                            <li key={i} className="text-sm text-on-surface-variant font-body-md flex items-start gap-1.5">
-                                              <span className="text-secondary mt-0.5">▸</span> {t}
-                                            </li>
-                                          ))}
-                                        </ul>
-                                      </div>
-                                      <div className="bg-surface-container-low rounded-16 p-4">
-                                        <h5 className="font-label-sm text-on-surface-variant mb-3 flex items-center gap-1.5">
-                                          <span className="material-symbols-outlined text-sm">rocket_launch</span>
-                                          المشاريع
-                                        </h5>
-                                        <ul className="space-y-1.5">
-                                          {level.projects.map((p, i) => (
-                                            <li key={i} className="text-sm text-on-surface-variant font-body-md flex items-start gap-1.5">
-                                              <span className="material-symbols-outlined text-tertiary text-sm mt-0.5">rocket_launch</span> {p}
-                                            </li>
-                                          ))}
-                                        </ul>
-                                      </div>
-                                    </div>
-
-                                    {/* Outcomes */}
-                                    <div className="bg-green-50 border border-green-200 rounded-16 p-5">
-                                      <h4 className="font-label-md text-green-800 mb-3 flex items-center gap-2">
-                                        <span className="material-symbols-outlined text-lg">emoji_events</span>
-                                        المخرجات المتوقعة
-                                      </h4>
-                                      <div className="space-y-2">
-                                        {level.outcomes.map((o, i) => (
-                                          <div key={i} className="flex items-center gap-2 text-green-700 font-body-md text-sm">
-                                            <span className="material-symbols-outlined text-green-500 text-base">check_circle</span>
-                                            {o}
-                                          </div>
-                                        ))}
-                                      </div>
-                                    </div>
+                                {/* Outcomes */}
+                                <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+                                  <h4 className="font-label-sm text-green-800 mb-2 flex items-center gap-2">
+                                    <span className="material-symbols-outlined text-base">emoji_events</span>
+                                    المخرجات المتوقعة
+                                  </h4>
+                                  <div className="flex flex-wrap gap-1.5">
+                                    {level.outcomes.map((o, i) => (
+                                      <span key={i} className="inline-flex items-center gap-1 text-green-700 text-xs font-bold bg-green-100 px-2 py-0.5 rounded-full">
+                                        <span className="material-symbols-outlined text-green-500 text-xs">check_circle</span>
+                                        {o}
+                                      </span>
+                                    ))}
                                   </div>
                                 </div>
                               </div>
-
-                              {isLast && (
-                                <div className="mt-8 text-center">
-                                  <button
-                                    onClick={goToPlans}
-                                    className="inline-flex items-center gap-3 bg-gradient-to-l from-primary to-primary-deep text-white px-10 py-4 rounded-full font-label-lg hover:shadow-xl transition-all scale-100 hover:scale-105 active:scale-95"
-                                  >
-                                    <span className="material-symbols-outlined">shopping_cart</span>
-                                    خطط الاشتراك والباقات
-                                  </button>
-                                </div>
-                              )}
                             </div>
+
+                            {isLast && isActive && (
+                              <div className="px-4 md:px-5 pb-5">
+                                <button
+                                  onClick={(e) => { e.stopPropagation(); goToPlans(); }}
+                                  className="w-full inline-flex items-center justify-center gap-3 bg-gradient-to-l from-primary to-primary-deep text-white py-3 rounded-xl font-label-md hover:shadow-xl transition-all active:scale-95"
+                                >
+                                  <span className="material-symbols-outlined">shopping_cart</span>
+                                  خطط الاشتراك والباقات
+                                </button>
+                              </div>
+                            )}
                           </div>
-                        );
-                      })}
-                    </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
 

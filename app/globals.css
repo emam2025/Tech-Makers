@@ -161,8 +161,8 @@
   }
 
   .hero-img {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
     transition: opacity 520ms ease, transform 520ms cubic-bezier(.2,.9,.2,1);
     position: relative;
     z-index: 2;
@@ -495,10 +495,6 @@
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
-}
-@keyframes scaleIn {
-  0% { opacity: 0; transform: scale(0.9); }
-  100% { opacity: 1; transform: scale(1); }
 }
 
 .animate-fadeIn { animation: fadeIn 0.8s ease-out forwards; }

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const levels = [
   {
@@ -98,86 +99,61 @@ const levels = [
   },
 ];
 
-function LevelCard({ level, isOpen, onToggle, index, isLeft }) {
+function LevelCard({ level, isOpen, onToggle, index }) {
   return (
-    <div className={`relative flex flex-col md:flex-row gap-8 ${index < levels.length - 1 ? 'mb-16' : ''} items-center`}>
-      {isLeft ? (
-        <>
-          <div className="md:w-1/2 md:text-right">
-            <CardContent level={level} isOpen={isOpen} onToggle={onToggle} />
-          </div>
-          <div className={`hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 ${level.dotBg} rounded-full items-center justify-center shadow-lg ${level.dotShadow} z-10`}>
-            <span className="text-white font-bold">{index + 1}</span>
-          </div>
-          <div className="md:w-1/2"></div>
-        </>
-      ) : (
-        <>
-          <div className="md:w-1/2"></div>
-          <div className={`hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 ${level.dotBg} rounded-full items-center justify-center shadow-lg ${level.dotShadow} z-10`}>
-            <span className="text-white font-bold">{index + 1}</span>
-          </div>
-          <div className="md:w-1/2">
-            <CardContent level={level} isOpen={isOpen} onToggle={onToggle} />
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
+    <div className="relative flex gap-4 md:gap-6 items-start">
+      {/* Timeline */}
+      <div className="flex flex-col items-center flex-shrink-0">
+        <div className={`w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br ${level.gradient} rounded-full flex items-center justify-center shadow-lg ${level.dotShadow} z-10`}>
+          <span className="text-white font-bold text-xs md:text-sm">{level.num}</span>
+        </div>
+        {index < 3 && <div className="w-0.5 h-full min-h-[60px] bg-gradient-to-b from-gray-200 to-gray-100" />}
+      </div>
 
-function CardContent({ level, isOpen, onToggle }) {
-  return (
-    <div
-      className={`bg-white rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.06)] border ${level.border} hover:${level.hoverShadow} transition-all duration-300 cursor-pointer overflow-hidden`}
-      onClick={onToggle}
-    >
-      {/* Header - always visible */}
-      <div className="p-5 md:p-6">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className={`w-11 h-11 bg-gradient-to-br ${level.gradient} rounded-xl flex items-center justify-center flex-shrink-0`}>
-              <span className="text-white font-bold text-sm">{level.num}</span>
-            </div>
+      {/* Card */}
+      <div
+        className={`flex-1 bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] border ${level.border} transition-all duration-300 cursor-pointer overflow-hidden ${isOpen ? level.hoverShadow : 'hover:shadow-[0_6px_24px_rgba(0,0,0,0.08)]'}`}
+        onClick={onToggle}
+      >
+        <div className="p-4 md:p-5">
+          <div className="flex items-center justify-between">
             <div>
               <h3 className="font-headline-md md:text-headline-lg text-primary-deep">{level.title}</h3>
-              <div className="flex items-center gap-2 mt-0.5">
+              <div className="flex items-center gap-2 mt-1">
                 <span className={`text-xs font-bold ${level.tagText} ${level.tagBg} px-2 py-0.5 rounded-full`}>{level.subtitle}</span>
                 <span className="text-xs text-on-surface-variant">{level.duration}</span>
               </div>
             </div>
+            <span className={`material-symbols-outlined text-on-surface-variant transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+              expand_more
+            </span>
           </div>
-          <span className={`material-symbols-outlined text-on-surface-variant transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
-            expand_more
-          </span>
-        </div>
-      </div>
 
-      {/* Content - expandable */}
-      <div className={`transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
-        <div className="px-5 md:px-6 pb-6 border-t border-gray-100">
-          <p className="text-on-surface-variant text-sm mt-4 mb-4">{level.description}</p>
+          {/* Expandable */}
+          <div className={`transition-all duration-400 ease-in-out ${isOpen ? 'max-h-[2000px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
+            <p className="text-on-surface-variant text-sm mb-3">{level.description}</p>
 
-          <div className="space-y-3">
-            {level.topics.map((topic, i) => (
-              <div key={i} className={`${level.bgLight} rounded-xl p-3`}>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className={`material-symbols-outlined ${level.textAccent} text-lg`}>{topic.icon}</span>
-                  <span className="font-bold text-sm text-primary-deep">{topic.name}</span>
+            <div className="space-y-2">
+              {level.topics.map((topic, i) => (
+                <div key={i} className={`${level.bgLight} rounded-xl p-3`}>
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className={`material-symbols-outlined ${level.textAccent} text-base`}>{topic.icon}</span>
+                    <span className="font-bold text-sm text-primary-deep">{topic.name}</span>
+                  </div>
+                  <ul className="text-xs text-on-surface-variant space-y-0.5">
+                    {topic.items.map((item, j) => <li key={j}>• {item}</li>)}
+                  </ul>
                 </div>
-                <ul className="text-xs text-on-surface-variant space-y-1">
-                  {topic.items.map((item, j) => <li key={j}>• {item}</li>)}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-4 pt-4 border-t border-gray-100">
-            <p className={`text-xs font-bold ${level.tagText} mb-2`}>المهارات المكتسبة:</p>
-            <div className="flex flex-wrap gap-1.5">
-              {level.skills.map((skill, i) => (
-                <span key={i} className="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">{skill}</span>
               ))}
+            </div>
+
+            <div className="mt-3 pt-3 border-t border-gray-100">
+              <p className={`text-xs font-bold ${level.tagText} mb-1.5`}>المهارات المكتسبة:</p>
+              <div className="flex flex-wrap gap-1.5">
+                {level.skills.map((skill, i) => (
+                  <span key={i} className="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">{skill}</span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -199,10 +175,13 @@ export default function TechEnglishPage() {
       <section className="relative py-16 md:py-24 px-margin-mobile md:px-margin-desktop overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <img 
-            src="/english-banner-opt.jpg" 
+          <Image 
+            src="/english-banner-new.jpg" 
             alt="" 
-            className="w-full h-full object-cover"
+            width={500}
+            height={300}
+            priority
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-auto object-contain opacity-30"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-deep/90 via-primary/85 to-primary-light/80"></div>
         </div>
@@ -308,7 +287,7 @@ export default function TechEnglishPage() {
             <p className="text-on-surface-variant font-body-lg">اضغط على أي مستوى لعرض التفاصيل</p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-6">
             {levels.map((level, index) => (
               <LevelCard
                 key={index}
@@ -316,7 +295,6 @@ export default function TechEnglishPage() {
                 index={index}
                 isOpen={openLevel === index}
                 onToggle={() => toggleLevel(index)}
-                isLeft={index % 2 === 0}
               />
             ))}
           </div>
