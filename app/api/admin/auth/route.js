@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
+const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY;
+const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
 
 function getTokenFromCookie(request) {
   const cookieHeader = request.headers.get('cookie') || '';
@@ -33,8 +34,8 @@ export async function GET(request) {
       `${SUPABASE_URL}/rest/v1/profiles?id=eq.${userData.id}&select=*`,
       {
         headers: {
-          apikey: SUPABASE_KEY,
-          Authorization: `Bearer ${SUPABASE_KEY}`,
+          apikey: SUPABASE_SERVICE_KEY,
+          Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`,
         },
       }
     );
@@ -88,8 +89,8 @@ export async function POST(request) {
       `${SUPABASE_URL}/rest/v1/profiles?id=eq.${authData.user.id}&select=*`,
       {
         headers: {
-          apikey: SUPABASE_KEY,
-          Authorization: `Bearer ${SUPABASE_KEY}`,
+          apikey: SUPABASE_SERVICE_KEY,
+          Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`,
         },
       }
     );

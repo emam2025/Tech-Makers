@@ -3,7 +3,9 @@ import { NextResponse } from 'next/server';
 export function middleware(request) {
   const { pathname } = request.nextUrl;
 
-  if (pathname.startsWith('/admin') || pathname.startsWith('/api/admin')) {
+  const isPublicEndpoint = pathname === '/api/admin/auth' || pathname === '/api/validate-code';
+
+  if (!isPublicEndpoint && (pathname.startsWith('/admin') || pathname.startsWith('/api/admin'))) {
     const cookieHeader = request.headers.get('cookie') || '';
     const tokenMatch = cookieHeader.match(/sb-access-token=([^;]+)/);
 

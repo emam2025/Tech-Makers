@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
+import Image from 'next/image';
+
 export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState('');
@@ -43,11 +45,14 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         {/* Logo / Brand */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/15 backdrop-blur-sm border border-white/20 mb-4">
-            <span className="material-symbols-outlined text-white text-3xl">admin_panel_settings</span>
-          </div>
-          <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-2">إدارة الموقع</h1>
-          <p className="text-white/70 font-body-md text-sm">Tech Makers Egypt — لوحة التحكم</p>
+          <Image
+            src="/w- logo.png"
+            alt="Tech Makers Egypt"
+            width={180}
+            height={60}
+            className="mx-auto mb-4"
+            priority
+          />
         </div>
 
         {/* Login Card */}

@@ -50,6 +50,55 @@ export default function EnglishTestPage() {
   const [timeLeft, setTimeLeft] = useState(20 * 60);
   const [showReview, setShowReview] = useState(false);
 
+  const [codeInput, setCodeInput] = useState('');
+  const [codeInfo, setCodeInfo] = useState(null);
+  const [codeLoading, setCodeLoading] = useState(false);
+  const [codeError, setCodeError] = useState('');
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlCode = params.get('code');
+    if (urlCode) {
+      setCodeInput(urlCode.toUpperCase());
+      handleValidateCode(urlCode.toUpperCase());
+    }
+  }, []);
+
+  async function handleValidateCode(code) {
+    const codeToValidate = code || codeInput.trim().toUpperCase();
+    if (!codeToValidate) return;
+
+    setCodeLoading(true);
+    setCodeError('');
+    setCodeInfo(null);
+
+    try {
+      const res = await fetch('/api/validate-code', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: codeToValidate }),
+      });
+      const data = await res.json();
+
+      if (!data.success) {
+        setCodeError(data.error || 'كود غير صالح');
+        return;
+      }
+
+      setCodeInfo(data);
+    } catch {
+      setCodeError('خطأ في الاتصال بالخادم');
+    } finally {
+      setCodeLoading(false);
+    }
+  }
+
+  function handleStartWithCode() {
+    if (!codeInfo) return;
+    setName(codeInfo.student_name || '');
+    setPhase('start');
+  }
+
   const generateQuestions = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -156,20 +205,103 @@ export default function EnglishTestPage() {
           <p className="font-body-lg text-body-lg max-w-2xl mx-auto opacity-90 mb-8">
             اختبار شامل يحدد مستواك في اللغة الإنجليزية من A1 إلى C2، مع تحليل نقاط القوة والضعف وتوصية بالمسار المناسب
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <button
-              onClick={() => { setPhase('start'); }}
-              disabled={loading}
-              className="bg-tertiary text-on-tertiary px-10 py-4 rounded-full font-headline-lg shadow-xl hover:scale-105 active:scale-95 transition-all disabled:opacity-50"
-            >
-              {loading ? 'جاري التحميل...' : 'ابدأ الاختبار'}
-            </button>
-            <Link href="/register" className="bg-white/10 backdrop-blur-sm text-white border border-white/30 px-10 py-4 rounded-full font-headline-lg hover:bg-white/20 transition-all">
-              سجّل في المسار
-            </Link>
-          </div>
+          {phase === 'intro' && (
+            <div className="flex flex-wrap justify-center gap-4">
+              <button
+                onClick={() => setPhase('code')}
+                disabled={loading}
+                className="bg-tertiary text-on-tertiary px-10 py-4 rounded-full font-headline-lg shadow-xl hover:scale-105 active:scale-95 transition-all disabled:opacity-50"
+              >
+                ابدأ الاختبار
+              </button>
+              <Link href="/register" className="bg-white/10 backdrop-blur-sm text-white border border-white/30 px-10 py-4 rounded-full font-headline-lg hover:bg-white/20 transition-all">
+                سجّل في المسار
+              </Link>
+            </div>
+          )}
         </div>
       </section>
+
+      {/* CODE ENTRY */}
+      {phase === 'code' && (
+        <section className="py-16 md:py-24 bg-bg-off-white">
+          <div className="max-w-lg mx-auto px-margin-mobile md:px-margin-desktop">
+            <div className="bg-white rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] p-8 md:p-10 text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mb-6">
+                <span className="material-symbols-outlined text-primary text-3xl">vpn_key</span>
+              </div>
+              <h2 className="font-headline-xl text-headline-xl text-on-surface mb-2">أدخل كود الاختبار</h2>
+              <p className="text-on-surface-variant font-body-md text-sm mb-8">
+                أدخل الكود المكون من 8 أحرف الذي حصلت عليه من المشرف
+              </p>
+
+              <div className="mb-6">
+                <input
+                  type="text"
+                  value={codeInput}
+                  onChange={(e) => setCodeInput(e.target.value.toUpperCase())}
+                  placeholder="أدخل الكود هنا"
+                  maxLength={8}
+                  className="w-full text-center text-2xl font-mono font-bold tracking-[0.3em] px-6 py-4 rounded-2xl border-2 border-outline-variant/50 bg-surface-container-lowest text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                  dir="ltr"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && codeInput.trim().length >= 6) {
+                      handleValidateCode();
+                    }
+                  }}
+                  autoFocus
+                />
+              </div>
+
+              {codeError && (
+                <div className="bg-error-container/30 border-r-4 border-error rounded-xl p-4 mb-6 flex items-center gap-3">
+                  <span className="material-symbols-outlined text-error text-xl">error</span>
+                  <p className="text-on-error-container text-sm font-medium">{codeError}</p>
+                </div>
+              )}
+
+              {codeInfo && (
+                <div className="bg-success/5 border border-success/20 rounded-2xl p-6 mb-6">
+                  <span className="material-symbols-outlined text-success text-4xl mb-2">check_circle</span>
+                  <p className="text-on-surface font-bold text-lg mb-1">مرحباً {codeInfo.student_name}</p>
+                  <p className="text-on-surface-variant text-sm">تم التحقق من الكود بنجاح</p>
+                </div>
+              )}
+
+              <div className="flex gap-3">
+                <button
+                  onClick={() => { setPhase('intro'); setCodeInput(''); setCodeInfo(null); setCodeError(''); }}
+                  className="flex-1 py-3.5 rounded-full border border-outline-variant/50 text-on-surface-variant font-bold hover:bg-gray-50 transition-all"
+                >
+                  رجوع
+                </button>
+                <button
+                  onClick={() => codeInfo ? handleStartWithCode() : handleValidateCode()}
+                  disabled={codeLoading || !codeInput.trim()}
+                  className="flex-1 btn-primary py-3.5 flex items-center justify-center gap-2 disabled:opacity-60"
+                >
+                  {codeLoading ? (
+                    <>
+                      <span className="material-symbols-outlined animate-spin text-lg">progress_activity</span>
+                      جاري التحقق...
+                    </>
+                  ) : codeInfo ? (
+                    <>
+                      <span className="material-symbols-outlined text-lg">play_arrow</span>
+                      ابدأ الاختبار
+                    </>
+                  ) : (
+                    <>
+                      <span className="material-symbols-outlined text-lg">check</span>
+                      تحقق
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* START / INFO */}
       {phase === 'start' && (
@@ -177,6 +309,16 @@ export default function EnglishTestPage() {
           <div className="max-w-3xl mx-auto px-margin-mobile md:px-margin-desktop">
             <div className="bg-white rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] p-8 md:p-12">
               <h2 className="font-headline-xl text-headline-xl text-primary mb-6 text-center">تفاصيل الاختبار</h2>
+
+              {codeInfo && (
+                <div className="bg-primary/5 border border-primary/20 rounded-2xl p-5 mb-6 text-center">
+                  <span className="material-symbols-outlined text-primary text-2xl mb-1">person</span>
+                  <p className="text-on-surface font-bold">{codeInfo.student_name}</p>
+                  {codeInfo.track && (
+                    <span className="inline-block mt-1 px-3 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">{codeInfo.track}</span>
+                  )}
+                </div>
+              )}
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                 <div className="bg-bg-off-white rounded-2xl p-5 text-center">
@@ -254,6 +396,17 @@ export default function EnglishTestPage() {
       {phase === 'test' && questions.length > 0 && (
         <section className="py-12 md:py-20 bg-bg-off-white min-h-[60vh]">
           <div className="max-w-3xl mx-auto px-margin-mobile md:px-margin-desktop">
+            {/* Student name banner */}
+            {codeInfo && (
+              <div className="bg-white rounded-2xl shadow-lg p-3 mb-4 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-primary">person</span>
+                  <span className="text-on-surface font-bold text-sm">{codeInfo.student_name}</span>
+                </div>
+                <span className="text-on-surface-variant text-xs font-mono" dir="ltr">{codeInfo.code_id ? '' : ''}</span>
+              </div>
+            )}
+
             {/* Timer + Progress */}
             <div className="bg-white rounded-2xl shadow-lg p-4 mb-6 flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -402,6 +555,9 @@ export default function EnglishTestPage() {
             {/* Level Card */}
             <div className="bg-white rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] overflow-hidden mb-8">
               <div className="bg-gradient-to-br from-primary-deep to-primary p-8 md:p-12 text-center">
+                {codeInfo && (
+                  <p className="text-white/60 font-body-md mb-2">{codeInfo.student_name}</p>
+                )}
                 <p className="text-white/80 font-body-lg mb-2">مستواك في اللغة الإنجليزية</p>
                 <div className="text-tertiary font-black text-8xl md:text-9xl mb-2">{result.level}</div>
                 <p className="text-white font-headline-lg text-headline-lg">{LEVEL_NAMES[result.level]}</p>
@@ -574,7 +730,7 @@ export default function EnglishTestPage() {
                     سجّل الآن في المسار المناسب
                   </Link>
                   <button
-                    onClick={() => { setPhase('intro'); setQuestions([]); setAnswers({}); setResult(null); setCurrentQ(0); setSaved(false); setShowReview(false); setName(''); setEmail(''); }}
+                    onClick={() => { setPhase('code'); setQuestions([]); setAnswers({}); setResult(null); setCurrentQ(0); setSaved(false); setShowReview(false); setName(''); setEmail(''); setCodeInput(''); setCodeInfo(null); setCodeError(''); }}
                     className="flex-1 bg-primary text-on-primary py-4 rounded-full font-headline-lg hover:shadow-lg transition-all"
                   >
                     أعد الاختبار
@@ -587,7 +743,7 @@ export default function EnglishTestPage() {
       )}
 
       {/* LOADING */}
-      {phase !== 'intro' && phase !== 'start' && phase !== 'test' && phase !== 'result' && (
+      {phase !== 'intro' && phase !== 'code' && phase !== 'start' && phase !== 'test' && phase !== 'result' && (
         <section className="py-32 bg-bg-off-white text-center">
           <span className="animate-spin material-symbols-outlined text-primary text-6xl">progress_activity</span>
           <p className="mt-4 text-on-surface-variant font-body-lg">جاري التحميل...</p>

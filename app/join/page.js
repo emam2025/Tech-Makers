@@ -446,11 +446,15 @@ export default function JoinPage() {
                   <select className="w-full bg-bg-off-white border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl px-4 py-3 transition-all" name="specialty" id="trainer-specialty" required>
                     <option value="">اختر التخصص</option>
                     <option value="programming">برمجة (Python / Scratch)</option>
+                    <option value="java">Java</option>
+                    <option value="c">لغة C</option>
+                    <option value="cpp">لغة C++</option>
                     <option value="web">تطوير الويب</option>
                     <option value="ai">ذكاء اصطناعي</option>
                     <option value="mobile">تطوير تطبيقات الموبايل</option>
                     <option value="iot">إنترنت الأشياء (IoT)</option>
                     <option value="data">تحليل البيانات</option>
+                    <option value="database">قواعد بيانات</option>
                     <option value="mental_math">مدرب حساب ذهني (Techno Math)</option>
                     <option value="english">مدرب لغة إنجليزية</option>
                     <option value="appinventor">مدرب App Inventor</option>
