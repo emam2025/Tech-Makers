@@ -591,6 +591,130 @@ export default function TracksPage() {
         </section>
       )}
 
+      {/* ── EDUCATIONAL SYSTEM ── */}
+      {!track && (
+        <section className="py-16 md:py-24 bg-white">
+          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+            <div className="text-center mb-10">
+              <span className="inline-block bg-primary/5 text-primary px-5 py-2 rounded-full font-label-md mb-4">
+                <span className="material-symbols-outlined text-sm align-middle">school</span> النظام التعليمي
+              </span>
+              <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary-deep mb-3">كيف نعلّم؟</h2>
+              <p className="text-on-surface-variant font-body-lg max-w-2xl mx-auto">منهج متكامل يجمع بين التعلم العملي والتقييم المستمر والتقنيات الحديثة</p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+              {/* Tasks */}
+              <div className="group relative backdrop-blur-xl bg-white/60 rounded-24 p-5 md:p-6 border border-white/60 shadow-[0_8px_32px_rgba(65,105,225,0.1)] hover:shadow-[0_12px_40px_rgba(65,105,225,0.2)] transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-24 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-deep rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+                      <span className="material-symbols-outlined text-white text-lg">task_alt</span>
+                    </div>
+                    <h3 className="font-headline-md text-headline-md text-primary-deep">مهام بعد كل محاضرة</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="bg-green-100/80 text-green-700 px-3 py-1 rounded-full text-xs font-bold border border-green-200/50">Easy</span>
+                    <span className="bg-yellow-100/80 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold border border-yellow-200/50">Medium</span>
+                    <span className="bg-red-100/80 text-red-700 px-3 py-1 rounded-full text-xs font-bold border border-red-200/50">Hard</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Projects */}
+              <div className="group relative backdrop-blur-xl bg-white/60 rounded-24 p-5 md:p-6 border border-white/60 shadow-[0_8px_32px_rgba(253,118,26,0.1)] hover:shadow-[0_12px_40px_rgba(253,118,26,0.2)] transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent rounded-24 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-secondary to-amber-500 rounded-xl flex items-center justify-center shadow-lg shadow-secondary/20">
+                      <span className="material-symbols-outlined text-white text-lg">deployed_code</span>
+                    </div>
+                    <h3 className="font-headline-md text-headline-md text-primary-deep">مشاريع حقيقية</h3>
+                  </div>
+                  <p className="text-on-surface-variant text-sm leading-relaxed">مشروع لكل مستوى + مشروع نهائي يجمع كل ما تعلمه الطالب</p>
+                </div>
+              </div>
+
+              {/* Evaluation */}
+              <div className="group relative backdrop-blur-xl bg-white/60 rounded-24 p-5 md:p-6 border border-white/60 shadow-[0_8px_32px_rgba(247,190,29,0.1)] hover:shadow-[0_12px_40px_rgba(247,190,29,0.2)] transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-tertiary/5 to-transparent rounded-24 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-tertiary to-amber-400 rounded-xl flex items-center justify-center shadow-lg shadow-tertiary/20">
+                      <span className="material-symbols-outlined text-white text-lg">grading</span>
+                    </div>
+                    <h3 className="font-headline-md text-headline-md text-primary-deep">تقييم مستمر</h3>
+                  </div>
+                  <p className="text-on-surface-variant text-sm leading-relaxed">تقييم كل جلسة + اختبار نهاية مستوى لقياس التقدم</p>
+                </div>
+              </div>
+
+              {/* Gamification */}
+              <div className="group relative backdrop-blur-xl bg-white/60 rounded-24 p-5 md:p-6 border border-white/60 shadow-[0_8px_32px_rgba(16,185,129,0.1)] hover:shadow-[0_12px_40px_rgba(16,185,129,0.2)] transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent rounded-24 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20">
+                      <span className="material-symbols-outlined text-white text-lg">emoji_events</span>
+                    </div>
+                    <h3 className="font-headline-md text-headline-md text-primary-deep">تحفيز و gamification</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="bg-emerald-100/80 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold border border-emerald-200/50">نقاط</span>
+                    <span className="bg-emerald-100/80 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold border border-emerald-200/50">Leaderboard</span>
+                    <span className="bg-emerald-100/80 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold border border-emerald-200/50">Badges</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* AI Assistant */}
+              <div className="group relative backdrop-blur-xl bg-white/60 rounded-24 p-5 md:p-6 border border-white/60 shadow-[0_8px_32px_rgba(139,92,246,0.1)] hover:shadow-[0_12px_40px_rgba(139,92,246,0.2)] transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-transparent rounded-24 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-violet-400 to-violet-600 rounded-xl flex items-center justify-center shadow-lg shadow-violet-500/20">
+                      <span className="material-symbols-outlined text-white text-lg">smart_toy</span>
+                    </div>
+                    <h3 className="font-headline-md text-headline-md text-primary-deep">مساعد ذكاء اصطناعي</h3>
+                  </div>
+                  <ul className="space-y-1.5">
+                    <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-violet-500 text-base">check</span> شرح الدروس</li>
+                    <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-violet-500 text-base">check</span> حل التمارين</li>
+                    <li className="flex items-center gap-2 text-on-surface-variant text-sm"><span className="material-symbols-outlined text-violet-500 text-base">check</span> دعم الطالب</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Dashboard */}
+              <div className="group relative backdrop-blur-xl bg-white/60 rounded-24 p-5 md:p-6 border border-white/60 shadow-[0_8px_32px_rgba(244,63,94,0.1)] hover:shadow-[0_12px_40px_rgba(244,63,94,0.2)] transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-rose-500/5 to-transparent rounded-24 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-rose-400 to-rose-600 rounded-xl flex items-center justify-center shadow-lg shadow-rose-500/20">
+                      <span className="material-symbols-outlined text-white text-lg">dashboard</span>
+                    </div>
+                    <h3 className="font-headline-md text-headline-md text-primary-deep">لوحة تحكم متكاملة</h3>
+                  </div>
+                  <div className="space-y-2">
+                    <span className="text-[10px] font-bold text-rose-600 bg-rose-100/80 px-2 py-0.5 rounded-full border border-rose-200/50">للمدرب</span>
+                    <ul className="space-y-1">
+                      <li className="text-on-surface-variant text-sm flex items-center gap-1.5"><span className="material-symbols-outlined text-rose-400 text-sm">check</span> متابعة الطلاب</li>
+                      <li className="text-on-surface-variant text-sm flex items-center gap-1.5"><span className="material-symbols-outlined text-rose-400 text-sm">check</span> تحليل الأداء</li>
+                    </ul>
+                    <span className="text-[10px] font-bold text-rose-600 bg-rose-100/80 px-2 py-0.5 rounded-full border border-rose-200/50">لولي الأمر</span>
+                    <ul className="space-y-1">
+                      <li className="text-on-surface-variant text-sm flex items-center gap-1.5"><span className="material-symbols-outlined text-rose-400 text-sm">check</span> متابعة التقدم</li>
+                      <li className="text-on-surface-variant text-sm flex items-center gap-1.5"><span className="material-symbols-outlined text-rose-400 text-sm">check</span> تقييم المستوى</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ── JOURNEY VIEW ── */}
       {track && view === 'journey' && (
         <section className="py-16 md:py-24 bg-bg-off-white" id="journey-top">
@@ -600,100 +724,6 @@ export default function TracksPage() {
               <span className="material-symbols-outlined">arrow_forward</span>
               العودة لاختيار المسار
             </button>
-
-            {/* ── EDUCATIONAL SYSTEM ── */}
-            <div className="mb-16">
-              <div className="text-center mb-10">
-                <span className="inline-block bg-primary/5 text-primary px-5 py-2 rounded-full font-label-md mb-4">
-                  <span className="material-symbols-outlined text-sm align-middle">school</span> النظام التعليمي
-                </span>
-                <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-primary-deep mb-3">كيف نعلّم؟</h2>
-                <p className="text-on-surface-variant font-body-lg max-w-2xl mx-auto">منهج متكامل يجمع بين التعلم العملي والتقييم المستمر والتقنيات الحديثة</p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                {/* Tasks */}
-                <div className="bg-white rounded-24 p-5 md:p-6 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1">
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary-deep rounded-2xl flex items-center justify-center mb-4">
-                    <span className="material-symbols-outlined text-white text-xl">task_alt</span>
-                  </div>
-                  <h3 className="font-headline-md text-headline-md text-primary-deep mb-2">مهام بعد كل محاضرة</h3>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Easy</span>
-                    <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold">Medium</span>
-                    <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold">Hard</span>
-                  </div>
-                </div>
-
-                {/* Projects */}
-                <div className="bg-white rounded-24 p-5 md:p-6 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-secondary/10 hover:border-secondary/30 transition-all duration-300 hover:-translate-y-1">
-                  <div className="w-12 h-12 bg-gradient-to-br from-secondary to-amber-500 rounded-2xl flex items-center justify-center mb-4">
-                    <span className="material-symbols-outlined text-white text-xl">deployed_code</span>
-                  </div>
-                  <h3 className="font-headline-md text-headline-md text-primary-deep mb-2">مشاريع حقيقية</h3>
-                  <p className="text-on-surface-variant font-body-sm text-sm">مشروع لكل مستوى + مشروع نهائي يجمع كل ما تعلمه الطالب</p>
-                </div>
-
-                {/* Evaluation */}
-                <div className="bg-white rounded-24 p-5 md:p-6 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-tertiary/10 hover:border-tertiary/30 transition-all duration-300 hover:-translate-y-1">
-                  <div className="w-12 h-12 bg-gradient-to-br from-tertiary to-amber-400 rounded-2xl flex items-center justify-center mb-4">
-                    <span className="material-symbols-outlined text-white text-xl">grading</span>
-                  </div>
-                  <h3 className="font-headline-md text-headline-md text-primary-deep mb-2">تقييم مستمر</h3>
-                  <p className="text-on-surface-variant font-body-sm text-sm">تقييم كل جلسة + اختبار نهاية مستوى لقياس التقدم</p>
-                </div>
-
-                {/* Gamification */}
-                <div className="bg-white rounded-24 p-5 md:p-6 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-emerald-200 hover:border-emerald-400 transition-all duration-300 hover:-translate-y-1">
-                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center mb-4">
-                    <span className="material-symbols-outlined text-white text-xl">emoji_events</span>
-                  </div>
-                  <h3 className="font-headline-md text-headline-md text-primary-deep mb-2">تحفيز و gamification</h3>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">نقاط</span>
-                    <span className="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">Leaderboard</span>
-                    <span className="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">Badges</span>
-                  </div>
-                </div>
-
-                {/* AI Assistant */}
-                <div className="bg-white rounded-24 p-5 md:p-6 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-violet-200 hover:border-violet-400 transition-all duration-300 hover:-translate-y-1">
-                  <div className="w-12 h-12 bg-gradient-to-br from-violet-400 to-violet-600 rounded-2xl flex items-center justify-center mb-4">
-                    <span className="material-symbols-outlined text-white text-xl">smart_toy</span>
-                  </div>
-                  <h3 className="font-headline-md text-headline-md text-primary-deep mb-2">مساعد ذكاء اصطناعي</h3>
-                  <ul className="space-y-1.5">
-                    <li className="flex items-center gap-2 text-on-surface-variant font-body-sm text-sm"><span className="material-symbols-outlined text-violet-500 text-base">check</span> شرح الدروس</li>
-                    <li className="flex items-center gap-2 text-on-surface-variant font-body-sm text-sm"><span className="material-symbols-outlined text-violet-500 text-base">check</span> حل التمارين</li>
-                    <li className="flex items-center gap-2 text-on-surface-variant font-body-sm text-sm"><span className="material-symbols-outlined text-violet-500 text-base">check</span> دعم الطالب</li>
-                  </ul>
-                </div>
-
-                {/* Dashboard */}
-                <div className="bg-white rounded-24 p-5 md:p-6 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-rose-200 hover:border-rose-400 transition-all duration-300 hover:-translate-y-1">
-                  <div className="w-12 h-12 bg-gradient-to-br from-rose-400 to-rose-600 rounded-2xl flex items-center justify-center mb-4">
-                    <span className="material-symbols-outlined text-white text-xl">dashboard</span>
-                  </div>
-                  <h3 className="font-headline-md text-headline-md text-primary-deep mb-2">لوحة تحكم متكاملة</h3>
-                  <div className="space-y-3">
-                    <div>
-                      <span className="text-xs font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">للمدرب</span>
-                      <ul className="mt-1 space-y-1">
-                        <li className="text-on-surface-variant font-body-sm text-sm flex items-center gap-1.5"><span className="material-symbols-outlined text-rose-400 text-sm">check</span> متابعة الطلاب</li>
-                        <li className="text-on-surface-variant font-body-sm text-sm flex items-center gap-1.5"><span className="material-symbols-outlined text-rose-400 text-sm">check</span> تحليل الأداء</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <span className="text-xs font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">لولي الأمر</span>
-                      <ul className="mt-1 space-y-1">
-                        <li className="text-on-surface-variant font-body-sm text-sm flex items-center gap-1.5"><span className="material-symbols-outlined text-rose-400 text-sm">check</span> متابعة التقدم</li>
-                        <li className="text-on-surface-variant font-body-sm text-sm flex items-center gap-1.5"><span className="material-symbols-outlined text-rose-400 text-sm">check</span> تقييم المستوى</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             {track.years.map((year, yi) => (
               <div key={yi} className="mb-20">

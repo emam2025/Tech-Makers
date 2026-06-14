@@ -451,6 +451,10 @@ export default function JoinPage() {
                     <option value="mobile">تطوير تطبيقات الموبايل</option>
                     <option value="iot">إنترنت الأشياء (IoT)</option>
                     <option value="data">تحليل البيانات</option>
+                    <option value="mental_math">مدرب حساب ذهني (Techno Math)</option>
+                    <option value="english">مدرب لغة إنجليزية</option>
+                    <option value="appinventor">مدرب App Inventor</option>
+                    <option value="scratch">مدرب Scratch</option>
                     <option value="other">أخرى</option>
                   </select>
                 </div>

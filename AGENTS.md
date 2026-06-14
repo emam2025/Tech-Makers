@@ -24,6 +24,7 @@ Next.js 16 landing page for Tech Makers Egypt (TKA). Arabic RTL site deploying t
 - `BREVO_SMTP_LOGIN` - Brevo SMTP login
 - `RESEND_API_KEY` - Resend API key
 - `GOOGLE_SCRIPT_URL` - Google Apps Script URL (proxied via `/api/certificate`)
+- `GEMINI_API_KEY` - Google Gemini AI API key (for English test)
 
 ## Key Files
 - `app/page.js` - Homepage (hero, stats, tracks, results, testimonials, FAQ, pricing)
@@ -32,15 +33,19 @@ Next.js 16 landing page for Tech Makers Egypt (TKA). Arabic RTL site deploying t
 - `app/register/page.js` - Student registration (connects to `/api/register`)
 - `app/join/page.js` - Team registration (banner image, photo upload, 3 tabs)
 - `app/certificate/page.js` - Certificate verification (proxied via `/api/certificate`)
+- `app/english-test/page.js` - English level placement test (20 questions, Gemini AI, instant results)
 - `app/api/register/route.js` - Student registration API (Supabase + Brevo)
 - `app/api/join/route.js` - Team registration API (Supabase)
 - `app/api/certificate/route.js` - Certificate proxy (hides Google Apps Script URL)
+- `app/api/english-test/route.js` - English test API (generate + analyze via Gemini)
+- `app/api/english-test/submit/route.js` - English test submission (Supabase + Brevo email)
 - `app/globals.css` - Design system (hero-gradient, glassmorphism, mobile optimizations, animations)
 - `components/SiteHeader.js` - Navigation with mobile drawer (tracks link hidden)
 - `components/HeroWithHalo.js` - Material Symbols orbiting icons, CSS radial-gradient halo
 - `tailwind.config.js` - Theme (primary #4169e1, secondary #fd761a, tertiary #f7be1d, full font scale)
 - `next.config.mjs` - Image optimization (AVIF/WebP, device/sizes), serverActions
 - `lib/security.js` - Security utility (rate limiting, CSRF, validation, sanitization)
+- `lib/gemini.js` - Gemini API helper (generate questions, analyze results)
 
 ## Design System
 - **Colors**: Royal blue gradient (#6b8aff → #1a3fa0), NOT dark #1e3a8a

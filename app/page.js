@@ -203,16 +203,7 @@ export default function HomePage() {
                 <li className="text-on-surface-variant font-body-md text-body-md">• أساس قوي في التكنولوجيا والذكاء الاصطناعي يؤهلهم لقيادة مشاريع تكنولوجية</li>
               </ul>
             </div>
-            <div className="group bg-white p-6 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-violet-200 hover:border-violet-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(139,92,246,0.15)] text-center sm:col-span-2 lg:col-span-3">
-              <div className="w-14 h-14 mx-auto bg-gradient-to-br from-violet-400 to-violet-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-white text-2xl">public</span>
-              </div>
-              <h3 className="font-headline-lg text-headline-lg mb-3 text-primary">تأثير إيجابي على المجتمع</h3>
-              <ul className="text-right space-y-2 max-w-2xl mx-auto">
-                <li className="text-on-surface-variant font-body-md text-body-md">• زيادة عدد الأطفال الملمين بالتكنولوجيا يسهم في تطوير المجتمع وزيادة الوعي التقني</li>
-                <li className="text-on-surface-variant font-body-md text-body-md">• سيكون لهؤلاء الأطفال دور فعال في دفع عجلة الابتكار والتنمية في الوطن العربي</li>
-              </ul>
-            </div>
+
           </div>
         </div>
       </section>
