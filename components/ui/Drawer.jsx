@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-export default function Drawer({ isOpen, onClose, title, children, size = 'md' }) {
+export default function Drawer({ isOpen, onClose, title, children, size = 'md', footer, fullScreen = false }) {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -18,12 +18,14 @@ export default function Drawer({ isOpen, onClose, title, children, size = 'md' }
     sm: 'max-w-sm',
     md: 'max-w-md',
     lg: 'max-w-lg',
+    xl: 'max-w-xl',
+    full: 'max-w-full',
   };
 
   return (
     <>
       <div className="drawer-overlay" onClick={onClose} />
-      <div className={`drawer-content ${sizes[size]}`}>
+      <div className={`drawer-content ${fullScreen ? 'max-w-[95vw] max-h-[90vh]' : sizes[size]}`}>
         <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--color-border-subtle)]">
           <h3 className="text-base font-bold text-[var(--color-text-primary)]">{title}</h3>
           <button
@@ -33,9 +35,14 @@ export default function Drawer({ isOpen, onClose, title, children, size = 'md' }
             <span className="material-symbols-outlined text-[18px] text-[var(--color-text-secondary)]">close</span>
           </button>
         </div>
-        <div className="p-6">
+        <div className="p-6 overflow-y-auto flex-1">
           {children}
         </div>
+        {footer && (
+          <div className="px-6 py-4 border-t border-[var(--color-border-subtle)]">
+            {footer}
+          </div>
+        )}
       </div>
     </>
   );

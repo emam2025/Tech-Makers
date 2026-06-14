@@ -1,207 +1,186 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
+import DataTable from '../../../components/ui/DataTable';
+import Drawer from '../../../components/ui/Drawer';
+import Button from '../../../components/ui/Button';
+import Input from '../../../components/ui/Input';
+import Select from '../../../components/ui/Select';
+import Badge from '../../../components/ui/Badge';
+import { ConfirmModal } from '../../../components/ui/Modal';
 
-const TRACKS = { a: 'مسار A', b: 'مسار B', c: 'مسار C', technomath: 'Techno Math', techenglish: 'Tech English' };
-const STATUSES = { pending: 'قيد المراجعة', accepted: 'مقبول', rejected: 'مرفوض', interviewed: 'تمت المقابلة' };
+const TRACKS = [
+  { value: 'a', label: 'Track A' },
+  { value: 'b', label: 'Track B' },
+  { value: 'c', label: 'Track C' },
+  { value: 'technomath', label: 'Techno Math' },
+  { value: 'techenglish', label: 'Tech English' },
+];
 
-export default function AdminStudentsPage() {
+const STATUSES = [
+  { value: 'pending', label: 'قيد المراجعة', color: 'var(--color-warning)' },
+  { value: 'accepted', label: 'مقبول', color: 'var(--color-success)' },
+  { value: 'rejected', label: 'مرفوض', color: 'var(--color-danger)' },
+];
+
+export default function StudentsPage() {
+  const router = useRouter();
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [filterTrack, setFilterTrack] = useState('');
   const [filterStatus, setFilterStatus] = useState('');
-  const [editingId, setEditingId] = useState(null);
-  const [editStatus, setEditStatus] = useState('');
-  const [user, setUser] = useState(null);
+  const [selected, setSelected] = useState([]);
+  const [drawer, setDrawer] = useState(null);
+  const [form, setForm] = useState({});
+  const [saving, setSaving] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(null);
 
-  async function fetchStudents() {
+  const loadStudents = useCallback(async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams();
       if (search) params.set('search', search);
       if (filterTrack) params.set('track', filterTrack);
       if (filterStatus) params.set('status', filterStatus);
-
-      const res = await fetch(`/api/admin/students?${params.toString()}`);
+      const res = await fetch(`/api/admin/students?${params}`);
       if (res.ok) {
         const data = await res.json();
         setStudents(data.students || []);
       }
-    } catch (err) {
-      console.error('Fetch students error:', err);
     } finally {
       setLoading(false);
     }
-  }
-
-  useEffect(() => {
-    async function init() {
-      const authRes = await fetch('/api/admin/auth');
-      if (authRes.ok) {
-        const authData = await authRes.json();
-        setUser(authData.user);
-      }
-      fetchStudents();
-    }
-    init();
-  }, []);
-
-  useEffect(() => {
-    const timeout = setTimeout(fetchStudents, 400);
-    return () => clearTimeout(timeout);
   }, [search, filterTrack, filterStatus]);
 
-  async function handleUpdateStatus(id) {
+  useEffect(() => {
+    const t = setTimeout(loadStudents, search ? 300 : 0);
+    return () => clearTimeout(t);
+  }, [loadStudents, search]);
+
+  const handleSave = async () => {
+    setSaving(true);
     try {
-      const res = await fetch('/api/admin/students', {
-        method: 'PUT',
+      const method = form.id ? 'PUT' : 'POST';
+      const url = form.id ? `/api/admin/students/${form.id}` : '/api/admin/students';
+      const res = await fetch(url, {
+        method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, status: editStatus }),
+        body: JSON.stringify(form),
       });
-
       if (res.ok) {
-        setEditingId(null);
-        fetchStudents();
+        setDrawer(null);
+        loadStudents();
       }
-    } catch (err) {
-      console.error('Update student error:', err);
+    } finally {
+      setSaving(false);
     }
-  }
+  };
 
-  function formatDate(d) {
-    if (!d) return '—';
-    return new Date(d).toLocaleDateString('ar-EG', { year: 'numeric', month: 'short', day: 'numeric' });
-  }
+  const handleDelete = async (id) => {
+    await fetch(`/api/admin/students/${id}`, { method: 'DELETE' });
+    setConfirmDelete(null);
+    loadStudents();
+  };
+
+  const columns = [
+    { key: 'full_name', label: 'الاسم', render: (r) => <span className="font-medium">{r.full_name}</span> },
+    { key: 'national_id', label: 'رقم الهوية' },
+    { key: 'track', label: 'المسار', render: (r) => {
+      const t = TRACKS.find(t => t.value === r.track);
+      return <Badge>{t?.label || r.track || '-'}</Badge>;
+    }},
+    { key: 'status', label: 'الحالة', render: (r) => {
+      const s = STATUSES.find(s => s.value === r.status);
+      return <Badge variant={r.status === 'accepted' ? 'success' : r.status === 'rejected' ? 'danger' : 'warning'}>{s?.label || r.status}</Badge>;
+    }},
+    { key: 'phone', label: 'الهاتف' },
+    { key: 'created_at', label: 'تاريخ التسجيل', render: (r) => r.created_at ? new Date(r.created_at).toLocaleDateString('ar-EG') : '-' },
+  ];
+
+  const actions = [
+    { icon: 'edit', label: 'تعديل', onClick: (r) => { setForm(r); setDrawer('edit'); } },
+    { icon: 'delete', label: 'حذف', onClick: (r) => setConfirmDelete(r), color: 'var(--color-danger)' },
+  ];
 
   return (
-    <div className="space-y-4 md:space-y-6">
-      <div>
-        <h1 className="font-headline-xl text-headline-xl text-on-surface mb-1">الطلاب المسجلون</h1>
-        <p className="text-on-surface-variant font-body-md text-sm">إدارة ومراجعة بيانات الطلاب</p>
+    <div className="page-container">
+      <div className="page-header">
+        <div>
+          <h1>الطلاب</h1>
+          <p>إدارة بيانات الطلاب المسجلين</p>
+        </div>
+        <Button icon="person_add" onClick={() => { setForm({}); setDrawer('edit'); }}>إضافة طالب</Button>
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-24 p-4 md:p-6 border border-outline-variant/20">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div className="relative">
-            <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="بحث بالاسم أو البريد..."
-              className="w-full pr-10 pl-4 py-2.5 rounded-xl border border-outline-variant/50 bg-surface-container-lowest text-on-surface text-sm font-body-md focus:outline-none focus:border-primary"
-            />
-          </div>
-          <select
-            value={filterTrack}
-            onChange={(e) => setFilterTrack(e.target.value)}
-            className="w-full px-4 py-2.5 rounded-xl border border-outline-variant/50 bg-surface-container-lowest text-on-surface text-sm font-body-md focus:outline-none focus:border-primary"
-          >
-            <option value="">كل المسارات</option>
-            {Object.entries(TRACKS).map(([k, v]) => (
-              <option key={k} value={k}>{v}</option>
-            ))}
-          </select>
-          <select
-            value={filterStatus}
-            onChange={(e) => setFilterStatus(e.target.value)}
-            className="w-full px-4 py-2.5 rounded-xl border border-outline-variant/50 bg-surface-container-lowest text-on-surface text-sm font-body-md focus:outline-none focus:border-primary"
-          >
-            <option value="">كل الحالات</option>
-            {Object.entries(STATUSES).map(([k, v]) => (
-              <option key={k} value={k}>{v}</option>
-            ))}
-          </select>
-        </div>
+      <div className="flex flex-wrap gap-3 mb-4">
+        <Input
+          placeholder="بحث بالاسم أو رقم الهوية..."
+          icon="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full sm:w-64"
+        />
+        <Select
+          options={[{ value: '', label: 'جميع المسارات' }, ...TRACKS]}
+          value={filterTrack}
+          onChange={(e) => setFilterTrack(e.target.value)}
+          className="w-full sm:w-40"
+        />
+        <Select
+          options={[{ value: '', label: 'جميع الحالات' }, ...STATUSES]}
+          value={filterStatus}
+          onChange={(e) => setFilterStatus(e.target.value)}
+          className="w-full sm:w-40"
+        />
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-24 border border-outline-variant/20 overflow-hidden">
-        {loading ? (
-          <div className="flex items-center justify-center py-16">
-            <span className="material-symbols-outlined text-primary text-3xl animate-spin">progress_activity</span>
+      <DataTable
+        columns={columns}
+        data={students}
+        loading={loading}
+        actions={actions}
+        selected={selected}
+        onSelect={setSelected}
+        emptyText="لا يوجد طلاب مسجلين"
+      />
+
+      {/* Drawer */}
+      <Drawer
+        isOpen={!!drawer}
+        onClose={() => setDrawer(null)}
+        title={form.id ? 'تعديل بيانات الطالب' : 'إضافة طالب جديد'}
+        footer={
+          <div className="flex gap-3">
+            <Button onClick={handleSave} loading={saving}>حفظ</Button>
+            <Button variant="outlined" onClick={() => setDrawer(null)}>إلغاء</Button>
           </div>
-        ) : students.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-16 text-on-surface-variant">
-            <span className="material-symbols-outlined text-5xl mb-3">school</span>
-            <p className="font-body-md">لا يوجد طلاب مسجلون</p>
-          </div>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-outline-variant/20 bg-surface-container-low">
-                  <th className="text-right px-4 py-3 font-bold text-on-surface text-xs">الاسم</th>
-                  <th className="text-right px-4 py-3 font-bold text-on-surface text-xs">البريد</th>
-                  <th className="text-right px-4 py-3 font-bold text-on-surface text-xs hidden sm:table-cell">المسار</th>
-                  <th className="text-right px-4 py-3 font-bold text-on-surface text-xs hidden md:table-cell">الاشتراك</th>
-                  <th className="text-right px-4 py-3 font-bold text-on-surface text-xs">الحالة</th>
-                  <th className="text-right px-4 py-3 font-bold text-on-surface text-xs hidden lg:table-cell">التاريخ</th>
-                  {user?.role === 'admin' && <th className="text-right px-4 py-3 font-bold text-on-surface text-xs">إجراء</th>}
-                </tr>
-              </thead>
-              <tbody>
-                {students.map((s) => (
-                  <tr key={s.id} className="border-b border-outline-variant/10 hover:bg-surface-container-lowest transition-colors">
-                    <td className="px-4 py-3 font-medium text-on-surface text-xs max-w-[150px] truncate">{s.name}</td>
-                    <td className="px-4 py-3 text-on-surface-variant text-xs max-w-[180px] truncate" dir="ltr" style={{ textAlign: 'right' }}>{s.email}</td>
-                    <td className="px-4 py-3 text-xs hidden sm:table-cell">
-                      <span className="inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium text-xs">{TRACKS[s.track] || s.track}</span>
-                    </td>
-                    <td className="px-4 py-3 text-on-surface-variant text-xs hidden md:table-cell">{s.plan === 'monthly' ? 'شهري' : s.plan === 'quarterly' ? 'ربع سنوي' : 'سنوي'}</td>
-                    <td className="px-4 py-3 text-xs">
-                      {editingId === s.id ? (
-                        <div className="flex items-center gap-1">
-                          <select
-                            value={editStatus}
-                            onChange={(e) => setEditStatus(e.target.value)}
-                            className="px-2 py-1 rounded-lg border border-outline-variant/50 text-xs"
-                          >
-                            {Object.entries(STATUSES).map(([k, v]) => (
-                              <option key={k} value={k}>{v}</option>
-                            ))}
-                          </select>
-                          <button onClick={() => handleUpdateStatus(s.id)} className="p-1 hover:bg-success/10 rounded-lg" title="حفظ">
-                            <span className="material-symbols-outlined text-success text-sm">check</span>
-                          </button>
-                          <button onClick={() => setEditingId(null)} className="p-1 hover:bg-error/10 rounded-lg" title="إلغاء">
-                            <span className="material-symbols-outlined text-error text-sm">close</span>
-                          </button>
-                        </div>
-                      ) : (
-                        <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${
-                          s.status === 'accepted' ? 'bg-success/10 text-success' :
-                          s.status === 'rejected' ? 'bg-error/10 text-error' :
-                          s.status === 'interviewed' ? 'bg-tertiary/10 text-tertiary' :
-                          'bg-surface-container-high text-on-surface-variant'
-                        }`}>
-                          {STATUSES[s.status] || s.status}
-                        </span>
-                      )}
-                    </td>
-                    <td className="px-4 py-3 text-on-surface-variant text-xs hidden lg:table-cell">{formatDate(s.created_at)}</td>
-                    {user?.role === 'admin' && (
-                      <td className="px-4 py-3">
-                        {editingId !== s.id && (
-                          <button
-                            onClick={() => { setEditingId(s.id); setEditStatus(s.status); }}
-                            className="p-1.5 hover:bg-primary/10 rounded-lg transition-colors"
-                            title="تعديل الحالة"
-                          >
-                            <span className="material-symbols-outlined text-primary text-sm">edit</span>
-                          </button>
-                        )}
-                      </td>
-                    )}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
+        }
+      >
+        <div className="space-y-4">
+          <Input label="الاسم الكامل" value={form.full_name || ''} onChange={(e) => setForm({ ...form, full_name: e.target.value })} required />
+          <Input label="رقم الهوية" value={form.national_id || ''} onChange={(e) => setForm({ ...form, national_id: e.target.value })} required />
+          <Input label="البريد الإلكتروني" type="email" value={form.email || ''} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+          <Input label="الهاتف" value={form.phone || ''} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+          <Input label="واتساب" value={form.whatsapp || ''} onChange={(e) => setForm({ ...form, whatsapp: e.target.value })} />
+          <Select label="المسار" options={TRACKS} value={form.track || ''} onChange={(e) => setForm({ ...form, track: e.target.value })} />
+          <Select label="الحالة" options={STATUSES} value={form.status || 'pending'} onChange={(e) => setForm({ ...form, status: e.target.value })} />
+          <Input label="المستوى الدراسي" value={form.grade || ''} onChange={(e) => setForm({ ...form, grade: e.target.value })} />
+          <Input label="المحافظة" value={form.governorate || ''} onChange={(e) => setForm({ ...form, governorate: e.target.value })} />
+        </div>
+      </Drawer>
+
+      <ConfirmModal
+        isOpen={!!confirmDelete}
+        onClose={() => setConfirmDelete(null)}
+        onConfirm={() => handleDelete(confirmDelete?.id)}
+        title="حذف الطالب"
+        message={`هل أنت متأكد من حذف "${confirmDelete?.full_name}"؟`}
+        confirmLabel="حذف"
+        danger
+      />
     </div>
   );
 }
