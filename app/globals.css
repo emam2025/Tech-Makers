@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -159,6 +161,14 @@
   }
 
   img { max-width: 100%; height: auto; }
+
+  /* Map inline font-family names to CSS variables (next/font/google compatibility) */
+  [style*="Tajawal"] {
+    font-family: var(--font-tajawal), var(--font-cairo), sans-serif !important;
+  }
+  [style*="Cairo"] {
+    font-family: var(--font-cairo), var(--font-tajawal), sans-serif !important;
+  }
 }
 
 @layer components {
@@ -1052,20 +1062,16 @@
   .font-headline-lg,
   .font-headline-md { font-weight: 700 !important; }
 
-  /* Buttons */
-  button, a, [role="button"] {
+  /* Buttons — min-height for touch targets only, don't override padding/sizing */
+  button, a[role="button"] {
     min-height: 44px;
   }
-  .btn, button.py-3, button.py-3\.5, button.py-4 {
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
-    font-size: 14px !important;
-  }
 
-  /* Inputs */
-  input, select, textarea {
+  /* Inputs — proper sizing for mobile */
+  input[type="text"], input[type="email"], input[type="tel"],
+  input[type="password"], input[type="number"], input[type="date"],
+  select, textarea {
     font-size: 16px !important;
-    min-height: 48px;
   }
 
   /* Sections */
@@ -1088,16 +1094,10 @@
   .gap-8 { gap: 12px !important; }
   .gap-12 { gap: 20px !important; }
 
-  /* Card padding */
+  /* Card padding — only large padding */
   .p-8 { padding: 16px !important; }
   .p-10 { padding: 20px !important; }
   .p-12 { padding: 24px !important; }
-  .p-5 { padding: 12px !important; }
-
-  /* Card text */
-  .text-headline-xl { font-weight: 700 !important; }
-  .text-headline-lg { font-weight: 700 !important; }
-  .text-headline-md { font-weight: 700 !important; }
 
   /* Disable heavy animations on mobile */
   .orbit-inner, .spin, .spin-rev { animation: none !important; }
