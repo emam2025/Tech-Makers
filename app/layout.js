@@ -2,6 +2,7 @@ import Link from 'next/link';
 import './globals.css';
 import SiteHeader from '@/components/SiteHeader';
 import RevealObserverClient from '@/components/RevealObserverClient';
+import PromoPopup from '@/components/PromoPopup';
 
 export const metadata = {
   title: 'Tech Makers Egypt — Building Future Tech Leaders',
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
         <a href="#main-content" className="skip-link sr-only focus:not-sr-only">تخطي إلى المحتوى</a>
         <SiteHeader />
         <RevealObserverClient />
+        <PromoPopup />
 
         <main id="main-content">{children}</main>
 

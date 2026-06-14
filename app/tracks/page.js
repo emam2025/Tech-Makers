@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import CountdownTimer from '@/components/CountdownTimer';
 
 /* ──────────────────────── TRACK DATA ──────────────────────── */
 
@@ -364,6 +365,33 @@ export default function TracksPage() {
           )}
         </div>
       </section>
+
+      {/* ── OFFER BANNER ── */}
+      {!track && (
+        <section className="relative bg-gradient-to-l from-tertiary via-amber-500 to-tertiary py-6 md:py-8 overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 left-1/4 w-40 h-40 bg-white rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-1/4 w-60 h-60 bg-white rounded-full blur-3xl" />
+          </div>
+          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center shrink-0">
+                  <span className="material-symbols-outlined text-white text-2xl">local_offer</span>
+                </div>
+                <div>
+                  <h3 className="text-white font-bold text-base md:text-lg mb-1">سجّل الآن واحصل على كورس Techno Math مجاناً 3 شهور + اختبار تحديد مستوى إنجليزي</h3>
+                  <p className="text-white/80 text-xs md:text-sm">العرض ينتهي قريباً — لا تفوّته!</p>
+                </div>
+              </div>
+              <div className="flex flex-col items-center gap-3">
+                <CountdownTimer endDate="2025-07-15T00:00:00" />
+                <span className="text-white/70 text-[10px]">متبقي على انتهاء العرض</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── INTRO ── */}
       {!track && (
