@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Tajawal, Cairo, Poppins } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import SiteHeader from '@/components/SiteHeader';
 import RevealObserverClient from '@/components/RevealObserverClient';
@@ -29,15 +30,31 @@ const poppins = Poppins({
 export const metadata = {
   title: 'Tech Makers Egypt — Building Future Tech Leaders',
   description: 'من مستهلك للتكنولوجيا إلى صانع ومطور وقائد',
+  other: {
+    'material-symbols': 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap',
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="ar" dir="rtl" className={`${tajawal.variable} ${cairo.variable} ${poppins.variable}`}>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta name="theme-color" content="#4169E1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+          media="print"
+          onLoad="this.media='all'"
+        />
+        <noscript>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+          />
+        </noscript>
       </head>
       <body className="bg-surface text-on-surface font-body-md text-body-md min-h-dvh overflow-x-hidden">
         <a href="#main-content" className="skip-link sr-only focus:not-sr-only">تخطي إلى المحتوى</a>
@@ -47,8 +64,8 @@ export default function RootLayout({ children }) {
 
         <main id="main-content">{children}</main>
 
-        <footer className="bg-on-background text-surface-bright py-8 md:py-10 px-margin-mobile md:px-margin-desktop w-full rtl">
-          <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-start gap-5 md:gap-8">
+        <footer className="bg-on-background text-surface-bright py-8 md:py-10 px-4 md:px-20 w-full rtl overflow-hidden">
+          <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-start gap-5 md:gap-8">
             <div className="max-w-sm">
               <img src="/w-%20logo.png" alt="تك ميكرز" className="h-8 w-auto mb-4" loading="lazy" />
               <p className="text-surface-variant/70 font-body-md text-xs leading-relaxed mb-4">
@@ -75,23 +92,52 @@ export default function RootLayout({ children }) {
                 <ul className="flex flex-col gap-1.5">
                   <li><Link href="/about" className="text-surface-variant/70 hover:text-secondary-fixed transition-colors text-xs">من نحن</Link></li>
                   <li><Link href="/tracks" className="text-surface-variant/70 hover:text-secondary-fixed transition-colors text-xs">المسارات التعليمية</Link></li>
-
                 </ul>
               </div>
               <div>
                 <h5 className="font-label-sm text-white mb-4 text-xs">اتصل بنا</h5>
                 <ul className="flex flex-col gap-1.5">
-                  <li className="flex items-center gap-1.5 text-surface-variant/70 text-xs"><span className="material-symbols-outlined text-[10px]">mail</span> info@tka-egypt.com</li>
-                  <li><a href="https://wa.me/201062540164" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-surface-variant/70 hover:text-secondary-fixed transition-colors text-xs"><span className="material-symbols-outlined text-[10px]">chat</span> 0106 254 0164</a></li>
-                  <li className="flex items-center gap-1.5 text-surface-variant/70 text-xs"><span className="material-symbols-outlined text-[10px]">location_on</span> القاهرة، مصر</li>
+                  <li className="flex items-center gap-1.5 text-surface-variant/70 text-xs">
+                    <span className="material-symbols-outlined" style={{ fontSize: '10px' }}>mail</span> info@tka-egypt.com
+                  </li>
+                  <li><a href="https://wa.me/201062540164" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-surface-variant/70 hover:text-secondary-fixed transition-colors text-xs">
+                    <span className="material-symbols-outlined" style={{ fontSize: '10px' }}>chat</span> 0106 254 0164
+                  </a></li>
+                  <li className="flex items-center gap-1.5 text-surface-variant/70 text-xs">
+                    <span className="material-symbols-outlined" style={{ fontSize: '10px' }}>location_on</span> القاهرة، مصر
+                  </li>
                 </ul>
               </div>
             </div>
           </div>
-          <div className="max-w-container-max mx-auto mt-10 pt-5 border-t border-outline-variant/10 text-center">
+          <div className="max-w-[1280px] mx-auto mt-10 pt-5 border-t border-outline-variant/10 text-center">
             <p className="text-surface-variant/70 text-[10px]">© 2026 TKA-Egypt. جميع الحقوق محفوظة.</p>
           </div>
         </footer>
+
+        {/* Material Symbols font loader fallback via JS */}
+        <Script id="ms-font-check" strategy="afterInteractive">{`
+          (function() {
+            if (!document.fonts) return;
+            document.fonts.ready.then(function() {
+              var test = document.createElement('span');
+              test.className = 'material-symbols-outlined';
+              test.textContent = 'check';
+              test.style.position = 'absolute';
+              test.style.left = '-9999px';
+              document.body.appendChild(test);
+              var computed = window.getComputedStyle(test);
+              var ff = computed.fontFamily;
+              if (!ff.includes('Material Symbols')) {
+                var link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap';
+                document.head.appendChild(link);
+              }
+              document.body.removeChild(test);
+            });
+          })();
+        `}</Script>
       </body>
     </html>
   );
