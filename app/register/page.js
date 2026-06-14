@@ -224,6 +224,7 @@ export default function RegisterPage() {
                   <option value="b">Track B — Future AI Engineers (12–15 سنة)</option>
                   <option value="c">Track C — Future Tech Engineers (16–20 سنة)</option>
                   <option value="technomath">Techno Math — الحساب الذهني (8–15 سنة)</option>
+                  <option value="techenglish">Tech English — اللغة الإنجليزية التكنولوجية</option>
                 </select>
               </div>
               <div className="space-y-2">
@@ -235,6 +236,12 @@ export default function RegisterPage() {
                       <option value="monthly">اشتراك شهري — 800 جنيه/شهر</option>
                       <option value="quarterly">اشتراك ربع سنوي — 650 جنيه/شهرياً (إجمالي 1950)</option>
                       <option value="yearly">اشتراك سنوي — 500 جنيه/شهرياً (إجمالي 6000)</option>
+                    </>
+                  ) : track === 'techenglish' ? (
+                    <>
+                      <option value="monthly">اشتراك شهري — 1000 جنيه/شهر</option>
+                      <option value="quarterly">اشتراك ربع سنوي — 750 جنيه/شهرياً (إجمالي 2250)</option>
+                      <option value="yearly">اشتراك سنوي — 600 جنيه/شهرياً (إجمالي 7200)</option>
                     </>
                   ) : (
                     <>
