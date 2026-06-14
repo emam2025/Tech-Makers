@@ -31,10 +31,10 @@ export default function CountdownTimer({ endDate }) {
     <div className="flex justify-center gap-2 sm:gap-3">
       {blocks.map((b, i) => (
         <div key={i} className="flex flex-col items-center">
-          <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white rounded-xl flex items-center justify-center shadow-lg border border-tertiary/20">
-            <span className="text-primary-deep text-xl sm:text-2xl font-bold tabular-nums">{String(b.value).padStart(2, '0')}</span>
+          <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white rounded-xl flex items-center justify-center shadow-lg">
+            <span className="text-primary-deep text-2xl sm:text-3xl font-black tabular-nums">{String(b.value).padStart(2, '0')}</span>
           </div>
-          <span className="text-[10px] sm:text-xs text-white/70 mt-1">{b.label}</span>
+          <span className="text-[10px] sm:text-xs text-white/90 mt-1.5 font-medium">{b.label}</span>
         </div>
       ))}
     </div>

@@ -230,9 +230,19 @@ export default function RegisterPage() {
                 <label className="block font-label-md text-label-md text-on-surface-variant">خطة الاشتراك *</label>
                 <select value={plan} onChange={e => setPlan(e.target.value)} required className="w-full bg-bg-off-white border-0 rounded-lg p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary appearance-none rtl-input shadow-inner">
                   <option value="">اختر الخطة...</option>
-                  <option value="monthly">اشتراك شهري — 1200 جنيه/شهر</option>
-                  <option value="quarterly">اشتراك ربع سنوي — 890 جنيه/شهرياً (إجمالي 2670)</option>
-                  <option value="yearly">اشتراك سنوي — 690 جنيه/شهرياً (إجمالي 8280)</option>
+                  {track === 'technomath' ? (
+                    <>
+                      <option value="monthly">اشتراك شهري — 800 جنيه/شهر</option>
+                      <option value="quarterly">اشتراك ربع سنوي — 650 جنيه/شهرياً (إجمالي 1950)</option>
+                      <option value="yearly">اشتراك سنوي — 500 جنيه/شهرياً (إجمالي 6000)</option>
+                    </>
+                  ) : (
+                    <>
+                      <option value="monthly">اشتراك شهري — 1200 جنيه/شهر</option>
+                      <option value="quarterly">اشتراك ربع سنوي — 890 جنيه/شهرياً (إجمالي 2670)</option>
+                      <option value="yearly">اشتراك سنوي — 690 جنيه/شهرياً (إجمالي 8280)</option>
+                    </>
+                  )}
                 </select>
               </div>
             </div>

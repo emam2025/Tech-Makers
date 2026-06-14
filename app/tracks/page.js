@@ -278,6 +278,12 @@ const plans = [
   { id: 'yearly', name: 'اشتراك سنوي', price: '690', unit: 'جنيه / شهريًا', badge: <><span className="material-symbols-outlined text-sm align-middle">emoji_events</span> الأوفر</>, highlight: false, note: 'إجمالي 8,280 جنيه سنويًا — توفر 6,120 جنيه' },
 ];
 
+const technomathPlans = [
+  { id: 'monthly', name: 'اشتراك شهري', price: '800', unit: 'جنيه / شهر', badge: null, highlight: false, note: 'مناسب للتجربة' },
+  { id: 'quarterly', name: 'اشتراك ربع سنوي', price: '650', unit: 'جنيه / شهريًا', badge: <><span className="material-symbols-outlined text-sm align-middle">star</span> الأكثر اختيارًا</>, highlight: true, note: 'إجمالي 1,950 جنيه لكل 3 شهور — توفر 450 جنيه' },
+  { id: 'yearly', name: 'اشتراك سنوي', price: '500', unit: 'جنيه / شهريًا', badge: <><span className="material-symbols-outlined text-sm align-middle">emoji_events</span> الأوفر</>, highlight: false, note: 'إجمالي 6,000 جنيه سنويًا — توفر 3,600 جنيه' },
+];
+
 const colorMap = {
   primary: { bg: 'bg-primary/10', text: 'text-primary', border: 'border-primary', solid: 'bg-primary' },
   secondary: { bg: 'bg-secondary/10', text: 'text-secondary', border: 'border-secondary', solid: 'bg-secondary' },
@@ -368,7 +374,7 @@ export default function TracksPage() {
 
       {/* ── OFFER BANNER ── */}
       {!track && (
-        <section className="relative bg-gradient-to-l from-tertiary via-amber-500 to-tertiary py-6 md:py-8 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-primary-deep via-primary to-[#0f2d6e] py-6 md:py-8 overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 left-1/4 w-40 h-40 bg-white rounded-full blur-3xl" />
             <div className="absolute bottom-0 right-1/4 w-60 h-60 bg-white rounded-full blur-3xl" />
@@ -376,17 +382,17 @@ export default function TracksPage() {
           <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center shrink-0">
+                <div className="w-14 h-14 bg-white/15 rounded-2xl flex items-center justify-center shrink-0 border border-white/20">
                   <span className="material-symbols-outlined text-white text-2xl">local_offer</span>
                 </div>
                 <div>
-                  <h3 className="text-white font-bold text-base md:text-lg mb-1">سجّل الآن واحصل على كورس Techno Math مجاناً 3 شهور + اختبار تحديد مستوى إنجليزي</h3>
-                  <p className="text-white/80 text-xs md:text-sm">العرض ينتهي قريباً — لا تفوّته!</p>
+                  <h3 className="text-white font-bold text-sm md:text-lg mb-1">سجّل الآن واحصل على كورس Techno Math مجاناً 3 شهور + اختبار تحديد مستوى إنجليزي</h3>
+                  <p className="text-white/90 text-xs md:text-sm font-medium">العرض ينتهي قريباً — لا تفوّته!</p>
                 </div>
               </div>
-              <div className="flex flex-col items-center gap-3">
-                <CountdownTimer endDate="2025-07-15T00:00:00" />
-                <span className="text-white/70 text-[10px]">متبقي على انتهاء العرض</span>
+              <div className="flex flex-col items-center gap-2">
+                <CountdownTimer endDate="2026-07-04T00:00:00" />
+                <span className="text-white/80 text-[10px] font-medium">متبقي على انتهاء العرض</span>
               </div>
             </div>
           </div>
@@ -934,7 +940,7 @@ export default function TracksPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
-              {plans.map((plan) => (
+              {(track.id === 'technomath' ? technomathPlans : plans).map((plan) => (
                 <div
                   key={plan.id}
                   className={`relative bg-white rounded-24 overflow-hidden transition-all duration-300 ${

@@ -5,6 +5,7 @@ const TRACK_NAMES = {
   a: 'Track A — Junior Tech Explorers (8–11 سنة)',
   b: 'Track B — Future AI Engineers (12–15 سنة)',
   c: 'Track C — Future Tech Engineers (16–20 سنة)',
+  technomath: 'Techno Math — الحساب الذهني (8–15 سنة)',
 };
 
 const PLAN_NAMES = {
@@ -13,7 +14,13 @@ const PLAN_NAMES = {
   yearly: 'اشتراك سنوي — 690 جنيه/شهرياً (إجمالي 8280)',
 };
 
-const ALLOWED_TRACKS = ['a', 'b', 'c'];
+const PLAN_NAMES_TECHNOMATH = {
+  monthly: 'اشتراك شهري — 800 جنيه/شهر',
+  quarterly: 'اشتراك ربع سنوي — 650 جنيه/شهرياً (إجمالي 1950)',
+  yearly: 'اشتراك سنوي — 500 جنيه/شهرياً (إجمالي 6000)',
+};
+
+const ALLOWED_TRACKS = ['a', 'b', 'c', 'technomath'];
 const ALLOWED_PLANS = ['monthly', 'quarterly', 'yearly'];
 
 export async function POST(request) {
@@ -134,7 +141,7 @@ export async function POST(request) {
     }
 
     const trackName = TRACK_NAMES[track] || track;
-    const planName = PLAN_NAMES[plan] || plan;
+    const planName = (track === 'technomath' ? PLAN_NAMES_TECHNOMATH : PLAN_NAMES)[plan] || plan;
 
     const emailHtml = `
 <!DOCTYPE html>
