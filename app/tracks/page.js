@@ -341,7 +341,7 @@ export default function TracksPage() {
       <section className="relative bg-gradient-to-br from-primary-deep to-primary text-on-primary overflow-hidden py-16 md:py-28">
         <div className="absolute inset-0">
           <Image
-            src="/techmakers-opt.jpg"
+            src="/techmakers-sm.jpg"
             alt="مسارات التعلم"
             fill
             sizes="100vw"
