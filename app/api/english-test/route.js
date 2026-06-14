@@ -23,9 +23,7 @@ export async function POST(request) {
     const body = await request.json();
     const { action } = body;
 
-    console.log('English test action:', action);
-    console.log('GEMINI_API_KEY set:', !!process.env.GEMINI_API_KEY);
-    console.log('GEMINI_API_KEY_BACKUP set:', !!process.env.GEMINI_API_KEY_BACKUP);
+    console.log('English test action:', action, 'keys:', !!process.env.GEMINI_API_KEY, !!process.env.GEMINI_API_KEY_BACKUP);
 
     if (action === 'generate') {
       const data = await generateQuestions();
@@ -49,7 +47,7 @@ export async function POST(request) {
       { status: 400 }
     );
   } catch (err) {
-    console.error('English test API error:', err.message, err.stack);
+    console.error('English test API error:', err.message);
     return NextResponse.json(
       { error: err.message || 'حدث خطأ في الخادم، حاول مرة أخرى' },
       { status: 500 }
