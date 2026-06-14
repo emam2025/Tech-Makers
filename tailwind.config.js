@@ -99,6 +99,7 @@ module.exports = {
         "7xl": ["72px", { lineHeight: "1.05", fontWeight: "900" }],
         // Custom semantic tokens (backward compatible)
         "headline-lg": ["24px", { lineHeight: "1.4", fontWeight: "700" }],
+        "headline-sm": ["16px", { lineHeight: "1.4", fontWeight: "700" }],
         "body-md": ["16px", { lineHeight: "1.75", fontWeight: "400" }],
         "body-lg": ["18px", { lineHeight: "1.75", fontWeight: "400" }],
         "headline-xl": ["32px", { lineHeight: "1.3", fontWeight: "700" }],

@@ -105,28 +105,28 @@ export default function HomePage() {
             <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(65,105,225,0.2)] flex items-start gap-4 md:gap-6 reveal reveal-delay-1">
               <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 bg-gradient-to-br from-primary to-primary-deep flex items-center justify-center rounded-2xl text-white font-bold text-xl md:text-2xl group-hover:scale-110 transition-transform">01</div>
               <div>
-                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary">🧠 التفكير المنطقي</h3>
+                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary flex items-center gap-2"><span className="material-symbols-outlined text-2xl text-primary">psychology</span> التفكير المنطقي</h3>
                 <p className="text-on-surface-variant font-body-md">بناء عقلية تحليلية تُمكّن الطالب من فهم المشكلات وتقسيمها بذكاء</p>
               </div>
             </div>
             <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-secondary/10 hover:border-secondary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(253,118,26,0.2)] flex items-start gap-4 md:gap-6 reveal reveal-delay-2">
               <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 bg-gradient-to-br from-secondary to-amber-500 flex items-center justify-center rounded-2xl text-white font-bold text-xl md:text-2xl group-hover:scale-110 transition-transform">02</div>
               <div>
-                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary">🎨 الإبداع الرقمي</h3>
+                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary flex items-center gap-2"><span className="material-symbols-outlined text-2xl text-secondary">palette</span> الإبداع الرقمي</h3>
                 <p className="text-on-surface-variant font-body-md">تحويل الطالب من مستهلك للتكنولوجيا إلى صانع يُنتج أدواته</p>
               </div>
             </div>
             <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-tertiary/10 hover:border-tertiary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(247,190,29,0.2)] flex items-start gap-4 md:gap-6 reveal reveal-delay-3">
               <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 bg-gradient-to-br from-tertiary to-amber-400 flex items-center justify-center rounded-2xl text-white font-bold text-xl md:text-2xl group-hover:scale-110 transition-transform">03</div>
               <div>
-                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary">🛠️ التعلم بالمشاريع</h3>
+                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary flex items-center gap-2"><span className="material-symbols-outlined text-2xl text-tertiary">handyman</span> التعلم بالمشاريع</h3>
                 <p className="text-on-surface-variant font-body-md">زيادة الثقة بالنفس من خلال تطبيقات عملية ومشاريع حقيقية</p>
               </div>
             </div>
             <div className="group bg-white p-5 md:p-8 rounded-24 shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-primary-light/10 hover:border-primary-light/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(107,138,255,0.2)] flex items-start gap-4 md:gap-6 reveal reveal-delay-4">
               <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 bg-gradient-to-br from-primary-light to-primary flex items-center justify-center rounded-2xl text-white font-bold text-xl md:text-2xl group-hover:scale-110 transition-transform">04</div>
               <div>
-                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary">🤖 التعرض المبكر للـ AI</h3>
+                <h3 className="font-headline-lg text-headline-lg mb-2 text-primary flex items-center gap-2"><span className="material-symbols-outlined text-2xl text-primary-light">smart_toy</span> التعرض المبكر للـ AI</h3>
                 <p className="text-on-surface-variant font-body-md">إعداد جيل المستقبل بأدوات وتقنيات الذكاء الاصطناعي</p>
               </div>
             </div>
@@ -429,7 +429,7 @@ export default function HomePage() {
           </div>
 
           <div className="text-center mt-16">
-            <p className="font-headline-xl text-headline-xl text-primary">ابنك ممكن يكون التالي 🌟</p>
+            <p className="font-headline-xl text-headline-xl text-primary flex items-center justify-center gap-2"><span className="material-symbols-outlined text-3xl text-tertiary">stars</span> ابنك ممكن يكون التالي</p>
           </div>
         </div>
       </section>
