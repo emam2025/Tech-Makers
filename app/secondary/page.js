@@ -106,36 +106,39 @@ export default function SecondaryPage() {
           </div>
           <div className="flex items-center gap-4 mb-6">
             <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/30">
-              <span className="material-symbols-outlined text-white text-3xl">school</span>
+              <span className="material-symbols-outlined text-white text-3xl">code</span>
             </div>
             <div>
               <span className="text-sm text-[#f7be1d] bg-[#f7be1d]/20 px-3 py-1 rounded-full inline-block mb-1 border border-[#f7be1d]/30 font-bold">
-                برنامج خاص بالثانوية العامة
+                كورس برمجة شامل — الصف الثالث الثانوي
               </span>
               <h1 className="text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Tajawal, sans-serif' }}>
-                مسار الثانوية العامة — Tech Academy
+                اتقن لغة المستقبل
               </h1>
+              <p className="text-white/80 text-lg mt-1" style={{ fontFamily: 'Cairo, sans-serif' }}>
+                كورس برمجة ثانوية عامة شامل — يتوافق مع المنهج الوطني المصري
+              </p>
             </div>
           </div>
           <p className="text-white/80 text-lg leading-relaxed mb-8 max-w-3xl" style={{ fontFamily: 'Cairo, sans-serif' }}>
-            برنامج متكامل مُصمم خصيصاً لطلاب الثانوية العامة لتعلم البرمجة وتطوير التطبيقات والمهارات التقنية المتقدمة، مع تحضير قوي للمستقبل الجامعي والمهني.
+            دورة برمجة متكاملة لطلاب الثانوية العامة (الصف الثالث الثانوي) تتوافق مع المنهج الوطني المصري. يحصل المتدربون الناجحون على شهادة معترف بها دوليًا تفتح أمامهم فرصًا وظيفية واسعة.
           </p>
           <div className="flex flex-wrap gap-3 mb-8">
             <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-xl text-sm font-bold border border-white/20">
-              <span className="material-symbols-outlined text-lg">schedule</span>
-              عام دراسي كامل
+              <span className="material-symbols-outlined text-lg">verified</span>
+              اعتماد رسمي من الوزارة
             </div>
             <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-xl text-sm font-bold border border-white/20">
-              <span className="material-symbols-outlined text-lg">group</span>
-              15 — 18 سنة
-            </div>
-            <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-xl text-sm font-bold border border-white/20">
-              <span className="material-symbols-outlined text-lg">trending_up</span>
-              3 مستويات
+              <span className="material-symbols-outlined text-lg">workspace_premium</span>
+              شهادة معتمدة دوليًا
             </div>
             <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-xl text-sm font-bold border border-white/20">
               <span className="material-symbols-outlined text-lg">computer</span>
-              أونلاين / أوفلاين
+              منصة QUREO اليابانية
+            </div>
+            <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-xl text-sm font-bold border border-white/20">
+              <span className="material-symbols-outlined text-lg">co_present</span>
+              مدربون معتمدون
             </div>
           </div>
           <a href="#register" className="inline-flex items-center gap-3 bg-[#f7be1d] text-[#1a3fa0] px-10 py-4 rounded-full text-lg font-bold shadow-xl hover:scale-105 active:scale-95 transition-all">
@@ -145,29 +148,29 @@ export default function SecondaryPage() {
         </div>
       </section>
 
-      {/* COURSE DETAILS */}
+      {/* COURSE HIGHLIGHTS */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <div className="text-center mb-12">
             <span className="inline-block bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-4 border border-primary/20">
-              تفاصيل البرنامج
+              مميزات الدورة
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Tajawal, sans-serif' }}>
-              ليه تختار مسار الثانوية العامة؟
+              ليه تختار كورسنا؟
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto text-lg" style={{ fontFamily: 'Cairo, sans-serif' }}>
-              برنامج شامل يجمع بين التعليم الأكاديمي وتطوير المهارات التقنية الحديثة
+              دورة برمجة متكاملة تجمع بين المنهج الرسمي والتطبيق العملي
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {[
-              { icon: 'code', title: 'البرمجة المتقدمة', desc: 'تعلم لغات البرمجة الحديثة مثل Python وJavaScript وبناء مشاريع حقيقية', color: '#4169e1' },
-              { icon: 'phone_iphone', title: 'تطوير التطبيقات', desc: 'بناء تطبيقات موبايل وويب احترافية تخدم المجتمع وتحل مشاكل حقيقية', color: '#fd761a' },
-              { icon: 'smart_toy', title: 'الذكاء الاصطناعي', desc: 'مقدمة في مفاهيم AI وMachine Learning وكيفية تطبيقها في حياتنا اليومية', color: '#f7be1d' },
-              { icon: 'security', title: 'الأمن السيبراني', desc: 'أساسيات حماية البيانات والأنظمة والشبكات من التهديدات الإلكترونية', color: '#e74c3c' },
-              { icon: 'psychology', title: 'التفكير النقدي', desc: 'تطوير مهارات التحليل والتفكير المنطقي وحل المشكلات المعقدة', color: '#2ecc71' },
-              { icon: 'workspace_premium', title: 'شهادات معتمدة', desc: 'الحصول على شهادات دولية معتمدة تُعضد سيرتك الذاتية', color: '#9b59b6' },
+              { icon: 'verified', title: 'اعتماد رسمي', desc: 'يعتمد كورسنا على منهج وزارة التربية والتعليم الجديد في البرمجة والذكاء الاصطناعي', color: '#4169e1' },
+              { icon: 'devices', title: 'محتوى تفاعلي', desc: 'دروس عملية وتطبيقية عبر منصة QUREO اليابانية المتخصصة، تنمي مهارات التفكير المنطقي والإبداع', color: '#fd761a' },
+              { icon: 'workspace_premium', title: 'شهادة معتمدة دوليًا', desc: 'يحصل المتدربون الناجحون على شهادة معترف بها دوليًا تفتح أمامهم فرصًا وظيفية واسعة', color: '#f7be1d' },
+              { icon: 'rocket_launch', title: 'تهيئة للمستقبل', desc: 'تطوير مهارات تكنولوجية ومعرفية تتماشى مع متطلبات سوق العمل الرقمي الحديث', color: '#e74c3c' },
+              { icon: 'co_present', title: 'مدربون معتمدون', desc: 'نخبة من معلمي الحاسب الآلي ذوي الخبرة والإلمام الكامل بالمنهج الرسمي', color: '#2ecc71' },
+              { icon: 'psychology', title: 'تفكير نقدي', desc: 'تنمية مهارات التحليل والتفكير المنطقي وحل المشكلات المعقدة', color: '#9b59b6' },
             ].map((item, i) => (
               <div key={i} className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all group">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform" style={{ background: `${item.color}15` }}>
@@ -179,43 +182,47 @@ export default function SecondaryPage() {
             ))}
           </div>
 
-          {/* EDUCATIONAL PATH */}
+          {/* EDUCATIONAL OBJECTIVES */}
           <div className="text-center mb-12">
             <span className="inline-block bg-secondary/10 text-secondary px-4 py-1.5 rounded-full text-sm font-bold mb-4 border border-secondary/20">
-              المسار التعليمي
+              الأهداف التعليمية
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Tajawal, sans-serif' }}>
-              خطة التعلم المتدرجة
+              ماذا سيتعلم الطالب؟
             </h2>
+            <p className="text-gray-600 max-w-3xl mx-auto text-lg mb-8" style={{ fontFamily: 'Cairo, sans-serif' }}>
+              يركز المنهج على الكفايات التقنية والرقمية الحديثة، مثل تحليل المعلومات، تصميم الحلول، واستخدام أدوات البرمجة على نحو إبداعي
+            </p>
           </div>
 
-          <div className="relative">
+          {/* Learning Path */}
+          <div className="relative mb-16">
             <div className="absolute right-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-secondary to-tertiary hidden md:block" />
 
             {[
               {
-                level: 'المستوى الأول',
-                title: 'أساسيات البرمجة وتطوير الويب',
-                period: 'الفصل الدراسي الأول',
-                icon: 'play_circle',
+                level: 'البرمجة',
+                title: 'كتابة الخوارزميات والبرمجة',
+                icon: 'code',
                 color: '#4169e1',
-                topics: ['أساسيات HTML, CSS, JavaScript', 'بناء مواقع تفاعلية', 'مقدمة في Python', 'مشروع: شخصي portfolio'],
+                description: 'عند تناول وحدة البرمجة يقوم الطالب بكتابة الخوارزميات البسيطة وتنفيذها (تنمية مهارة التفكير الخوارزمي).',
+                topics: ['كتابة الخوارزميات البسيطة', 'تنفيذ الخوارزميات', 'تنمية التفكير الخوارزمي', 'تطبيق عملي على منصة QUREO'],
               },
               {
-                level: 'المستوى الثاني',
-                title: 'تطوير التطبيقات والمهارات المتقدمة',
-                period: 'الفصل الدراسي الثاني',
-                icon: 'play_circle',
+                level: 'الذكاء الاصطناعي',
+                title: 'مقدمة في الذكاء الاصطناعي التوليدي',
+                icon: 'smart_toy',
                 color: '#fd761a',
-                topics: ['React.js لبناء واجهات متقدمة', 'Node.js وقواعد البيانات', 'تطوير تطبيقات موبايل', 'مشروع: تطبيق خدمي'],
+                description: 'يكتسب الطالب فهماً أساسياً للذكاء الاصطناعي التوليدي ومدى تطبيقاته المستقبلية.',
+                topics: ['مفهوم الذكاء الاصطناعي التوليدي', 'تطبيقاته المستقبلية', 'فهم آليات العمل', 'مشاريع تطبيقية'],
               },
               {
-                level: 'المستوى الثالث',
-                title: 'الذكاء الاصطناعي والأمن السيبراني',
-                period: 'الفصل الدراسي الثالث',
-                icon: 'emoji_events',
-                color: '#f7be1d',
-                topics: ['مقدمة في الذكاء الاصطناعي', 'تحليل البيانات', 'أساسيات الأمن السيبراني', 'مشروع تخرج: حل مشكلة حقيقية'],
+                level: 'تحليل المعلومات',
+                title: 'الكفايات التقنية والرقمية الحديثة',
+                icon: 'analytics',
+                color: '#2ecc71',
+                description: 'يركز المنهج على تحليل المعلومات، تصميم الحلول، واستخدام أدوات البرمجة على نحو إبداعي.',
+                topics: ['تحليل المعلومات', 'تصميم الحلول', 'استخدام أدوات البرمجة', 'التفكير الإبداعي'],
               },
             ].map((step, i) => (
               <div key={i} className="flex gap-6 mb-8 md:mr-16">
@@ -227,9 +234,9 @@ export default function SecondaryPage() {
                 <div className="flex-1 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-xs font-bold px-3 py-1 rounded-full" style={{ background: `${step.color}15`, color: step.color }}>{step.level}</span>
-                    <span className="text-xs text-gray-500">{step.period}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Tajawal, sans-serif' }}>{step.title}</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'Tajawal, sans-serif' }}>{step.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-3" style={{ fontFamily: 'Cairo, sans-serif' }}>{step.description}</p>
                   <div className="grid sm:grid-cols-2 gap-2">
                     {step.topics.map((topic, j) => (
                       <div key={j} className="flex items-center gap-2 text-sm text-gray-600">
@@ -243,12 +250,55 @@ export default function SecondaryPage() {
             ))}
           </div>
 
+          {/* Exam Distribution */}
+          <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-3xl p-8 md:p-10 border border-primary/10 mb-16">
+            <div className="text-center mb-8">
+              <span className="inline-block bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-4 border border-primary/20">
+                توزيع الامتحان
+              </span>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'Tajawal, sans-serif' }}>
+                مستويات الذكاء المعرفي في امتحان الفصل الدراسي الثاني
+              </h3>
+              <p className="text-gray-600" style={{ fontFamily: 'Cairo, sans-serif' }}>
+                يعكس تركيز المنهج على حل المشكلات العملية بدرجة أعلى
+              </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { label: 'تذكر', percent: 10, color: '#4169e1', icon: 'memory' },
+                { label: 'فهم', percent: 25, color: '#2ecc71', icon: 'lightbulb' },
+                { label: 'تطبيق', percent: 30, color: '#fd761a', icon: 'build' },
+                { label: 'حل مشكلات', percent: 35, color: '#e74c3c', icon: 'psychology' },
+              ].map((item, i) => (
+                <div key={i} className="bg-white rounded-2xl p-5 text-center border border-gray-100">
+                  <span className="material-symbols-outlined text-3xl mb-3 block" style={{ color: item.color }}>{item.icon}</span>
+                  <div className="text-3xl font-bold mb-1" style={{ color: item.color }}>{item.percent}%</div>
+                  <div className="text-sm font-bold text-gray-700" style={{ fontFamily: 'Tajawal, sans-serif' }}>{item.label}</div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 bg-white rounded-xl p-4 border border-gray-100">
+              <div className="flex gap-1 h-4 rounded-full overflow-hidden">
+                <div style={{ width: '10%', background: '#4169e1' }} />
+                <div style={{ width: '25%', background: '#2ecc71' }} />
+                <div style={{ width: '30%', background: '#fd761a' }} />
+                <div style={{ width: '35%', background: '#e74c3c' }} />
+              </div>
+              <div className="flex flex-wrap gap-4 mt-3 text-xs">
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full" style={{ background: '#4169e1' }} /> تذكر 10%</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full" style={{ background: '#2ecc71' }} /> فهم 25%</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full" style={{ background: '#fd761a' }} /> تطبيق 30%</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full" style={{ background: '#e74c3c' }} /> حل مشكلات 35%</span>
+              </div>
+            </div>
+          </div>
+
           {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { num: '500+', label: 'طالب مسجل', icon: 'school' },
-              { num: '50+', label: 'مشروع مكتمل', icon: 'folder_open' },
-              { num: '95%', label: 'نسبة الرضا', icon: 'sentiment_very_satisfied' },
+              { num: '95%', label: 'نسبة النجاح', icon: 'emoji_events' },
+              { num: '100%', label: 'متوافق مع المنهج', icon: 'verified' },
               { num: '15+', label: 'مدرب متخصص', icon: 'co_present' },
             ].map((stat, i) => (
               <div key={i} className="text-center p-6 bg-gradient-to-br from-primary/5 to-white rounded-2xl border border-primary/10">
@@ -272,7 +322,7 @@ export default function SecondaryPage() {
               تسجيل بيانات الطالب
             </h2>
             <p className="text-gray-600" style={{ fontFamily: 'Cairo, sans-serif' }}>
-              املأ البيانات التالية وسنتواصل معك قريباً
+              املأ البيانات التالية وسنتواصل معك قريباً لتأكيد التسجيل وتفاصيل الدورة
             </p>
           </div>
 
@@ -354,7 +404,7 @@ export default function SecondaryPage() {
                 <label className="block text-sm font-bold text-gray-700 mb-2">طريقة الدراسة *</label>
                 <div className="grid grid-cols-2 gap-3">
                   {[
-                    { v: 'online', label: 'أونلاين', icon: 'computer', desc: ' عبر الإنترنت' },
+                    { v: 'online', label: 'أونلاين', icon: 'computer', desc: 'عبر الإنترنت' },
                     { v: 'offline', label: 'أوفلاين', icon: 'meeting_room', desc: 'في الفصل' },
                   ].map(mode => (
                     <button
