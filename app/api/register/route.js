@@ -169,7 +169,7 @@ export async function POST(request) {
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
 <head><meta charset="UTF-8"><title>تأكيد التسجيل</title></head>
-<body style="font-family: 'Cairo', Arial, sans-serif; background: #f4f7fc; margin: 0; padding: 32px;">
+<body style="font-family: 'IBM Plex Sans Arabic', Arial, sans-serif; background: #f4f7fc; margin: 0; padding: 32px;">
   <div style="max-width: 560px; margin: 0 auto; background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
     <div style="background: linear-gradient(135deg, #1e3a8a, #2563eb); padding: 32px; text-align: center;">
       <h1 style="color: #fff; font-size: 24px; margin: 0;">Tech Makers Egypt</h1>

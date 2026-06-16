@@ -88,10 +88,10 @@ export default function ThirdGradePage() {
             <span className="inline-block bg-[#f7be1d] text-[#1a3fa0] text-xs font-bold px-3 py-1.5 rounded-full">الصف الثالث الثانوي</span>
             <span className="inline-block bg-white/15 text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/20">الاحتراف والمشروعات والاستعداد الجامعي</span>
           </div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'Tajawal, sans-serif' }}>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'Be Vietnam Pro, sans-serif' }}>
             الاحتراف والمشروعات والاستعداد الجامعي
           </h1>
-          <p className="text-white/75 text-lg md:text-xl max-w-3xl" style={{ fontFamily: 'Cairo, sans-serif' }}>
+          <p className="text-white/75 text-lg md:text-xl max-w-3xl" style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
             ينتهي بمراجعة متقدمة ومشروعات تطبيقية تؤهل الطالب للفهم العملي الحقيقي — 7 وحدات
           </p>
           <div className="flex flex-wrap gap-3 mt-6">
@@ -136,8 +136,8 @@ export default function ThirdGradePage() {
       {/* CTA */}
       <section className="py-12 px-margin-mobile md:px-margin-desktop bg-gradient-to-br from-[#1a3fa0] to-[#4169e1]">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" style={{ fontFamily: 'Tajawal, sans-serif' }}>استعد للمرحلة الجامعية</h2>
-          <p className="text-white/75 mb-6" style={{ fontFamily: 'Cairo, sans-serif' }}>سجّل الآن واحصل على دعم شامل للتحضير للثانوية العامة</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" style={{ fontFamily: 'Be Vietnam Pro, sans-serif' }}>استعد للمرحلة الجامعية</h2>
+          <p className="text-white/75 mb-6" style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>سجّل الآن واحصل على دعم شامل للتحضير للثانوية العامة</p>
           <Link href="/secondary#register" className="inline-flex items-center gap-2 bg-[#f7be1d] text-[#1a3fa0] px-8 py-3.5 rounded-full font-bold text-lg shadow-xl hover:scale-105 transition-all">
             <span className="material-symbols-outlined">app_registration</span>
             سجّل الآن
@@ -161,7 +161,7 @@ function UnitCard({ unit }) {
               الوحدة {unit.id}
             </span>
           </div>
-          <h3 className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Tajawal, sans-serif' }}>{unit.title}</h3>
+          <h3 className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Be Vietnam Pro, sans-serif' }}>{unit.title}</h3>
         </div>
       </div>
       <div className="px-5 pb-5 grid grid-cols-1 md:grid-cols-2 gap-4">

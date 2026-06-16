@@ -1,29 +1,29 @@
 import Link from 'next/link';
-import { Tajawal, Cairo, Poppins } from 'next/font/google';
+import { Be_Vietnam_Pro, IBM_Plex_Sans_Arabic, IBM_Plex_Sans } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import SiteHeader from '@/components/SiteHeader';
 import ClientShell from '@/components/ClientShell';
 
-const tajawal = Tajawal({
-  subsets: ['arabic'],
-  weight: ['400', '500', '700', '800', '900'],
-  display: 'swap',
-  variable: '--font-tajawal',
-});
-
-const cairo = Cairo({
-  subsets: ['arabic'],
+const beVietnamPro = Be_Vietnam_Pro({
+  subsets: ['latin', 'vietnamese'],
   weight: ['400', '500', '600', '700', '800'],
   display: 'swap',
-  variable: '--font-cairo',
+  variable: '--font-be-vietnam',
 });
 
-const poppins = Poppins({
+const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
+  subsets: ['arabic'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-ibm-plex-arabic',
+});
+
+const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
-  variable: '--font-poppins',
+  variable: '--font-ibm-plex',
 });
 
 export const metadata = {
@@ -82,7 +82,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ar" dir="rtl" className={`${tajawal.variable} ${cairo.variable} ${poppins.variable}`}>
+    <html lang="ar" dir="rtl" className={`${beVietnamPro.variable} ${ibmPlexSansArabic.variable} ${ibmPlexSans.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <meta name="theme-color" content="#4169E1" />

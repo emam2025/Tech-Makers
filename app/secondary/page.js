@@ -112,15 +112,15 @@ export default function SecondaryPage() {
               <span className="text-sm text-[#f7be1d] bg-[#f7be1d]/20 px-3 py-1 rounded-full inline-block mb-1 border border-[#f7be1d]/30 font-bold max-w-full overflow-hidden text-ellipsis whitespace-nowrap">
                 مسار البرمجة والذكاء الاصطناعي — الصفوف الثلاثة
               </span>
-              <h1 className="text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Tajawal, sans-serif' }}>
+              <h1 className="text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Be Vietnam Pro, sans-serif' }}>
                 اتقن لغة المستقبل
               </h1>
-              <p className="text-white/80 text-lg mt-1" style={{ fontFamily: 'Cairo, sans-serif' }}>
+              <p className="text-white/80 text-lg mt-1" style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
                 مسار سنوي متدرج من تأسيس علوم الحاسب إلى البرمجة المتقدمة والمشروعات
               </p>
             </div>
           </div>
-          <p className="text-white/80 text-lg leading-relaxed mb-8 max-w-3xl" style={{ fontFamily: 'Cairo, sans-serif' }}>
+          <p className="text-white/80 text-lg leading-relaxed mb-8 max-w-3xl" style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
             يبدأ من فهم المعلومات وأمنها والاتصالات والأنظمة الرقمية في الصف الأول الثانوي، ثم ينتقل إلى البرمجة العملية والذكاء الاصطناعي في الصف الثاني، وينتهي في الثالث بمراجعة متقدمة ومشروعات تطبيقية تؤهل الطالب للفهم العملي الحقيقي.
           </p>
           <div className="flex flex-wrap gap-3 mb-8">
@@ -155,10 +155,10 @@ export default function SecondaryPage() {
             <span className="inline-block bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-4 border border-primary/20">
               مميزات الدورة
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Tajawal, sans-serif' }}>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Be Vietnam Pro, sans-serif' }}>
               ليه تختار كورسنا؟
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg" style={{ fontFamily: 'Cairo, sans-serif' }}>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg" style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
               دورة برمجة متكاملة تجمع بين المنهج الرسمي والتطبيق العملي
             </p>
           </div>
@@ -176,8 +176,8 @@ export default function SecondaryPage() {
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform" style={{ background: `${item.color}15` }}>
                   <span className="material-symbols-outlined text-2xl" style={{ color: item.color }}>{item.icon}</span>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2" style={{ fontFamily: 'Tajawal, sans-serif' }}>{item.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed" style={{ fontFamily: 'Cairo, sans-serif' }}>{item.desc}</p>
+                <h3 className="text-lg font-bold text-gray-900 mb-2" style={{ fontFamily: 'Be Vietnam Pro, sans-serif' }}>{item.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed" style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -187,10 +187,10 @@ export default function SecondaryPage() {
             <span className="inline-block bg-secondary/10 text-secondary px-4 py-1.5 rounded-full text-sm font-bold mb-4 border border-secondary/20">
               الأهداف التعليمية
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Tajawal, sans-serif' }}>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Be Vietnam Pro, sans-serif' }}>
               ماذا سيتعلم الطالب؟
             </h2>
-            <p className="text-gray-600 max-w-3xl mx-auto text-lg mb-8" style={{ fontFamily: 'Cairo, sans-serif' }}>
+            <p className="text-gray-600 max-w-3xl mx-auto text-lg mb-8" style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
               يركز المنهج على الكفايات التقنية والرقمية الحديثة، مثل تحليل المعلومات، تصميم الحلول، واستخدام أدوات البرمجة على نحو إبداعي
             </p>
           </div>
@@ -235,8 +235,8 @@ export default function SecondaryPage() {
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-xs font-bold px-3 py-1 rounded-full" style={{ background: `${step.color}15`, color: step.color }}>{step.level}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'Tajawal, sans-serif' }}>{step.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-3" style={{ fontFamily: 'Cairo, sans-serif' }}>{step.description}</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'Be Vietnam Pro, sans-serif' }}>{step.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-3" style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>{step.description}</p>
                   <div className="grid sm:grid-cols-2 gap-2">
                     {step.topics.map((topic, j) => (
                       <div key={j} className="flex items-center gap-2 text-sm text-gray-600">
@@ -256,10 +256,10 @@ export default function SecondaryPage() {
               <span className="inline-block bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-4 border border-primary/20">
                 توزيع الامتحان
               </span>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'Tajawal, sans-serif' }}>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'Be Vietnam Pro, sans-serif' }}>
                 مستويات الذكاء المعرفي في امتحان الفصل الدراسي الثاني
               </h3>
-              <p className="text-gray-600" style={{ fontFamily: 'Cairo, sans-serif' }}>
+              <p className="text-gray-600" style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
                 يعكس تركيز المنهج على حل المشكلات العملية بدرجة أعلى
               </p>
             </div>
@@ -273,7 +273,7 @@ export default function SecondaryPage() {
                 <div key={i} className="bg-white rounded-2xl p-5 text-center border border-gray-100">
                   <span className="material-symbols-outlined text-3xl mb-3 block" style={{ color: item.color }}>{item.icon}</span>
                   <div className="text-3xl font-bold mb-1" style={{ color: item.color }}>{item.percent}%</div>
-                  <div className="text-sm font-bold text-gray-700" style={{ fontFamily: 'Tajawal, sans-serif' }}>{item.label}</div>
+                  <div className="text-sm font-bold text-gray-700" style={{ fontFamily: 'Be Vietnam Pro, sans-serif' }}>{item.label}</div>
                 </div>
               ))}
             </div>
@@ -304,7 +304,7 @@ export default function SecondaryPage() {
               <div key={i} className="text-center p-6 bg-gradient-to-br from-primary/5 to-white rounded-2xl border border-primary/10">
                 <span className="material-symbols-outlined text-primary text-3xl mb-2 block">{stat.icon}</span>
                 <div className="text-2xl font-bold text-primary mb-1">{stat.num}</div>
-                <div className="text-sm text-gray-600" style={{ fontFamily: 'Cairo, sans-serif' }}>{stat.label}</div>
+                <div className="text-sm text-gray-600" style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>{stat.label}</div>
               </div>
             ))}
           </div>
@@ -318,10 +318,10 @@ export default function SecondaryPage() {
             <span className="inline-block bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-4 border border-primary/20">
               المنهج الدراسي
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Tajawal, sans-serif' }}>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Be Vietnam Pro, sans-serif' }}>
               اختر الصف الدراسي
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg" style={{ fontFamily: 'Cairo, sans-serif' }}>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg" style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
               مسار متكامل لكل صف يشمل المنهج الرسمي، الأنشطة العملية، ومعايير التقييم
             </p>
           </div>
@@ -334,11 +334,11 @@ export default function SecondaryPage() {
                   <span className="material-symbols-outlined text-white text-2xl">looks_one</span>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#4169e1]" style={{ fontFamily: 'Tajawal, sans-serif' }}>الصف الأول الثانوي</h3>
+                  <h3 className="text-xl font-bold text-[#4169e1]" style={{ fontFamily: 'Be Vietnam Pro, sans-serif' }}>الصف الأول الثانوي</h3>
                   <p className="text-sm text-gray-500">تأسيس علوم الحاسب والتفكير البرمجي</p>
                 </div>
               </div>
-              <p className="text-gray-600 text-sm mb-4" style={{ fontFamily: 'Cairo, sans-serif' }}>
+              <p className="text-gray-600 text-sm mb-4" style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
                 فهم المعلومات وأمنها والاتصالات والأنظمة الرقمية — 8 وحدات
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
@@ -366,11 +366,11 @@ export default function SecondaryPage() {
                   <span className="material-symbols-outlined text-white text-2xl">looks_two</span>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#fd761a]" style={{ fontFamily: 'Tajawal, sans-serif' }}>الصف الثاني الثانوي</h3>
+                  <h3 className="text-xl font-bold text-[#fd761a]" style={{ fontFamily: 'Be Vietnam Pro, sans-serif' }}>الصف الثاني الثانوي</h3>
                   <p className="text-sm text-gray-500">البرمجة والتطبيقات المتقدمة</p>
                 </div>
               </div>
-              <p className="text-gray-600 text-sm mb-4" style={{ fontFamily: 'Cairo, sans-serif' }}>
+              <p className="text-gray-600 text-sm mb-4" style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
                 البرمجة العملية بالـ Python والذكاء الاصطناعي — 8 وحدات
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
@@ -398,11 +398,11 @@ export default function SecondaryPage() {
                   <span className="material-symbols-outlined text-white text-2xl">looks_3</span>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#2ecc71]" style={{ fontFamily: 'Tajawal, sans-serif' }}>الصف الثالث الثانوي</h3>
+                  <h3 className="text-xl font-bold text-[#2ecc71]" style={{ fontFamily: 'Be Vietnam Pro, sans-serif' }}>الصف الثالث الثانوي</h3>
                   <p className="text-sm text-gray-500">الاحتراف والمشروعات والاستعداد الجامعي</p>
                 </div>
               </div>
-              <p className="text-gray-600 text-sm mb-4" style={{ fontFamily: 'Cairo, sans-serif' }}>
+              <p className="text-gray-600 text-sm mb-4" style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
                 مراجعة متقدمة وبناء تطبيقات ومشروعات تطبيقية — 7 وحدات
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
@@ -433,10 +433,10 @@ export default function SecondaryPage() {
             <span className="inline-block bg-[#f7be1d] text-[#1a3fa0] px-5 py-1.5 rounded-full text-sm font-bold mb-4 shadow-lg">
               سجّل الآن — مقاعد محدودة
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3" style={{ fontFamily: 'Tajawal, sans-serif' }}>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3" style={{ fontFamily: 'Be Vietnam Pro, sans-serif' }}>
               تسجيل بيانات الطالب
             </h2>
-            <p className="text-white/75 text-lg" style={{ fontFamily: 'Cairo, sans-serif' }}>
+            <p className="text-white/75 text-lg" style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
               املأ البيانات التالية وسنتواصل معك فوراً لتأكيد التسجيل
             </p>
           </div>
@@ -446,8 +446,8 @@ export default function SecondaryPage() {
               <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
                 <span className="material-symbols-outlined text-green-600 text-4xl">check_circle</span>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Tajawal, sans-serif' }}>تم التسجيل بنجاح!</h3>
-              <p className="text-gray-600 mb-8 text-lg" style={{ fontFamily: 'Cairo, sans-serif' }}>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Be Vietnam Pro, sans-serif' }}>تم التسجيل بنجاح!</h3>
+              <p className="text-gray-600 mb-8 text-lg" style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
                 شكراً لك! سنتواصل معك خلال 24 ساعة لتأكيد التسجيل وتفاصيل الدورة.
               </p>
               <button onClick={resetForm} className="bg-[#1a3fa0] text-white px-8 py-3 rounded-xl font-bold hover:bg-[#1a3fa0]/90 transition-colors cursor-pointer">

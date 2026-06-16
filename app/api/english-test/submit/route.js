@@ -35,7 +35,7 @@ async function sendResultEmail(email, name, result) {
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
 <head><meta charset="UTF-8"></head>
-<body style="font-family:Cairo,Tajawal,sans-serif;background:#f8fafc;margin:0;padding:20px;">
+<body style="font-family:'IBM Plex Sans Arabic','Be Vietnam Pro',sans-serif;background:#f8fafc;margin:0;padding:20px;">
 <div style="max-width:600px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
   <div style="background:linear-gradient(135deg,#4169e1,#1a3fa0);padding:32px;text-align:center;">
     <h1 style="color:#fff;font-size:24px;margin:0;">نتائج اختبار تحديد المستوى الإنجليزي</h1>
