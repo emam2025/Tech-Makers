@@ -46,7 +46,8 @@ export default function Topbar({ user, onMenuToggle }) {
             <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
               <span className="material-symbols-outlined text-on-primary text-[20px]">school</span>
             </div>
-            <img src="/logo.png" alt="Tech Makers Egypt" className="h-8 w-auto hidden sm:block" />
+            <img src="/logo.png" alt="Tech Makers Egypt" className="h-5 w-auto hidden sm:block dark:hidden" />
+            <img src="/w- logo.png" alt="Tech Makers Egypt" className="h-5 w-auto hidden dark:block" />
           </div>
         </div>
 

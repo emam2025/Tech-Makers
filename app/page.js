@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import HeroWithHalo from '../components/HeroWithHalo';
+
 
 export const metadata = {
   title: 'Tech Makers Egypt — الدفعة الخامسة 2026',
@@ -59,13 +59,13 @@ export default function HomePage() {
             </div>
 
             {/* CTA */}
-            <div className="flex flex-row justify-center gap-2 w-full mt-2">
-              <Link href="/#plans" className="inline-flex items-center justify-center gap-1.5 bg-[#f59e0b] text-[#1a3fa0] px-4 py-2.5 rounded-full font-black text-sm shadow-lg shadow-[#f59e0b]/30 active:scale-95 transition-all">
-                <span className="material-symbols-outlined text-base">app_registration</span>
+            <div className="flex flex-row justify-center gap-1.5 w-full mt-2">
+              <Link href="/#plans" className="inline-flex items-center justify-center gap-1 bg-[#f59e0b] text-[#1a3fa0] px-2.5 py-1.5 rounded-full font-black text-xs shadow-lg shadow-[#f59e0b]/30 active:scale-95 transition-all">
+                <span className="material-symbols-outlined text-sm">app_registration</span>
                 سجّل الآن
               </Link>
-              <Link href="/tracks" className="inline-flex items-center justify-center gap-1.5 border-2 border-white/30 text-white px-4 py-2.5 rounded-full font-bold text-sm hover:bg-white/10 transition-all">
-                <span className="material-symbols-outlined text-base">explore</span>
+              <Link href="/tracks" className="inline-flex items-center justify-center gap-1 border-2 border-white/30 text-white px-2.5 py-1.5 rounded-full font-bold text-xs hover:bg-white/10 transition-all">
+                <span className="material-symbols-outlined text-sm">explore</span>
                 استكشف المسارات
               </Link>
             </div>
@@ -104,13 +104,13 @@ export default function HomePage() {
               </div>
 
               {/* CTA */}
-              <div className="flex flex-row gap-3 mt-2">
-                <Link href="/#plans" className="inline-flex items-center justify-center gap-2 bg-[#f59e0b] text-[#1a3fa0] px-8 py-4 rounded-full font-black text-lg shadow-2xl shadow-[#f59e0b]/30 hover:scale-105 active:scale-95 transition-all">
-                  <span className="material-symbols-outlined">app_registration</span>
+              <div className="flex flex-row gap-2 mt-2">
+                <Link href="/#plans" className="inline-flex items-center justify-center gap-1.5 bg-[#f59e0b] text-[#1a3fa0] px-5 py-2.5 rounded-full font-black text-sm shadow-xl shadow-[#f59e0b]/30 hover:scale-105 active:scale-95 transition-all">
+                  <span className="material-symbols-outlined text-base">app_registration</span>
                   سجّل الآن
                 </Link>
-                <Link href="/tracks" className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all">
-                  <span className="material-symbols-outlined">explore</span>
+                <Link href="/tracks" className="inline-flex items-center justify-center gap-1.5 border-2 border-white/30 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-white/10 transition-all">
+                  <span className="material-symbols-outlined text-base">explore</span>
                   استكشف المسارات
                 </Link>
               </div>
@@ -123,7 +123,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-[#f59e0b]/20 rounded-full blur-3xl scale-110"></div>
                 {/* Main circular image */}
                 <div className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
-                  <Image src="/hero.png" alt="Tech Makers Egypt" fill sizes="(max-width: 1024px) 320px, 384px" priority style={{ objectFit: 'cover' }} />
+                  <Image src="/hero.jpeg" alt="Tech Makers Egypt" fill sizes="(max-width: 1024px) 320px, 384px" priority style={{ objectFit: 'cover' }} />
                 </div>
                 {/* Emojis */}
                 <div className="absolute -top-4 -right-2 md:-top-6 md:-right-4 text-4xl md:text-5xl animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}>🚀</div>
@@ -397,7 +397,7 @@ export default function HomePage() {
               <div key={i} className="flex flex-col items-center group">
                 <div className="relative mb-3">
                   <div className="absolute -inset-1 bg-gradient-to-br from-[#f59e0b] via-[#fbbf24] to-[#f59e0b] rounded-full opacity-70 group-hover:opacity-100 blur-sm transition-opacity duration-500"></div>
-                  <div className="student-avatar relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-3 border-[#f59e0b] shadow-lg shadow-[#f59e0b]/30">
+                  <div className="student-avatar relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-[3px] border-[#f59e0b] shadow-lg shadow-[#f59e0b]/30">
                     <Image src={`/student/${s.img}`} alt={s.name} width={200} height={200} loading="lazy" className="w-full h-full object-cover" />
                   </div>
                 </div>
@@ -451,10 +451,6 @@ export default function HomePage() {
       {/* أسعار وخطط الاشتراك */}
       <section className="section-padding bg-[var(--color-surface-dim)]" id="plans">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--color-text-primary)] mb-4">مش هنخلي السعر عائق — عندنا خطط مرنة تناسب كل أسرة</h2>
-          </div>
-
           {/* جزء من القيمة الفعلية */}
           <div className="public-card p-3.5 md:p-4 mb-6 bg-[var(--color-surface)]">
             <div className="flex items-start gap-2.5">

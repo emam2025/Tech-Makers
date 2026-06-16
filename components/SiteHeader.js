@@ -12,7 +12,8 @@ export default function SiteHeader() {
       <header className="fixed top-0 w-full z-50 glass-card border-b border-primary/5 h-16 md:h-20">
         <div className="flex justify-between items-center h-full px-4 md:px-8 max-w-container-max mx-auto">
         <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-          <img src="/logo.png" alt="Tech Makers Egypt" className="h-10 md:h-12 w-auto" />
+          <img src="/logo.png" alt="Tech Makers Egypt" className="h-6 md:h-7 w-auto dark:hidden" />
+          <img src="/w- logo.png" alt="Tech Makers Egypt" className="h-6 md:h-7 w-auto hidden dark:block" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
@@ -68,7 +69,8 @@ export default function SiteHeader() {
         <div className={`absolute top-0 right-0 h-full w-[280px] bg-surface dark:bg-surface-container shadow-2xl transition-transform duration-300 ease-in-out ${open ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="flex items-center justify-between p-6 border-b border-outline-variant">
             <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-              <img src="/logo.png" alt="Tech Makers Egypt" className="h-10 w-auto" />
+              <img src="/logo.png" alt="Tech Makers Egypt" className="h-6 w-auto dark:hidden" />
+              <img src="/w- logo.png" alt="Tech Makers Egypt" className="h-6 w-auto hidden dark:block" />
             </Link>
             <button onClick={() => setOpen(false)} aria-label="إغلاق القائمة" className="p-2 hover:bg-surface-container-high rounded-full">
               <span className="material-symbols-outlined">close</span>

@@ -5,6 +5,19 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    // Dynamic track card colors
+    'bg-emerald-50', 'border-emerald-200', 'text-emerald-700', 'text-emerald-600', 'text-emerald-500', 'border-emerald-50', 'bg-emerald',
+    'bg-blue-50', 'border-blue-200', 'text-blue-700', 'text-blue-600', 'text-blue-500', 'border-blue-50', 'bg-blue',
+    'bg-purple-50', 'border-purple-200', 'text-purple-700', 'text-purple-600', 'text-purple-500', 'border-purple-50', 'bg-purple',
+    'from-emerald-400', 'via-teal-400', 'to-cyan-400',
+    'from-blue-500', 'via-indigo-500', 'to-violet-500',
+    'from-purple-500', 'via-fuchsia-500', 'to-pink-500',
+    'from-emerald-500', 'to-teal-500',
+    'from-blue-500', 'to-indigo-500',
+    'from-purple-500', 'to-fuchsia-500',
+    'shadow-emerald-200', 'shadow-blue-200', 'shadow-purple-200',
+  ],
   theme: {
     extend: {
       borderRadius: {
