@@ -145,8 +145,6 @@ export async function POST(request) {
         country: isSecondary ? 'مصر' : (country ? sanitizePlain(country) : null),
         governorate: governorate ? sanitizePlain(governorate) : null,
         city: city ? sanitizePlain(city) : null,
-        school: school ? sanitizePlain(school) : null,
-        study_mode: study_mode ? sanitizePlain(study_mode) : null,
         track,
         plan: isSecondary ? null : plan,
         status: 'pending',
