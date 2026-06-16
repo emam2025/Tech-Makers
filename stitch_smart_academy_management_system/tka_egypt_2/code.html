@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TKA-Egypt Academy Portal - Login</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#d9e3f9",
+                        "on-error": "#ffffff",
+                        "on-surface": "#181c1e",
+                        "primary": "#002045",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#43474e",
+                        "inverse-on-surface": "#eef1f3",
+                        "surface-variant": "#e0e3e5",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#455f88",
+                        "on-secondary-container": "#785a1a",
+                        "on-background": "#181c1e",
+                        "on-secondary-fixed": "#261900",
+                        "on-tertiary-container": "#959fb3",
+                        "primary-fixed": "#d6e3ff",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#2c3647",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "inverse-surface": "#2d3133",
+                        "outline-variant": "#c4c6cf",
+                        "tertiary": "#172131",
+                        "secondary": "#775a19",
+                        "inverse-primary": "#adc7f7",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-primary-container": "#86a0cd",
+                        "surface-container-high": "#e5e9eb",
+                        "secondary-fixed": "#ffdea5",
+                        "primary-fixed-dim": "#adc7f7",
+                        "surface-dim": "#d7dadc",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#bdc7dc",
+                        "surface-bright": "#f7fafc",
+                        "outline": "#74777f",
+                        "on-primary-fixed": "#001b3c",
+                        "secondary-container": "#fed488",
+                        "primary-container": "#1a365d",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "on-tertiary-fixed-variant": "#3d4759",
+                        "surface": "#f7fafc",
+                        "secondary-fixed-dim": "#e9c176",
+                        "surface-container-low": "#f1f4f6",
+                        "surface-container": "#ebeef0",
+                        "background": "#f7fafc",
+                        "on-tertiary-fixed": "#121c2c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "64px",
+                        "lg": "40px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "container-max": "1440px",
+                        "sm": "12px",
+                        "md": "24px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["IBM Plex Sans"],
+                        "body-md": ["IBM Plex Sans"],
+                        "body-lg": ["IBM Plex Sans"],
+                        "headline-xl": ["IBM Plex Sans"],
+                        "headline-md": ["IBM Plex Sans"],
+                        "body-sm": ["IBM Plex Sans"],
+                        "label-md": ["IBM Plex Sans"],
+                        "headline-lg-mobile": ["IBM Plex Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: #f7fafc;
+        }
+        .login-card {
+            box-shadow: 0px 4px 12px rgba(26, 54, 93, 0.05);
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-surface">
+<main class="flex-grow flex flex-col items-center justify-center px-md py-xl animate-fade-in">
+<!-- Top Section: Institutional Logo & Welcome -->
+<header class="w-full max-w-sm flex flex-col items-center text-center mb-lg">
+<div class="mb-md">
+<img alt="TKA-Egypt Academy Logo" class="w-32 h-32 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLvuquu1xKad2ia-r3AhjBls2_Iu9MxIW66NFGhbLc_rut9UPa9TCx3-BdQO8Wf-5-QprnOybhGibd3n_9Hy4kDewkXmuNTybr13uvaIBvGG412K6Ag3jMW2qz6F_C0j-lSlMhN7J23FXpdASGW_u0m6VEKPP906E02z7ZYwhIAmf9jtJ_wvGciIoCXyYM_OcNpC4tJ9dNLgvZ3Fk60ae8q9MmpbSnFmCJ58FCZYT51G2X_nGuyu-TF4tA"/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-xs">Welcome Back</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Access your academic portal</p>
+</header>
+<!-- Middle Section: Form -->
+<section class="w-full max-w-sm bg-surface-container-lowest p-md rounded-xl login-card border border-outline-variant">
+<form class="space-y-md">
+<!-- Email Field -->
+<div class="space-y-base">
+<label class="font-label-md text-label-md text-primary" for="email">Email Address</label>
+<div class="relative">
+<input class="w-full px-md py-sm rounded-lg border border-outline focus:border-2 focus:border-primary focus:ring-0 transition-all text-on-surface" id="email" name="email" placeholder="admin@tka-egypt.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-base">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-primary" for="password">Password</label>
+</div>
+<div class="relative">
+<input class="w-full px-md py-sm pr-xl rounded-lg border border-outline focus:border-2 focus:border-primary focus:ring-0 transition-all text-on-surface" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors" id="togglePassword" type="button">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full py-md bg-primary text-on-primary rounded-lg font-label-md text-label-md uppercase tracking-wider hover:opacity-90 active:scale-95 transition-all shadow-md" type="submit">
+                    Sign In
+                </button>
+<!-- Forgot Password -->
+<div class="text-center pt-base">
+<a class="font-label-md text-label-md text-secondary font-bold hover:underline" href="#">Forgot Password?</a>
+</div>
+</form>
+</section>
+</main>
+<!-- Bottom Section: Technical Support Footer -->
+<footer class="w-full mt-auto bg-surface-container px-md py-lg border-t border-outline-variant">
+<div class="max-w-sm mx-auto flex flex-col items-center gap-md">
+<div class="flex items-center gap-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Need help?</span>
+<span class="font-body-sm text-body-sm text-primary font-bold">Contact Admin</span>
+</div>
+<a class="w-full flex items-center justify-center gap-base py-sm bg-secondary-container text-on-secondary-container rounded-full font-label-md text-label-md border border-on-secondary-fixed-variant/20 hover:shadow-lg transition-all active:scale-95" href="https://wa.me/#">
+<span class="material-symbols-outlined text-[20px]" data-icon="forum">forum</span>
+                Contact Support via WhatsApp
+            </a>
+<p class="font-body-sm text-body-sm text-on-surface-variant opacity-60">© 2024 AcademyPro Egyptian Institutional Management</p>
+</div>
+</footer>
+<script>
+        // Password Visibility Toggle Logic
+        const passwordInput = document.getElementById('password');
+        const toggleBtn = document.getElementById('togglePassword');
+        const iconSpan = toggleBtn.querySelector('.material-symbols-outlined');
+
+        toggleBtn.addEventListener('click', () => {
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+            iconSpan.textContent = isPassword ? 'visibility_off' : 'visibility';
+        });
+
+        // Form Submit Simulation
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.textContent = 'Authenticating...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Redirecting to Dashboard...');
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }, 1500);
+        });
+    </script>
+</body></html>

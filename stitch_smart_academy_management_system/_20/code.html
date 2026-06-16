@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>تحضير المجموعة - Group Attendance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#002045",
+                    "on-tertiary-fixed": "#121c2c",
+                    "surface-tint": "#455f88",
+                    "surface-dim": "#d7dadc",
+                    "surface": "#f7fafc",
+                    "primary-fixed": "#d6e3ff",
+                    "on-primary": "#ffffff",
+                    "secondary": "#775a19",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e0e3e5",
+                    "tertiary-fixed-dim": "#bdc7dc",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed-dim": "#e9c176",
+                    "on-secondary-container": "#785a1a",
+                    "primary-container": "#1a365d",
+                    "secondary-fixed": "#ffdea5",
+                    "on-tertiary-fixed-variant": "#3d4759",
+                    "outline": "#74777f",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "inverse-on-surface": "#eef1f3",
+                    "error": "#ba1a1a",
+                    "background": "#f7fafc",
+                    "tertiary-fixed": "#d9e3f9",
+                    "on-primary-container": "#86a0cd",
+                    "on-tertiary-container": "#959fb3",
+                    "primary-fixed-dim": "#adc7f7",
+                    "surface-container-high": "#e5e9eb",
+                    "on-primary-fixed-variant": "#2d476f",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#ebeef0",
+                    "outline-variant": "#c4c6cf",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#172131",
+                    "surface-bright": "#f7fafc",
+                    "secondary-container": "#fed488",
+                    "inverse-surface": "#2d3133",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-surface-variant": "#43474e",
+                    "on-error": "#ffffff",
+                    "on-surface": "#181c1e",
+                    "on-secondary-fixed": "#261900",
+                    "inverse-primary": "#adc7f7",
+                    "tertiary-container": "#2c3647",
+                    "on-background": "#181c1e",
+                    "surface-container-low": "#f1f4f6",
+                    "on-primary-fixed": "#001b3c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "base": "8px",
+                    "xl": "64px",
+                    "xs": "4px",
+                    "sm": "12px",
+                    "md": "24px",
+                    "lg": "40px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "body-sm": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "body-lg": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "headline-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "label-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "headline-lg-mobile": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "body-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "headline-xl": ["IBM Plex Sans Arabic", "IBM Plex Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', sans-serif; }
+        .attendance-radio:checked + label {
+            background-color: var(--tw-bg-opacity);
+            border-color: currentColor;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="flex items-center px-4 h-16 w-full z-50 bg-surface fixed top-0 border-b border-surface-variant">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container transition-colors p-2 rounded-full active:scale-95">arrow_back</button>
+<h1 class="font-headline-md text-headline-md text-primary mr-2">User Profile</h1>
+<div class="flex-grow"></div>
+<button class="material-symbols-outlined text-on-surface-variant p-2">more_vert</button>
+</header>
+<main class="pt-20 px-4 max-w-md mx-auto">
+<!-- Session Header Card -->
+<section class="bg-primary-container text-white p-md rounded-xl shadow-sm mb-6 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-32 h-32 bg-secondary opacity-10 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-primary-container">مجموعة العباقرة - A1</h2>
+<p class="font-body-sm text-body-sm opacity-80">الخميس، 24 أكتوبر 2024</p>
+</div>
+<div class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-lg font-label-md text-label-md">
+                        المحاضرة #12
+                    </div>
+</div>
+<!-- Progress Bar Area -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-on-primary-container">
+<span class="font-label-md text-label-md">نسبة الحضور الحالية</span>
+<span class="font-label-md text-label-md" id="attendance-percent">0%</span>
+</div>
+<div class="h-2 bg-primary/30 rounded-full overflow-hidden">
+<div class="h-full bg-secondary transition-all duration-500 ease-out" id="progress-bar" style="width: 0%"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-primary-container/70">تم تحضير <span id="count-marked">0</span> من أصل 12 طالب</p>
+</div>
+</div>
+</section>
+<!-- Search & Filter -->
+<div class="flex gap-2 mb-4">
+<div class="relative flex-grow">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-white border border-outline-variant rounded-lg py-2 pr-10 pl-4 focus:ring-2 focus:ring-primary focus:border-primary transition-all" placeholder="بحث عن طالب..." type="text"/>
+</div>
+<button class="bg-white border border-outline-variant p-2 rounded-lg text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<!-- Student List -->
+<div class="space-y-3 mb-8">
+<!-- Student Item Component -->
+<script>
+                const students = [
+                    { id: 1, name: "أحمد محمد علي", code: "STD-1092" },
+                    { id: 2, name: "سارة محمود حسن", code: "STD-1105" },
+                    { id: 3, name: "ياسين إبراهيم خليل", code: "STD-1088" },
+                    { id: 4, name: "ليلى يوسف كمال", code: "STD-1120" },
+                    { id: 5, name: "عمر خالد عبد العزيز", code: "STD-1075" },
+                    { id: 6, name: "مريم جلال الصاوي", code: "STD-1131" },
+                    { id: 7, name: "يوسف أسامة نور", code: "STD-1144" }
+                ];
+
+                document.write(students.map(student => `
+                    <div class="bg-white border border-surface-variant p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-surface-container rounded-full flex items-center justify-center text-primary font-bold">
+                                    ${student.name.split(' ')[0][0]}
+                                </div>
+                                <div>
+                                    <h3 class="font-label-md text-label-md text-primary">${student.name}</h3>
+                                    <span class="text-xs text-outline">${student.code}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2">
+                            <input type="radio" name="attendance-${student.id}" id="p-${student.id}" class="hidden peer/p" onchange="updateProgress()">
+                            <label for="p-${student.id}" class="flex items-center justify-center gap-1 py-2 rounded-lg border border-outline-variant text-outline cursor-pointer peer-checked/p:bg-green-50 peer-checked/p:border-green-600 peer-checked/p:text-green-700 transition-all">
+                                <span class="material-symbols-outlined text-sm">check_circle</span>
+                                <span class="text-xs font-bold">حاضر</span>
+                            </label>
+
+                            <input type="radio" name="attendance-${student.id}" id="a-${student.id}" class="hidden peer/a" onchange="updateProgress()">
+                            <label for="a-${student.id}" class="flex items-center justify-center gap-1 py-2 rounded-lg border border-outline-variant text-outline cursor-pointer peer-checked/a:bg-red-50 peer-checked/a:border-red-600 peer-checked/a:text-red-700 transition-all">
+                                <span class="material-symbols-outlined text-sm">cancel</span>
+                                <span class="text-xs font-bold">غائب</span>
+                            </label>
+
+                            <input type="radio" name="attendance-${student.id}" id="l-${student.id}" class="hidden peer/l" onchange="updateProgress()">
+                            <label for="l-${student.id}" class="flex items-center justify-center gap-1 py-2 rounded-lg border border-outline-variant text-outline cursor-pointer peer-checked/l:bg-amber-50 peer-checked/l:border-amber-600 peer-checked/l:text-amber-700 transition-all">
+                                <span class="material-symbols-outlined text-sm">schedule</span>
+                                <span class="text-xs font-bold">متأخر</span>
+                            </label>
+                        </div>
+                    </div>
+                `).join(''));
+            </script>
+</div>
+<!-- Actions -->
+<div class="fixed bottom-20 left-0 w-full px-4 pb-4 pt-4 bg-gradient-to-t from-background via-background to-transparent">
+<button class="w-full max-w-md mx-auto bg-primary text-white py-4 rounded-xl font-headline-md flex items-center justify-center gap-2 shadow-lg hover:bg-primary-container active:scale-95 transition-all" onclick="submitAttendance()">
+<span class="material-symbols-outlined">send</span>
+                اعتماد التحضير
+            </button>
+</div>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface border-t border-surface-variant shadow-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-md text-label-md">Courses</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-label-md text-label-md">Messages</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-3 py-1" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<script>
+        function updateProgress() {
+            const totalStudents = 7;
+            const radios = document.querySelectorAll('input[type="radio"]:checked');
+            const markedCount = radios.length;
+            const percentage = Math.round((markedCount / totalStudents) * 100);
+            
+            document.getElementById('progress-bar').style.width = percentage + '%';
+            document.getElementById('attendance-percent').innerText = percentage + '%';
+            document.getElementById('count-marked').innerText = markedCount;
+        }
+
+        function submitAttendance() {
+            const totalStudents = 7;
+            const markedCount = document.querySelectorAll('input[type="radio"]:checked').length;
+            
+            if (markedCount < totalStudents) {
+                alert('يرجى رصد غياب أو حضور جميع الطلاب قبل الاعتماد.');
+                return;
+            }
+            
+            const btn = event.currentTarget;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> جاري الحفظ...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> تم الاعتماد بنجاح';
+                btn.classList.replace('bg-primary', 'bg-green-600');
+            }, 1500);
+        }
+    </script>
+</body></html>

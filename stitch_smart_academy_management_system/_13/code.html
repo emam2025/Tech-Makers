@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AcademyPro | إدارة طلبات التوظيف</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;family=IBM+Plex+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#172131",
+                        "primary-container": "#1a365d",
+                        "surface-container": "#ebeef0",
+                        "secondary-container": "#fed488",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "surface-variant": "#e0e3e5",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#261900",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eef1f3",
+                        "on-surface-variant": "#43474e",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#ffdea5",
+                        "on-tertiary-fixed": "#121c2c",
+                        "inverse-surface": "#2d3133",
+                        "surface-bright": "#f7fafc",
+                        "primary-fixed-dim": "#adc7f7",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#2c3647",
+                        "tertiary-fixed-dim": "#bdc7dc",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "inverse-primary": "#adc7f7",
+                        "surface-tint": "#455f88",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#959fb3",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary-container": "#785a1a",
+                        "surface": "#f7fafc",
+                        "outline": "#74777f",
+                        "background": "#f7fafc",
+                        "on-primary-fixed": "#001b3c",
+                        "surface-dim": "#d7dadc",
+                        "secondary": "#775a19",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#181c1e",
+                        "secondary-fixed-dim": "#e9c176",
+                        "surface-container-high": "#e5e9eb",
+                        "primary": "#002045",
+                        "primary-fixed": "#d6e3ff",
+                        "on-tertiary-fixed-variant": "#3d4759",
+                        "outline-variant": "#c4c6cf",
+                        "surface-container-low": "#f1f4f6",
+                        "on-surface": "#181c1e",
+                        "tertiary-fixed": "#d9e3f9",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#86a0cd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "base": "8px",
+                        "xl": "64px",
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "md": "24px",
+                        "lg": "40px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                        "headline-xl": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                        "headline-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                        "body-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                        "body-lg": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                        "body-sm": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                        "label-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- Navigation Drawer (Desktop) -->
+<aside class="hidden lg:flex flex-col h-screen fixed inset-y-0 right-0 z-40 w-[280px] bg-primary border-l border-primary-fixed-dim/10 shadow-md">
+<div class="p-md flex flex-col gap-lg h-full">
+<div class="flex items-center gap-base">
+<span class="material-symbols-outlined text-secondary-fixed text-3xl">school</span>
+<span class="font-headline-md text-headline-md text-secondary-fixed font-bold">AcademyPro</span>
+</div>
+<nav class="flex flex-col gap-xs flex-grow">
+<a class="text-primary-fixed-dim p-md flex items-center gap-base hover:bg-primary-fixed-dim/20 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="text-on-secondary-fixed bg-secondary-fixed border-r-4 border-secondary-container p-md flex items-center gap-base transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">group_add</span>
+<span class="font-label-md text-label-md">Students</span>
+</a>
+<a class="text-primary-fixed-dim p-md flex items-center gap-base hover:bg-primary-fixed-dim/20 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Groups</span>
+</a>
+<a class="text-primary-fixed-dim p-md flex items-center gap-base hover:bg-primary-fixed-dim/20 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Payments</span>
+</a>
+</nav>
+<div class="mt-auto pt-md border-t border-primary-fixed-dim/20">
+<div class="flex items-center gap-sm p-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-primary font-bold">AU</div>
+<div>
+<p class="font-label-md text-label-md text-white">Admin User</p>
+<p class="text-[10px] text-primary-fixed-dim">Super Administrator</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:mr-[280px] pb-24 lg:pb-0">
+<!-- Top App Bar -->
+<header class="bg-surface-container-lowest sticky top-0 z-30 shadow-sm border-b border-outline-variant">
+<div class="flex items-center justify-between px-md h-16 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-base lg:hidden">
+<span class="material-symbols-outlined text-primary">menu</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">AcademyPro</span>
+</div>
+<div class="hidden lg:block">
+<h1 class="font-headline-md text-headline-md text-primary">طلبات الانضمام</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pr-10 pl-4 py-2 bg-surface-container-low border border-outline-variant rounded-full text-body-sm focus:ring-2 focus:ring-primary outline-none transition-all w-64" placeholder="بحث عن متقدم..." type="text"/>
+</div>
+<button class="w-10 h-10 rounded-full hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Content Body -->
+<div class="p-gutter max-w-container-max mx-auto">
+<!-- Statistics Overview -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md mb-lg">
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm transition-transform hover:scale-[1.02]">
+<div class="flex justify-between items-start mb-sm">
+<span class="material-symbols-outlined text-primary p-xs bg-primary/5 rounded-lg">person_search</span>
+<span class="text-primary font-bold text-headline-md">124</span>
+</div>
+<p class="text-body-sm text-on-surface-variant">إجمالي المتقدمين</p>
+<div class="mt-xs text-[10px] text-green-600 font-bold">+12% من الشهر الماضي</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm transition-transform hover:scale-[1.02]">
+<div class="flex justify-between items-start mb-sm">
+<span class="material-symbols-outlined text-secondary p-xs bg-secondary/5 rounded-lg">pending_actions</span>
+<span class="text-secondary font-bold text-headline-md">45</span>
+</div>
+<p class="text-body-sm text-on-surface-variant">قيد المراجعة</p>
+<div class="h-1 w-full bg-surface-variant mt-sm rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-1/3"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm transition-transform hover:scale-[1.02]">
+<div class="flex justify-between items-start mb-sm">
+<span class="material-symbols-outlined text-blue-600 p-xs bg-blue-50 rounded-lg">event_available</span>
+<span class="text-blue-600 font-bold text-headline-md">18</span>
+</div>
+<p class="text-body-sm text-on-surface-variant">مقابلات مقررة</p>
+<div class="mt-xs text-[10px] text-blue-600">3 مقابلات اليوم</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm transition-transform hover:scale-[1.02]">
+<div class="flex justify-between items-start mb-sm">
+<span class="material-symbols-outlined text-error p-xs bg-error/5 rounded-lg">person_off</span>
+<span class="text-error font-bold text-headline-md">22</span>
+</div>
+<p class="text-body-sm text-on-surface-variant">طلبات مرفوضة</p>
+<div class="mt-xs text-[10px] text-on-surface-variant/60">آخر تحديث: منذ ساعة</div>
+</div>
+</div>
+<!-- Recruitment Table Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+<div class="p-md border-b border-outline-variant flex flex-col sm:flex-row justify-between items-start sm:items-center gap-md">
+<h2 class="font-headline-md text-headline-md text-primary">المتقدمون الجدد</h2>
+<div class="flex items-center gap-sm w-full sm:w-auto">
+<select class="bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2 text-label-md focus:ring-primary outline-none flex-grow">
+<option>تصفية بالحالة</option>
+<option>قيد المراجعة</option>
+<option>مقابلة</option>
+<option>مرفوض</option>
+</select>
+<button class="bg-primary text-white px-md py-2 rounded-lg font-label-md flex items-center gap-xs hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+                            تصدير البيانات
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-right">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-md py-4 font-label-md text-on-surface-variant">الاسم والمسمى</th>
+<th class="px-md py-4 font-label-md text-on-surface-variant">تاريخ التقديم</th>
+<th class="px-md py-4 font-label-md text-on-surface-variant">الخبرة</th>
+<th class="px-md py-4 font-label-md text-on-surface-variant">الحالة</th>
+<th class="px-md py-4 font-label-md text-on-surface-variant text-left">إجراءات</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Applicant 1 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-variant overflow-hidden flex-shrink-0">
+<img alt="Ahmed" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn5FRg6EmbU-YNoSbLCiwRMdacoCpI-sviCFd0r7tPOnoC8llxY1QUMzo7bOfkr1FQrq9XFIWD--fZ5aD-JEtBaSv7jJs_SWEaNmZpIg_rtWnbqUnvQ9U5VPFhV_xIdtJleABarYBRLhUuTsxvqaIUOHoo2DBSNZ7UzRRLR_8WSIN7S6wjTavIybxJcrgWOxkuaPU-PX-x1hD7gYxiXjrOW5vDcs9i2jk3GNU1DP-qVawEchMj4sRdO8RLAucMeeFFT4okgxs3Nxc"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">أحمد محمد علي</p>
+<p class="text-body-sm text-on-surface-variant">مدرس لغة إنجليزية</p>
+</div>
+</div>
+</td>
+<td class="px-md py-4 text-body-sm text-on-surface-variant">15 أكتوبر 2023</td>
+<td class="px-md py-4 text-body-sm text-on-surface-variant">5 سنوات</td>
+<td class="px-md py-4">
+<span class="bg-secondary-container/20 text-secondary px-3 py-1 rounded-full text-[12px] font-bold">قيد المراجعة</span>
+</td>
+<td class="px-md py-4 text-left">
+<div class="flex items-center justify-end gap-xs">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-green-600 hover:bg-green-50" title="قبول للمقابلة">
+<span class="material-symbols-outlined">check_circle</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-error hover:bg-error/5" title="رفض الطلب">
+<span class="material-symbols-outlined">cancel</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-primary hover:bg-primary/5" title="عرض السيرة الذاتية">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Applicant 2 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-variant overflow-hidden flex-shrink-0">
+<img alt="Sara" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb0G8OvbR-wzECNt9BarfH6XnWg7M1Ry43T_J3CyuprxCHLM4j3hy7pPrJwyMFs-iJ-1M5HUBPRlIC0n5Lg4tkOrTSTo-FICHcgNusxIFwq25PDyi0e-hvroVWzDNenn1AvYvcZJiKUKpDVXsNI1VDKowEvleD-eL_m2tXHXvu_V7mK4MOv_aFamKAfq1xIZWaSk9BDJm-aPKRXy6eXeNgzEXcA0DkOJKyNDHFR8BY5lrXX87x6Bd14m2-OQIZ8Z3-GYYrwuVvOiw"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">سارة محمود</p>
+<p class="text-body-sm text-on-surface-variant">إداري شئون طلاب</p>
+</div>
+</div>
+</td>
+<td class="px-md py-4 text-body-sm text-on-surface-variant">12 أكتوبر 2023</td>
+<td class="px-md py-4 text-body-sm text-on-surface-variant">سنتان</td>
+<td class="px-md py-4">
+<span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-[12px] font-bold">مقابلة</span>
+</td>
+<td class="px-md py-4 text-left">
+<div class="flex items-center justify-end gap-xs">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-primary hover:bg-primary/5" title="تعديل موعد المقابلة">
+<span class="material-symbols-outlined">calendar_month</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-primary hover:bg-primary/5">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Applicant 3 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-variant overflow-hidden flex-shrink-0">
+<img alt="Hassan" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA09jJTEqF8zr18EEdbr-8XwTrupyZ2X8-PaQHY8_4gC5NHvOenGq4xvI2RlmmdEeLnxOpgin0J1BWgIxwEkTQV1V61LuAiTDl2rScmmtdsXOWl147mTI6rY1GrbSwyHMjRQrby1UvDfgSa8ws8TGiFFrZEzcLod6UunfSnWKZdQori0EH9Hamr1lWoCYrl81rHLwggVgZZUm1C0pcCIvnh0FgiuEhqiY6mWjpYeIOWPO3Z-8nqCANzc9vdBSLuNIhnssu0uR1tJkM"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">حسن كمال</p>
+<p class="text-body-sm text-on-surface-variant">محاسب مالي</p>
+</div>
+</div>
+</td>
+<td class="px-md py-4 text-body-sm text-on-surface-variant">10 أكتوبر 2023</td>
+<td class="px-md py-4 text-body-sm text-on-surface-variant">8 سنوات</td>
+<td class="px-md py-4">
+<span class="bg-error/10 text-error px-3 py-1 rounded-full text-[12px] font-bold">مرفوض</span>
+</td>
+<td class="px-md py-4 text-left">
+<div class="flex items-center justify-end gap-xs">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-variant" title="عرض الأسباب">
+<span class="material-symbols-outlined">info</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-primary hover:bg-primary/5">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Applicant 4 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-variant overflow-hidden flex-shrink-0">
+<img alt="Nora" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzfA9Vz2hSGvO4F8XzJcfhCI2293dNr61dl74IGDU9ffQE49M89TRGnesDH96birlvUuSeAl1nEm2n13uYoohnLtGFGaSiaaaZEPdB_1PNkVMtx83f5aCDfB65pBy42l9NbJr_7XQezuHQnNqgvH7mG5RbFuSfg4tJSeMcn2LCmeQuMNIRznBrIJ2aVDU4HdqBvmPTx_8GIxqs0n9JEs2p6OxjW6XmKOBoShgJtsz29c0FP9EmoSmfMPRX8vTEdo0jVhuDdpJ9asI"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">نورا السعدني</p>
+<p class="text-body-sm text-on-surface-variant">مساعد تدريس</p>
+</div>
+</div>
+</td>
+<td class="px-md py-4 text-body-sm text-on-surface-variant">08 أكتوبر 2023</td>
+<td class="px-md py-4 text-body-sm text-on-surface-variant">حديث تخرج</td>
+<td class="px-md py-4">
+<span class="bg-secondary-container/20 text-secondary px-3 py-1 rounded-full text-[12px] font-bold">قيد المراجعة</span>
+</td>
+<td class="px-md py-4 text-left">
+<div class="flex items-center justify-end gap-xs">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-green-600 hover:bg-green-50">
+<span class="material-symbols-outlined">check_circle</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-error hover:bg-error/5">
+<span class="material-symbols-outlined">cancel</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-primary hover:bg-primary/5">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-md border-t border-outline-variant flex items-center justify-between">
+<p class="text-body-sm text-on-surface-variant">عرض 1-4 من أصل 45 طلب</p>
+<div class="flex items-center gap-xs">
+<button class="w-8 h-8 rounded-lg border border-outline-variant flex items-center justify-center hover:bg-surface-container-high disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-white flex items-center justify-center font-label-md">1</button>
+<button class="w-8 h-8 rounded-lg border border-outline-variant flex items-center justify-center hover:bg-surface-container-high">2</button>
+<button class="w-8 h-8 rounded-lg border border-outline-variant flex items-center justify-center hover:bg-surface-container-high">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Promotion / Action Section -->
+<div class="mt-lg relative overflow-hidden rounded-2xl bg-primary h-64 flex items-center px-lg">
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+
+</div>
+<div class="relative z-10 max-w-lg text-white">
+<h3 class="font-headline-lg text-headline-lg mb-sm">هل تبحث عن مواهب معينة؟</h3>
+<p class="text-body-md text-primary-fixed mb-md">يمكنك إنشاء إعلان وظيفة جديد ونشره فوراً على بوابتنا التعليمية لجذب أفضل الكفاءات.</p>
+<button class="bg-secondary text-primary px-lg py-3 rounded-full font-bold shadow-lg hover:bg-secondary-container transition-all flex items-center gap-base">
+<span class="material-symbols-outlined">add_circle</span>
+                        نشر إعلان جديد
+                    </button>
+</div>
+<div class="hidden md:block absolute left-12 top-1/2 -translate-y-1/2 w-48 h-48 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile Only) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-base py-xs bg-surface-container-lowest border-t border-outline-variant shadow-lg rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-[10px]">Dashboard</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 p-2">
+<span class="material-symbols-outlined">group_add</span>
+<span class="font-label-md text-[10px]">Students</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-[10px]">Groups</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-[10px]">Payments</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-md text-[10px]">Profile</span>
+</button>
+</nav>
+<!-- Contextual FAB (Mobile Only) -->
+<button class="md:hidden fixed bottom-20 left-4 w-14 h-14 bg-secondary text-primary rounded-full shadow-2xl flex items-center justify-center z-50 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<script>
+        // Simple Micro-interaction for table rows
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('click', (e) => {
+                if(e.target.closest('button')) return;
+                // Imagine opening a detailed modal here
+                console.log('Row clicked - Opening applicant details');
+            });
+        });
+
+        // Search highlight effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary');
+        });
+    </script>
+</body></html>

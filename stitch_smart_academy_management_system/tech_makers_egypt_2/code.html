@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>خطط الاشتراك - TKA Egypt Academy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100..900&display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-container": "#ebeef0",
+                "on-primary-fixed-variant": "#2d476f",
+                "error": "#ba1a1a",
+                "secondary": "#775a19",
+                "inverse-surface": "#2d3133",
+                "primary-fixed-dim": "#adc7f7",
+                "on-surface-variant": "#43474e",
+                "on-secondary-fixed-variant": "#5d4201",
+                "on-secondary-container": "#785a1a",
+                "on-primary": "#ffffff",
+                "inverse-on-surface": "#eef1f3",
+                "on-surface": "#181c1e",
+                "secondary-container": "#fed488",
+                "secondary-fixed": "#ffdea5",
+                "on-background": "#181c1e",
+                "tertiary-container": "#2c3647",
+                "surface-variant": "#e0e3e5",
+                "surface-container-low": "#f1f4f6",
+                "on-tertiary-fixed-variant": "#3d4759",
+                "tertiary-fixed": "#d9e3f9",
+                "outline": "#74777f",
+                "on-primary-container": "#86a0cd",
+                "on-tertiary": "#ffffff",
+                "surface": "#f7fafc",
+                "on-error-container": "#93000a",
+                "inverse-primary": "#adc7f7",
+                "primary-fixed": "#d6e3ff",
+                "tertiary-fixed-dim": "#bdc7dc",
+                "on-error": "#ffffff",
+                "error-container": "#ffdad6",
+                "on-tertiary-fixed": "#121c2c",
+                "surface-dim": "#d7dadc",
+                "on-secondary": "#ffffff",
+                "background": "#f7fafc",
+                "outline-variant": "#c4c6cf",
+                "surface-container-high": "#e5e9eb",
+                "surface-bright": "#f7fafc",
+                "primary-container": "#1a365d",
+                "tertiary": "#172131",
+                "surface-container-lowest": "#ffffff",
+                "secondary-fixed-dim": "#e9c176",
+                "on-tertiary-container": "#959fb3",
+                "surface-container-highest": "#e0e3e5",
+                "surface-tint": "#455f88",
+                "on-secondary-fixed": "#261900",
+                "on-primary-fixed": "#001b3c",
+                "primary": "#002045"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "container-max": "1440px",
+                "sm": "12px",
+                "lg": "40px",
+                "xs": "4px",
+                "xl": "64px",
+                "md": "24px",
+                "base": "8px",
+                "gutter": "24px"
+            },
+            "fontFamily": {
+                "headline-lg-mobile": ["IBM Plex Sans Arabic"],
+                "headline-md": ["IBM Plex Sans Arabic"],
+                "body-sm": ["IBM Plex Sans Arabic"],
+                "headline-lg": ["IBM Plex Sans Arabic"],
+                "label-md": ["IBM Plex Sans Arabic"],
+                "body-md": ["IBM Plex Sans Arabic"],
+                "headline-xl": ["IBM Plex Sans Arabic"],
+                "body-lg": ["IBM Plex Sans Arabic"]
+            },
+            "fontSize": {
+                "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #f7fafc;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .premium-glow {
+            box-shadow: 0 4px 20px -2px rgba(119, 90, 25, 0.15);
+        }
+        .active-ring {
+            box-shadow: 0 0 0 2px #775a19;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface border-b border-outline-variant">
+<div class="flex items-center justify-between px-md py-base max-w-container-max mx-auto">
+<div class="flex items-center gap-base">
+<span class="material-symbols-outlined text-primary" data-icon="school">school</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">خطط الاشتراك</h1>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer" data-icon="notifications">notifications</span>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="text-on-secondary-container font-bold text-xs">TK</span>
+</div>
+</div>
+</div>
+</header>
+<main class="pb-xl">
+<!-- Subheader Section -->
+<section class="px-gutter pt-xl pb-lg text-center bg-gradient-to-b from-primary/5 to-transparent">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-xs">اختر الخطة المناسبة لك</h2>
+<div class="inline-flex items-center gap-xs px-sm py-xs bg-surface-container-high rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="smart_toy">smart_toy</span>
+<p class="font-label-md text-label-md text-on-surface-variant">
+                    مسار: Junior Tech Explorers — الفئة العمرية: 8–11 سنة
+                </p>
+</div>
+</section>
+<!-- Pricing Section (Bento/Card Layout) -->
+<section class="px-gutter space-y-md max-w-md mx-auto">
+<!-- Monthly Plan -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md transition-all duration-200 active:scale-[0.98]">
+<div class="flex justify-between items-start mb-base">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">اشتراك شهري</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">مناسب للتجربة — البرايفت سيشن</p>
+</div>
+</div>
+<div class="my-md">
+<span class="font-headline-xl text-headline-xl text-primary">1200</span>
+<span class="font-label-md text-label-md text-on-surface-variant">جنيه / شهر</span>
+</div>
+<button class="w-full py-base px-md bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:bg-on-primary-fixed-variant transition-colors cursor-pointer">
+                    اختر هذه الخطة
+                </button>
+</div>
+<!-- Quarterly Plan (Featured) -->
+<div class="relative bg-surface-container-lowest border-2 border-secondary rounded-xl p-md shadow-lg premium-glow active:scale-[0.98] transition-all duration-200">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-secondary text-white px-md py-xs rounded-full font-label-md text-label-md shadow-md">
+                    الأكثر اختيارًا
+                </div>
+<div class="flex justify-between items-start mt-xs mb-base">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">اشتراك ربع سنوي</h3>
+<p class="font-body-sm text-body-sm text-secondary font-bold">توفر 930 جنيه</p>
+</div>
+</div>
+<div class="my-md">
+<span class="font-headline-xl text-headline-xl text-primary">890</span>
+<span class="font-label-md text-label-md text-on-surface-variant">جنيه / شهريًا</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">إجمالي 2,670 جنيه لكل 3 شهور</p>
+</div>
+<button class="w-full py-base px-md bg-secondary text-on-secondary font-label-md text-label-md rounded-lg hover:opacity-90 transition-opacity cursor-pointer">
+                    اختر هذه الخطة
+                </button>
+</div>
+<!-- Annual Plan (Best Value) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md active:scale-[0.98] transition-all duration-200">
+<div class="flex justify-between items-start mb-base">
+<div>
+<div class="inline-block px-sm py-xs bg-secondary-container text-on-secondary-container rounded-lg font-label-md text-label-md mb-xs">
+                            الأوفر
+                        </div>
+<h3 class="font-headline-md text-headline-md text-primary">اشتراك سنوي</h3>
+<p class="font-body-sm text-body-sm text-error font-bold">توفر 6,120 جنيه</p>
+</div>
+</div>
+<div class="my-md">
+<span class="font-headline-xl text-headline-xl text-primary">690</span>
+<span class="font-label-md text-label-md text-on-surface-variant">جنيه / شهريًا</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">إجمالي 8,280 جنيه سنويًا</p>
+</div>
+<button class="w-full py-base px-md border border-primary text-primary font-label-md text-label-md rounded-lg hover:bg-primary/5 transition-colors cursor-pointer">
+                    اختر هذه الخطة
+                </button>
+</div>
+</section>
+<!-- Footer Notes Section -->
+<section class="px-gutter mt-xl">
+<div class="bg-primary/5 rounded-xl p-md border border-outline-variant">
+<div class="flex gap-base mb-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="info">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        ميزة الاشتراك السنوي: يوفر 6,120 جنيه مقارنة بالشهري، واستثمار في استمرارية تعليم أفضل
+                    </p>
+</div>
+<div class="flex gap-base border-t border-outline-variant/30 pt-sm">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="payments">payments</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        رسوم تسجيل إدارية 200 جنيه تدفع لمرة واحدة
+                    </p>
+</div>
+</div>
+</section>
+<!-- Promotional Image -->
+<section class="px-gutter mt-xl">
+<div class="relative h-48 rounded-xl overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional and modern educational setting in Egypt featuring young students engaged with high-tech laptop screens. The atmosphere is bright and inspirational, with a color palette of deep navy blues and warm gold accents reflecting academic excellence. Soft morning sunlight streams through large windows, highlighting the focused expressions of the future tech leaders in a high-end corporate academy environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMtp2S4c7JlEH-tXTVlEzAGNJCm8OyS-kD9eZe6Scc-MWv6c7BhdkkRBQvzaoT_0Z8cltEbXatvXUO0zUTt0hfzxSkT_fFD1QExXOay9fLwyDouYwMkgm4U_CNoraJTMFefNaELuNr2MQ5Gq2MSmgiTcD_rJLvD-cBsKlW0XLvjBADSNqNI0_hhx1EVSKu5JapHn-EpcUCkHAv5JepU6nG0WXfKDukZYrppftxOjcIYwcSz9yO8OYqRLue8wEyvRHZQjWi18kyNrw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-md">
+<p class="text-white font-headline-md text-headline-md">استثمر في مستقبل طفلك اليوم</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="w-full py-xl mt-auto border-t border-outline-variant bg-surface-container-low">
+<div class="flex flex-col items-center gap-md px-gutter w-full max-w-container-max mx-auto text-center">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary" data-icon="school">school</span>
+<span class="font-label-md text-label-md font-bold text-primary">TKA Egypt Academy</span>
+</div>
+<nav class="flex flex-wrap justify-center gap-md">
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-sm text-body-sm" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-sm text-body-sm" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-sm text-body-sm" href="#">Institutional FAQ</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-sm text-body-sm" href="#">Contact Admin</a>
+</nav>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-sm">
+                © 2024 TKA Egypt Academy. All Rights Reserved.
+            </p>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Shell Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center p-base bg-surface-container border-t border-outline-variant z-50 rounded-t-xl shadow-lg">
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-transform scale-95 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="card_membership">card_membership</span>
+<span class="font-label-md text-label-md">Plans</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-transform scale-95 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-md text-label-md">Learning</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-transform scale-95 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Account</span>
+</div>
+</nav>
+<script>
+        // Simple interaction for plan selection
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const planName = this.closest('div').querySelector('h3').innerText;
+                console.log('Plan selected:', planName);
+                // Highlight visual feedback
+                this.classList.add('opacity-80');
+                setTimeout(() => this.classList.remove('opacity-80'), 100);
+            });
+        });
+    </script>
+</body></html>

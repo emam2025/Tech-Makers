@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<title>AcademyPro - Chat</title>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#2c3647",
+                        "surface": "#f7fafc",
+                        "surface-tint": "#455f88",
+                        "outline-variant": "#c4c6cf",
+                        "on-primary-container": "#86a0cd",
+                        "primary-fixed": "#d6e3ff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#1a365d",
+                        "secondary-fixed": "#ffdea5",
+                        "surface-variant": "#e0e3e5",
+                        "secondary-container": "#fed488",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#785a1a",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#001b3c",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#bdc7dc",
+                        "tertiary": "#172131",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#eef1f3",
+                        "on-background": "#181c1e",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#e9c176",
+                        "surface-container-high": "#e5e9eb",
+                        "on-tertiary-fixed": "#121c2c",
+                        "tertiary-fixed": "#d9e3f9",
+                        "primary-fixed-dim": "#adc7f7",
+                        "outline": "#74777f",
+                        "on-tertiary-container": "#959fb3",
+                        "on-surface-variant": "#43474e",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "surface-bright": "#f7fafc",
+                        "background": "#f7fafc",
+                        "on-surface": "#181c1e",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "surface-dim": "#d7dadc",
+                        "surface-container": "#ebeef0",
+                        "secondary": "#775a19",
+                        "inverse-surface": "#2d3133",
+                        "on-tertiary-fixed-variant": "#3d4759"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "lg": "40px",
+                        "xl": "64px",
+                        "sm": "12px",
+                        "md": "24px",
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["IBM Plex Sans"],
+                        "body-lg": ["IBM Plex Sans"],
+                        "headline-xl": ["IBM Plex Sans"],
+                        "headline-lg": ["IBM Plex Sans"],
+                        "label-md": ["IBM Plex Sans"],
+                        "headline-md": ["IBM Plex Sans"],
+                        "headline-lg-mobile": ["IBM Plex Sans"],
+                        "body-md": ["IBM Plex Sans"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'IBM Plex Sans', sans-serif; background-color: #f7fafc; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
+        }
+        .message-received {
+            border-radius: 4px 18px 18px 18px;
+        }
+        .message-sent {
+            border-radius: 18px 4px 18px 18px;
+        }
+        .shadow-messenger {
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col h-screen overflow-hidden text-on-surface">
+<!-- Top AppBar (From Shared Components Logic) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter h-16 bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-messenger">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+</button>
+<div class="relative">
+<img alt="د. أحمد علي" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of an Egyptian professor in a suit, with a blurred academic office background. The lighting is soft and professional, emphasizing a friendly yet authoritative persona. High-end corporate photography style with deep navy and clean white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1q1rokvoesotlx0CR1CtgsROJBjoYbj1DsUf7RO_wDSBUa3VAJ5T288TuMt6eaPNiTuFsWfemJ-_Og33g8f_afsGFrO7tluMZYSluWS-HovJYFRb9xH0cNkL7Ce5hoXKSQV1puUBXnPjL-ieFJ2QFEoob94BXTHda3ZwK5INRHnrxAdlLnLKaZAwPiISXAKajR4Y9LsUSdHa7nSleCfNGeyLoZDpUfw4mFzJPdOOsEFAOh1HTJxItadYXjNcwamPTkTANpmfUh14"/>
+<div class="absolute bottom-0 left-0 w-3 h-3 bg-green-500 border-2 border-surface rounded-full"></div>
+</div>
+<div class="flex flex-col">
+<h1 class="font-label-md text-label-md text-primary dark:text-primary-fixed">د. أحمد علي</h1>
+<span class="text-[11px] text-on-surface-variant">نشط الآن</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full text-primary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">call</span>
+</button>
+<button class="p-2 rounded-full text-primary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+<button class="p-2 rounded-full text-primary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">info</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto pt-20 pb-24 px-4 space-y-4 bg-surface-container-lowest">
+<!-- Date Divider -->
+<div class="flex justify-center my-6">
+<span class="text-[12px] font-semibold text-on-surface-variant uppercase tracking-wider">اليوم</span>
+</div>
+<!-- Received Message Bundle -->
+<div class="flex items-end gap-2 max-w-[85%]">
+<img class="w-7 h-7 rounded-full object-cover border border-outline-variant" data-alt="Close up portrait of a middle-aged academic professional, friendly expression, set against a bright minimalist office. Studio lighting with clean shadows and a sophisticated blue-toned atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYJdCB2io8C0UmlSL_JbmFQKs4NQlb2_9IUs5QHUGuVgHpwWHUmrjas76g7qidPGW-I2wqdxn77iHCJ61doMRVY-yWNKTMuuY9daPXNV3GCGPAAqhBHrNK5I5xsDzOnOf-ebbmrE5SStAElvS867eZSOcmc-37hAlhS2eqXnK0_jBMl5LnjQrcOdUEfofZAe_FTMQueZ-A1u694a-lo0BmQ6HP8PlF33m5j0WD4JPy52xSRzCK-_ZzzTsrc6KsJL6M1zpplcdAGho"/>
+<div class="space-y-1">
+<div class="bg-surface-container-high text-on-surface px-4 py-2 message-received font-body-md text-body-md shadow-sm">
+                    السلام عليكم، هل اطلعت على الجدول الدراسي الجديد؟
+                </div>
+</div>
+</div>
+<!-- Sent Message -->
+<div class="flex flex-col items-end gap-1">
+<div class="max-w-[85%] bg-primary-container text-white px-4 py-2 message-sent font-body-md text-body-md shadow-sm">
+                وعليكم السلام يا دكتور. نعم، لقد راجعته اليوم صباحاً.
+            </div>
+</div>
+<!-- Sent Message Bundle -->
+<div class="flex flex-col items-end gap-1">
+<div class="max-w-[85%] bg-primary-container text-white px-4 py-2 message-sent font-body-md text-body-md shadow-sm">
+                هناك تعارض بسيط في المحاضرة الثالثة يوم الثلاثاء، هل يمكننا تعديله؟
+            </div>
+<div class="flex items-center gap-1 mt-1">
+<span class="text-[10px] text-on-surface-variant">تمت القراءة</span>
+<img class="w-3 h-3 rounded-full object-cover" data-alt="Miniature circular profile photo of a professional man, used as a read receipt indicator in a high-end mobile application. The image is crisp and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAo1MLqK6FIvcWH1LH3osn2mBl4fOVvsosqWA5t65NgTnDIBIfqR8qbDzalMOFnIkSsTFpSW8zEOGkTnagwTtRaYECB7SxP3OeCqTbSB4UkhTWQ7ESMurDSNgCEgtkEVF1uA_gchBF28ZjE3kNzASPYeLyHnc6EBeN2MUCaxRR0Bn11f-H_TuQmagYsgs5exVGE2-Aoh3TZ-94wvImlXkgSl3nchPXnRr-4xxPOlZI0xxakFusGy-f6ZDakHtr0B68MR0PkZ6ZfJk"/>
+</div>
+</div>
+<!-- Received Message -->
+<div class="flex items-end gap-2 max-w-[85%]">
+<img class="w-7 h-7 rounded-full object-cover border border-outline-variant" data-alt="Portrait of an educational consultant in a corporate setting. High-key lighting, modern aesthetic, professional navy blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGbPSYFLOk987uYcBMpUpjOmdai63b_SkjG9ep0FgTkCLnWLt6HoKKGQAN3bbpmFgx4roYyxO52SkTLjOcy8_qroDUEHLT7T6AoJh_AbK5LqnfaEAYAFSsiSdxl8WPbxeOHRxdpLdaBQOj9_IS0J6s80RSJtcvYi2xQ1L6qyaHTmzYay9TAA7626Ix_oCuq1BroZhMDqqJVDC3YzaLO_KkGvRfO7fGEK-1WtqHgAtjS8kGddT6kpjkza6gnY3LSzh0ZvDBDQWo61E"/>
+<div class="bg-surface-container-high text-on-surface px-4 py-2 message-received font-body-md text-body-md shadow-sm">
+                بالتأكيد، سأقوم بمراجعة شؤون الطلاب وسأوافيك بالرد خلال ساعة.
+            </div>
+</div>
+<!-- Message Image Attachment (Received) -->
+<div class="flex items-end gap-2 max-w-[70%]">
+<div class="w-7"></div>
+<div class="rounded-xl overflow-hidden border border-outline-variant shadow-sm">
+<img alt="Attachment" class="w-full h-auto" data-alt="A clean, professional data visualization dashboard showing academic performance charts. The style is modern enterprise software with a palette of deep blues, golds, and soft grays. The mood is analytical and secure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZwP1SlsECvMlGlZ9KHH102F_my7RRw2BYbwix2SDuVa1eqc8BA7cod379qUhXXS2zSaTPsStATbTbfcSuHNu8PPOcW3loYjTZNr7RJsSZGUyXVf7umHXImmzlSj-Ej5owFZG6FFDzPtmLGq9HqUa3nIl-jv3Awxrictx9uOTkgiDbqbk3IFRORBjXAv4whFbZFh6-HWFbiB02dCmkEeGsNkeHuhfA_YVZz-LB5B5aGH_UyDY1jOVxJ6EXW80DVUH3YMxHJocY6NM"/>
+</div>
+</div>
+</main>
+<!-- Bottom Input Area -->
+<footer class="fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant px-4 py-3 flex items-center gap-2 z-50">
+<div class="flex items-center gap-1">
+<button class="w-9 h-9 flex items-center justify-center text-primary hover:bg-surface-container-low rounded-full transition-all active:scale-90">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center text-primary hover:bg-surface-container-low rounded-full transition-all active:scale-90">
+<span class="material-symbols-outlined">photo_camera</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center text-primary hover:bg-surface-container-low rounded-full transition-all active:scale-90">
+<span class="material-symbols-outlined">image</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center text-primary hover:bg-surface-container-low rounded-full transition-all active:scale-90">
+<span class="material-symbols-outlined">mic</span>
+</button>
+</div>
+<div class="flex-1 relative">
+<input class="w-full bg-surface-container-high border-none rounded-full px-4 py-2 focus:ring-2 focus:ring-primary-container text-body-md font-body-md placeholder-on-surface-variant" placeholder="اكتب رسالة..." type="text"/>
+<button class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center text-primary opacity-60">
+<span class="material-symbols-outlined">sentiment_satisfied</span>
+</button>
+</div>
+<button class="w-10 h-10 flex items-center justify-center text-primary-container transition-all active:scale-75" id="send-button">
+<span class="material-symbols-outlined text-[28px]" id="interaction-icon" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+</button>
+</footer>
+<script>
+        const input = document.querySelector('input');
+        const icon = document.getElementById('interaction-icon');
+        const sendBtn = document.getElementById('send-button');
+
+        input.addEventListener('input', (e) => {
+            if (e.target.value.trim().length > 0) {
+                icon.innerText = 'send';
+                icon.style.color = '#1a365d';
+            } else {
+                icon.innerText = 'thumb_up';
+            }
+        });
+
+        // Simple mock send interaction
+        sendBtn.addEventListener('click', () => {
+            if (input.value.trim().length > 0) {
+                const main = document.querySelector('main');
+                const msg = document.createElement('div');
+                msg.className = 'flex flex-col items-end gap-1 animate-in fade-in slide-in-from-bottom-2 duration-300';
+                msg.innerHTML = `
+                    <div class="max-w-[85%] bg-primary-container text-white px-4 py-2 message-sent font-body-md text-body-md shadow-sm">
+                        ${input.value}
+                    </div>
+                    <div class="flex items-center gap-1 mt-1">
+                        <span class="text-[10px] text-on-surface-variant">جاري الإرسال...</span>
+                    </div>
+                `;
+                main.appendChild(msg);
+                input.value = '';
+                icon.innerText = 'thumb_up';
+                main.scrollTo({ top: main.scrollHeight, behavior: 'smooth' });
+                
+                // Simulate "Sent" status update
+                setTimeout(() => {
+                    msg.querySelector('span').innerText = 'تم الإرسال';
+                }, 1000);
+            }
+        });
+    </script>
+</body></html>

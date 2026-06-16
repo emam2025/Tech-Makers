@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech English — English for the Future</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e5e9eb",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#785a1a",
+                    "on-tertiary-container": "#959fb3",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#121c2c",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f1f4f6",
+                    "on-tertiary-fixed-variant": "#3d4759",
+                    "primary-container": "#1a365d",
+                    "on-primary-fixed": "#001b3c",
+                    "surface-container": "#ebeef0",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#261900",
+                    "tertiary-container": "#2c3647",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#181c1e",
+                    "tertiary-fixed": "#d9e3f9",
+                    "background": "#f7fafc",
+                    "surface": "#f7fafc",
+                    "on-primary-fixed-variant": "#2d476f",
+                    "inverse-on-surface": "#eef1f3",
+                    "surface-container-highest": "#e0e3e5",
+                    "primary-fixed-dim": "#adc7f7",
+                    "on-background": "#181c1e",
+                    "surface-bright": "#f7fafc",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "secondary-fixed": "#ffdea5",
+                    "inverse-primary": "#adc7f7",
+                    "tertiary": "#172131",
+                    "outline-variant": "#c4c6cf",
+                    "on-primary-container": "#86a0cd",
+                    "primary-fixed": "#d6e3ff",
+                    "secondary-container": "#fed488",
+                    "primary": "#002045",
+                    "surface-variant": "#e0e3e5",
+                    "inverse-surface": "#2d3133",
+                    "outline": "#74777f",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#43474e",
+                    "error": "#ba1a1a",
+                    "secondary": "#775a19",
+                    "surface-tint": "#455f88",
+                    "secondary-fixed-dim": "#e9c176",
+                    "tertiary-fixed-dim": "#bdc7dc",
+                    "surface-dim": "#d7dadc"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "lg": "40px",
+                    "xs": "4px",
+                    "base": "8px",
+                    "sm": "12px",
+                    "xl": "64px",
+                    "gutter": "24px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["IBM Plex Sans"],
+                    "headline-lg-mobile": ["IBM Plex Sans"],
+                    "body-lg": ["IBM Plex Sans"],
+                    "headline-xl": ["IBM Plex Sans"],
+                    "headline-lg": ["IBM Plex Sans"],
+                    "label-md": ["IBM Plex Sans"],
+                    "body-md": ["IBM Plex Sans"],
+                    "body-sm": ["IBM Plex Sans"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 4px 12px rgba(26, 54, 93, 0.08);
+        }
+        .journey-line {
+            background: repeating-linear-gradient(90deg, #C5A059 0, #C5A059 10px, transparent 10px, transparent 20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface border-b border-outline-variant fixed top-0 z-50 flex items-center justify-between px-md h-16 w-full">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" style="font-size: 32px;">school</span>
+<span class="font-headline-md text-headline-md-mobile font-bold text-primary">TKA Academy</span>
+</div>
+<nav class="hidden md:flex items-center gap-md">
+<a class="text-primary font-label-md" href="#">Home</a>
+<a class="text-on-surface-variant font-label-md hover:text-primary transition-colors" href="#">Courses</a>
+<a class="text-on-surface-variant font-label-md hover:text-primary transition-colors" href="#">About</a>
+</nav>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-low p-2 rounded-full transition-colors">notifications</span>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-bold">JD</div>
+</div>
+</header>
+<main class="pt-16 pb-20 md:pb-0">
+<!-- Hero Section -->
+<section class="relative min-h-[707px] flex items-center overflow-hidden bg-primary-container">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-l from-primary-container via-primary-container/80 to-transparent z-10"></div>
+<img class="w-full h-full object-cover opacity-40" data-alt="A futuristic technology classroom with glowing blue data displays and young students interacting with holographic interfaces. The lighting is crisp and cool, featuring deep royal blues and sharp white highlights to convey a professional educational environment. The style is hyper-modern enterprise, focusing on clarity and advanced learning tools." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqYHTqneByv8a39DW607TW9RGgyU0IPYfBFEt6bxpw4qAeoGJAwffCT2532UX1rZHAz_06YQRki9LGu6YWYEZYquWrNqxXospA7YRCqB_pqxgow8Oft3m1iQBBtr2bmbGQY5ikN5iKZK8g9ew6euFsBtAj7x8Q06S6YSCkGEu3nwE34VVQkBX7k0YPK9MPdROdWzxZBUgmcRsStwFEHbPfOEMm9VisrY82enZmZS0JWY-KsLwyxNK-OSX2CC6C99WyE_Omh4CWvfE"/>
+</div>
+<div class="container mx-auto px-gutter relative z-20 grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
+<div class="text-right md:text-right">
+<div class="inline-flex items-center gap-xs px-sm py-1 bg-secondary-container text-on-secondary-container rounded-full mb-md animate-pulse">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Exclusive Program</span>
+</div>
+<h1 class="font-headline-xl text-white mb-sm leading-tight">
+                        Tech English — <span class="text-secondary-fixed">اللغة الإنجليزية التكنولوجية</span>
+</h1>
+<p class="font-body-lg text-primary-fixed mb-lg max-w-xl">
+                        English for Future Technology. Master the global language of innovation through our specialized 12-month career-path program.
+                    </p>
+<div class="flex flex-wrap gap-md">
+<button class="px-xl py-md bg-secondary text-on-secondary rounded-lg font-label-md hover:opacity-90 active:scale-95 transition-all shadow-lg">
+                            Register in Tech English
+                        </button>
+<button class="px-xl py-md border-2 border-primary-fixed text-primary-fixed rounded-lg font-label-md hover:bg-primary-fixed hover:text-primary transition-all">
+                            Test your level for free
+                        </button>
+</div>
+</div>
+<div class="hidden md:flex justify-end">
+<div class="relative w-full max-w-md aspect-square bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 p-md flex flex-col justify-center gap-md">
+<div class="flex items-center gap-md bg-white/5 p-sm rounded-xl border border-white/10">
+<span class="material-symbols-outlined text-secondary-fixed text-3xl">schedule</span>
+<div>
+<p class="text-white font-label-md">Duration</p>
+<p class="text-primary-fixed-dim text-body-sm">12 Months Intensive</p>
+</div>
+</div>
+<div class="flex items-center gap-md bg-white/5 p-sm rounded-xl border border-white/10">
+<span class="material-symbols-outlined text-secondary-fixed text-3xl">bar_chart</span>
+<div>
+<p class="text-white font-label-md">Proficiency</p>
+<p class="text-primary-fixed-dim text-body-sm">A1 to B2 Mastery</p>
+</div>
+</div>
+<div class="flex items-center gap-md bg-white/5 p-sm rounded-xl border border-white/10">
+<span class="material-symbols-outlined text-secondary-fixed text-3xl">verified</span>
+<div>
+<p class="text-white font-label-md">Accreditation</p>
+<p class="text-primary-fixed-dim text-body-sm">Ministry of Education Approved</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Course Overview (Bento Grid) -->
+<section class="py-xl bg-white">
+<div class="container mx-auto px-gutter">
+<div class="text-center mb-xl">
+<h2 class="font-headline-lg text-primary mb-xs">Course Overview</h2>
+<p class="text-on-surface-variant font-body-md max-w-2xl mx-auto">A comprehensive educational roadmap designed for the digital native generation.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Main Feature Card -->
+<div class="md:col-span-8 bento-card bg-surface-container-low rounded-3xl p-lg flex flex-col md:flex-row gap-lg items-center border border-outline-variant">
+<div class="w-full md:w-1/2 space-y-md">
+<h3 class="font-headline-md text-primary">Holistic Approach</h3>
+<p class="text-on-surface-variant">We don't just teach grammar. We immerse students in the technical context of Speaking, Reading, and Writing for the 21st century.</p>
+<ul class="space-y-sm">
+<li class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="text-body-md">Advanced Presentation Skills</span>
+</li>
+<li class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="text-body-md">Technical Documentation Literacy</span>
+</li>
+<li class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="text-body-md">AI & Programming Vocabulary</span>
+</li>
+</ul>
+</div>
+<div class="w-full md:w-1/2">
+<img class="rounded-2xl shadow-md w-full object-cover aspect-video" data-alt="A diverse group of young professionals collaborating in a clean, modern workspace with laptops and digital boards. The environment is well-lit with natural light, emphasizing a high-end corporate learning aesthetic. The overall mood is focused, energetic, and professional, using a primary navy and crisp white color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYE0HlXqxSwyp_bYbDGZRfUHLVZh220rCu2b8hWYwcQabVtOMHH1_U4jk1eNmllJHDphae5Ag-m8fD_rKX-QzvXHOUh8U-1K4blCU6JG-BgeOKVqp4IO9qXXnTUlYsPXBbQztLxvc_Sfn6RE9gT3Fzcr7ZH3nnpxJ8R3RfVukjB_R9F8fekkXkJcDKIMHP92Rwmg-Ou9JTlHrRsT5K5pVMwPzq1SYuL8ilb0YtoSfHD4JUyc5J_i92ZVC_fAmNg87vbNT0UNdjonI"/>
+</div>
+</div>
+<!-- Metrics Cards -->
+<div class="md:col-span-4 grid grid-cols-1 gap-gutter">
+<div class="bento-card bg-primary-container text-on-primary rounded-3xl p-md flex flex-col justify-center items-center text-center border border-primary">
+<span class="material-symbols-outlined text-secondary-fixed text-4xl mb-sm">calendar_month</span>
+<h4 class="font-headline-md">12 Months</h4>
+<p class="font-body-sm opacity-80">Full Immersion Duration</p>
+</div>
+<div class="bento-card bg-surface-container-highest rounded-3xl p-md flex flex-col justify-center items-center text-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-4xl mb-sm">child_care</span>
+<h4 class="font-headline-md text-primary">8+ Years</h4>
+<p class="font-body-sm text-on-surface-variant">Target Age Group</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Tech English Journey (Visual Route) -->
+<section class="py-xl bg-surface">
+<div class="container mx-auto px-gutter">
+<div class="text-center mb-xl">
+<h2 class="font-headline-lg text-primary mb-xs">Tech English Journey</h2>
+<p class="text-on-surface-variant font-body-md">Your path from basic literacy to professional fluency.</p>
+</div>
+<div class="relative">
+<!-- Connector Line -->
+<div class="hidden lg:block absolute top-1/2 left-0 w-full h-1 journey-line -translate-y-1/2 z-0 opacity-20"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter relative z-10">
+<!-- Level 1 -->
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-white border-4 border-primary text-primary flex items-center justify-center font-bold text-xl mb-md shadow-lg">1</div>
+<div class="bg-white p-lg rounded-2xl border border-outline-variant w-full shadow-sm hover:border-primary transition-colors text-center">
+<span class="bg-surface-container-high px-sm py-1 rounded text-body-sm font-bold text-primary inline-block mb-sm">A1 Foundation</span>
+<h3 class="font-headline-md text-primary mb-sm">Starter</h3>
+<p class="text-body-sm text-on-surface-variant mb-md">Basics, computer parts, and internet safety.</p>
+<div class="bg-surface-container-low p-sm rounded-lg text-right">
+<p class="font-label-md text-primary mb-xs">Key Skills:</p>
+<ul class="text-xs text-on-surface-variant space-y-1">
+<li>• Speaking confidence</li>
+<li>• Active listening</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Level 2 -->
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-white border-4 border-primary text-primary flex items-center justify-center font-bold text-xl mb-md shadow-lg">2</div>
+<div class="bg-white p-lg rounded-2xl border border-outline-variant w-full shadow-sm hover:border-primary transition-colors text-center">
+<span class="bg-surface-container-high px-sm py-1 rounded text-body-sm font-bold text-primary inline-block mb-sm">A2 Communication</span>
+<h3 class="font-headline-md text-primary mb-sm">Explorer</h3>
+<p class="text-body-sm text-on-surface-variant mb-md">Expressing opinions, coding, and robotics basics.</p>
+<div class="bg-surface-container-low p-sm rounded-lg text-right">
+<p class="font-label-md text-primary mb-xs">Key Skills:</p>
+<ul class="text-xs text-on-surface-variant space-y-1">
+<li>• Tech explanations</li>
+<li>• Digital world vocab</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Level 3 -->
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-white border-4 border-primary text-primary flex items-center justify-center font-bold text-xl mb-md shadow-lg">3</div>
+<div class="bg-white p-lg rounded-2xl border border-outline-variant w-full shadow-sm hover:border-primary transition-colors text-center">
+<span class="bg-surface-container-high px-sm py-1 rounded text-body-sm font-bold text-primary inline-block mb-sm">B1 Intermediate</span>
+<h3 class="font-headline-md text-primary mb-sm">Communicator</h3>
+<p class="text-body-sm text-on-surface-variant mb-md">AI, cybersecurity, and complex presentations.</p>
+<div class="bg-white p-lg rounded-2xl border border-outline-variant w-full shadow-sm hover:border-primary transition-colors text-center">
+<p class="font-label-md text-primary mb-xs">Key Skills:</p>
+<ul class="text-xs text-on-surface-variant space-y-1">
+<li>• Team collaboration</li>
+<li>• Project description</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Level 4 -->
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-secondary border-4 border-white text-on-secondary flex items-center justify-center font-bold text-xl mb-md shadow-lg">4</div>
+<div class="bg-primary-container p-lg rounded-2xl border border-primary w-full shadow-md text-center text-on-primary">
+<span class="bg-secondary px-sm py-1 rounded text-body-sm font-bold text-on-secondary inline-block mb-sm">B2 Professional</span>
+<h3 class="font-headline-md mb-sm">Tech Pro</h3>
+<p class="text-body-sm opacity-80 mb-md">CV writing, interviews, and deep AI terminology.</p>
+<div class="bg-white/10 p-sm rounded-lg text-right border border-white/20">
+<p class="font-label-md text-secondary-fixed mb-xs">Final Milestone:</p>
+<p class="text-xs">Professional Final Project</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-xl bg-white">
+<div class="container mx-auto px-gutter">
+<div class="bg-surface-container-low rounded-[40px] p-xl text-center relative overflow-hidden border border-outline-variant">
+<div class="absolute -top-24 -left-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-24 -right-24 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+<div class="relative z-10 max-w-3xl mx-auto">
+<h2 class="font-headline-lg text-primary mb-md">Start your journey</h2>
+<p class="font-body-lg text-on-surface-variant mb-xl">Take the first step towards a global technology career. Our advisors are ready to help you place in the right level.</p>
+<div class="flex flex-col md:flex-row gap-md justify-center">
+<button class="px-xl py-md bg-primary text-white rounded-xl font-label-md hover:shadow-xl transition-all flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined">how_to_reg</span>
+                                Register in Tech English
+                            </button>
+<button class="px-xl py-md border-2 border-primary text-primary rounded-xl font-label-md hover:bg-primary hover:text-white transition-all flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined">quiz</span>
+                                Test your level for free
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary text-on-primary w-full py-xl">
+<div class="container mx-auto px-gutter">
+<div class="flex flex-col md:flex-row items-center justify-between gap-xl">
+<div class="text-center md:text-right">
+<div class="flex items-center gap-sm mb-sm justify-center md:justify-start">
+<span class="material-symbols-outlined text-secondary-fixed" style="font-size: 40px;">school</span>
+<span class="font-headline-md font-bold text-on-primary">TKA-Egypt Academy</span>
+</div>
+<p class="font-body-sm opacity-70 max-w-md">Empowering the next generation of Egyptian engineers and developers through world-class technical education.</p>
+</div>
+<div class="grid grid-cols-2 gap-xl">
+<div class="space-y-sm">
+<h4 class="font-label-md text-secondary-fixed uppercase tracking-wider">Quick Links</h4>
+<nav class="flex flex-col gap-xs font-body-sm">
+<a class="hover:text-secondary-fixed transition-colors" href="#">About Us</a>
+<a class="hover:text-secondary-fixed transition-colors" href="#">Accreditation</a>
+<a class="hover:text-secondary-fixed transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-secondary-fixed transition-colors" href="#">Contact Support</a>
+</nav>
+</div>
+<div class="space-y-sm">
+<h4 class="font-label-md text-secondary-fixed uppercase tracking-wider">Contact</h4>
+<p class="font-body-sm">Cairo, Egypt</p>
+<p class="font-body-sm">support@tka-egypt.com</p>
+</div>
+</div>
+</div>
+<div class="mt-xl pt-lg border-t border-white/10 text-center">
+<p class="font-body-sm opacity-60">© 2024 TKA-Egypt Academy. Accredited by the Ministry of Education.</p>
+</div>
+</div>
+</footer>
+<!-- Bottom Navigation (Mobile Only) -->
+<div class="md:hidden fixed bottom-0 left-0 w-full bg-white dark:bg-surface-container-lowest flex justify-around items-center py-2 px-4 border-t border-outline-variant z-50 shadow-lg">
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 scale-90 transition-transform">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-md font-label-md">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-label-md font-label-md">Courses</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-md font-label-md">Profile</span>
+</button>
+</div>
+</body></html>

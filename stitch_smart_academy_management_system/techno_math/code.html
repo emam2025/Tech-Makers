@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Techno Math | برنامج الحساب الذهني</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f7fafc",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#86a0cd",
+                        "tertiary-fixed": "#d9e3f9",
+                        "outline": "#74777f",
+                        "on-tertiary-fixed-variant": "#3d4759",
+                        "surface-container-low": "#f1f4f6",
+                        "tertiary-container": "#2c3647",
+                        "surface-variant": "#e0e3e5",
+                        "on-background": "#181c1e",
+                        "secondary-fixed": "#ffdea5",
+                        "secondary-container": "#fed488",
+                        "on-surface": "#181c1e",
+                        "inverse-on-surface": "#eef1f3",
+                        "on-secondary-container": "#785a1a",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#43474e",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "primary-fixed-dim": "#adc7f7",
+                        "inverse-surface": "#2d3133",
+                        "secondary": "#775a19",
+                        "error": "#ba1a1a",
+                        "surface-container": "#ebeef0",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "primary": "#002045",
+                        "on-secondary-fixed": "#261900",
+                        "on-primary-fixed": "#001b3c",
+                        "surface-tint": "#455f88",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#e9c176",
+                        "on-tertiary-container": "#959fb3",
+                        "tertiary": "#172131",
+                        "primary-container": "#1a365d",
+                        "surface-container-high": "#e5e9eb",
+                        "surface-bright": "#f7fafc",
+                        "outline-variant": "#c4c6cf",
+                        "background": "#f7fafc",
+                        "surface-dim": "#d7dadc",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#121c2c",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#bdc7dc",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#d6e3ff",
+                        "inverse-primary": "#adc7f7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "xs": "4px",
+                        "xl": "64px",
+                        "md": "24px",
+                        "base": "8px",
+                        "sm": "12px",
+                        "lg": "40px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["IBM Plex Sans Arabic"],
+                        "headline-md": ["IBM Plex Sans Arabic"],
+                        "body-sm": ["IBM Plex Sans Arabic"],
+                        "headline-lg": ["IBM Plex Sans Arabic"],
+                        "label-md": ["IBM Plex Sans Arabic"],
+                        "body-md": ["IBM Plex Sans Arabic"],
+                        "headline-xl": ["IBM Plex Sans Arabic"],
+                        "body-lg": ["IBM Plex Sans Arabic"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #f7fafc;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .roadmap-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 1.5rem;
+            width: 2px;
+            background: #e2e8f0;
+            z-index: 0;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest dark:bg-surface-container-lowest border-b border-outline-variant dark:border-outline-variant h-16">
+<div class="flex justify-between items-center w-full px-md md:px-lg max-w-container-max mx-auto h-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="functions">functions</span>
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed-dim">Techno Math</span>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-label-md font-label-md hover:bg-primary-container transition-colors duration-200">
+                Register Now
+            </button>
+</div>
+</header>
+<main class="pt-16 overflow-x-hidden">
+<!-- Hero Section -->
+<section class="relative min-h-[751px] flex flex-col justify-center items-center text-center px-md py-xl bg-gradient-to-b from-surface-container-lowest to-surface">
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="w-full h-full" style="background-image: radial-gradient(#1a365d 1px, transparent 1px); background-size: 32px 32px;"></div>
+</div>
+<div class="relative z-10 max-w-2xl mx-auto space-y-6">
+<h1 class="text-headline-xl font-headline-xl text-primary leading-tight">برنامج الحساب الذهني — Techno Math</h1>
+<h2 class="text-headline-md font-headline-md text-secondary">Smart Kids Brain Training Program</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-xl mx-auto">
+                    نحن متخصصون في تطوير مهارات طفلك الذهنية من استخدام العداد الصيني (Abacus) وصولاً إلى مهارات التخيل المتقدمة والعمليات الحسابية المعقدة خلال ١٢ شهرًا من التدريب المنهجي.
+                </p>
+<!-- Quick Info Chips -->
+<div class="flex flex-wrap justify-center gap-3 py-4">
+<span class="bg-primary-container text-white px-4 py-2 rounded-full text-label-md font-label-md flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-sm" data-icon="calendar_today">calendar_today</span> ١٢ شهر
+                    </span>
+<span class="bg-secondary-container text-on-secondary-container px-4 py-2 rounded-full text-label-md font-label-md flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-sm" data-icon="child_care">child_care</span> ٨ — ١٥ سنة
+                    </span>
+<span class="bg-surface-container-high text-primary px-4 py-2 rounded-full text-label-md font-label-md flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-sm" data-icon="layers">layers</span> ٤ مستويات
+                    </span>
+</div>
+<div class="pt-8">
+<button class="bg-primary text-on-primary px-10 py-4 rounded-xl text-headline-md font-headline-md shadow-lg hover:shadow-xl transition-all active:scale-95">
+                        سجّل الآن
+                    </button>
+</div>
+</div>
+<!-- Floating visual element -->
+<div class="mt-12 w-full max-w-3xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-2xl border border-outline-variant bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A focused young child using a wooden abacus in a bright, modern classroom setting. The lighting is soft and natural, emphasizing academic focus and institutional trust. The background shows blurred educational charts in royal blue and gold tones, reflecting a premium learning environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpUBN3gx-KqpsS9ZT3FGAYAFk2JgQnvF4quNFwOCGpP24vXMpE33srC38nZcxRW-wFZpGbWS-oEnxZPG2M1_Mcz_cPqyZ_OrRoeh64dcayFQy-_bvfE6VI5cUVvuwWm1KEON-d06kK7EZDnRYb3cD-jsYIumbXAPfOIjTn52crOtEa4fNldZS0uJE9BEsIMe-A0p7SbXkqFaaQRE58I99hoHGokaZt18uCrtKIYi8tKJpyKGk8nvMGy9rho6OGC4Kl67iLuTH7PUU"/>
+</div>
+</section>
+<!-- Program Goals Section -->
+<section class="bg-surface-container-low py-xl px-md">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-12">
+<h2 class="text-headline-lg font-headline-lg text-primary">أهداف البرنامج</h2>
+<div class="w-16 h-1 bg-secondary mx-auto mt-4 rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- Goal Item 1 -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant hover:shadow-md transition-shadow">
+<div class="w-12 h-12 bg-primary-fixed text-primary flex items-center justify-center rounded-lg mb-4">
+<span class="material-symbols-outlined" data-icon="speed">speed</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-primary mb-2">سرعة الحساب الذهني</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">تمكين الطالب من إجراء العمليات الحسابية بسرعة تفوق الآلة الحاسبة.</p>
+</div>
+<!-- Goal Item 2 -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant hover:shadow-md transition-shadow">
+<div class="w-12 h-12 bg-primary-fixed text-primary flex items-center justify-center rounded-lg mb-4">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-primary mb-2">تعزيز التركيز</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">تدريبات مكثفة ترفع من قدرة الطفل على الانتباه والتركيز لفترات طويلة.</p>
+</div>
+<!-- Goal Item 3 -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant hover:shadow-md transition-shadow">
+<div class="w-12 h-12 bg-primary-fixed text-primary flex items-center justify-center rounded-lg mb-4">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-primary mb-2">معالجة المعلومات</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">تحسين سرعة الاستجابة الذهنية وتلقي وتحليل البيانات بسرعة ودقة.</p>
+</div>
+<!-- Goal Item 4 -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant hover:shadow-md transition-shadow">
+<div class="w-12 h-12 bg-primary-fixed text-primary flex items-center justify-center rounded-lg mb-4">
+<span class="material-symbols-outlined" data-icon="foundation">foundation</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-primary mb-2">تأسيس رياضي قوي</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">بناء قاعدة صلبة في فهم الأرقام والعمليات الرياضية من منظور منطقي.</p>
+</div>
+<!-- Goal Item 5 -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant hover:shadow-md transition-shadow">
+<div class="w-12 h-12 bg-primary-fixed text-primary flex items-center justify-center rounded-lg mb-4">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-primary mb-2">التخيل البصري</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">تدريب العقل على رسم صورة ذهنية للعداد والتحكم بالأرقام بصرياً.</p>
+</div>
+<!-- Goal Item 6 -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant hover:shadow-md transition-shadow">
+<div class="w-12 h-12 bg-primary-fixed text-primary flex items-center justify-center rounded-lg mb-4">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-primary mb-2">تعزيز الثقة</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">بناء شخصية واثقة بقدراتها العقلية قادرة على مواجهة التحديات الأكاديمية.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Training Roadmap -->
+<section class="py-xl px-md bg-surface">
+<div class="max-w-3xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-headline-lg font-headline-lg text-primary">المسار التدريبي</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant mt-2">4 مستويات خلال عام كامل — من الأساسيات إلى الاحتراف</p>
+</div>
+<div class="relative roadmap-line space-y-8">
+<!-- Level 1 -->
+<div class="relative z-10 flex items-start gap-6">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-lg font-bold">1</div>
+<div class="bg-surface-container-lowest p-md rounded-xl border-r-4 border-emerald-500 shadow-sm flex-grow border border-outline-variant">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-headline-md font-headline-md text-primary">أساسيات العداد (Abacus Foundation)</h3>
+<span class="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-label-md font-bold">3 شهور</span>
+</div>
+<div class="space-y-2 mt-4">
+<p class="text-body-md font-bold text-primary">الأهداف:</p>
+<ul class="text-body-sm text-on-surface-variant list-disc list-inside space-y-1">
+<li>التعرف على مكونات العداد الصيني.</li>
+<li>إتقان تحريك الخرزات وتكوين الأرقام.</li>
+<li>العمليات البسيطة (الجمع والطرح).</li>
+</ul>
+<div class="mt-3 pt-3 border-t border-outline-variant">
+<p class="text-label-md font-bold text-emerald-700">النتيجة: كسر حاجز الخوف من الأرقام وبناء اليد الرشيقة.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Level 2 -->
+<div class="relative z-10 flex items-start gap-6">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-yellow-500 text-white flex items-center justify-center shadow-lg font-bold">2</div>
+<div class="bg-surface-container-lowest p-md rounded-xl border-r-4 border-yellow-500 shadow-sm flex-grow border border-outline-variant">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-headline-md font-headline-md text-primary">الانتقال إلى التخيل</h3>
+<span class="bg-yellow-50 text-yellow-700 px-3 py-1 rounded-full text-label-md font-bold">3 شهور</span>
+</div>
+<div class="space-y-2 mt-4">
+<p class="text-body-md font-bold text-primary">الأهداف:</p>
+<ul class="text-body-sm text-on-surface-variant list-disc list-inside space-y-1">
+<li>تفعيل الذاكرة البصرية.</li>
+<li>بناء العداد الذهني (Mental Abacus).</li>
+<li>عمليات الجمع والطرح المركبة.</li>
+</ul>
+<div class="mt-3 pt-3 border-t border-outline-variant">
+<p class="text-label-md font-bold text-yellow-700">النتيجة: القدرة على إجراء عمليات بدون عداد حقيقي.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Level 3 -->
+<div class="relative z-10 flex items-start gap-6">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-orange-500 text-white flex items-center justify-center shadow-lg font-bold">3</div>
+<div class="bg-surface-container-lowest p-md rounded-xl border-r-4 border-orange-500 shadow-sm flex-grow border border-outline-variant">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-headline-md font-headline-md text-primary">السرعة الذهنية</h3>
+<span class="bg-orange-50 text-orange-700 px-3 py-1 rounded-full text-label-md font-bold">3 شهور</span>
+</div>
+<div class="space-y-2 mt-4">
+<p class="text-body-md font-bold text-primary">الأهداف:</p>
+<ul class="text-body-sm text-on-surface-variant list-disc list-inside space-y-1">
+<li>زيادة سرعة معالجة الأرقام الكبيرة.</li>
+<li>إدخال عمليات الضرب والقسمة.</li>
+<li>تدريبات التسارع الزمني.</li>
+</ul>
+<div class="mt-3 pt-3 border-t border-outline-variant">
+<p class="text-label-md font-bold text-orange-700">النتيجة: دقة متناهية وسرعة مذهلة في الحساب.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Level 4 -->
+<div class="relative z-10 flex items-start gap-6">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-red-500 text-white flex items-center justify-center shadow-lg font-bold">4</div>
+<div class="bg-surface-container-lowest p-md rounded-xl border-r-4 border-red-500 shadow-sm flex-grow border border-outline-variant">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-headline-md font-headline-md text-primary">الاحتراف الذهني</h3>
+<span class="bg-red-50 text-red-700 px-3 py-1 rounded-full text-label-md font-bold">3 شهور</span>
+</div>
+<div class="space-y-2 mt-4">
+<p class="text-body-md font-bold text-primary">الأهداف:</p>
+<ul class="text-body-sm text-on-surface-variant list-disc list-inside space-y-1">
+<li>حل المسائل المعقدة بآلاف الأرقام.</li>
+<li>تطوير التفكير المنطقي الاستباقي.</li>
+<li>المشاركة في بطولات محاكاة عالمية.</li>
+</ul>
+<div class="mt-3 pt-3 border-t border-outline-variant">
+<p class="text-label-md font-bold text-red-700">النتيجة: طفل عبقري بمهارات حسابية عالمية المستوى.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Program Features -->
+<section class="py-xl px-md bg-primary text-on-primary">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg text-center">
+<div class="space-y-3">
+<span class="material-symbols-outlined text-4xl text-secondary-fixed" data-icon="child_care">child_care</span>
+<h4 class="text-headline-md font-headline-md">مناسب للأطفال</h4>
+<p class="text-body-sm opacity-80">مصمم خصيصاً ليناسب القدرات الاستيعابية للأطفال من سن ٨ سنوات.</p>
+</div>
+<div class="space-y-3">
+<span class="material-symbols-outlined text-4xl text-secondary-fixed" data-icon="school">school</span>
+<h4 class="text-headline-md font-headline-md">تدرج علمي</h4>
+<p class="text-body-sm opacity-80">منهج مدروس يتدرج من السهولة إلى الاحترافية بشكل منطقي.</p>
+</div>
+<div class="space-y-3">
+<span class="material-symbols-outlined text-4xl text-secondary-fixed" data-icon="hub">hub</span>
+<h4 class="text-headline-md font-headline-md">ذكاء وتركيز</h4>
+<p class="text-body-sm opacity-80">يهتم البرنامج بتطوير الروابط العصبية وزيادة كفاءة المخ.</p>
+</div>
+<div class="space-y-3">
+<span class="material-symbols-outlined text-4xl text-secondary-fixed" data-icon="military_tech">military_tech</span>
+<h4 class="text-headline-md font-headline-md">تأهيل أكاديمي</h4>
+<p class="text-body-sm opacity-80">يساعد الطلاب على التفوق في المواد الدراسية العلمية والرياضيات.</p>
+</div>
+</div>
+</section>
+<!-- Bottom CTA -->
+<section class="py-xl px-md text-center bg-surface-container-highest">
+<div class="max-w-2xl mx-auto space-y-8">
+<h2 class="text-headline-lg font-headline-lg text-primary">ابدأ رحلة طفلك مع الحساب الذهني</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">مقاعدنا محدودة لضمان جودة التعليم لكل طفل. احجز مكان طفلك الآن في الدفعة القادمة.</p>
+<button class="bg-secondary text-primary px-12 py-4 rounded-xl text-headline-md font-headline-md shadow-xl hover:scale-105 transition-transform">
+                    سجّل الآن
+                </button>
+<div class="pt-4 flex justify-center gap-8 items-center opacity-60">
+<span class="flex items-center gap-2 text-label-md font-label-md">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span> شهادات معتمدة
+                    </span>
+<span class="flex items-center gap-2 text-label-md font-label-md">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span> مدربون محترفون
+                    </span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-primary dark:bg-primary py-lg px-md md:px-lg flex flex-col md:flex-row justify-between items-center gap-md max-w-container-max mx-auto text-on-primary">
+<div class="flex flex-col gap-2">
+<div class="text-headline-sm font-headline-sm font-bold text-on-primary">Techno Math</div>
+<p class="text-body-sm font-body-sm opacity-70">بناء مستقبل أطفالنا عبر قوة الحساب الذهني.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-label-md font-label-md text-tertiary-fixed opacity-80 hover:opacity-100 hover:text-secondary-fixed transition-colors" href="#">Program Overview</a>
+<a class="text-label-md font-label-md text-tertiary-fixed opacity-80 hover:opacity-100 hover:text-secondary-fixed transition-colors" href="#">Curriculum</a>
+<a class="text-label-md font-label-md text-tertiary-fixed opacity-80 hover:opacity-100 hover:text-secondary-fixed transition-colors" href="#">Admissions</a>
+<a class="text-label-md font-label-md text-tertiary-fixed opacity-80 hover:opacity-100 hover:text-secondary-fixed transition-colors" href="#">Contact Us</a>
+</div>
+<div class="text-body-sm font-body-sm text-on-primary opacity-60 text-center md:text-right">
+            © 2024 Techno Math Mental Math Program. All rights reserved.
+        </div>
+</footer>
+<script>
+        // Simple scroll reveal interaction for cards
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-8');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.roadmap-line > div').forEach(el => {
+            el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
+            observer.observe(el);
+        });
+    </script>
+</body></html>

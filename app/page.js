@@ -114,7 +114,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             <div className="group bg-white p-5 md:p-7 rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(65,105,225,0.1)] flex items-start gap-4 md:gap-6 reveal reveal-delay-1 relative overflow-hidden">
               <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary/60 to-primary"></div>
-              <div className="w-12 h-12 shrink-0 bg-primary/8 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 shrink-0 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
                 <span className="material-symbols-outlined text-primary text-xl">psychology</span>
               </div>
               <div>
@@ -124,7 +124,7 @@ export default function HomePage() {
             </div>
             <div className="group bg-white p-5 md:p-7 rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border border-secondary/10 hover:border-secondary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(253,118,26,0.1)] flex items-start gap-4 md:gap-6 reveal reveal-delay-2 relative overflow-hidden">
               <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-secondary/60 to-secondary"></div>
-              <div className="w-12 h-12 shrink-0 bg-secondary/8 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 shrink-0 bg-secondary/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
                 <span className="material-symbols-outlined text-secondary text-xl">palette</span>
               </div>
               <div>
@@ -174,8 +174,8 @@ export default function HomePage() {
               { icon: 'rocket_launch', color: 'emerald', title: 'يبتكر ويقّود', items: ['من المستهلك لصانع الحلول', 'جاهز لقيادة مشاريع تكنولوجية'], delay: '3' },
             ].map((card, i) => {
               const colors = {
-                primary: { accent: 'from-primary to-primary-deep', border: 'border-primary/10', hover: 'hover:border-primary/30 hover:shadow-[0_12px_40px_rgba(65,105,225,0.1)]', bg: 'bg-primary/8' },
-                secondary: { accent: 'from-secondary to-amber-500', border: 'border-secondary/10', hover: 'hover:border-secondary/30 hover:shadow-[0_12px_rgba(253,118,26,0.1)]', bg: 'bg-secondary/8' },
+                primary: { accent: 'from-primary to-primary-deep', border: 'border-primary/10', hover: 'hover:border-primary/30 hover:shadow-[0_12px_40px_rgba(65,105,225,0.1)]', bg: 'bg-primary/10' },
+                secondary: { accent: 'from-secondary to-amber-500', border: 'border-secondary/10', hover: 'hover:border-secondary/30 hover:shadow-[0_12px_rgba(253,118,26,0.1)]', bg: 'bg-secondary/10' },
                 tertiary: { accent: 'from-tertiary to-amber-400', border: 'border-tertiary/10', hover: 'hover:border-tertiary/30 hover:shadow-[0_12px_40px_rgba(247,190,29,0.1)]', bg: 'bg-tertiary/10' },
                 'primary-light': { accent: 'from-primary-light to-primary', border: 'border-primary-light/10', hover: 'hover:border-primary-light/30 hover:shadow-[0_12px_40px_rgba(107,138,255,0.1)]', bg: 'bg-primary-light/30' },
                 rose: { accent: 'from-rose-400 to-rose-600', border: 'border-rose-200', hover: 'hover:border-rose-400 hover:shadow-[0_12px_40px_rgba(244,63,94,0.1)]', bg: 'bg-rose-50' },
@@ -544,7 +544,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <div className="group bg-white rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border border-primary/10 p-6 md:p-8 text-center hover:border-primary/30 hover:shadow-[0_12px_40px_rgba(65,105,225,0.12)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
               <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary/60 to-primary"></div>
-              <div className="w-14 h-14 bg-primary/8 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
+              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
                 <span className="material-symbols-outlined text-primary text-2xl">school</span>
               </div>
               <h3 className="font-headline-md text-headline-md text-primary-deep mb-2">مدربين مش معلمين</h3>
@@ -553,7 +553,7 @@ export default function HomePage() {
 
             <div className="group bg-white rounded-24 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border border-secondary/10 p-6 md:p-8 text-center hover:border-secondary/30 hover:shadow-[0_12px_40px_rgba(253,118,26,0.12)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
               <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-secondary/60 to-secondary"></div>
-              <div className="w-14 h-14 bg-secondary/8 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
+              <div className="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
                 <span className="material-symbols-outlined text-secondary text-2xl">workspace_premium</span>
               </div>
               <h3 className="font-headline-md text-headline-md text-primary-deep mb-2">شهادة معتمدة</h3>
@@ -668,7 +668,7 @@ export default function HomePage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5 mb-8">
                 <Link href="/register" className="group bg-white rounded-2xl p-6 text-center border border-outline-variant/20 hover:border-primary/40 hover:shadow-[0_8px_30px_rgba(65,105,225,0.12)] transition-all duration-300 hover:-translate-y-1 cursor-pointer relative overflow-hidden">
                   <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary to-primary-light"></div>
-                  <div className="w-14 h-14 mx-auto bg-primary/8 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <div className="w-14 h-14 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     <span className="material-symbols-outlined text-primary text-2xl">calendar_month</span>
                   </div>
                   <span className="font-headline-md text-headline-md text-primary-deep font-bold block mb-1">اشتراك شهري</span>

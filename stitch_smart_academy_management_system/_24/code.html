@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AcademyPro - التحقق من الشهادات</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=Noto+Sans+Arabic:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#181c1e",
+                    "on-secondary-fixed": "#261900",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-surface-variant": "#43474e",
+                    "on-error": "#ffffff",
+                    "tertiary": "#172131",
+                    "surface-bright": "#f7fafc",
+                    "secondary-container": "#fed488",
+                    "inverse-surface": "#2d3133",
+                    "outline-variant": "#c4c6cf",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#ebeef0",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f1f4f6",
+                    "on-primary-fixed": "#001b3c",
+                    "tertiary-container": "#2c3647",
+                    "on-background": "#181c1e",
+                    "inverse-primary": "#adc7f7",
+                    "primary-fixed-dim": "#adc7f7",
+                    "on-tertiary-container": "#959fb3",
+                    "on-primary-container": "#86a0cd",
+                    "tertiary-fixed": "#d9e3f9",
+                    "background": "#f7fafc",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "inverse-on-surface": "#eef1f3",
+                    "surface-container-high": "#e5e9eb",
+                    "on-primary-fixed-variant": "#2d476f",
+                    "primary-container": "#1a365d",
+                    "outline": "#74777f",
+                    "on-tertiary-fixed-variant": "#3d4759",
+                    "secondary-fixed": "#ffdea5",
+                    "secondary": "#775a19",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface": "#f7fafc",
+                    "primary-fixed": "#d6e3ff",
+                    "surface-tint": "#455f88",
+                    "surface-dim": "#d7dadc",
+                    "primary": "#002045",
+                    "on-tertiary-fixed": "#121c2c",
+                    "secondary-fixed-dim": "#e9c176",
+                    "on-secondary-container": "#785a1a",
+                    "tertiary-fixed-dim": "#bdc7dc",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e0e3e5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "40px",
+                    "gutter": "24px",
+                    "md": "24px",
+                    "xs": "4px",
+                    "sm": "12px",
+                    "xl": "64px",
+                    "base": "8px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "arabic": ["Noto Sans Arabic", "sans-serif"],
+                    "body-sm": ["IBM Plex Sans"],
+                    "body-lg": ["IBM Plex Sans"],
+                    "headline-lg": ["IBM Plex Sans"],
+                    "label-md": ["IBM Plex Sans"],
+                    "headline-md": ["IBM Plex Sans"],
+                    "headline-xl": ["IBM Plex Sans"],
+                    "headline-lg-mobile": ["IBM Plex Sans"],
+                    "body-md": ["IBM Plex Sans"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Noto Sans Arabic', 'IBM Plex Sans', sans-serif;
+            background-color: #f7fafc;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 1);
+        }
+        .gold-accent-button {
+            background-color: #c5a059;
+            color: #002045;
+            transition: all 0.3s ease;
+        }
+        .gold-accent-button:hover {
+            background-color: #b08d48;
+            box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
+        }
+        .navy-bg {
+            background-color: #1a365d;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline shadow-none">
+<div class="flex items-center justify-between px-md py-base w-full max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="school">school</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">AcademyPro</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined p-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant" data-icon="notifications">notifications</button>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center px-gutter pt-xl pb-32">
+<!-- Background decorative elements -->
+<div class="fixed inset-0 pointer-events-none z-0">
+
+</div>
+<div class="relative z-10 w-full max-w-2xl mt-12">
+<!-- Search Card -->
+<div class="glass-card rounded-xl p-lg shadow-lg flex flex-col items-center text-center space-y-md">
+<div class="p-4 rounded-full bg-primary-container/10 mb-4">
+<span class="material-symbols-outlined text-primary text-5xl" data-icon="verified_user">verified_user</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary">التحقق من صحة الشهادة</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg leading-relaxed">
+                    أدخل رقم الشهادة أو الرقم القومي للاستعلام عن بيانات الخريج وصحة الشهادة الصادرة من الأكاديمية
+                </p>
+<div class="w-full space-y-4">
+<div class="relative">
+<input class="w-full h-14 px-12 rounded-lg border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 text-right font-body-md bg-white transition-all outline-none" placeholder="رقم الشهادة أو الرقم القومي" type="text"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline" data-icon="badge">badge</span>
+</div>
+<button class="gold-accent-button w-full h-14 rounded-lg flex items-center justify-center gap-2 font-label-md text-label-md uppercase active:scale-95">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+                        تحقق الآن
+                    </button>
+</div>
+</div>
+<!-- Supporting Info -->
+<div class="mt-xl grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="p-md rounded-xl border border-outline-variant bg-surface-container-lowest flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<h3 class="font-label-md text-label-md">نظام تحقق آمن</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">يعتمد النظام على قواعد بيانات مشفرة لضمان صحة البيانات وحمايتها من التلاعب.</p>
+</div>
+<div class="p-md rounded-xl border border-outline-variant bg-surface-container-lowest flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<h3 class="font-label-md text-label-md">لماذا التحقق؟</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">يهدف التحقق إلى حماية قيمة الشهادات الأكاديمية وتسهيل عملية التوثيق لجهات التوظيف.</p>
+</div>
+</div>
+<div class="mt-md text-center">
+<a class="text-primary font-label-md hover:underline inline-flex items-center gap-1" href="#">
+                    تواجه مشكلة؟ تواصل مع الدعم الفني
+                    <span class="material-symbols-outlined text-sm" data-icon="arrow_back">arrow_back</span>
+</a>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-20 px-sm bg-primary dark:bg-tertiary-container z-50 rounded-t-xl shadow-lg md:hidden">
+<a class="flex flex-col items-center justify-center text-on-primary-container hover:bg-primary-container transition-colors p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-[10px] mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-primary-container hover:bg-primary-container transition-colors p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-md text-[10px] mt-1">Courses</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-primary-container hover:bg-primary-container transition-colors p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-label-md text-[10px] mt-1">Schedule</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-primary-container hover:bg-primary-container transition-colors p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-[10px] mt-1">Profile</span>
+</a>
+</nav>
+<!-- Desktop Navigation Side Marker (Institutional Feel) -->
+<div class="hidden md:block fixed left-0 top-1/2 -translate-y-1/2 h-48 w-1 navy-bg rounded-r-full shadow-lg"></div>
+<script>
+        // Micro-interaction for the search button
+        const searchBtn = document.querySelector('.gold-accent-button');
+        searchBtn.addEventListener('click', () => {
+            searchBtn.innerHTML = `
+                <svg class="animate-spin h-5 w-5 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                جاري التحقق...
+            `;
+            setTimeout(() => {
+                searchBtn.innerHTML = `
+                    <span class="material-symbols-outlined" data-icon="search">search</span>
+                    تحقق الآن
+                `;
+                // Add your real logic here
+            }, 1500);
+        });
+
+        // Floating label behavior
+        const inputField = document.querySelector('input');
+        inputField.addEventListener('focus', () => {
+            inputField.parentElement.classList.add('ring-2', 'ring-primary/20');
+        });
+        inputField.addEventListener('blur', () => {
+            inputField.parentElement.classList.remove('ring-2', 'ring-primary/20');
+        });
+    </script>
+</body></html>

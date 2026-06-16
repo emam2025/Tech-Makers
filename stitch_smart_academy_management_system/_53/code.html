@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Institutional Certificate | TKA-Egypt Academy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f7fafc",
+                        "primary-fixed": "#d6e3ff",
+                        "on-primary": "#ffffff",
+                        "secondary": "#775a19",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#002045",
+                        "on-tertiary-fixed": "#121c2c",
+                        "surface-tint": "#455f88",
+                        "surface-dim": "#d7dadc",
+                        "tertiary-fixed-dim": "#bdc7dc",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#e9c176",
+                        "on-secondary-container": "#785a1a",
+                        "surface-variant": "#e0e3e5",
+                        "primary-container": "#1a365d",
+                        "outline": "#74777f",
+                        "secondary-fixed": "#ffdea5",
+                        "on-tertiary-fixed-variant": "#3d4759",
+                        "tertiary-fixed": "#d9e3f9",
+                        "on-primary-container": "#86a0cd",
+                        "on-tertiary-container": "#959fb3",
+                        "primary-fixed-dim": "#adc7f7",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "inverse-on-surface": "#eef1f3",
+                        "error": "#ba1a1a",
+                        "background": "#f7fafc",
+                        "surface-container-high": "#e5e9eb",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-surface-variant": "#43474e",
+                        "on-error": "#ffffff",
+                        "on-surface": "#181c1e",
+                        "on-secondary-fixed": "#261900",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#ebeef0",
+                        "outline-variant": "#c4c6cf",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#172131",
+                        "surface-bright": "#f7fafc",
+                        "secondary-container": "#fed488",
+                        "inverse-surface": "#2d3133",
+                        "tertiary-container": "#2c3647",
+                        "on-background": "#181c1e",
+                        "surface-container-low": "#f1f4f6",
+                        "on-primary-fixed": "#001b3c",
+                        "inverse-primary": "#adc7f7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "xs": "4px",
+                        "sm": "12px",
+                        "lg": "40px",
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "xl": "64px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["IBM Plex Sans"],
+                        "body-md": ["IBM Plex Sans"],
+                        "headline-xl": ["IBM Plex Sans"],
+                        "headline-md": ["IBM Plex Sans"],
+                        "label-md": ["IBM Plex Sans"],
+                        "headline-lg": ["IBM Plex Sans"],
+                        "body-sm": ["IBM Plex Sans"],
+                        "body-lg": ["IBM Plex Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'IBM Plex Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .certificate-canvas {
+            aspect-ratio: 1.414 / 1;
+            max-width: 1120px;
+            margin: auto;
+            position: relative;
+            background: #ffffff;
+            overflow: hidden;
+        }
+        .border-pattern {
+            position: absolute;
+            inset: 12px;
+            border: 2px solid #002045;
+            pointer-events: none;
+        }
+        .border-inner {
+            position: absolute;
+            inset: 24px;
+            border: 1px solid #775a19;
+            pointer-events: none;
+        }
+        .corner-decoration {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 8px solid #002045;
+        }
+        .top-left { top: 0; left: 0; border-right: none; border-bottom: none; }
+        .top-right { top: 0; right: 0; border-left: none; border-bottom: none; }
+        .bottom-left { bottom: 0; left: 0; border-right: none; border-top: none; }
+        .bottom-right { bottom: 0; right: 0; border-left: none; border-top: none; }
+        
+        @media print {
+            .no-print { display: none; }
+            body { background: white; padding: 0; margin: 0; }
+            .certificate-canvas { box-shadow: none; border: none; width: 100%; height: 100vh; }
+        }
+
+        .guilloche-bg {
+            background-image: radial-gradient(circle at 2px 2px, rgba(0,32,69,0.03) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-surface-container-low min-h-screen flex flex-col p-md">
+<!-- Top Navigation Suppression: Not a primary app screen, so only a simple back action -->
+<header class="no-print w-full max-w-container-max mx-auto flex justify-between items-center mb-xl">
+<button class="flex items-center gap-xs text-primary font-label-md text-label-md hover:underline transition-all" onclick="window.history.back()">
+<span class="material-symbols-outlined">arrow_back</span>
+            Back to Dashboard
+        </button>
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs bg-primary text-on-primary px-md py-sm rounded-lg font-label-md text-label-md hover:opacity-90 transition-all shadow-sm" onclick="window.print()">
+<span class="material-symbols-outlined">print</span>
+                Print Certificate
+            </button>
+<button class="flex items-center gap-xs border border-primary text-primary px-md py-sm rounded-lg font-label-md text-label-md hover:bg-primary-fixed transition-all">
+<span class="material-symbols-outlined">download</span>
+                Download PDF
+            </button>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center">
+<!-- Certificate Canvas -->
+<article class="certificate-canvas shadow-xl ring-1 ring-outline-variant p-xl flex flex-col items-center justify-between text-center guilloche-bg" id="certificate">
+<!-- Corner Decorative Elements -->
+<div class="corner-decoration top-left"></div>
+<div class="corner-decoration top-right"></div>
+<div class="corner-decoration bottom-left"></div>
+<div class="corner-decoration bottom-right"></div>
+<!-- Structural Border -->
+<div class="border-pattern"></div>
+<div class="border-inner"></div>
+<!-- Header Section -->
+<section class="z-10 w-full pt-lg">
+<div class="flex flex-col items-center gap-sm">
+<img alt="TKA-Egypt Logo" class="h-20 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASodrZ8hZasnhvLHal1e2CHEsdQosd3dt7I39ncokmSD4isr1tk_Kq9Of2VOBR0H5xEYTm0wBZNdxu8jP-XCBAwQJX62qYULb8_9mjkSsOkczHXlhtEmpwi6tc1dDY8FR68Fxmsx2sX4O2dj6mBSq8g-LLNqTuhKwXAP5Gx9V9KTfuDhF-J5l10SHNbelH9uZ_Dwf84mWIQGY-HT9BuUcLtd--evekbSnFSv_oAif7hZAbqe8emDfalUk5wocKAJrEFpZcoCOPHt0"/>
+<div class="space-y-xs">
+<h1 class="font-headline-lg text-headline-lg text-primary uppercase tracking-widest font-bold">TKA-Egypt</h1>
+<p class="font-label-md text-label-md text-secondary tracking-[0.3em] uppercase">Academy of Institutional Excellence</p>
+</div>
+</div>
+</section>
+<!-- Body Section -->
+<section class="z-10 w-full px-xl space-y-md">
+<div class="space-y-sm">
+<p class="font-body-lg text-body-lg text-on-surface-variant italic">This is to certify that</p>
+<h2 class="font-headline-xl text-headline-xl text-primary font-bold border-b-2 border-outline-variant inline-block px-xl pb-xs">
+                        Ahmed Mustafa Hassan
+                    </h2>
+</div>
+<div class="space-y-sm pt-md">
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+                        has successfully fulfilled all requirements and demonstrated academic proficiency in the professional certification program of
+                    </p>
+<h3 class="font-headline-md text-headline-md text-secondary font-semibold uppercase tracking-wide">
+                        Advanced AI &amp; Programming
+                    </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        Conducted by TKA-Egypt Academy, confirming the recipient's expertise and commitment to technical innovation.
+                    </p>
+</div>
+</section>
+<!-- Footer Section -->
+<section class="z-10 w-full grid grid-cols-3 items-end pb-lg px-xl">
+<!-- Date & ID -->
+<div class="text-left space-y-xs">
+<div class="border-b border-outline-variant w-40 pb-xs">
+<p class="font-label-md text-label-md text-on-surface">October 24, 2024</p>
+</div>
+<label class="font-body-sm text-body-sm text-on-surface-variant">Date of Issuance</label>
+<p class="font-body-sm text-body-sm text-primary font-bold mt-sm">ID: TKA-2024-8842</p>
+</div>
+<!-- Seal -->
+<div class="flex flex-col items-center">
+<div class="relative group">
+<div class="w-32 h-32 rounded-full border-4 border-secondary-fixed flex items-center justify-center bg-white shadow-sm overflow-hidden">
+<div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+<img alt="Institutional Seal" class="w-20 h-20 opacity-80" data-alt="A detailed institutional gold foil seal for an academic certificate. The seal features a central geometric crest with clean lines and symmetrical motifs, representing wisdom and authority. The background is a soft white with subtle textured paper grain, and the lighting is even and bright, highlighting the metallic sheen of the gold embossed edges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsI3An6yBqcmFCon_UeV4IRCHsgGZYRBuggWWZ5sbtqgDmyJqUVuILv5kURMHJ9RYUL_BnXjq2oOHJ45L2Ocl-NezG4ucE2qs4bTCDwT4-wjjHjgfb6BgOBYS2VdbWGIJMxfxhCdiy_r_aO3Byh0XG2JHRG2WEBAzKK6nRMmGCOHL2Dvwm1mUCc0Ci6TmPTtxElUkfB0lcHEpr2msDjZ6vo34jHv2qvBsxAgjuxANzIAZWiB9xBU7qIf1Drlz5tXcX7CdMwpoy0r0"/>
+</div>
+<div class="absolute -bottom-2 w-full text-center">
+<span class="bg-primary text-white text-[10px] px-2 py-0.5 rounded-full uppercase font-bold tracking-tighter">OFFICIAL SEAL</span>
+</div>
+</div>
+</div>
+<!-- Signature -->
+<div class="text-right space-y-xs flex flex-col items-end">
+<div class="border-b border-outline-variant w-48 pb-xs">
+<img alt="Signature" class="h-12 w-auto ml-auto filter brightness-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOQGmarLQMulaUXAEKY7AOVBiyVObFwj9lcDVY5kMNRre9rMAj5LwTPC5Udh0OXnbUD9ePilDSQ_J4-fNkiVNlZTsc3l8ljkKid2UbF-Gl1g_8bBZm_CHvJcDwhiLhPjKRRHNgmVFAgbh9SVC3PSNsD2_gkLxjJQlvl2TfCTMiVpuAQBd2p14K_pLtnNbgCndsLMTIy4AHiqIwautEkHZw2Z3jyP5_mWdOW8ByHLPEtFHj3vllmOvJQM5DJprX_7gVxhQZlZOGLc8"/>
+</div>
+<label class="font-label-md text-label-md text-on-surface font-bold">Dr. Youssef El-Menshawy</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Academic Director, TKA-Egypt</p>
+</div>
+</section>
+<!-- Verification Metadata -->
+<aside class="absolute bottom-6 left-6 z-10 flex items-center gap-md">
+<div class="bg-white p-1 border border-outline-variant rounded">
+<img alt="Verification QR" class="w-16 h-16 grayscale opacity-80" data-alt="A high-contrast black and white QR code printed on a square of thick, white textured parchment paper. The image is captured in a minimalist style with sharp, clean edges and no background distractions. The lighting is soft and neutral, emphasizing the precision and security of the digital verification asset within an academic context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvjjU5OYrbI38WN48gw37ypVb22nYK1xdn8C-qPPuQTQtw9X9THe-JCcsZoCPrTzC-OzCHiE-QvnwlOFYVkEbrXwv_WaBF37dAzEw--oieW7qMBtiA-Rz_59wrCayTGBLKbiiwR8XMtaLexEwjnBDVySejZrmdSt_esdYdCywIhAJmUsTbolWwzSiQalg5Q6UVZwnzLNhHQSUkfcjKFhfON7J63tjtHlzC_CQQ1NOtpA5psqqwvUGOr_J1nZiPqf3SWsATRZ1p_6I"/>
+</div>
+<div class="text-left">
+<p class="font-body-sm text-[10px] text-on-surface-variant leading-tight">
+                        Verify at: <br/>
+<span class="text-primary font-semibold">verify.tka-egypt.edu/cert/8842</span>
+</p>
+</div>
+</aside>
+</article>
+</main>
+<!-- Footer Area (JSON Guidance) -->
+<footer class="no-print w-full py-xl px-gutter grid grid-cols-1 md:grid-cols-4 gap-lg mx-auto max-w-container-max mt-xl border-t border-outline-variant">
+<div class="space-y-md">
+<h4 class="font-headline-md text-headline-md font-bold text-primary">TKA-Egypt</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Institutional Excellence in Higher Education and Professional Development across the MENA region.</p>
+</div>
+<div class="flex flex-col gap-sm">
+<h5 class="font-label-md text-label-md text-primary uppercase">Quick Links</h5>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Terms of Service</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Campus Map</a>
+</div>
+<div class="flex flex-col gap-sm">
+<h5 class="font-label-md text-label-md text-primary uppercase">Support</h5>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Contact Support</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Career Opportunities</a>
+</div>
+<div class="space-y-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 TKA-Egypt Academy. All Rights Reserved.</p>
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-primary-fixed-dim hover:text-primary cursor-pointer">face_nod</span>
+<span class="material-symbols-outlined text-primary-fixed-dim hover:text-primary cursor-pointer">language</span>
+<span class="material-symbols-outlined text-primary-fixed-dim hover:text-primary cursor-pointer">mail</span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for digital signature and seal
+        document.addEventListener('DOMContentLoaded', () => {
+            const cert = document.getElementById('certificate');
+            cert.addEventListener('mousemove', (e) => {
+                if(window.innerWidth < 1024) return;
+                const { left, top, width, height } = cert.getBoundingClientRect();
+                const x = (e.clientX - left) / width - 0.5;
+                const y = (e.clientY - top) / height - 0.5;
+                
+                cert.style.transform = `perspective(1000px) rotateY(${x * 2}deg) rotateX(${-y * 2}deg)`;
+            });
+
+            cert.addEventListener('mouseleave', () => {
+                cert.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg)`;
+                cert.style.transition = 'transform 0.5s ease';
+            });
+            
+            cert.addEventListener('mouseenter', () => {
+                cert.style.transition = 'none';
+            });
+        });
+    </script>
+</body></html>

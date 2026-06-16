@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>الملف الشخصي | TKA-Egypt Academy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'IBM+Plex+Sans+Arabic', 'IBM Plex Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .profile-gradient {
+            background: linear-gradient(180deg, #1a365d 0%, #f7fafc 100%);
+        }
+        /* Custom scrollbar for clean UI */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f4f6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #adc7f7;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#181c1e",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-bright": "#f7fafc",
+                        "secondary-container": "#fed488",
+                        "primary-fixed": "#d6e3ff",
+                        "primary": "#002045",
+                        "surface-container-high": "#e5e9eb",
+                        "on-tertiary-fixed": "#121c2c",
+                        "surface-container": "#ebeef0",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary": "#172131",
+                        "on-secondary-fixed": "#261900",
+                        "on-primary-fixed": "#001b3c",
+                        "inverse-primary": "#adc7f7",
+                        "secondary-fixed": "#ffdea5",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#74777f",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "tertiary-fixed-dim": "#bdc7dc",
+                        "on-secondary-container": "#785a1a",
+                        "error": "#ba1a1a",
+                        "on-surface": "#181c1e",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#2c3647",
+                        "surface-tint": "#455f88",
+                        "secondary": "#775a19",
+                        "on-surface-variant": "#43474e",
+                        "inverse-on-surface": "#eef1f3",
+                        "secondary-fixed-dim": "#e9c176",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "surface": "#f7fafc",
+                        "on-tertiary-container": "#959fb3",
+                        "tertiary-fixed": "#d9e3f9",
+                        "surface-dim": "#d7dadc",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#3d4759",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#1a365d",
+                        "on-primary-container": "#86a0cd",
+                        "outline-variant": "#c4c6cf",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-low": "#f1f4f6",
+                        "primary-fixed-dim": "#adc7f7",
+                        "background": "#f7fafc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["IBM Plex Sans Arabic"],
+                        "headline-md": ["IBM Plex Sans Arabic"],
+                        "headline-xl": ["IBM Plex Sans Arabic"],
+                        "body-md": ["IBM Plex Sans Arabic"],
+                        "headline-lg-mobile": ["IBM Plex Sans Arabic"],
+                        "headline-lg": ["IBM Plex Sans Arabic"],
+                        "body-lg": ["IBM Plex Sans Arabic"],
+                        "body-sm": ["IBM Plex Sans Arabic"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="flex items-center px-4 h-16 w-full z-50 bg-surface fixed top-0 border-b border-surface-variant">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors active:scale-95">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary flex-1 mr-4">الملف الشخصي</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+</header>
+<main class="flex-1 mt-16 mb-24 overflow-y-auto">
+<!-- Profile Header Section -->
+<section class="relative pt-8 pb-10 px-6 flex flex-col items-center">
+<!-- Background Decoration -->
+<div class="absolute inset-0 bg-primary-container/5 -z-10 clip-path-header"></div>
+<!-- Avatar Container -->
+<div class="relative mb-4 group">
+<div class="w-32 h-32 rounded-full border-4 border-secondary-container shadow-lg overflow-hidden transition-transform duration-300 group-hover:scale-105">
+<img alt="إمام عبد العزيز" class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged Egyptian executive with a warm, confident expression. He is wearing a sharp navy blue tailored suit with a subtle gold tie, standing against a high-end corporate office background with soft bokeh. The lighting is crisp and professional, emphasizing an authoritative yet approachable institutional leadership style consistent with a modern management academy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA4CvRgmxbhJ5fjvVWlfFdBIuvJN0rNJpBsz5DbR3QN171titwqigxu_p69rG7mGyR7Y0PXhLDOjPFtHUSOLOFn3wcZKMkkozzbzRugMoV6o8P8Usl1HlGblPipb1udBiwNH9yR8KAIrZ34o20H7GqMV8wSl3-6Oj3aOj0CAriLW_jAOvPeDziF3Ut2X3hukgFINWzwfw13up75VHvscuKNhM0-ZTzE8Nv8UXaeOZGqTsa6MmFnROIhDvmK28FX22IDuwokXFE_CU"/>
+</div>
+<button class="absolute bottom-1 left-1 bg-secondary text-on-secondary w-8 h-8 rounded-full flex items-center justify-center border-2 border-white shadow-md active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[18px]">photo_camera</span>
+</button>
+</div>
+<!-- User Info -->
+<h2 class="font-headline-md text-headline-md text-primary-container text-center mb-1">المهندس / إمام عبد العزيز</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">المدير التنفيذي | ID: #TKA-001</p>
+<button class="px-8 py-2 rounded-xl border border-primary text-primary font-label-md text-label-md hover:bg-primary/5 active:scale-95 transition-all">
+                تعديل الملف الشخصي
+            </button>
+</section>
+<!-- Information & Settings List -->
+<div class="px-4 space-y-4">
+<!-- Basic Info Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-variant overflow-hidden">
+<div class="px-4 py-3 bg-surface-container-low border-b border-surface-variant">
+<h3 class="font-label-md text-label-md text-secondary">المعلومات الأساسية</h3>
+</div>
+<div class="divide-y divide-surface-variant/50">
+<div class="flex items-center p-4">
+<span class="material-symbols-outlined text-primary-container ml-4">id_card</span>
+<div class="flex-1">
+<p class="text-[12px] text-on-surface-variant">رقم الهوية الوطنية</p>
+<p class="font-body-md text-body-md text-on-surface">2850320120XXXX</p>
+</div>
+</div>
+<div class="flex items-center p-4">
+<span class="material-symbols-outlined text-primary-container ml-4">mail</span>
+<div class="flex-1">
+<p class="text-[12px] text-on-surface-variant">البريد الإلكتروني</p>
+<p class="font-body-md text-body-md text-on-surface">imam.aziz@tka-egypt.edu</p>
+</div>
+</div>
+<div class="flex items-center p-4">
+<span class="material-symbols-outlined text-primary-container ml-4">phone_iphone</span>
+<div class="flex-1">
+<p class="text-[12px] text-on-surface-variant">رقم الهاتف</p>
+<p class="font-body-md text-body-md text-on-surface">+20 123 456 7890</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Account Settings Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-variant overflow-hidden">
+<div class="px-4 py-3 bg-surface-container-low border-b border-surface-variant">
+<h3 class="font-label-md text-label-md text-secondary">إعدادات الحساب</h3>
+</div>
+<div class="divide-y divide-surface-variant/50">
+<button class="w-full flex items-center p-4 hover:bg-surface-container transition-colors text-right">
+<span class="material-symbols-outlined text-primary-container ml-4">security</span>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-on-surface">الأمان وكلمة المرور</p>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_left</span>
+</button>
+<button class="w-full flex items-center p-4 hover:bg-surface-container transition-colors text-right">
+<span class="material-symbols-outlined text-primary-container ml-4">language</span>
+<div class="flex-1 flex justify-between items-center">
+<p class="font-body-md text-body-md text-on-surface">اللغة</p>
+<span class="text-label-md text-primary bg-primary-fixed px-2 py-0.5 rounded-lg ml-2">العربية</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_left</span>
+</button>
+<button class="w-full flex items-center p-4 hover:bg-surface-container transition-colors text-right">
+<span class="material-symbols-outlined text-primary-container ml-4">notifications</span>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-on-surface">إشعارات النظام</p>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_left</span>
+</button>
+</div>
+</div>
+<!-- Support & Privacy Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-variant overflow-hidden">
+<div class="px-4 py-3 bg-surface-container-low border-b border-surface-variant">
+<h3 class="font-label-md text-label-md text-secondary">الدعم والخصوصية</h3>
+</div>
+<div class="divide-y divide-surface-variant/50">
+<button class="w-full flex items-center p-4 hover:bg-surface-container transition-colors text-right">
+<span class="material-symbols-outlined text-primary-container ml-4">policy</span>
+<span class="font-body-md text-body-md text-on-surface flex-1">سياسة الخصوصية</span>
+<span class="material-symbols-outlined text-outline">chevron_left</span>
+</button>
+<button class="w-full flex items-center p-4 hover:bg-surface-container transition-colors text-right">
+<span class="material-symbols-outlined text-primary-container ml-4">help_center</span>
+<span class="font-body-md text-body-md text-on-surface flex-1">مركز المساعدة</span>
+<span class="material-symbols-outlined text-outline">chevron_left</span>
+</button>
+<button class="w-full flex items-center p-4 hover:bg-surface-container transition-colors text-right">
+<span class="material-symbols-outlined text-primary-container ml-4">info</span>
+<span class="font-body-md text-body-md text-on-surface flex-1">عن الأكاديمية</span>
+<span class="material-symbols-outlined text-outline">chevron_left</span>
+</button>
+</div>
+</div>
+<!-- Logout Action -->
+<div class="pt-4 pb-8">
+<button class="w-full bg-error/10 text-error border border-error/20 py-4 rounded-xl font-headline-md text-[18px] flex items-center justify-center gap-3 hover:bg-error/20 active:scale-95 transition-all">
+<span class="material-symbols-outlined">logout</span>
+                    تسجيل الخروج
+                </button>
+<p class="text-center text-outline text-[12px] mt-4">إصدار النظام v2.4.0 (TKA-CMS)</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface border-t border-surface-variant shadow-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-primary transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md mt-1">الرئيسية</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-primary transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-md text-label-md mt-1">الدورات</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-primary transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-label-md text-label-md mt-1">الرسائل</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-md text-label-md mt-1">الملف</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for list items
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('touchstart', function() {
+                this.classList.add('opacity-80');
+            });
+            button.addEventListener('touchend', function() {
+                this.classList.remove('opacity-80');
+            });
+        });
+
+        // Simple scroll parallax effect for the header
+        const main = document.querySelector('main');
+        const headerClip = document.querySelector('.clip-path-header');
+        main.addEventListener('scroll', () => {
+            const opacity = 1 - (main.scrollTop / 300);
+            if (headerClip) {
+                headerClip.style.opacity = Math.max(0.05, opacity);
+            }
+        });
+    </script>
+</body></html>

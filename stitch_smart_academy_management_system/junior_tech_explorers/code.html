@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Junior Tech Explorers - TKA Egypt</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        .bento-item-large {
+            grid-column: span 2;
+        }
+        body {
+            font-family: 'IBM+Plex+Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#172131",
+                        "surface-container": "#ebeef0",
+                        "primary-container": "#1a365d",
+                        "surface-variant": "#e0e3e5",
+                        "secondary-container": "#fed488",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#261900",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eef1f3",
+                        "on-surface-variant": "#43474e",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#ffdea5",
+                        "on-tertiary-fixed": "#121c2c",
+                        "inverse-surface": "#2d3133",
+                        "primary-fixed-dim": "#adc7f7",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#f7fafc",
+                        "tertiary-container": "#2c3647",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#455f88",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#bdc7dc",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "inverse-primary": "#adc7f7",
+                        "on-tertiary-container": "#959fb3",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary-container": "#785a1a",
+                        "surface": "#f7fafc",
+                        "outline": "#74777f",
+                        "background": "#f7fafc",
+                        "on-primary-fixed": "#001b3c",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#181c1e",
+                        "surface-dim": "#d7dadc",
+                        "secondary": "#775a19",
+                        "surface-container-high": "#e5e9eb",
+                        "primary": "#002045",
+                        "secondary-fixed-dim": "#e9c176",
+                        "primary-fixed": "#d6e3ff",
+                        "on-tertiary-fixed-variant": "#3d4759",
+                        "outline-variant": "#c4c6cf",
+                        "surface-container-low": "#f1f4f6",
+                        "on-surface": "#181c1e",
+                        "tertiary-fixed": "#d9e3f9",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#86a0cd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "base": "8px",
+                        "xl": "64px",
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "md": "24px",
+                        "lg": "40px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["IBM Plex Sans"],
+                        "body-sm": ["IBM Plex Sans"],
+                        "body-lg": ["IBM Plex Sans"],
+                        "headline-md": ["IBM Plex Sans"],
+                        "body-md": ["IBM Plex Sans"],
+                        "headline-xl": ["IBM Plex Sans"],
+                        "headline-lg-mobile": ["IBM Plex Sans"],
+                        "headline-lg": ["IBM Plex Sans"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+<!-- Top Navigation -->
+<header class="fixed top-0 w-full z-50 flex items-center px-gutter h-16 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-3 w-full">
+<button class="active:scale-95 duration-150 p-2 rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+</button>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant">العودة لاختيار المسار</span>
+<h1 class="font-headline-md text-headline-md text-primary font-bold">Junior Tech Explorers</h1>
+</div>
+</div>
+</header>
+<main class="pt-16 pb-24 overflow-x-hidden">
+<!-- Hero Section -->
+<section class="relative min-h-[420px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-l from-primary-container/90 to-primary/80 z-10"></div>
+<img class="w-full h-full object-cover" data-alt="A bright and cheerful learning environment where a young middle-eastern child is smiling while looking at a laptop screen showing colorful block coding. The scene is lit with warm, natural sunlight coming through a large window, creating a hopeful and inspiring atmosphere. The educational setting is modern and clean, using a professional color palette of deep blues and subtle gold accents to represent academic excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk60IwurhpoylLb7W53OhjiXMaM75IkyRU2q88W-9-8mRs8UpyHUg_GuJQPgwk5yiJffs-cwF_qpWgAf57mVYJkURwt81h789i9ymM3Lp0h0CC5RXkcV-cDouXLvBpPHEP_fJGM5N_QqBgOtwsvFVQ0EowC87tvOt0ou6UydTL9AnjxCjnuHfgPjPawDjV_CXxabxDZAlLOPVl4b4SjP092McAZKGd3jsVWTQGUrDrL6f1UF232SiWylS1GjqErEDuKmLnUN1phrc"/>
+</div>
+<div class="relative z-20 px-gutter w-full space-y-lg py-lg">
+<div class="space-y-base">
+<div class="inline-block px-4 py-1 bg-secondary-container text-on-secondary-container rounded-full text-label-md font-label-md">الأعمار 8-11 سنة</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-primary leading-tight">جونيور تيك إكسبلوررز: رحلة الاكتشاف الأولى</h2>
+<p class="font-body-md text-body-md text-on-primary/90 max-w-md">حول طفلك من مجرد مستخدم للألعاب إلى مبتكر لها، وابدأ رحلته في عالم التكنولوجيا بخطوات ثابتة ومدروسة.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-center gap-2 bg-white/10 backdrop-blur-md p-3 rounded-xl border border-white/20">
+<span class="material-symbols-outlined text-secondary-fixed">auto_awesome</span>
+<span class="text-white text-body-sm font-label-md">تعلم مرئي</span>
+</div>
+<div class="flex items-center gap-2 bg-white/10 backdrop-blur-md p-3 rounded-xl border border-white/20">
+<span class="material-symbols-outlined text-secondary-fixed">extension</span>
+<span class="text-white text-body-sm font-label-md">أنشطة تفاعلية</span>
+</div>
+<div class="flex items-center gap-2 bg-white/10 backdrop-blur-md p-3 rounded-xl border border-white/20">
+<span class="material-symbols-outlined text-secondary-fixed">psychology</span>
+<span class="text-white text-body-sm font-label-md">حل المشكلات</span>
+</div>
+<div class="flex items-center gap-2 bg-white/10 backdrop-blur-md p-3 rounded-xl border border-white/20">
+<span class="material-symbols-outlined text-secondary-fixed">rocket_launch</span>
+<span class="text-white text-body-sm font-label-md">تعلم بالمشاريع</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Track Info Bar -->
+<div class="bg-primary px-gutter py-4 flex justify-between items-center text-on-primary">
+<span class="font-label-md text-label-md">السنة الأولى — رحلة الاكتشاف</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary-fixed-dim" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary-fixed-dim" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary-fixed-dim" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<!-- Learning Modules -->
+<section class="px-gutter py-lg space-y-gutter">
+<div class="space-y-xs">
+<h3 class="font-headline-md text-headline-md text-primary">مستويات البرنامج</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">مناهج متسلسلة تأخذ طفلك من الصفر للاحتراف</p>
+</div>
+<!-- Module 1 -->
+<div class="glass-card rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<div class="bg-primary px-4 py-3 flex justify-between items-center">
+<span class="text-white font-label-md">المستوى 01</span>
+<span class="material-symbols-outlined text-secondary-fixed">code</span>
+</div>
+<div class="p-gutter space-y-4">
+<h4 class="font-headline-md text-headline-md text-primary">أساسيات البرمجة الإبداعية</h4>
+<div class="space-y-3">
+<div class="flex gap-2">
+<span class="text-secondary font-bold">•</span>
+<p class="text-body-md font-body-md">الأدوات: <span class="font-bold">Scratch</span></p>
+</div>
+<div class="flex gap-2">
+<span class="text-secondary font-bold">•</span>
+<p class="text-body-md font-body-md">المحتوى: الحلقات التكرارية، الأحداث، المتغيرات.</p>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant">
+<span class="font-label-md text-primary block mb-1">المشاريع:</span>
+<p class="text-body-sm">بناء لعبة المتاهة، وسباق السيارات الرقمي.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Module 2 -->
+<div class="glass-card rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border-l-4 border-secondary">
+<div class="bg-tertiary px-4 py-3 flex justify-between items-center">
+<span class="text-white font-label-md">المستوى 02</span>
+<span class="material-symbols-outlined text-secondary-fixed">developer_mode</span>
+</div>
+<div class="p-gutter space-y-4">
+<h4 class="font-headline-md text-headline-md text-primary">صناعة التطبيقات والإبداع الرقمي</h4>
+<div class="space-y-3">
+<div class="flex gap-2">
+<span class="text-secondary font-bold">•</span>
+<p class="text-body-md font-body-md">الأدوات: <span class="font-bold">MIT App Inventor</span></p>
+</div>
+<div class="flex gap-2">
+<span class="text-secondary font-bold">•</span>
+<p class="text-body-md font-body-md">المحتوى: تصميم واجهة المستخدم UI، تجربة المستخدم UX.</p>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant">
+<span class="font-label-md text-primary block mb-1">المشاريع:</span>
+<p class="text-body-sm">تطبيقات الآلة الحاسبة، وقوائم المهام اليومية الذكية.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Module 3 -->
+<div class="glass-card rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<div class="bg-primary px-4 py-3 flex justify-between items-center">
+<span class="text-white font-label-md">المستوى 03</span>
+<span class="material-symbols-outlined text-secondary-fixed">terminal</span>
+</div>
+<div class="p-gutter space-y-4">
+<h4 class="font-headline-md text-headline-md text-primary">أساسيات Python واكتشاف الويب</h4>
+<div class="space-y-3">
+<div class="flex gap-2">
+<span class="text-secondary font-bold">•</span>
+<p class="text-body-md font-body-md">الأدوات: <span class="font-bold">VS Code, Python</span></p>
+</div>
+<div class="flex gap-2">
+<span class="text-secondary font-bold">•</span>
+<p class="text-body-md font-body-md">المحتوى: لغة HTML، القوائم والدوال البرمجية.</p>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant">
+<span class="font-label-md text-primary block mb-1">المشاريع:</span>
+<p class="text-body-sm">ألعاب نصية بالبايثون، صفحة شخصية على الويب.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Module 4 -->
+<div class="glass-card rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<div class="bg-tertiary px-4 py-3 flex justify-between items-center">
+<span class="text-white font-label-md">المستوى 04</span>
+<span class="material-symbols-outlined text-secondary-fixed">smart_toy</span>
+</div>
+<div class="p-gutter space-y-4">
+<h4 class="font-headline-md text-headline-md text-primary">المشاريع الذكية وأساسيات الذكاء الاصطناعي</h4>
+<div class="space-y-3">
+<div class="flex gap-2">
+<span class="text-secondary font-bold">•</span>
+<p class="text-body-md font-body-md">الأدوات: <span class="font-bold">AI tools, Python</span></p>
+</div>
+<div class="flex gap-2">
+<span class="text-secondary font-bold">•</span>
+<p class="text-body-md font-body-md">المحتوى: مفاهيم AI، الأتمتة، العمل الجماعي.</p>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant">
+<span class="font-label-md text-primary block mb-1">المشاريع:</span>
+<p class="text-body-sm">مولد قصص بالذكاء الاصطناعي، المساعد الشخصي الذكي.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Psychological & Behavioral Section -->
+<section class="bg-surface-container py-lg px-gutter">
+<div class="space-y-base mb-gutter">
+<h3 class="font-headline-md text-headline-md text-primary">تطوير شخصية الطفل</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">لا نبني مبرمجين فقط، بل نبني شخصيات قيادية</p>
+</div>
+<div class="bento-grid">
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant space-y-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<h5 class="font-label-md text-primary">الثقة بالنفس</h5>
+<p class="text-[12px] text-on-surface-variant leading-tight">القدرة على مواجهة التحديات البرمجية بجرأة.</p>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant space-y-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">rebase_edit</span>
+<h5 class="font-label-md text-primary">التعلم من الخطأ</h5>
+<p class="text-[12px] text-on-surface-variant leading-tight">تحويل الأخطاء البرمجية لفرص تعلم.</p>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant space-y-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">ads_click</span>
+<h5 class="font-label-md text-primary">التركيز والانضباط</h5>
+<p class="text-[12px] text-on-surface-variant leading-tight">بناء صبر طويل لحل المشكلات المعقدة.</p>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant space-y-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">groups</span>
+<h5 class="font-label-md text-primary">روح الفريق</h5>
+<p class="text-[12px] text-on-surface-variant leading-tight">التعاون مع الأقران في مشاريع مشتركة.</p>
+</div>
+<div class="bento-item-large bg-primary-container p-6 rounded-xl shadow-lg flex items-center gap-4">
+<div class="bg-secondary-container p-3 rounded-full">
+<span class="material-symbols-outlined text-on-secondary-container text-3xl" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+</div>
+<div>
+<h5 class="font-headline-md text-secondary-fixed">عقلية "أنا أستطيع"</h5>
+<p class="text-white/80 text-body-sm">غرس الإيمان بالقدرة على الابتكار التقني منذ الصغر.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Final Summary -->
+<section class="py-lg px-gutter space-y-gutter">
+<div class="bg-surface border border-outline-variant rounded-2xl p-6 space-y-4">
+<h3 class="font-headline-md text-primary text-center">ماذا سيحقق طفلك؟</h3>
+<div class="space-y-3">
+<div class="flex items-center gap-4 border-b border-outline-variant pb-3">
+<span class="material-symbols-outlined text-primary">lightbulb</span>
+<span class="text-body-md font-body-md">التفكير بعقلية المبتكر والمصمم التقني</span>
+</div>
+<div class="flex items-center gap-4 border-b border-outline-variant pb-3">
+<span class="material-symbols-outlined text-primary">architecture</span>
+<span class="text-body-md font-body-md">بناء مشاريع رقمية حقيقية وتطبيقات قابلة للاستخدام</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">hub</span>
+<span class="text-body-md font-body-md">فهم أساسيات الذكاء الاصطناعي وكيفية توظيفه</span>
+</div>
+</div>
+</div>
+</section>
+<footer class="w-full py-lg px-gutter flex flex-col items-center gap-base text-center bg-primary text-on-primary">
+<div class="font-headline-md text-headline-md text-secondary-fixed mb-2">TKA-Egypt</div>
+<div class="flex gap-4 mb-4">
+<a class="font-body-sm text-body-sm text-on-primary-container hover:text-secondary-fixed-dim transition-colors" href="#">اتصل بنا</a>
+<a class="font-body-sm text-body-sm text-on-primary-container hover:text-secondary-fixed-dim transition-colors" href="#">سياسة الخصوصية</a>
+<a class="font-body-sm text-body-sm text-on-primary-container hover:text-secondary-fixed-dim transition-colors" href="#">شروط الخدمة</a>
+</div>
+<p class="font-body-sm text-body-sm opacity-80">© 2024 TKA-Egypt. جميع الحقوق محفوظة.</p>
+</footer>
+</main>
+<!-- Bottom Action Bar / CTA -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-gutter bg-surface-container-lowest border-t border-outline-variant shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-md text-label-md">المنهج</span>
+</a>
+<button class="flex items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-8 py-3 font-label-md text-label-md font-bold shadow-md active:scale-95 transition-transform">
+            اختر خطتك الآن
+        </button>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+<span class="font-label-md text-label-md">سجل الآن</span>
+</a>
+</nav>
+<script>
+        // Simple scroll reveal effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-4');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.glass-card, .bento-grid > div').forEach(el => {
+                el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-4');
+                observer.observe(el);
+            });
+        });
+    </script>
+</body></html>

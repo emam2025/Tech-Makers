@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TKA-Egypt | Academy of Excellence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .mega-menu-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            z-index: 100;
+        }
+        .nav-item:hover .mega-menu-content {
+            display: block;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 32px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 32, 69, 0.1);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container": "#ebeef0",
+                      "primary": "#002045",
+                      "inverse-primary": "#adc7f7",
+                      "on-secondary-fixed": "#261900",
+                      "on-tertiary-fixed-variant": "#3c475a",
+                      "inverse-surface": "#2d3133",
+                      "secondary": "#745a24",
+                      "surface-container-low": "#f1f4f6",
+                      "surface-dim": "#d7dadc",
+                      "background": "#f7fafc",
+                      "surface-bright": "#f7fafc",
+                      "on-secondary-fixed-variant": "#5a430d",
+                      "on-surface": "#181c1e",
+                      "on-surface-variant": "#43474e",
+                      "on-tertiary-container": "#949fb4",
+                      "on-primary-fixed-variant": "#2d476f",
+                      "surface-container-highest": "#e0e3e5",
+                      "on-tertiary-fixed": "#111c2c",
+                      "surface-container-high": "#e5e9eb",
+                      "secondary-fixed-dim": "#e4c281",
+                      "on-error": "#ffffff",
+                      "on-background": "#181c1e",
+                      "outline": "#74777f",
+                      "primary-fixed-dim": "#adc7f7",
+                      "tertiary-fixed": "#d8e3fa",
+                      "tertiary-fixed-dim": "#bcc7dd",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed": "#001b3c",
+                      "on-secondary-container": "#795f27",
+                      "on-primary": "#ffffff",
+                      "inverse-on-surface": "#eef1f3",
+                      "on-secondary": "#ffffff",
+                      "tertiary": "#162132",
+                      "secondary-container": "#ffdb98",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#e0e3e5",
+                      "secondary-fixed": "#ffdea3",
+                      "on-tertiary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-primary-container": "#86a0cd",
+                      "surface-tint": "#455f88",
+                      "outline-variant": "#c4c6cf",
+                      "surface": "#f7fafc",
+                      "tertiary-container": "#2b3648",
+                      "primary-container": "#1a365d",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed": "#d6e3ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter-desktop": "32px",
+                      "sidebar-width": "280px",
+                      "stack-sm": "8px",
+                      "stack-md": "16px",
+                      "stack-lg": "32px",
+                      "container-max": "1440px",
+                      "margin-desktop": "48px"
+              },
+              "fontFamily": {
+                      "body-md": ["IBM Plex Sans"],
+                      "mono-label": ["IBM Plex Mono"],
+                      "label-sm": ["IBM Plex Sans"],
+                      "label-md": ["IBM Plex Sans"],
+                      "headline-xl": ["IBM Plex Sans"],
+                      "headline-lg": ["IBM Plex Sans"],
+                      "display-lg": ["IBM Plex Sans"],
+                      "body-lg": ["IBM Plex Sans"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "mono-label": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "headline-xl": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- TopNavBar: mega_menu_public -->
+<header class="bg-surface-container-lowest sticky top-0 z-50 border-b border-outline-variant shadow-sm h-20">
+<nav class="max-w-container-max mx-auto flex justify-between items-center h-full px-margin-desktop">
+<div class="flex items-center gap-12">
+<a class="font-headline-lg text-headline-lg font-black text-primary" href="#">TKA Egypt</a>
+<ul class="hidden lg:flex items-center">
+<li class="group nav-item relative">
+<button class="text-on-surface-variant font-label-md px-4 hover:bg-surface-container-low transition-all h-20 flex items-center gap-1">
+                            Tracks <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="mega-menu-content border-b border-outline-variant shadow-xl p-8">
+<div class="max-w-container-max mx-auto grid grid-cols-4 gap-gutter-desktop">
+<div>
+<h4 class="font-label-sm text-label-sm text-primary uppercase mb-4">Engineering</h4>
+<ul class="space-y-3">
+<li><a class="text-on-surface hover:text-primary transition-colors block" href="#">Software Engineering</a></li>
+<li><a class="text-on-surface hover:text-primary transition-colors block" href="#">Cloud Infrastructure</a></li>
+<li><a class="text-on-surface hover:text-primary transition-colors block" href="#">Cybersecurity</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-primary uppercase mb-4">Intelligence</h4>
+<ul class="space-y-3">
+<li><a class="text-on-surface hover:text-primary transition-colors block" href="#">Artificial Intelligence</a></li>
+<li><a class="text-on-surface hover:text-primary transition-colors block" href="#">Data Science</a></li>
+<li><a class="text-on-surface hover:text-primary transition-colors block" href="#">Machine Learning</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-primary uppercase mb-4">Innovation</h4>
+<ul class="space-y-3">
+<li><a class="text-on-surface hover:text-primary transition-colors block" href="#">Product Design</a></li>
+<li><a class="text-on-surface hover:text-primary transition-colors block" href="#">Digital Strategy</a></li>
+</ul>
+</div>
+<div class="bg-primary-container p-6 rounded-lg text-on-primary">
+<p class="font-headline-lg mb-2">Upcoming Cohort</p>
+<p class="font-body-md mb-4 opacity-80">Applications for Fall 2024 are now open. Secure your future today.</p>
+<a class="inline-block bg-primary text-on-primary px-6 py-2 font-label-md rounded" href="#">Apply Now</a>
+</div>
+</div>
+</div>
+</li>
+<li><a class="text-on-surface-variant font-label-md px-4 hover:bg-surface-container-low transition-all h-20 flex items-center" href="#">Programs</a></li>
+<li><a class="text-on-surface-variant font-label-md px-4 hover:bg-surface-container-low transition-all h-20 flex items-center" href="#">Admissions</a></li>
+<li><a class="text-on-surface-variant font-label-md px-4 hover:bg-surface-container-low transition-all h-20 flex items-center" href="#">About Us</a></li>
+<li><a class="text-on-surface-variant font-label-md px-4 hover:bg-surface-container-low transition-all h-20 flex items-center" href="#">Accreditation</a></li>
+</ul>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary font-label-md transition-all">Contact Us</button>
+<button class="bg-primary text-on-primary px-8 py-3 font-label-md rounded shadow-sm hover:opacity-90 transition-all">Portal Login</button>
+</div>
+</nav>
+</header>
+<!-- Hero Section -->
+<section class="relative h-[800px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-primary/40 mix-blend-multiply z-10"></div>
+<img class="w-full h-full object-cover" data-alt="A futuristic laboratory setting featuring high-tech holographic displays and sleek laboratory equipment. In the center, a group of diverse young scholars is collaborating on a complex digital interface. The lighting is cold and clinical, with sharp blue and white accents reflecting the Royal Institutional aesthetic. The atmosphere is one of focused innovation and extreme professional prestige, conveying the elite nature of the TKA Egypt Academy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU2SNNLVmT7T6qCdC7s4VcyavYLmXnPrXhtVTR10WgAH9rPZTBGpSk4nxf0ShDDEFFrrYNu0aEe1oXWTEbRIJ5QIvUp0MtSjpaEefA9lLD7rCmVdTC8fkw7n-eu-Vi5yZ6zDSro4b0eAmiOoLTmkF-AmqMt8h15eGcFgOFnT6eXO9f0sn75O_ztpKRia1GrvaJhRcEBCY94RiCXm9CdCH1WLlnJxPBX8sKAMKomZcUQ18oSUHWKwhWtFFjmeYSFk_mKXBLAWRyjTw"/>
+</div>
+<div class="relative z-20 max-w-container-max mx-auto px-margin-desktop w-full">
+<div class="max-w-2xl">
+<span class="inline-block px-4 py-1 bg-primary text-on-primary font-mono-label text-mono-label uppercase mb-6 tracking-widest">Global Excellence</span>
+<h1 class="font-display-lg text-display-lg text-white mb-8">Architects of the Digital Frontier.</h1>
+<p class="font-body-lg text-body-lg text-white/90 mb-12 leading-relaxed">
+                    TKA-Egypt empowers the next generation of technical leaders with world-class education, institutional rigor, and direct pathways to global technology hubs.
+                </p>
+<div class="flex gap-6">
+<button class="bg-primary text-on-primary px-10 py-4 font-label-md text-lg rounded hover:shadow-xl transition-all active:scale-95">Explore Tracks</button>
+<button class="border border-white text-white px-10 py-4 font-label-md text-lg rounded backdrop-blur-md hover:bg-white/10 transition-all">Watch Program Film</button>
+</div>
+</div>
+</div>
+<!-- Decorative Scroll Anchor -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white animate-bounce">
+<span class="material-symbols-outlined text-4xl">expand_more</span>
+</div>
+</section>
+<!-- Why TKA-Egypt (Bento Grid) -->
+<section class="py-24 bg-surface">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="mb-16">
+<h2 class="font-headline-xl text-headline-xl text-primary mb-4">The Institutional Advantage</h2>
+<p class="font-body-md text-on-surface-variant max-w-xl">We provide an ecosystem of excellence where tradition meets future technology.</p>
+</div>
+<div class="bento-grid">
+<div class="col-span-8 row-span-2 glass-card rounded-xl p-10 flex flex-col justify-between overflow-hidden relative">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-primary text-5xl mb-6">workspace_premium</span>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-4">Global Accreditation</h3>
+<p class="font-body-md text-on-surface-variant max-w-md">Our curriculum is recognized by leading international bodies and top-tier silicon valley partners, ensuring your credentials carry weight worldwide.</p>
+</div>
+<div class="absolute -right-20 -bottom-20 opacity-10">
+<span class="material-symbols-outlined text-[300px] text-primary">verified</span>
+</div>
+</div>
+<div class="col-span-4 glass-card rounded-xl p-10">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">diversity_3</span>
+<h3 class="font-label-md text-headline-lg text-primary mb-2">Elite Mentorship</h3>
+<p class="font-body-md text-on-surface-variant">Learn directly from PhD holders and senior engineers from global tech giants.</p>
+</div>
+<div class="col-span-4 glass-card rounded-xl p-10">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">rocket_launch</span>
+<h3 class="font-label-md text-headline-lg text-primary mb-2">Fast Track</h3>
+<p class="font-body-md text-on-surface-variant">Accelerated programs designed to move students from fundamentals to high-level roles.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Program Overview (Asymmetric Cards) -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="flex justify-between items-end mb-16">
+<div>
+<h2 class="font-headline-xl text-headline-xl text-primary mb-4">Academic Programs</h2>
+<p class="font-body-md text-on-surface-variant">Specialized tracks tailored for every stage of development.</p>
+</div>
+<button class="font-label-md text-primary flex items-center gap-2 hover:translate-x-1 transition-transform">
+                    View Course Catalog <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-3 gap-gutter-desktop">
+<!-- Junior Tech -->
+<div class="group bg-white border border-outline-variant hover:border-primary transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean, minimalist workspace featuring a high-end laptop with lines of code visible on the screen, surrounded by professional design literature and a warm coffee cup. The lighting is soft and natural, emphasizing a productive and academic atmosphere. The composition is structured and professional, mirroring the modern corporate style of the TKA Egypt Academy. Soft shadows and clean lines dominate the frame." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhc7-i9K46p32zOsMMBBZn2dcCFcHx6EU-FEBkVS9HoAHmakeoM3jg8GagoRHuCGRuiRhy6Q2UaQxdlCFB1G-qv2fRlLnov7PcJzu6LIs96QzL3HPIPjZ1VFw_VYdVweLzilCnlBAygcvhld8symHWaRYNr10LlRMBc10FfMbbkaiq8GxFnX9xBGvRu55r7_sj10PcOtHcIXUBPNs3Ec7-hRxa7Sf9V1LqHwMDnmjggqLZvmRz6k19A9wFZVdpwSj_uoE_nazATgk"/>
+</div>
+<div class="p-8">
+<span class="font-mono-label text-label-sm text-secondary uppercase mb-4 block">Ages 12-16</span>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-4">Junior Tech Academy</h3>
+<p class="font-body-md text-on-surface-variant mb-6">Building foundational logic and computational thinking through creative programming projects.</p>
+<div class="flex gap-2">
+<span class="bg-surface-container px-3 py-1 rounded-full text-label-sm">Logic</span>
+<span class="bg-surface-container px-3 py-1 rounded-full text-label-sm">Python</span>
+</div>
+</div>
+</div>
+<!-- AI Specialist -->
+<div class="group bg-white border border-outline-variant hover:border-primary transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A macro shot of a complex circuit board with glowing blue light pulses traveling through the pathways, symbolizing artificial intelligence and data processing. The background is a dark, sophisticated navy blue, aligning with the primary brand color. The focus is sharp on the intricate gold contacts, representing the precision and high-fidelity technical training provided at the TKA Egypt Academy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5ZnhGxMZVPmtL4KiZA-uaDsz0N8NX0JTTxQ9OCxAPl7Id2wyWJxa46XEhV9sjCz_lUQpfiGS9g_WdPV17UyhwbPqTVdZTOiiYLFiDuOm4qq95WpY8dHRPPM7uYhXvnIAz-HowtOq_f2ljhKhM8LuTX1c6mz1AUszQf_RBdZBukzBzIzsyOdPwt3XMRQo3yaY6JL01KwcvIrx_MrNCfwU6w9YD7rFQHBJTmoF-RieGkuakvWWMl_VjTbPGfeuYmGTgSE9RP2H26h0"/>
+</div>
+<div class="p-8">
+<span class="font-mono-label text-label-sm text-secondary uppercase mb-4 block">Post-Grad / Professional</span>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-4">AI &amp; Machine Learning</h3>
+<p class="font-body-md text-on-surface-variant mb-6">Advanced mathematical modeling and neural network architecture for high-stakes industries.</p>
+<div class="flex gap-2">
+<span class="bg-surface-container px-3 py-1 rounded-full text-label-sm">TensorFlow</span>
+<span class="bg-surface-container px-3 py-1 rounded-full text-label-sm">Deep Learning</span>
+</div>
+</div>
+</div>
+<!-- Cybersecurity -->
+<div class="group bg-white border border-outline-variant hover:border-primary transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A secure data center hallway with rows of server racks glowing with soft amber and blue indicator lights. The floor is highly polished, reflecting the technological grandeur of the infrastructure. The perspective is symmetrical and commanding, illustrating the stability and security aspects of the Cybersecurity program. The overall aesthetic is one of high-end governance and institutional reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYzpGNKSL8Z-Tr6bhnHXHOxnd6XlZ0ukfn_Ky2usE9KlB2c5bg6S9TXp8pDcyyLhKZEcNc5kG8l-YIy3ttF1LIAYC8BMAWz00tAayWXkxxupWN6hbAP2JaEG1oxLL8mqHsYZYCO0ZKzBpjX53qXLOOBjdeQj1_IMmZ_NuzEkj_zpGVGpPKCFRr8DPsJBRqY01lvrnK5iFcQHWi6s5Yidw0v_Ow9qXBcD86ybPZ0vFylA3s68ZaK_WjG_8r5CD8fR_Af_t0mnAsqNM"/>
+</div>
+<div class="p-8">
+<span class="font-mono-label text-label-sm text-secondary uppercase mb-4 block">Professional Track</span>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-4">Cyber Defense Mastery</h3>
+<p class="font-body-md text-on-surface-variant mb-6">Institutional grade security training, ethical hacking, and proactive threat intelligence.</p>
+<div class="flex gap-2">
+<span class="bg-surface-container px-3 py-1 rounded-full text-label-sm">Ethical Hacking</span>
+<span class="bg-surface-container px-3 py-1 rounded-full text-label-sm">SecOps</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Accreditation Logos -->
+<section class="py-16 border-y border-outline-variant bg-surface">
+<div class="max-w-container-max mx-auto px-margin-desktop text-center">
+<p class="font-label-sm text-on-surface-variant uppercase mb-12 tracking-widest">Authorized &amp; Accredited By</p>
+<div class="flex flex-wrap justify-center items-center gap-16 grayscale opacity-40">
+<span class="font-display-lg text-primary opacity-60">ISO-9001</span>
+<span class="font-display-lg text-primary opacity-60">ABET</span>
+<span class="font-display-lg text-primary opacity-60">MINISTRY</span>
+<span class="font-display-lg text-primary opacity-60">PEARSON</span>
+<span class="font-display-lg text-primary opacity-60">CISCO</span>
+</div>
+</div>
+</section>
+<!-- Stats Section (Atmospheric) -->
+<section class="py-24 bg-primary text-on-primary">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-4 gap-gutter-desktop">
+<div class="text-center">
+<p class="font-display-lg text-display-lg mb-2">94%</p>
+<p class="font-label-md text-on-primary/60">Global Employment Rate</p>
+</div>
+<div class="text-center">
+<p class="font-display-lg text-display-lg mb-2">12k+</p>
+<p class="font-label-md text-on-primary/60">Alumni Network</p>
+</div>
+<div class="text-center">
+<p class="font-display-lg text-display-lg mb-2">50+</p>
+<p class="font-label-md text-on-primary/60">Partner Corporations</p>
+</div>
+<div class="text-center">
+<p class="font-display-lg text-display-lg mb-2">15</p>
+<p class="font-label-md text-on-primary/60">Innovation Lab Centers</p>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container border-t border-outline-variant py-12">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-4 gap-gutter-desktop mb-12">
+<div class="col-span-1">
+<a class="font-headline-md text-headline-md font-bold text-primary block mb-6" href="#">TKA Egypt</a>
+<p class="font-body-md text-on-surface-variant">The institutional standard for technical education and elite leadership training.</p>
+</div>
+<div>
+<h4 class="font-label-md font-bold text-primary mb-6">Quick Links</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-primary font-label-sm transition-transform hover:translate-x-1 block" href="#">Sitemap</a></li>
+<li><a class="text-on-surface-variant hover:text-primary font-label-sm transition-transform hover:translate-x-1 block" href="#">Faculty Portal</a></li>
+<li><a class="text-on-surface-variant hover:text-primary font-label-sm transition-transform hover:translate-x-1 block" href="#">Student Portal</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md font-bold text-primary mb-6">Legal</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-primary font-label-sm transition-transform hover:translate-x-1 block" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:text-primary font-label-sm transition-transform hover:translate-x-1 block" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md font-bold text-primary mb-6">Institutional Address</h4>
+<p class="font-body-md text-on-surface-variant mb-4">
+                        New Administrative Capital<br/>
+                        Diplomatic District, Sector 4<br/>
+                        Cairo, Egypt
+                    </p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70">language</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70">shield</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70">public</span>
+</div>
+</div>
+</div>
+<div class="pt-12 border-t border-outline-variant flex justify-between items-center">
+<p class="font-label-sm text-on-surface-variant">© 2024 TKA-Egypt Academy of Excellence. All Rights Reserved.</p>
+<div class="flex gap-8">
+<a class="text-label-sm text-on-surface-variant hover:text-primary" href="#">LinkedIn</a>
+<a class="text-label-sm text-on-surface-variant hover:text-primary" href="#">X (Twitter)</a>
+<a class="text-label-sm text-on-surface-variant hover:text-primary" href="#">Instagram</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions and subtle scroll effects
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('shadow-sm');
+            }
+        });
+
+        // Add hover interaction sounds or haptics if needed in future
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                // Subtle scale effect managed by tailwind
+            });
+        });
+    </script>
+</body></html>

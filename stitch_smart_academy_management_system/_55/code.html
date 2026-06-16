@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>System Settings | TKA-Egypt Academy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#f7fafc",
+                    "primary-fixed": "#d6e3ff",
+                    "on-primary": "#ffffff",
+                    "secondary": "#775a19",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#002045",
+                    "on-tertiary-fixed": "#121c2c",
+                    "surface-tint": "#455f88",
+                    "surface-dim": "#d7dadc",
+                    "tertiary-fixed-dim": "#bdc7dc",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed-dim": "#e9c176",
+                    "on-secondary-container": "#785a1a",
+                    "surface-variant": "#e0e3e5",
+                    "primary-container": "#1a365d",
+                    "outline": "#74777f",
+                    "secondary-fixed": "#ffdea5",
+                    "on-tertiary-fixed-variant": "#3d4759",
+                    "tertiary-fixed": "#d9e3f9",
+                    "on-primary-container": "#86a0cd",
+                    "on-tertiary-container": "#959fb3",
+                    "primary-fixed-dim": "#adc7f7",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "inverse-on-surface": "#eef1f3",
+                    "error": "#ba1a1a",
+                    "background": "#f7fafc",
+                    "surface-container-high": "#e5e9eb",
+                    "on-primary-fixed-variant": "#2d476f",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-surface-variant": "#43474e",
+                    "on-error": "#ffffff",
+                    "on-surface": "#181c1e",
+                    "on-secondary-fixed": "#261900",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#ebeef0",
+                    "outline-variant": "#c4c6cf",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#172131",
+                    "surface-bright": "#f7fafc",
+                    "secondary-container": "#fed488",
+                    "inverse-surface": "#2d3133",
+                    "tertiary-container": "#2c3647",
+                    "on-background": "#181c1e",
+                    "surface-container-low": "#f1f4f6",
+                    "on-primary-fixed": "#001b3c",
+                    "inverse-primary": "#adc7f7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "24px",
+                    "xs": "4px",
+                    "sm": "12px",
+                    "lg": "40px",
+                    "gutter": "24px",
+                    "container-max": "1440px",
+                    "xl": "64px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["IBM Plex Sans"],
+                    "body-md": ["IBM Plex Sans"],
+                    "headline-xl": ["IBM Plex Sans"],
+                    "headline-md": ["IBM Plex Sans"],
+                    "label-md": ["IBM Plex Sans"],
+                    "headline-lg": ["IBM Plex Sans"],
+                    "body-sm": ["IBM Plex Sans"],
+                    "body-lg": ["IBM Plex Sans"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'IBM Plex Sans', sans-serif; background-color: #f7fafc; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .active-tab-bar { position: relative; }
+        .active-tab-bar::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background-color: #ffdea5; }
+        .scroll-hide::-webkit-scrollbar { display: none; }
+        .scroll-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Sidebar (As per JSON Blueprint) -->
+<aside class="hidden lg:flex flex-col h-screen fixed left-0 top-0 z-40 w-[280px] bg-primary dark:bg-primary-container shadow-sm">
+<div class="p-md flex flex-col gap-xs">
+<div class="font-headline-lg text-headline-lg font-bold text-on-primary">TKA-Egypt</div>
+<div class="font-label-md text-label-md text-on-primary-container opacity-80">Academy ERP System</div>
+</div>
+<nav class="mt-lg flex-1 overflow-y-auto scroll-hide">
+<a class="flex items-center gap-md px-md py-sm text-primary-fixed-dim hover:text-on-primary hover:bg-primary-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-primary-fixed-dim hover:text-on-primary hover:bg-primary-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-md text-label-md">Academic Affairs</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-primary-fixed-dim hover:text-on-primary hover:bg-primary-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Student Records</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-primary-fixed-dim hover:text-on-primary hover:bg-primary-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">person_book</span>
+<span class="font-label-md text-label-md">Trainer Portal</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-primary-fixed-dim hover:text-on-primary hover:bg-primary-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Financial Management</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm border-l-4 border-secondary-fixed bg-on-primary-fixed-variant text-on-primary-fixed opacity-90 transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">System Settings</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-on-primary-container/20 p-md flex flex-col gap-sm">
+<a class="flex items-center gap-md text-primary-fixed-dim hover:text-on-primary transition-colors" href="#">
+<span class="material-symbols-outlined">help_center</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+<a class="flex items-center gap-md text-primary-fixed-dim hover:text-on-primary transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center w-full px-md h-16 sticky top-0 z-50 bg-surface dark:bg-surface-dim border-b border-outline-variant ml-0 lg:ml-[280px] lg:w-[calc(100%-280px)]">
+<div class="flex items-center gap-md">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">System Settings</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all w-64" placeholder="Search settings..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-all">translate</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-all">notifications</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQx3Mwlcw70vbynl6iob5bNDpGtdv7GL4z5B-usfQ_OC66zjicc9kv5Xxz3rgt0wipzpQaQBICUyPRfiOBnWwhp9mSNLrrgZ6pny1Jux7Vuuyh9abOvCin-6kOGPMlaa31OAS_wr3CR78nICr7FFO9I4tmxKhoNxAEBisuzotOumq0hsSeUfziE5MAs-vJYbNMnXpeHyQY6S_KP3ErmBlNs5Y6uwgQFUSKdLwtSClHVp2OK3bq_UiMYupej_7U49t5oaaEPwOjJQM"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-0 lg:ml-[280px] p-md lg:p-xl max-w-container-max mx-auto space-y-md">
+<!-- Header Actions -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-lg">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Configuration Hub</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage your institutional profile, academic standards, and system security.</p>
+</div>
+<div class="flex gap-sm">
+<button class="px-md py-sm border border-primary text-primary font-label-md text-label-md rounded-lg hover:bg-surface-container-low transition-all">Export Configurations</button>
+<button class="px-md py-sm bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:opacity-90 shadow-sm transition-all">Save All Changes</button>
+</div>
+</div>
+<!-- Settings Grid (Bento Style) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Academy Profile Section -->
+<section class="lg:col-span-8 bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm space-y-md">
+<div class="flex items-center justify-between border-b border-outline-variant pb-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">domain</span>
+<h3 class="font-headline-md text-headline-md text-primary">Academy Profile</h3>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Academy Name</label>
+<input class="w-full p-sm bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary outline-none" type="text" value="TKA-Egypt Academy of Excellence"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Tax ID / Registration</label>
+<input class="w-full p-sm bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary outline-none" type="text" value="REG-990-221-ET"/>
+</div>
+<div class="md:col-span-2 space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Physical Address</label>
+<textarea class="w-full p-sm bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary outline-none" rows="2">15th Industrial Zone, Smart Village, Cairo, Egypt</textarea>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Primary Contact Email</label>
+<input class="w-full p-sm bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary outline-none" type="email" value="admin@tka-egypt.edu.eg"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Institutional Phone</label>
+<input class="w-full p-sm bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary outline-none" type="tel" value="+20 100 123 4567"/>
+</div>
+</div>
+<div class="pt-sm">
+<label class="font-label-md text-label-md text-on-surface-variant mb-xs block">Institutional Logo</label>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-lg flex flex-col items-center justify-center gap-sm bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<span class="material-symbols-outlined text-primary text-4xl">cloud_upload</span>
+<p class="font-body-sm text-body-sm text-center">Click to upload or drag and drop institutional logo.<br/><span class="text-on-surface-variant opacity-70">PNG, JPG up to 5MB (1:1 Ratio recommended)</span></p>
+</div>
+</div>
+</section>
+<!-- Notification Settings -->
+<section class="lg:col-span-4 flex flex-col gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm space-y-md">
+<div class="flex items-center gap-sm border-b border-outline-variant pb-sm">
+<span class="material-symbols-outlined text-primary">notifications_active</span>
+<h3 class="font-headline-md text-headline-md text-primary">Notifications</h3>
+</div>
+<div class="space-y-md">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-primary">Email Alerts</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">System-wide critical updates</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-dim peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-primary">SMS Gateway</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Student attendance &amp; urgent alerts</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-dim peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-primary">Push Notifications</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Mobile app student engagement</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-dim peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Quick Help Card -->
+<div class="bg-primary text-on-primary p-md rounded-xl shadow-md relative overflow-hidden group">
+<div class="relative z-10 space-y-sm">
+<h4 class="font-headline-md text-headline-md">Need Assistance?</h4>
+<p class="font-body-sm text-body-sm opacity-90">Our institutional technical support team is available 24/7 for critical system configurations.</p>
+<button class="flex items-center gap-xs font-label-md text-label-md text-secondary-fixed bg-on-primary-fixed-variant px-md py-xs rounded-full hover:bg-opacity-80 transition-all">
+                            Contact Support
+                            <span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-9xl opacity-10 group-hover:scale-110 transition-transform">help_center</span>
+</div>
+</section>
+<!-- Academic Preferences -->
+<section class="lg:col-span-12 bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm space-y-md">
+<div class="flex items-center gap-sm border-b border-outline-variant pb-sm">
+<span class="material-symbols-outlined text-primary">history_edu</span>
+<h3 class="font-headline-md text-headline-md text-primary">Academic Preferences</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant block">Current Academic Year</label>
+<div class="flex items-center gap-sm">
+<input class="w-full p-sm bg-surface border border-outline-variant rounded-lg outline-none focus:ring-2 focus:ring-primary" type="date" value="2023-09-15"/>
+<span class="text-on-surface-variant">to</span>
+<input class="w-full p-sm bg-surface border border-outline-variant rounded-lg outline-none focus:ring-2 focus:ring-primary" type="date" value="2024-06-30"/>
+</div>
+</div>
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant block">Default Grading Scale</label>
+<select class="w-full p-sm bg-surface border border-outline-variant rounded-lg outline-none focus:ring-2 focus:ring-primary">
+<option>Percentage (0-100)</option>
+<option selected="">GPA (4.0 Scale)</option>
+<option>ECTS (A-F)</option>
+<option>Narrative Assessment</option>
+</select>
+</div>
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant block">Primary Language of Instruction</label>
+<div class="flex gap-sm">
+<button class="flex-1 py-sm bg-primary-fixed text-primary font-label-md text-label-md rounded-lg border border-primary">English</button>
+<button class="flex-1 py-sm bg-surface text-on-surface-variant font-label-md text-label-md rounded-lg border border-outline-variant hover:bg-surface-container-low transition-all">Arabic</button>
+</div>
+</div>
+</div>
+</section>
+<!-- System Logs (Data Table) -->
+<section class="lg:col-span-12 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+<div class="p-md flex items-center justify-between border-b border-outline-variant">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">receipt_long</span>
+<h3 class="font-headline-md text-headline-md text-primary">System Audit Logs</h3>
+</div>
+<button class="text-primary font-label-md text-label-md hover:underline">View All Logs</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant">Timestamp</th>
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant">Administrator</th>
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant">Action Performerd</th>
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant">Target</th>
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-primary-fixed/20 transition-all group">
+<td class="px-md py-md font-body-sm text-body-sm">Oct 24, 2023 - 14:22</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-xs">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center text-[10px]">MA</div>
+<span class="font-label-md text-label-md">M. Ahmed (SuperAdmin)</span>
+</div>
+</td>
+<td class="px-md py-md font-body-sm text-body-sm">Updated Grading Scale</td>
+<td class="px-md py-md font-body-sm text-body-sm">Academic Affairs</td>
+<td class="px-md py-md text-right">
+<span class="px-sm py-xs bg-green-100 text-green-700 rounded-full font-label-md text-[12px] uppercase">Success</span>
+</td>
+</tr>
+<tr class="hover:bg-primary-fixed/20 transition-all group">
+<td class="px-md py-md font-body-sm text-body-sm">Oct 24, 2023 - 11:05</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-xs">
+<div class="w-6 h-6 rounded-full bg-secondary-container text-secondary flex items-center justify-center text-[10px]">SK</div>
+<span class="font-label-md text-label-md">S. Khalil (System)</span>
+</div>
+</td>
+<td class="px-md py-md font-body-sm text-body-sm">Automatic Database Backup</td>
+<td class="px-md py-md font-body-sm text-body-sm">System Storage</td>
+<td class="px-md py-md text-right">
+<span class="px-sm py-xs bg-green-100 text-green-700 rounded-full font-label-md text-[12px] uppercase">Success</span>
+</td>
+</tr>
+<tr class="hover:bg-primary-fixed/20 transition-all group">
+<td class="px-md py-md font-body-sm text-body-sm">Oct 23, 2023 - 16:45</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-xs">
+<div class="w-6 h-6 rounded-full bg-error-container text-error flex items-center justify-center text-[10px]">JD</div>
+<span class="font-label-md text-label-md">J. Doe (IT Support)</span>
+</div>
+</td>
+<td class="px-md py-md font-body-sm text-body-sm">Modified Permission Level</td>
+<td class="px-md py-md font-body-sm text-body-sm">User: H. Youssef</td>
+<td class="px-md py-md text-right">
+<span class="px-sm py-xs bg-yellow-100 text-yellow-700 rounded-full font-label-md text-[12px] uppercase">Warning</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-gutter grid grid-cols-1 md:grid-cols-4 gap-lg mx-auto max-w-container-max border-t border-outline-variant ml-0 lg:ml-[280px] lg:w-[calc(100%-280px)]">
+<div class="md:col-span-1 space-y-sm">
+<h4 class="font-headline-md text-headline-md font-bold text-primary">TKA-Egypt Academy</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 TKA-Egypt Academy. All Rights Reserved. Institutional Excellence in Higher Education.</p>
+</div>
+<div class="space-y-sm">
+<h5 class="font-label-md text-label-md text-primary">Navigation</h5>
+<ul class="space-y-xs">
+<li><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Campus Map</a></li>
+<li><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Career Opportunities</a></li>
+<li><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Contact Support</a></li>
+</ul>
+</div>
+<div class="space-y-sm">
+<h5 class="font-label-md text-label-md text-primary">Legal</h5>
+<ul class="space-y-xs">
+<li><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div class="space-y-sm">
+<h5 class="font-label-md text-label-md text-primary">Language</h5>
+<div class="flex items-center gap-sm p-sm bg-surface-container rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant">language</span>
+<span class="font-label-md text-label-md text-on-surface-variant">English (International)</span>
+</div>
+</div>
+</footer>
+<script>
+        // Simple interactivity for demonstration
+        document.querySelectorAll('input[type="checkbox"]').forEach(toggle => {
+            toggle.addEventListener('change', () => {
+                const label = toggle.closest('div').querySelector('.font-label-md').innerText;
+                console.log(`${label} status changed to: ${toggle.checked}`);
+            });
+        });
+
+        // Add hover effects for data rows
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            row.addEventListener('mouseenter', () => row.style.backgroundColor = 'rgba(214, 227, 255, 0.2)');
+            row.addEventListener('mouseleave', () => row.style.backgroundColor = '');
+        });
+    </script>
+</body></html>

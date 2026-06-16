@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>إدارة المجموعات - AcademyPro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;family=IBM+Plex+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#f9f9ff",
+                    "surface-dim": "#d0daf0",
+                    "surface-bright": "#f9f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f0f3ff",
+                    "surface-container": "#ebeefb",
+                    "surface-container-high": "#e1e6f5",
+                    "surface-container-highest": "#d7dced",
+                    "on-surface": "#1a1c20",
+                    "on-surface-variant": "#44474e",
+                    "outline": "#74777f",
+                    "outline-variant": "#c4c6cf",
+                    "primary": "#3182ce",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#d1e4ff",
+                    "on-primary-container": "#001d36",
+                    "secondary": "#535f70",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#d7e3f7",
+                    "on-secondary-container": "#101c2b",
+                    "tertiary": "#6b5778",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#f2daff",
+                    "on-tertiary-container": "#251431",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#410002",
+                    "background": "#f9f9ff",
+                    "on-background": "#1a1c20",
+                    "inverse-surface": "#2f3033",
+                    "inverse-on-surface": "#f1f0f4",
+                    "inverse-primary": "#a0c9ff",
+                    "primary-fixed": "#d1e4ff",
+                    "on-primary-fixed": "#001d36",
+                    "primary-fixed-dim": "#a0c9ff",
+                    "on-primary-fixed-variant": "#104881",
+                    "secondary-fixed": "#d7e3f7",
+                    "on-secondary-fixed": "#101c2b",
+                    "secondary-fixed-dim": "#bbc7db",
+                    "on-secondary-fixed-variant": "#3b4858",
+                    "tertiary-fixed": "#f2daff",
+                    "on-tertiary-fixed": "#251431",
+                    "tertiary-fixed-dim": "#d6bee4",
+                    "on-tertiary-fixed-variant": "#523f5f",
+                    "surface-tint": "#3182ce"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "container-max": "1440px",
+                    "xs": "4px",
+                    "lg": "40px",
+                    "base": "8px",
+                    "xl": "64px",
+                    "md": "24px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "headline-lg-mobile": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "body-sm": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "label-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "headline-lg": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "body-lg": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "headline-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "headline-xl": ["IBM Plex Sans Arabic", "IBM Plex Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', sans-serif;
+            background-color: #f9f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .royal-card {
+            background: #ffffff;
+            border: 1px solid #e1e6f5;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+        .royal-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(49, 130, 206, 0.1), 0 4px 6px -2px rgba(49, 130, 206, 0.05);
+            border-color: #3182ce;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Top AppBar -->
+<header class="bg-surface-container-lowest border-b border-outline-variant shadow-sm w-full top-0 sticky z-50">
+<div class="flex items-center justify-between px-md h-16 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-base">
+<span class="material-symbols-outlined text-primary cursor-pointer active:opacity-80 lg:hidden">menu</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">AcademyPro</h1>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary cursor-pointer active:opacity-80">notifications</span>
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center border border-primary-fixed-dim">
+<span class="material-symbols-outlined text-on-primary-fixed">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation (Desktop) -->
+<aside class="hidden lg:flex flex-col h-screen sticky top-0 left-0 z-40 w-[280px] bg-surface-container-lowest border-l border-outline-variant">
+<div class="p-md flex flex-col gap-base border-b border-outline-variant">
+<div class="flex items-center gap-md p-md bg-surface-container-low rounded-lg">
+<div class="w-12 h-12 rounded bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary">admin_panel_settings</span>
+</div>
+<div>
+<p class="text-on-surface font-label-md">إدارة النظام</p>
+<p class="text-on-surface-variant text-xs">Royal HQ</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 p-md space-y-1">
+<a class="text-on-surface-variant p-md flex items-center gap-base rounded hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">لوحة التحكم</span>
+</a>
+<a class="text-on-surface-variant p-md flex items-center gap-base rounded hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-md">الطلاب</span>
+</a>
+<a class="text-primary bg-primary-container p-md flex items-center gap-base rounded font-bold border-r-4 border-primary" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md">المجموعات</span>
+</a>
+<a class="text-on-surface-variant p-md flex items-center gap-base rounded hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md">المدفوعات</span>
+</a>
+<a class="text-on-surface-variant p-md flex items-center gap-base rounded hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-md">الملف الشخصي</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-md py-lg lg:px-xl w-full">
+<!-- Header Section -->
+<div class="mb-lg">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">إدارة المجموعات</h2>
+<p class="font-body-md text-on-surface-variant">استعرض ونظم مجموعات الطلاب الحالية والمسارات التعليمية.</p>
+</div>
+</div>
+<!-- Filters & Search -->
+<div class="bg-surface-container-lowest p-md rounded-lg border border-outline-variant flex flex-col lg:flex-row gap-md items-center">
+<div class="relative w-full lg:max-w-md">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pr-10 pl-4 py-3 bg-surface-container-low rounded border border-outline-variant focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all font-body-md" placeholder="البحث عن اسم المجموعة..." type="text"/>
+</div>
+<div class="flex flex-wrap gap-base w-full lg:w-auto">
+<select class="flex-1 lg:w-48 p-3 bg-surface-container-low rounded border border-outline-variant font-body-md text-on-surface-variant focus:ring-1 focus:ring-primary outline-none">
+<option value="">كل المسارات</option>
+<option value="math">Techno Math</option>
+<option value="coding">Robotics &amp; Coding</option>
+<option value="mental">Mental Math</option>
+</select>
+<select class="flex-1 lg:w-48 p-3 bg-surface-container-low rounded border border-outline-variant font-body-md text-on-surface-variant focus:ring-1 focus:ring-primary outline-none">
+<option value="">كل الأيام</option>
+<option value="sat">السبت</option>
+<option value="sun">الأحد</option>
+</select>
+<button class="bg-primary text-on-primary px-xl py-3 rounded flex items-center justify-center gap-base font-label-md hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+                            تصفية
+                        </button>
+</div>
+</div>
+</div>
+<!-- Groups List -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter mb-xl">
+<!-- Group Card 1 -->
+<div class="royal-card rounded-lg overflow-hidden group">
+<div class="h-1.5 bg-primary w-full"></div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-md">
+<div>
+<span class="bg-primary-container text-on-primary-container px-3 py-0.5 rounded text-xs font-bold mb-xs inline-block">TECHNO MATH</span>
+<h3 class="font-headline-md text-on-surface">G-105 B</h3>
+</div>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="space-y-sm mb-md">
+<div class="flex items-center gap-base text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">person</span>
+<span class="font-body-sm">المدرب: <strong class="text-on-surface">أ/ أحمد علي</strong></span>
+</div>
+<div class="flex items-center gap-base text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">group</span>
+<span class="font-body-sm">الطلاب: <strong class="text-on-surface">12 / 15</strong></span>
+</div>
+<!-- Progress Bar -->
+<div class="mt-xs">
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 80%"></div>
+</div>
+</div>
+<div class="flex items-center gap-base text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-primary">calendar_today</span>
+<span class="font-body-sm">الإثنين، <strong class="text-primary">04:00 م</strong></span>
+</div>
+</div>
+<div class="flex items-center gap-base pt-md border-t border-outline-variant">
+<button class="flex-1 bg-primary text-on-primary py-2.5 rounded font-label-md hover:bg-primary/90 transition-colors">عرض التفاصيل</button>
+<button class="w-10 h-10 border border-outline-variant rounded flex items-center justify-center text-primary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Group Card 2 -->
+<div class="royal-card rounded-lg overflow-hidden">
+<div class="h-1.5 bg-secondary w-full"></div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-md">
+<div>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-0.5 rounded text-xs font-bold mb-xs inline-block">CODING PRO</span>
+<h3 class="font-headline-md text-on-surface">C-201 A</h3>
+</div>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="space-y-sm mb-md">
+<div class="flex items-center gap-base text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">person</span>
+<span class="font-body-sm">المدرب: <strong class="text-on-surface">م/ سارة إبراهيم</strong></span>
+</div>
+<div class="flex items-center gap-base text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">group</span>
+<span class="font-body-sm">الطلاب: <strong class="text-on-surface">8 / 12</strong></span>
+</div>
+<div class="mt-xs">
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 66%"></div>
+</div>
+</div>
+<div class="flex items-center gap-base text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-primary">calendar_today</span>
+<span class="font-body-sm">السبت، <strong class="text-primary">10:00 ص</strong></span>
+</div>
+</div>
+<div class="flex items-center gap-base pt-md border-t border-outline-variant">
+<button class="flex-1 bg-primary text-on-primary py-2.5 rounded font-label-md hover:bg-primary/90 transition-colors">عرض التفاصيل</button>
+<button class="w-10 h-10 border border-outline-variant rounded flex items-center justify-center text-primary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Group Card 3 -->
+<div class="royal-card rounded-lg overflow-hidden">
+<div class="h-1.5 bg-tertiary w-full"></div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-md">
+<div>
+<span class="bg-tertiary-container text-on-tertiary-container px-3 py-0.5 rounded text-xs font-bold mb-xs inline-block">MENTAL MATH</span>
+<h3 class="font-headline-md text-on-surface">M-300 D</h3>
+</div>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="space-y-sm mb-md">
+<div class="flex items-center gap-base text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">person</span>
+<span class="font-body-sm">المدرب: <strong class="text-on-surface">أ/ ليلى حسن</strong></span>
+</div>
+<div class="flex items-center gap-base text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">group</span>
+<span class="font-body-sm">الطلاب: <strong class="text-on-surface">10 / 10</strong></span>
+</div>
+<div class="mt-xs">
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="flex items-center gap-base text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-primary">calendar_today</span>
+<span class="font-body-sm">الأحد، <strong class="text-primary">01:00 م</strong></span>
+</div>
+</div>
+<div class="flex items-center gap-base pt-md border-t border-outline-variant">
+<button class="flex-1 bg-primary text-on-primary py-2.5 rounded font-label-md hover:bg-primary/90 transition-colors">عرض التفاصيل</button>
+<button class="w-10 h-10 border border-outline-variant rounded flex items-center justify-center text-primary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Floating Action Button -->
+<button class="fixed bottom-20 lg:bottom-10 left-10 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-2xl">add</span>
+</button>
+<!-- Bottom Navigation Bar (Mobile only) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-base py-3 bg-surface-container-lowest border-t border-outline-variant shadow-lg">
+<div class="flex flex-col items-center justify-center text-on-surface-variant cursor-pointer">
+<span class="material-symbols-outlined text-[24px]">dashboard</span>
+<span class="font-label-md text-[10px] mt-1">الرئيسية</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant cursor-pointer">
+<span class="material-symbols-outlined text-[24px]">school</span>
+<span class="font-label-md text-[10px] mt-1">الطلاب</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary cursor-pointer">
+<span class="material-symbols-outlined text-[24px] font-bold">group</span>
+<span class="font-label-md text-[10px] mt-1 font-bold">المجموعات</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant cursor-pointer">
+<span class="material-symbols-outlined text-[24px]">payments</span>
+<span class="font-label-md text-[10px] mt-1">المالية</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant cursor-pointer">
+<span class="material-symbols-outlined text-[24px]">account_circle</span>
+<span class="font-label-md text-[10px] mt-1">الملف</span>
+</div>
+</nav>
+<script>
+        // Search filter logic
+        const searchInput = document.querySelector('input[type="text"]');
+        const cards = document.querySelectorAll('.royal-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            cards.forEach(card => {
+                const groupName = card.querySelector('h3').textContent.toLowerCase();
+                if (groupName.includes(query)) {
+                    card.style.display = 'block';
+                    card.style.opacity = '1';
+                } else {
+                    card.style.opacity = '0';
+                    setTimeout(() => {
+                        if (card.style.opacity === '0') card.style.display = 'none';
+                    }, 200);
+                }
+            });
+        });
+    </script>
+</body></html>

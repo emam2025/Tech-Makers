@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Makers Egypt | TKA-Egypt</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;family=IBM+Plex+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#3182ce", // Royal Blue
+                        "primary-variant": "#2c5282", // Deeper Blue
+                        "accent": "#ed8936", // Vibrant Orange
+                        "background": "#f7fafc",
+                        "surface": "#ffffff",
+                        "on-surface": "#2a4365",
+                        "on-background": "#4a5568",
+                        "secondary": "#ffffff",
+                        "error": "#e53e3e",
+                        "outline": "#e2e8f0",
+                        "glass": "rgba(255, 255, 255, 0.8)",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "80px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "md": "24px",
+                        "gutter": "24px",
+                        "sm": "12px",
+                        "lg": "48px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                        "body-lg": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                        "body-sm": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                        "headline-xl": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                        "body-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                        "headline-lg-mobile": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                        "label-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                        "headline-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { 
+            font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', sans-serif; 
+            background-color: #f7fafc; 
+            color: #4a5568;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(49, 130, 206, 0.05) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233182ce' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .electric-gradient-text {
+            background: linear-gradient(135deg, #3182ce 0%, #2b6cb0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .electric-btn {
+            background: linear-gradient(135deg, #3182ce 0%, #2b6cb0 100%);
+            box-shadow: 0 4px 15px rgba(49, 130, 206, 0.2);
+        }
+        .electric-btn:hover {
+            box-shadow: 0 4px 25px rgba(49, 130, 206, 0.4);
+            transform: translateY(-1px);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(49, 130, 206, 0.1);
+            box-shadow: 0 10px 30px -10px rgba(49, 130, 206, 0.1);
+        }
+        .glass-card:hover {
+            border: 1px solid rgba(49, 130, 206, 0.3);
+            box-shadow: 0 15px 35px -5px rgba(49, 130, 206, 0.15);
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .glow-pulse {
+            animation: glow-pulse 2s infinite alternate;
+        }
+        @keyframes glow-pulse {
+            from { box-shadow: 0 0 5px rgba(49, 130, 206, 0.1); }
+            to { box-shadow: 0 0 15px rgba(49, 130, 206, 0.2); }
+        }
+        .circuit-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H 90 V 90 H 10 Z' stroke='rgba(49, 130, 206, 0.03)' fill='none'/%3E%3Ccircle cx='10' cy='10' r='1' fill='rgba(49, 130, 206, 0.05)'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="text-on-background overflow-x-hidden">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 w-full z-50 glass-card border-b border-primary/5 h-20 flex justify-between items-center px-gutter max-w-container-max mx-auto">
+<div class="flex items-center gap-3">
+<div class="bg-primary/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary font-bold" data-icon="school">school</span>
+</div>
+<h1 class="font-bold text-xl text-primary tracking-tighter">Tech Makers</h1>
+</div>
+<button class="electric-btn text-white px-6 py-2 rounded-full font-bold text-sm transition-all">
+        سجّل الآن
+    </button>
+</header>
+<main class="pt-20 pb-16">
+<!-- Hero Section -->
+<section class="relative overflow-hidden pt-16 pb-24 px-gutter">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-primary/5 to-transparent -z-10 blur-3xl opacity-50"></div>
+<div class="max-w-md mx-auto text-center space-y-8 relative">
+<div class="inline-flex bg-accent/10 border border-accent/20 text-accent px-5 py-1.5 rounded-full text-xs font-bold mb-2 items-center gap-2">
+<span class="w-2 h-2 bg-accent rounded-full animate-ping"></span>
+                الدفعة الخامسة انطلقت يونيو 2026
+            </div>
+<h2 class="text-5xl font-black text-on-surface leading-tight tracking-tighter mb-4">
+                Tech Makers Egypt
+            </h2>
+<p class="text-xl text-on-background/80 font-medium max-w-[90%] mx-auto leading-relaxed">
+                من مستهلك للتكنولوجيا إلى صانع ومطور وقائد
+            </p>
+<div class="flex justify-center gap-3 flex-wrap">
+<span class="bg-white shadow-sm border border-primary/10 text-primary px-4 py-1.5 rounded-full text-xs font-bold">8-11 سنة</span>
+<span class="bg-white shadow-sm border border-primary/10 text-primary px-4 py-1.5 rounded-full text-xs font-bold">12-15 سنة</span>
+<span class="bg-white shadow-sm border border-primary/10 text-primary px-4 py-1.5 rounded-full text-xs font-bold">16-20 سنة</span>
+</div>
+<div class="grid grid-cols-3 gap-6 pt-6">
+<div class="flex flex-col items-center group">
+<div class="w-16 h-16 rounded-2xl glass-card flex items-center justify-center mb-2 group-hover:bg-primary/5 transition-all floating" style="animation-delay: 0s">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="psychology">psychology</span>
+</div>
+<span class="text-xs font-bold opacity-70">تفكير منطقي</span>
+</div>
+<div class="flex flex-col items-center group">
+<div class="w-16 h-16 rounded-2xl glass-card flex items-center justify-center mb-2 group-hover:bg-primary/5 transition-all floating" style="animation-delay: 0.2s">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="neurology">neurology</span>
+</div>
+<span class="text-xs font-bold opacity-70">ذكاء اصطناعي</span>
+</div>
+<div class="flex flex-col items-center group">
+<div class="w-16 h-16 rounded-2xl glass-card flex items-center justify-center mb-2 group-hover:bg-primary/5 transition-all floating" style="animation-delay: 0.4s">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<span class="text-xs font-bold opacity-70">مشاريع حقيقية</span>
+</div>
+</div>
+<button class="w-full electric-btn text-white py-5 rounded-2xl font-black text-xl flex items-center justify-center gap-3 transition-all">
+<span>احجز مكانك الآن</span>
+<span class="material-symbols-outlined font-bold" data-icon="arrow_back">arrow_back</span>
+</button>
+</div>
+</section>
+<!-- Why Tech Makers (Modern Bento) -->
+<section class="py-20 px-gutter bg-white/50 border-y border-primary/5">
+<h3 class="text-3xl font-black text-center mb-12 text-on-surface uppercase">ليه تختار Tech Makers؟</h3>
+<div class="grid grid-cols-2 gap-5">
+<div class="col-span-2 glass-card p-8 rounded-[2.5rem] flex items-center gap-6">
+<div class="bg-primary/5 p-4 rounded-2xl">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="code_blocks">code_blocks</span>
+</div>
+<div>
+<h4 class="text-xl font-bold text-primary mb-1">المنطق أولاً</h4>
+<p class="text-sm text-on-background/70 leading-relaxed">تأسيس منطقي عميق قبل كتابة الكود لضمان الفهم الحقيقي.</p>
+</div>
+</div>
+<div class="glass-card p-6 rounded-[2.5rem] text-center">
+<div class="w-14 h-14 bg-accent/5 rounded-full flex items-center justify-center mx-auto mb-4 border border-accent/10">
+<span class="material-symbols-outlined text-accent text-3xl" data-icon="smart_toy">smart_toy</span>
+</div>
+<h4 class="text-sm font-bold text-on-surface/80">ذكاء اصطناعي</h4>
+</div>
+<div class="glass-card p-6 rounded-[2.5rem] text-center">
+<div class="w-14 h-14 bg-primary/5 rounded-full flex items-center justify-center mx-auto mb-4 border border-primary/10">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="assignment">assignment</span>
+</div>
+<h4 class="text-sm font-bold text-on-surface/80">مشاريع شهرية</h4>
+</div>
+<div class="glass-card p-6 rounded-[2.5rem] text-center">
+<div class="w-14 h-14 bg-primary/5 rounded-full flex items-center justify-center mx-auto mb-4 border border-primary/10">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="diversity_3">diversity_3</span>
+</div>
+<h4 class="text-sm font-bold text-on-surface/80">بناء ثقة</h4>
+</div>
+<div class="glass-card p-6 rounded-[2.5rem] text-center">
+<div class="w-14 h-14 bg-accent/5 rounded-full flex items-center justify-center mx-auto mb-4 border border-accent/10">
+<span class="material-symbols-outlined text-accent text-3xl" data-icon="emoji_events">emoji_events</span>
+</div>
+<h4 class="text-sm font-bold text-on-surface/80">أولمبياد</h4>
+</div>
+</div>
+</section>
+<!-- Core Benefits -->
+<section class="py-20 px-gutter">
+<div class="relative bg-white p-10 rounded-[3rem] border border-primary/10 shadow-xl shadow-primary/5 overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px]"></div>
+<h3 class="text-3xl font-black mb-10 text-on-surface">مميزات البرنامج الأساسية</h3>
+<ul class="space-y-6 relative z-10">
+<li class="flex items-start gap-4">
+<div class="mt-1 bg-accent/20 p-1.5 rounded-full">
+<span class="material-symbols-outlined text-accent text-lg" data-icon="check">check</span>
+</div>
+<span class="text-lg font-medium text-on-surface">التعلم من الصفر حتى الاحتراف في البرمجة</span>
+</li>
+<li class="flex items-start gap-4">
+<div class="mt-1 bg-accent/20 p-1.5 rounded-full">
+<span class="material-symbols-outlined text-accent text-lg" data-icon="check">check</span>
+</div>
+<span class="text-lg font-medium text-on-surface">تطبيقات عملية للذكاء الاصطناعي التوليدي</span>
+</li>
+<li class="flex items-start gap-4">
+<div class="mt-1 bg-accent/20 p-1.5 rounded-full">
+<span class="material-symbols-outlined text-accent text-lg" data-icon="check">check</span>
+</div>
+<span class="text-lg font-medium text-on-surface">تطوير مهارات التفكير المنطقي وحل المشكلات</span>
+</li>
+<li class="flex items-start gap-4">
+<div class="mt-1 bg-accent/20 p-1.5 rounded-full">
+<span class="material-symbols-outlined text-accent text-lg" data-icon="check">check</span>
+</div>
+<span class="text-lg font-medium text-on-surface">شهادات معتمدة تعزز ملف الطالب الأكاديمي</span>
+</li>
+<li class="flex items-start gap-4">
+<div class="mt-1 bg-accent/20 p-1.5 rounded-full">
+<span class="material-symbols-outlined text-accent text-lg" data-icon="check">check</span>
+</div>
+<span class="text-lg font-medium text-on-surface">دعم نفسي وتربوي من متخصصين</span>
+</li>
+</ul>
+</div>
+</section>
+<!-- Four Pillars -->
+<section class="py-20 px-gutter bg-white">
+<div class="text-center mb-16">
+<h3 class="text-3xl font-black text-on-surface mb-4">مش بس برمجة — بنبني قائد</h3>
+<p class="text-on-background/60 font-medium">ركائزنا الأربعة لبناء شخصية تكنولوجية متكاملة</p>
+</div>
+<div class="space-y-5">
+<div class="flex gap-6 p-8 rounded-3xl bg-background border border-primary/5 group transition-all">
+<span class="text-4xl font-black text-primary/10 group-hover:text-primary/30 transition-colors">01</span>
+<div>
+<h4 class="font-black text-primary text-lg mb-2 uppercase tracking-wide">المنطق الذهني</h4>
+<p class="text-sm text-on-background/70 leading-relaxed">تدريب العقل على تفكيك المشكلات المعقدة وحلها بذكاء هندسي.</p>
+</div>
+</div>
+<div class="flex gap-6 p-8 rounded-3xl bg-background border border-primary/5 group transition-all">
+<span class="text-4xl font-black text-accent/10 group-hover:text-accent/30 transition-colors">02</span>
+<div>
+<h4 class="font-black text-accent text-lg mb-2 uppercase tracking-wide">الإبداع الرقمي</h4>
+<p class="text-sm text-on-background/70 leading-relaxed">تمكين الطلاب من تحويل خيالهم إلى تطبيقات وألعاب ملموسة.</p>
+</div>
+</div>
+<div class="flex gap-6 p-8 rounded-3xl bg-background border border-primary/5 group transition-all">
+<span class="text-4xl font-black text-primary/10 group-hover:text-primary/30 transition-colors">03</span>
+<div>
+<h4 class="font-black text-primary text-lg mb-2 uppercase tracking-wide">التعلم بالمشاريع</h4>
+<p class="text-sm text-on-background/70 leading-relaxed">نظام تعليمي قائم على الفعل لا التلقين، حيث كل درس هو مشروع.</p>
+</div>
+</div>
+<div class="flex gap-6 p-8 rounded-3xl bg-background border border-primary/5 group transition-all">
+<span class="text-4xl font-black text-accent/10 group-hover:text-accent/30 transition-colors">04</span>
+<div>
+<h4 class="font-black text-accent text-lg mb-2 uppercase tracking-wide">الذكاء الاصطناعي</h4>
+<p class="text-sm text-on-background/70 leading-relaxed">دمج أدوات الذكاء الاصطناعي الحديثة في العملية الإبداعية والبرمجية.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Outcomes -->
+<section class="py-20 px-gutter bg-primary text-white border-y border-primary/10">
+<h3 class="text-3xl font-black mb-16 text-center">ابنك هيعرف يعمل إيه؟</h3>
+<div class="grid grid-cols-2 gap-x-8 gap-y-12">
+<div class="space-y-4 text-center">
+<div class="w-20 h-20 bg-white/20 rounded-3xl flex items-center justify-center mx-auto shadow-lg floating">
+<span class="material-symbols-outlined text-4xl" data-icon="terminal">terminal</span>
+</div>
+<h4 class="font-black text-lg">برمجة من الصفر</h4>
+</div>
+<div class="space-y-4 text-center">
+<div class="w-20 h-20 bg-white/20 rounded-3xl flex items-center justify-center mx-auto shadow-lg floating" style="animation-delay: 0.2s">
+<span class="material-symbols-outlined text-4xl" data-icon="trending_up">trending_up</span>
+</div>
+<h4 class="font-black text-lg">تطور دراسي</h4>
+</div>
+<div class="space-y-4 text-center">
+<div class="w-20 h-20 bg-white/20 rounded-3xl flex items-center justify-center mx-auto shadow-lg floating" style="animation-delay: 0.4s">
+<span class="material-symbols-outlined text-4xl" data-icon="badge">badge</span>
+</div>
+<h4 class="font-black text-lg">شخصية واثقة</h4>
+</div>
+<div class="space-y-4 text-center">
+<div class="w-20 h-20 bg-white/20 rounded-3xl flex items-center justify-center mx-auto shadow-lg floating" style="animation-delay: 0.6s">
+<span class="material-symbols-outlined text-4xl" data-icon="work">work</span>
+</div>
+<h4 class="font-black text-lg">آفاق وظيفية</h4>
+</div>
+</div>
+</section>
+<!-- Learning Tracks -->
+<section class="py-20 px-gutter">
+<h3 class="text-3xl font-black text-center mb-12 text-on-surface">مساراتنا التعليمية</h3>
+<div class="space-y-12">
+<!-- Track A -->
+<div class="glass-card rounded-[3rem] overflow-hidden group">
+<div class="h-64 relative overflow-hidden">
+<img alt="Children robotics" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9D5KV1qipVEuHnay6aTZAb_nxYg5qZL3DMa0TlBKTcptgC8DetuXm2w1mREvKWaEidsNVJEEjHqNdD4RVH1vJb6J1OOKUftl4G7rDxZATU3NhRZjDg1k3oeKzDtph1GjE-yzcKB6xWPzZJkLoY6FWJL4O_-XVoM5Rn2awtCwXjSvDlQWPEEYN_FMi2Dh2J4eZFWhRw9BmJTuRUKEZo4twBWC_D9CQgZdH2Pic6wnEJ8e-IFDc2B3VeqNqFB6fZBckYsaAATgd_tQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+<div class="absolute top-5 left-5 electric-btn text-white px-4 py-1.5 rounded-full text-xs font-black">8-11 سنة</div>
+</div>
+<div class="p-8">
+<h4 class="text-2xl font-black text-primary mb-4">Track A: Junior Tech Explorers</h4>
+<p class="text-base text-on-background/70 leading-relaxed mb-8">تأسيس منطقي وعرض للبرمجة من خلال الألعاب التفاعلية والبرمجة الرسومية.</p>
+<button class="w-full py-4 border-2 border-primary/30 text-primary rounded-2xl font-black hover:bg-primary hover:text-white transition-all">تفاصيل المسار</button>
+</div>
+</div>
+<!-- Track B -->
+<div class="glass-card rounded-[3rem] overflow-hidden group">
+<div class="h-64 relative overflow-hidden">
+<img alt="Teens coding AI" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYrLaMC5bZVntbdQToALC8N8ZQu2fIxDH03XK9dU1_c0_l2dCx-8Amcoh4cCBbRDA7k_2B0n2Gjd8oBtTlnxECY-x8jc2ci52DiiJQ8B68_DzoqKVPbk-c37pLzHWdCP5S0HMXmVqOrRThttiSDzXpeO9MCOeEoBKedIr4vpiQ8wYc0h4TW0-1mA8wMOBivh94U8PMaZIqKbMtleb2kPQjt3A6NbEmCRul3nYqhYOX7Anjd-QHQozGj_7F-vAAjBH6DNyNmHLIP7k"/>
+<div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+<div class="absolute top-5 left-5 bg-accent text-white px-4 py-1.5 rounded-full text-xs font-black">12-15 سنة</div>
+</div>
+<div class="p-8">
+<h4 class="text-2xl font-black text-primary mb-4">Track B: Future AI Engineers</h4>
+<p class="text-base text-on-background/70 leading-relaxed mb-8">التركيز على لغات البرمجة النصية الحقيقية وأسس بناء أنظمة الذكاء الاصطناعي.</p>
+<button class="w-full py-4 border-2 border-primary/30 text-primary rounded-2xl font-black hover:bg-primary hover:text-white transition-all">تفاصيل المسار</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Special Course: QUREO -->
+<section class="py-20 px-gutter">
+<div class="bg-white p-10 rounded-[3.5rem] border border-primary/10 relative overflow-hidden circuit-bg shadow-lg">
+<div class="absolute top-0 right-0 w-64 h-64 bg-accent/5 -mr-32 -mt-32 rounded-full blur-3xl"></div>
+<div class="flex items-center gap-6 mb-8 relative z-10">
+<div class="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-accent text-4xl" data-icon="language">language</span>
+</div>
+<div>
+<h4 class="text-2xl font-black text-on-surface uppercase">منصة QUREO اليابانية</h4>
+<p class="text-xs text-accent font-black tracking-widest uppercase">حصرياً لطلاب المرحلة الثانوية</p>
+</div>
+</div>
+<p class="text-lg text-on-background/80 mb-8 leading-relaxed relative z-10">أول منصة يابانية ذكية معتمدة دولياً للتدريب على مهارات البرمجة والذكاء الاصطناعي، متاحة الآن من خلالنا.</p>
+<div class="flex items-center gap-3 text-accent font-black bg-accent/5 w-fit px-5 py-3 rounded-2xl border border-accent/20 relative z-10">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+<span>اعتماد دولي رسمي</span>
+</div>
+</div>
+</section>
+<!-- Success Stories -->
+<section class="py-20">
+<h3 class="text-3xl font-black text-on-surface px-gutter mb-12 uppercase">قصص نجاح أبطالنا</h3>
+<div class="flex overflow-x-auto gap-8 px-gutter pb-8 hide-scrollbar">
+<!-- Student Card -->
+<div class="min-w-[300px] glass-card p-10 rounded-[3rem] text-center group">
+<div class="w-28 h-28 mx-auto rounded-full p-1 border-2 border-dashed border-primary/30 mb-6 group-hover:rotate-180 transition-transform duration-1000">
+<div class="w-full h-full rounded-full overflow-hidden">
+<img alt="Tala Nasser" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMA6OjdHKIVCQNpxjAPvWc9powDYogX8HBiEuSBoUBaEVwiYNCJKGoUZe0_aN49_1yry4YGR0kxgMkoWdB67oQv3kcC6iAgIR6SmRenYBPssxH3YYU74k9h9yx-S6HrXWoTymkd8RH0px6OnuYxK-RKYLajEH9MkN_ldXU-RGUn_-vpfBQf5pg2SIM8WvW5D27bPYvY6XAH-0Wd9jLOvjpUBjDyTCKlLoNMJCVk8VUljSCk_CZBWX6bn2tu6hr-QjplaNLScCBom4"/>
+</div>
+</div>
+<h5 class="text-xl font-black text-primary mb-2">Tala Nasser</h5>
+<p class="text-sm text-on-background/50 mb-6 uppercase tracking-widest">مستوى متقدم</p>
+<div class="inline-block bg-accent/10 text-accent px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-tighter">Excellent</div>
+</div>
+<!-- Student Card 2 -->
+<div class="min-w-[300px] glass-card p-10 rounded-[3rem] text-center group">
+<div class="w-28 h-28 mx-auto rounded-full p-1 border-2 border-dashed border-primary/30 mb-6 group-hover:rotate-180 transition-transform duration-1000">
+<div class="w-full h-full rounded-full overflow-hidden">
+<img alt="Ahmed Mohamed" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXURe0F42K6FlUmM13hjLa1AmFN5loUnzdyvRvZCniA6iv9HDkC-b_CkOWvdITsyk4A-pkm3OjFT9YcK5RH54S0vYqOJMtL9hgQ6gK8LDrR6qKPKqlWgwODL2iRiiIfiZWHKHGPvK5o1bv68AJOqwc727dp0q9dv7HxbmX-ClyJfDuV69Sqts8NTHnpNj_Qw7iK7qcsDmfpt-VySKx3aWQRi3lq8-hKDCbtbZaq42mB6g_bdTwEImdvxVsrYddSU6QygaHsXFqdb4"/>
+</div>
+</div>
+<h5 class="text-xl font-black text-primary mb-2">Ahmed Mohamed</h5>
+<p class="text-sm text-on-background/50 mb-6 uppercase tracking-widest">مبتكر برمجيات</p>
+<div class="inline-block bg-accent/10 text-accent px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-tighter">Excellent</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-20 px-gutter bg-white relative">
+<div class="absolute inset-0 circuit-bg opacity-50"></div>
+<h3 class="text-3xl font-black text-center mb-16 text-on-surface uppercase">رأي أولياء الأمور</h3>
+<div class="space-y-8 relative z-10">
+<div class="glass-card p-10 rounded-[3rem] italic">
+<div class="flex text-accent mb-6 gap-1">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-lg mb-8 text-on-background/80 leading-relaxed font-medium">"فرق كبير جداً في تفكير ابني وطريقة تعامله مع المشكلات، شكراً تيك ميكرز على المجهود الجبار."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center font-black text-primary">أم</div>
+<div class="text-sm font-black text-primary uppercase tracking-wide">أم محمد - الرياض</div>
+</div>
+</div>
+<div class="glass-card p-10 rounded-[3rem] italic">
+<div class="flex text-accent mb-6 gap-1">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-lg mb-8 text-on-background/80 leading-relaxed font-medium">"المتابعة والاحترافية في التعامل هي اللي خلتنا نجدد معاهم تالت سنة على التوالي بدون تردد."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center font-black text-primary">أب</div>
+<div class="text-sm font-black text-primary uppercase tracking-wide">أبو عبد الله - الكويت</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Us (Expertise) -->
+<section class="py-20 px-gutter">
+<div class="grid grid-cols-1 gap-8">
+<div class="electric-btn text-white p-8 rounded-[2.5rem] flex items-start gap-6 shadow-xl">
+<div class="bg-white/20 p-4 rounded-3xl">
+<span class="material-symbols-outlined text-4xl" data-icon="groups">groups</span>
+</div>
+<div>
+<h4 class="text-xl font-black mb-2 uppercase">خبراء لا مجرد معلمين</h4>
+<p class="text-sm font-medium leading-relaxed opacity-90">مدربونا ممارسون في سوق العمل التكنولوجي العالمي بخبرات عملية حقيقية.</p>
+</div>
+</div>
+<div class="glass-card p-8 rounded-[2.5rem] border-primary/20 flex items-start gap-6">
+<div class="bg-accent/10 p-4 rounded-3xl">
+<span class="material-symbols-outlined text-accent text-4xl" data-icon="support_agent">support_agent</span>
+</div>
+<div>
+<h4 class="text-xl font-black text-accent mb-2 uppercase">دعم WhatsApp 24/7</h4>
+<p class="text-sm text-on-background/60 font-medium leading-relaxed">فريقنا معك دائماً للإجابة على أي استفسار تقني أو إداري في أي وقت.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing -->
+<section class="py-20 px-gutter">
+<div class="text-center mb-16">
+<h3 class="text-3xl font-black text-on-surface mb-4 uppercase">خطط الاشتراك</h3>
+<div class="inline-block bg-accent/10 border border-accent/20 text-accent px-6 py-2 rounded-full text-xs font-black tracking-widest uppercase">بدعم 40% من TKA-Egypt</div>
+</div>
+<div class="space-y-10">
+<!-- Quarterly (Featured) -->
+<div class="electric-btn text-white p-10 rounded-[3.5rem] relative overflow-hidden scale-105 shadow-2xl">
+<div class="absolute top-0 right-0 bg-white text-primary px-8 py-2 rounded-bl-[2rem] text-xs font-black uppercase tracking-widest">الأكثر طلباً</div>
+<h4 class="text-2xl font-black mb-6 uppercase tracking-tighter">اشتراك ربع سنوي</h4>
+<div class="flex items-baseline gap-3">
+<span class="text-6xl font-black tracking-tighter">1,850</span>
+<span class="text-lg font-black opacity-80 uppercase">جم / 3 شهور</span>
+</div>
+<p class="text-base mt-6 font-black uppercase tracking-wide">وفر أكثر من 10% من قيمة الاشتراك</p>
+<button class="w-full mt-10 py-5 bg-white text-primary rounded-3xl font-black text-xl uppercase tracking-widest hover:scale-[1.02] transition-transform shadow-lg">اشترك ووفر الآن</button>
+</div>
+<!-- Monthly -->
+<div class="glass-card p-10 rounded-[3.5rem]">
+<h4 class="text-2xl font-black text-on-surface/50 mb-6 uppercase tracking-tighter">الاشتراك الشهري</h4>
+<div class="flex items-baseline gap-3">
+<span class="text-5xl font-black text-on-surface">690</span>
+<span class="text-lg font-black text-on-surface/50 uppercase">جم / شهرياً</span>
+</div>
+<button class="w-full mt-10 py-5 border-2 border-primary text-primary rounded-3xl font-black text-xl uppercase tracking-widest hover:bg-primary hover:text-white transition-all">ابدأ التجربة الآن</button>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-24 px-gutter bg-white text-center relative overflow-hidden border-t border-primary/10">
+<div class="absolute inset-0 opacity-10 circuit-bg pointer-events-none"></div>
+<div class="relative z-10 space-y-10">
+<h3 class="text-4xl font-black text-on-surface leading-tight uppercase tracking-tighter">الدفعة الخامسة انطلقت - سجّل ابنك دلوقتي</h3>
+<p class="text-on-background/60 text-lg font-medium max-w-xs mx-auto leading-relaxed">المقاعد محدودة لضمان جودة التعليم والمتابعة الفردية</p>
+<button class="w-full electric-btn text-white py-6 rounded-3xl font-black text-xl flex items-center justify-center gap-4 transition-all">
+<span class="material-symbols-outlined font-black text-3xl" data-icon="send">send</span>
+<span class="uppercase tracking-widest">سجل عبر الواتساب</span>
+</button>
+<div class="pt-6 flex justify-center gap-8">
+<div class="flex items-center gap-3 text-on-background/40 text-xs font-black uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm" data-icon="shield">shield</span>
+<span>بيان آمن 100%</span>
+</div>
+<div class="flex items-center gap-3 text-on-background/40 text-xs font-black uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm" data-icon="verified_user">verified_user</span>
+<span>مدربون معتمدون</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-white border-t border-primary/5 w-full py-xl relative">
+<div class="absolute inset-0 circuit-bg opacity-20 pointer-events-none"></div>
+<div class="flex flex-col items-center px-gutter max-w-container-max mx-auto space-y-12 relative z-10">
+<div class="text-center">
+<div class="flex items-center justify-center gap-4 mb-6">
+<div class="bg-primary/10 p-2.5 rounded-xl">
+<span class="material-symbols-outlined text-primary text-4xl font-black" data-icon="school">school</span>
+</div>
+<h2 class="text-3xl font-black text-on-surface uppercase tracking-tighter">Tech Makers Egypt</h2>
+</div>
+<p class="text-base text-on-background/50 max-w-sm mx-auto leading-relaxed font-medium">رواد تعليم التكنولوجيا للأجيال القادمة. نبني العقول لنصنع المستقبل.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-x-10 gap-y-6 text-sm font-black uppercase tracking-widest text-on-surface/70">
+<a class="hover:text-primary transition-colors" href="#">من نحن</a>
+<a class="hover:text-primary transition-colors" href="#">تواصل معنا</a>
+<a class="hover:text-primary transition-colors" href="#">سياسة الخصوصية</a>
+<a class="hover:text-primary transition-colors" href="#">الشروط والأحكام</a>
+</div>
+<div class="w-full border-t border-primary/5 pt-10 text-center">
+<p class="text-xs text-on-background/30 font-bold uppercase tracking-tighter">© 2024 Tech Makers Egypt. All Rights Reserved. Powered by TKA-Egypt.</p>
+</div>
+</div>
+</footer>
+<!-- Bottom Navigation Shell (Mobile) -->
+<nav class="fixed bottom-0 w-full z-50 bg-white/90 backdrop-blur-lg border-t border-primary/10 flex justify-around items-center h-20 md:hidden rounded-t-[2.5rem] shadow-[0_-10px_30px_rgba(49,130,206,0.1)]">
+<div class="flex flex-col items-center justify-center text-primary font-black transition-all">
+<span class="material-symbols-outlined text-3xl" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] mt-1 uppercase tracking-tighter">الرئيسية</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-background/40 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-2xl" data-icon="psychology">psychology</span>
+<span class="text-[10px] mt-1 uppercase tracking-tighter">المسارات</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-background/40 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-2xl" data-icon="stars">stars</span>
+<span class="text-[10px] mt-1 uppercase tracking-tighter">النجاحات</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-background/40 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-2xl" data-icon="payments">payments</span>
+<span class="text-[10px] mt-1 uppercase tracking-tighter">الأسعار</span>
+</div>
+</nav>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-12');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-12', 'ease-out');
+            observer.observe(section);
+        });
+    });
+</script>
+</body></html>

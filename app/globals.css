@@ -56,7 +56,7 @@
   --color-text-inverse: #ffffff;
   --color-on-surface: #10233f;
   --color-on-surface-variant: #41556f;
-  --color-on-background: #41556f;
+  --color-on-background: #10233f;
 
   /* Borders — Light */
   --color-border: #d8e4f5;
@@ -95,10 +95,10 @@
   --color-exclusive-border: #ffd98a;
   --color-exclusive-text: #b45309;
 
-  /* Typography — IBM Plex Sans Arabic */
-  --font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
-  --font-display: 'IBM Plex Sans Arabic', var(--font-family);
-  --font-body: 'IBM Plex Sans Arabic', var(--font-family);
+  /* Typography — Tajawal (display) + Cairo (body) */
+  --font-family: var(--font-cairo), 'Cairo', system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-tajawal), 'Tajawal', var(--font-family);
+  --font-body: var(--font-cairo), 'Cairo', var(--font-family);
 
   /* Spacing (8px grid) */
   --space-0: 0px;
@@ -242,12 +242,15 @@
   .material-symbols-outlined {
     font-family: 'Material Symbols Outlined';
     font-display: block;
+    -webkit-font-feature-settings: 'liga';
+    font-feature-settings: 'liga';
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
 
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   body {
@@ -423,7 +426,7 @@
     border: 1px solid var(--color-border-subtle);
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-soft);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.3s ease;
   }
   .ds-card:hover {
     transform: translateY(-2px);
@@ -433,10 +436,31 @@
   .dark .ds-card {
     background: var(--color-surface);
     border-color: var(--color-border-subtle);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
   .dark .ds-card:hover {
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
     border-color: var(--color-primary-muted);
+  }
+
+  /* ── Public Card (for landing pages) ── */
+  .public-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  }
+  .public-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
+    border-color: var(--color-primary-container);
+  }
+  .dark .public-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  .dark .public-card:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
   }
   .bento-grid {
     display: grid;
@@ -459,6 +483,40 @@
     .auto-grid {
       gap: 1.5rem;
     }
+  }
+
+  /* ── Dark Mode Card Fix ── */
+  .dark .bg-white {
+    background-color: var(--color-surface) !important;
+  }
+  .dark .bg-white\/10 {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+  }
+  .dark .bg-white\/15 {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+  }
+  .dark .bg-white\/20 {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+  }
+  .dark .bg-white\/25 {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+  }
+
+  /* ── Dark Mode Text Colors ── */
+  .dark .text-gray-500 {
+    color: var(--color-text-tertiary) !important;
+  }
+  .dark .text-gray-600 {
+    color: var(--color-text-secondary) !important;
+  }
+  .dark .text-gray-700 {
+    color: var(--color-text-primary) !important;
+  }
+  .dark .text-gray-800 {
+    color: var(--color-text-primary) !important;
+  }
+  .dark .text-gray-900 {
+    color: var(--color-text-primary) !important;
   }
 
   /* Hide scrollbar for horizontal scroll */

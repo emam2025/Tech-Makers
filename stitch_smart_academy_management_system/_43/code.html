@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AcademyPro | إدارة التقييمات</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for better UI */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c4c6cf;
+            border-radius: 10px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#172131",
+                    "primary-container": "#1a365d",
+                    "surface-container": "#ebeef0",
+                    "secondary-container": "#fed488",
+                    "on-primary-fixed-variant": "#2d476f",
+                    "surface-variant": "#e0e3e5",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#261900",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#eef1f3",
+                    "on-surface-variant": "#43474e",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#ffdea5",
+                    "on-tertiary-fixed": "#121c2c",
+                    "inverse-surface": "#2d3133",
+                    "surface-bright": "#f7fafc",
+                    "primary-fixed-dim": "#adc7f7",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#2c3647",
+                    "tertiary-fixed-dim": "#bdc7dc",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "inverse-primary": "#adc7f7",
+                    "surface-tint": "#455f88",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#959fb3",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-secondary-container": "#785a1a",
+                    "surface": "#f7fafc",
+                    "outline": "#74777f",
+                    "background": "#f7fafc",
+                    "on-primary-fixed": "#001b3c",
+                    "surface-dim": "#d7dadc",
+                    "secondary": "#775a19",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#181c1e",
+                    "secondary-fixed-dim": "#e9c176",
+                    "surface-container-high": "#e5e9eb",
+                    "primary": "#002045",
+                    "primary-fixed": "#d6e3ff",
+                    "on-tertiary-fixed-variant": "#3d4759",
+                    "outline-variant": "#c4c6cf",
+                    "surface-container-low": "#f1f4f6",
+                    "on-surface": "#181c1e",
+                    "tertiary-fixed": "#d9e3f9",
+                    "error-container": "#ffdad6",
+                    "on-primary-container": "#86a0cd"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "base": "8px",
+                    "xl": "64px",
+                    "sm": "12px",
+                    "gutter": "24px",
+                    "md": "24px",
+                    "lg": "40px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "headline-xl": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "headline-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "body-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "body-lg": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "body-sm": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "label-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface-container-lowest dark:bg-surface-dim border-b border-outline-variant dark:border-outline shadow-sm w-full top-0 sticky z-50">
+<div class="flex items-center justify-between px-md h-16 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-base">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim cursor-pointer active:opacity-80 lg:hidden">menu</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">AcademyPro</h1>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim cursor-pointer hover:bg-surface-container-high p-2 rounded-full transition-colors">notifications</span>
+<div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold">A</div>
+</div>
+</div>
+</header>
+<div class="flex w-full max-w-container-max mx-auto">
+<!-- NavigationDrawer (Sidebar Desktop) -->
+<aside class="hidden lg:flex flex-col h-screen sticky top-16 w-[280px] bg-primary dark:bg-primary-container border-r border-primary-fixed-dim/10 shadow-md">
+<div class="p-md flex items-center gap-base border-b border-primary-fixed-dim/10">
+<div class="w-12 h-12 rounded-lg overflow-hidden border-2 border-secondary-fixed">
+<img alt="Admin Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZP2ISVXVxeDhb6-Vt4Kt8W3zgc5PaZrTa0xSVE0ML0ufzrQyrkIUzuOvi2ppYeI57lToflqp1LwKPuv9ktT2aCkRmEjSxfc7WMB3Y9Kytt3wjMnhAWd3OjWH5hbPaL7tl02oaTYpdNyXqKUjJhU_S6ZAN0-_howVRZBsX3dVm8-SHQtr5rfpkafgSbmocHBV1JuipfLe0Dcprprp3kxDdRJHzww-pAUIvTCJD7gLH7yMi8FKjEIpmqkKZ1Ar6K37udRhnpWPBTIA"/>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-secondary-fixed">المشرف العام</h3>
+<p class="text-[10px] text-primary-fixed-dim">Academy HQ</p>
+</div>
+</div>
+<nav class="flex-1 py-md">
+<a class="text-primary-fixed-dim dark:text-on-primary-container p-md flex items-center gap-base hover:bg-primary-fixed-dim/20 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="text-primary-fixed-dim dark:text-on-primary-container p-md flex items-center gap-base hover:bg-primary-fixed-dim/20 transition-all" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-md text-label-md">Students</span>
+</a>
+<a class="text-on-secondary-fixed bg-secondary-fixed dark:bg-secondary-container dark:text-on-secondary-container border-r-4 border-secondary-container p-md flex items-center gap-base" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">quiz</span>
+<span class="font-label-md text-label-md">التقييمات</span>
+</a>
+<a class="text-primary-fixed-dim dark:text-on-primary-container p-md flex items-center gap-base hover:bg-primary-fixed-dim/20 transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Groups</span>
+</a>
+<a class="text-primary-fixed-dim dark:text-on-primary-container p-md flex items-center gap-base hover:bg-primary-fixed-dim/20 transition-all" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Payments</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 p-md md:p-lg lg:p-xl space-y-md">
+<!-- Page Header & Action -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">إدارة التقييمات والاختبارات</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">بصفتك مدرباً، يمكنك الآن إنشاء وإدارة التقييمات المخصصة لمجموعاتك ومتابعة تقدمهم.</p>
+</div>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-lg flex items-center gap-base hover:shadow-lg active:scale-95 transition-all" onclick="document.getElementById('createModal').classList.remove('hidden')">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-md text-label-md">إنشاء تقييم للمجموعة</span>
+</button>
+</div>
+<!-- Dashboard Overview Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-base mb-xs">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">متوسط الدرجات العام</span>
+</div>
+<div class="text-headline-md font-bold text-primary">84.5%</div>
+<div class="text-[12px] text-green-600 flex items-center gap-1 mt-xs">
+<span class="material-symbols-outlined text-sm">trending_up</span> 3.2% عن الشهر الماضي
+                    </div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-base mb-xs">
+<span class="material-symbols-outlined text-secondary">groups</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">إجمالي المختبرين</span>
+</div>
+<div class="text-headline-md font-bold text-primary">1,240</div>
+<div class="text-body-sm text-on-surface-variant mt-xs">طالب نشط</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-base mb-xs">
+<span class="material-symbols-outlined text-on-primary-fixed-variant">assignment_late</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">تقييمات معلقة</span>
+</div>
+<div class="text-headline-md font-bold text-primary">15</div>
+<div class="text-body-sm text-on-surface-variant mt-xs">تحتاج إلى تصحيح يدوي</div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-base mb-xs">
+<span class="material-symbols-outlined text-error">warning</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">طلاب تحت المتوسط</span>
+</div>
+<div class="text-headline-md font-bold text-error">42</div>
+<div class="text-body-sm text-on-surface-variant mt-xs">يحتاجون إلى مراجعة</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-md">
+<!-- Latest Assessments List (Asymmetric) -->
+<div class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h3 class="font-headline-md text-headline-md text-primary">التقييمات الحالية</h3>
+<div class="flex gap-xs">
+<span class="material-symbols-outlined cursor-pointer hover:bg-surface-variant p-1 rounded">filter_list</span>
+<span class="material-symbols-outlined cursor-pointer hover:bg-surface-variant p-1 rounded">search</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-right">
+<thead class="bg-surface-container-high">
+<tr>
+<th class="p-md font-label-md text-label-md text-on-surface-variant">اسم التقييم</th>
+<th class="p-md font-label-md text-label-md text-on-surface-variant">المجموعة</th>
+<th class="p-md font-label-md text-label-md text-on-surface-variant">المتوسط</th>
+<th class="p-md font-label-md text-label-md text-on-surface-variant">الحالة</th>
+<th class="p-md font-label-md text-label-md text-on-surface-variant">الإجراءات</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-primary-fixed/5 transition-colors group">
+<td class="p-md">
+<div class="font-label-md text-label-md text-primary">اختبار منتصف الفصل الدراسي</div>
+<div class="text-body-sm text-on-surface-variant">أكتوبر 2023</div>
+</td>
+<td class="p-md font-body-md text-body-md">Advanced Physics A1</td>
+<td class="p-md">
+<div class="flex items-center gap-base">
+<div class="w-24 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 78%"></div>
+</div>
+<span class="font-label-md text-label-md">78%</span>
+</div>
+</td>
+<td class="p-md">
+<span class="bg-green-100 text-green-800 text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-wider">مكتمل</span>
+</td>
+<td class="p-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">edit_note</button>
+</td>
+</tr>
+<tr class="hover:bg-primary-fixed/5 transition-colors group">
+<td class="p-md">
+<div class="font-label-md text-label-md text-primary">تقييم مهارات البرمجة</div>
+<div class="text-body-sm text-on-surface-variant">مراجعة دورية</div>
+</td>
+<td class="p-md font-body-md text-body-md">Web Development Bootcamp</td>
+<td class="p-md">
+<div class="flex items-center gap-base">
+<div class="w-24 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 92%"></div>
+</div>
+<span class="font-label-md text-label-md">92%</span>
+</div>
+</td>
+<td class="p-md">
+<span class="bg-blue-100 text-blue-800 text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-wider">نشط</span>
+</td>
+<td class="p-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">edit_note</button>
+</td>
+</tr>
+<tr class="hover:bg-primary-fixed/5 transition-colors group">
+<td class="p-md">
+<div class="font-label-md text-label-md text-primary">اختبار القواعد اللغوية</div>
+<div class="text-body-sm text-on-surface-variant">المستوى الأول</div>
+</td>
+<td class="p-md font-body-md text-body-md">English Fluent Group</td>
+<td class="p-md">
+<div class="flex items-center gap-base">
+<div class="w-24 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 65%"></div>
+</div>
+<span class="font-label-md text-label-md">65%</span>
+</div>
+</td>
+<td class="p-md">
+<span class="bg-yellow-100 text-yellow-800 text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-wider">قيد التصحيح</span>
+</td>
+<td class="p-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">edit_note</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Group Performance Sidebar -->
+<div class="space-y-md">
+<div class="bg-tertiary text-on-tertiary p-md rounded-xl shadow-lg relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md mb-md">أداء المجموعات</h3>
+<div class="space-y-md">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm opacity-80">الفيزياء المتقدمة</span>
+<span class="font-label-md text-label-md text-secondary-fixed">88%</span>
+</div>
+<div class="w-full h-1 bg-white/10 rounded-full">
+<div class="h-full bg-secondary-container rounded-full" style="width: 88%"></div>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm opacity-80">تطوير الويب</span>
+<span class="font-label-md text-label-md text-secondary-fixed">94%</span>
+</div>
+<div class="w-full h-1 bg-white/10 rounded-full">
+<div class="h-full bg-secondary-container rounded-full" style="width: 94%"></div>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm opacity-80">اللغة الإنجليزية</span>
+<span class="font-label-md text-label-md text-secondary-fixed">72%</span>
+</div>
+<div class="w-full h-1 bg-white/10 rounded-full">
+<div class="h-full bg-secondary-container rounded-full" style="width: 72%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Top Performers Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm">
+<h4 class="font-label-md text-label-md text-primary mb-md">الطلاب المتفوقون (هذا الأسبوع)</h4>
+<div class="space-y-base">
+<div class="flex items-center gap-base">
+<img alt="Student" class="w-8 h-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVF3CJDIh2zGzpSoUtFi81U1M-P8IGDzzWHDR5eZwBq85KTSU5x8LUpb0OgQgotYgNarFMI119U6oLmaQYIhDTwrmryWQwWrWUzALBAkLBxx3DPGsUx21MhNga4AFNlJQ0qSCOu3QXq8NZgpHNbz1-SecUn1mBR-cg5ll4PYPs-Z_-BaEsx5iEiy5IDtfe4GWQr_t-_3ELITOkkHYYluvFCOM2KvLjAHa6whqtNRhcfOOhbXen5aM_FnyChVBIqrV0Wi3K6vdXBnQ"/>
+<div class="flex-1">
+<p class="font-label-md text-label-md leading-tight">سارة أحمد</p>
+<p class="text-[10px] text-on-surface-variant">الفيزياء المتقدمة</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-0.5 rounded">100/100</span>
+</div>
+<div class="flex items-center gap-base">
+<img alt="Student" class="w-8 h-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1HoqNntvc2lujoifn5dLS7kUBG95VwKXSzC6305Z6tPDeeGyf2UBzTzysCokuT0kfVnsSmbrATVdDXEY3whozTajGumKOS4TljEc0mF_fbxkUWweS8GXwMqBpR_OKz5qJ-nB5HY0mNqotSzxuQ59La4ZRD4d8uNxDuTKyrdDrA4GN0e4x56PI9qDEqIgmD1XLFJujgddkOLdxcKMR9VdjJd2no383-6AhTo5YgDui6OAdYAKXiTwUNwiIreF3pOtw5rphGf-4-8I"/>
+<div class="flex-1">
+<p class="font-label-md text-label-md leading-tight">عمر خالد</p>
+<p class="text-[10px] text-on-surface-variant">تطوير الويب</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-0.5 rounded">98/100</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Detailed Visual Chart Area -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm">
+<div class="flex items-center justify-between mb-lg">
+<h3 class="font-headline-md text-headline-md text-primary">تحليل الأداء الربعي</h3>
+<select class="bg-surface border-outline-variant rounded-lg font-label-md text-label-md py-1 px-4">
+<option>جميع المجموعات</option>
+<option>المستوى المتقدم</option>
+<option>المستوى المتوسط</option>
+</select>
+</div>
+<!-- Placeholder for a complex chart interaction -->
+<div class="h-64 flex items-end justify-between gap-md px-lg group relative">
+<div class="flex-1 bg-primary/10 hover:bg-primary/30 transition-all rounded-t-lg relative h-[40%] group-hover:h-[45%]" title="يناير: 40%">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-md text-label-md opacity-0 group-hover:opacity-100 transition-opacity text-primary">40%</span>
+</div>
+<div class="flex-1 bg-primary/10 hover:bg-primary/30 transition-all rounded-t-lg relative h-[60%] group-hover:h-[65%]" title="فبراير: 60%">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-md text-label-md opacity-0 group-hover:opacity-100 transition-opacity text-primary">60%</span>
+</div>
+<div class="flex-1 bg-primary/10 hover:bg-primary/30 transition-all rounded-t-lg relative h-[55%] group-hover:h-[60%]" title="مارس: 55%">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-md text-label-md opacity-0 group-hover:opacity-100 transition-opacity text-primary">55%</span>
+</div>
+<div class="flex-1 bg-secondary hover:bg-secondary/80 transition-all rounded-t-lg relative h-[85%] group-hover:h-[90%]" title="أبريل: 85%">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-md text-label-md opacity-0 group-hover:opacity-100 transition-opacity text-primary">85%</span>
+</div>
+<div class="flex-1 bg-primary/10 hover:bg-primary/30 transition-all rounded-t-lg relative h-[70%] group-hover:h-[75%]" title="مايو: 70%">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-md text-label-md opacity-0 group-hover:opacity-100 transition-opacity text-primary">70%</span>
+</div>
+<div class="flex-1 bg-primary/10 hover:bg-primary/30 transition-all rounded-t-lg relative h-[95%] group-hover:h-[100%]" title="يونيو: 95%">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-md text-label-md opacity-0 group-hover:opacity-100 transition-opacity text-primary">95%</span>
+</div>
+</div>
+<div class="flex justify-between mt-md font-label-md text-label-md text-on-surface-variant px-lg">
+<span>يناير</span>
+<span>فبراير</span>
+<span>مارس</span>
+<span>أبريل</span>
+<span>مايو</span>
+<span>يونيو</span>
+</div>
+</div>
+</main>
+</div>
+<!-- Create Assessment Modal (Hidden by default) -->
+<div class="fixed inset-0 bg-primary/40 backdrop-blur-sm z-[100] flex items-center justify-center p-md hidden" id="createModal">
+<div class="bg-surface-container-lowest w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden border border-outline-variant">
+<div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h3 class="font-headline-md text-headline-md text-primary">إنشاء تقييم جديد للمجموعة</h3>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors" onclick="document.getElementById('createModal').classList.add('hidden')">close</button>
+</div>
+<div class="p-lg space-y-md">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">اسم التقييم</label>
+<input class="w-full border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg font-body-md text-body-md" placeholder="مثلاً: اختبار نهاية الوحدة" type="text"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">المجموعة المستهدفة</label>
+<select class="w-full border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg font-body-md text-body-md">
+<option>اختر المجموعة...</option>
+<option>Advanced Physics A1</option>
+<option>Web Development Bootcamp</option>
+</select>
+<p class="text-[10px] text-primary mt-1">سيتم إرسال هذا التقييم تلقائياً لجميع طلاب المجموعة المختارة.</p></div>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">نوع التقييم</label>
+<div class="flex gap-md">
+<label class="flex items-center gap-xs cursor-pointer">
+<input class="text-primary focus:ring-primary" name="eval_type" type="radio"/>
+<span class="font-body-sm text-body-sm">اختيار من متعدد</span>
+</label>
+<label class="flex items-center gap-xs cursor-pointer">
+<input class="text-primary focus:ring-primary" name="eval_type" type="radio"/>
+<span class="font-body-sm text-body-sm">أسئلة مقالية</span>
+</label>
+<label class="flex items-center gap-xs cursor-pointer">
+<input class="text-primary focus:ring-primary" name="eval_type" type="radio"/>
+<span class="font-body-sm text-body-sm">مشروع عملي</span>
+</label>
+</div>
+</div>
+<div class="p-md bg-surface-container rounded-xl border-2 border-dashed border-outline text-center space-y-base cursor-pointer hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-primary text-4xl">upload_file</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">اسحب ملف الأسئلة هنا أو <span class="text-primary font-bold">تصفح الجهاز</span></p>
+<p class="text-[10px] text-outline">يدعم ملفات PDF, Excel, JSON</p>
+</div>
+</div>
+<div class="p-md bg-surface-container-low border-t border-outline-variant flex justify-end gap-md">
+<button class="px-md py-xs font-label-md text-label-md text-primary hover:bg-surface-variant rounded-lg transition-colors" onclick="document.getElementById('createModal').classList.add('hidden')">إلغاء</button>
+<button class="bg-primary text-on-primary px-lg py-xs rounded-lg font-label-md text-label-md hover:shadow-lg transition-all">حفظ وإرسال للطلاب</button>
+</div>
+</div>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-base py-xs bg-surface-container-lowest dark:bg-surface-dim border-t border-outline-variant dark:border-outline shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-md text-label-md">Students</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">quiz</span>
+<span class="font-label-md text-label-md">التقييمات</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Groups</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<!-- Micro-interaction Script -->
+<script>
+        // Simple scale effect on hover for bento cards
+        document.querySelectorAll('.bg-surface-container-lowest').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

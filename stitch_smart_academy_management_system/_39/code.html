@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AcademyPro - لوحة تحكم المشرف</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#d7dadc",
+                    "primary-fixed": "#d6e3ff",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "secondary-container": "#fed488",
+                    "primary": "#002045",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#eef1f3",
+                    "outline": "#74777f",
+                    "on-surface-variant": "#43474e",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e5e9eb",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#ffdea5",
+                    "surface-bright": "#f7fafc",
+                    "on-tertiary-fixed": "#121c2c",
+                    "surface-container": "#ebeef0",
+                    "on-primary-fixed": "#001b3c",
+                    "surface-container-low": "#f1f4f6",
+                    "on-primary-container": "#86a0cd",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#adc7f7",
+                    "surface-tint": "#455f88",
+                    "surface-variant": "#e0e3e5",
+                    "on-background": "#181c1e",
+                    "background": "#f7fafc",
+                    "secondary-fixed-dim": "#e9c176",
+                    "secondary": "#775a19",
+                    "inverse-surface": "#2d3133",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-secondary-container": "#785a1a",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#adc7f7",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#d9e3f9",
+                    "primary-container": "#1a365d",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#959fb3",
+                    "outline-variant": "#c4c6cf",
+                    "surface": "#f7fafc",
+                    "tertiary-container": "#2c3647",
+                    "on-tertiary-fixed-variant": "#3d4759",
+                    "on-surface": "#181c1e",
+                    "on-secondary-fixed": "#261900",
+                    "tertiary": "#172131",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#bdc7dc",
+                    "on-primary-fixed-variant": "#2d476f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "container-max": "1440px",
+                    "xs": "4px",
+                    "lg": "40px",
+                    "base": "8px",
+                    "xl": "64px",
+                    "md": "24px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["IBM Plex Sans"],
+                    "headline-lg-mobile": ["IBM Plex Sans"],
+                    "body-sm": ["IBM Plex Sans"],
+                    "label-md": ["IBM Plex Sans"],
+                    "headline-lg": ["IBM Plex Sans"],
+                    "body-lg": ["IBM Plex Sans"],
+                    "headline-md": ["IBM Plex Sans"],
+                    "headline-xl": ["IBM Plex Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'IBM Plex Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .active-indicator { border-right: 4px solid #C5A059; } /* Custom Gold Indicator for Sidebar */
+        .glass-effect { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter h-16 bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-base">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed font-headline-md text-headline-md" data-icon="school">school</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">AcademyPro</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden md:flex items-center gap-md text-on-surface-variant font-label-md">
+<span class="cursor-pointer hover:text-primary">نظرة عامة</span>
+<span class="cursor-pointer hover:text-primary">التقارير المتقدمة</span>
+<span class="cursor-pointer hover:text-primary">إعدادات النظام</span>
+</div>
+<button class="material-symbols-outlined p-2 rounded-full hover:bg-surface-container-low transition-colors" data-icon="notifications">notifications</button>
+<div class="flex items-center gap-sm cursor-pointer border-r pr-md border-outline-variant">
+<div class="text-left hidden sm:block">
+<p class="font-label-md text-primary">د. أحمد كمال</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">المشرف الأكاديمي</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABT7A5zfZUnyOSSwRdFhA6q3wOu1wEhs2rAgBdiW-Vqk5C1oefWDmNWQYcQStJclgYXepTgtoD66_PFavLdAE14pvrWwzQX--TnFezH_k_HHJ3FcMIFw7g4I2H5mawsU52UmUa6mxZ8r8OrTpJqLhdZ1rX7Ug3QU5D7ocpjJqYKZ8QojFR4daWB7WierZMpoZdANJJgbVuuOXJhpjNg5X-jwsdV8akMkW9iXgr-Ds6yRktc4zmDqg8UE_iW4QGTrBo8rWVkUiXTRs"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Sidebar Layout -->
+<aside class="fixed right-0 top-16 h-[calc(100vh-64px)] w-64 bg-primary-container text-white hidden md:flex flex-col z-40">
+<nav class="flex-1 py-md overflow-y-auto no-scrollbar">
+<ul class="space-y-1">
+<li class="flex items-center gap-md px-md py-sm bg-white/10 active-indicator text-secondary-fixed cursor-pointer">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md">لوحة التحكم</span>
+</li>
+<li class="flex items-center gap-md px-md py-sm hover:bg-white/5 transition-colors cursor-pointer text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md">المدربين</span>
+</li>
+<li class="flex items-center gap-md px-md py-sm hover:bg-white/5 transition-colors cursor-pointer text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="hub">hub</span>
+<span class="font-label-md">المجموعات</span>
+</li>
+<li class="flex items-center gap-md px-md py-sm hover:bg-white/5 transition-colors cursor-pointer text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="corporate_fare">corporate_fare</span>
+<span class="font-label-md">إدارة الفروع</span>
+</li>
+<li class="flex items-center gap-md px-md py-sm hover:bg-white/5 transition-colors cursor-pointer text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+<span class="font-label-md">طلبات الدعم</span>
+</li>
+</ul>
+</nav>
+<div class="p-md bg-primary-fixed/5 border-t border-white/10">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary-fixed" data-icon="help">help</span>
+<span class="font-body-sm text-on-primary-container">مركز المساعدة</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-20 md:pr-64 px-gutter min-h-screen">
+<div class="max-w-container-max mx-auto space-y-md">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">لوحة إشراف الأكاديمية</h2>
+<p class="font-body-md text-on-surface-variant">مرحباً د. أحمد، إليك ملخص أداء الفروع والمدربين لهذا الأسبوع.</p>
+</div>
+<div class="flex gap-sm">
+<button class="px-md py-sm border border-primary text-primary font-label-md rounded hover:bg-surface-container-low transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="file_download">file_download</span>
+                        تصدير التقارير
+                    </button>
+<button class="px-md py-sm bg-secondary text-primary font-label-md rounded hover:opacity-90 transition-opacity flex items-center gap-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                        إضافة مدرب
+                    </button>
+</div>
+</div>
+<!-- KPI Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-md">
+<!-- Send New Evaluation Card -->
+<div class="bg-white p-md rounded-lg border border-outline-variant shadow-sm flex flex-col gap-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded" data-icon="assessment">assessment</span>
+<h4 class="font-label-md text-primary">إرسال تقييم جديد</h4>
+</div>
+<div class="flex gap-sm mt-xs">
+<button class="flex-1 py-2 px-md border border-outline-variant rounded-lg font-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-sm">person</span>
+        طالب
+      </button>
+<button class="flex-1 py-2 px-md border border-outline-variant rounded-lg font-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-sm">family_restroom</span>
+        ولي أمر
+      </button>
+</div>
+</div>
+<!-- Send Performance Reports Card -->
+<div class="bg-white p-md rounded-lg border border-outline-variant shadow-sm flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded" data-icon="analytics">analytics</span>
+<h4 class="font-label-md text-primary">إرسال تقارير الأداء</h4>
+</div>
+<div class="flex items-center gap-xs">
+<span class="text-[10px] text-on-surface-variant font-bold">إرسال جماعي</span>
+<div class="w-8 h-4 bg-primary rounded-full relative cursor-pointer">
+<div class="absolute right-1 top-1 w-2 h-2 bg-white rounded-full"></div>
+</div>
+</div>
+</div>
+<button class="w-full mt-sm py-2 bg-primary text-white rounded-lg font-label-md flex items-center justify-center gap-xs hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm">send</span>
+      بدء الإرسال الآن
+    </button>
+</div>
+</div><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
+<div class="bg-white p-md rounded-lg border border-outline-variant flex flex-col gap-xs shadow-sm">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded" data-icon="analytics">analytics</span>
+<span class="text-green-600 font-label-md bg-green-100 px-xs py-0.5 rounded">+12%</span>
+</div>
+<span class="font-body-sm text-on-surface-variant mt-sm">معدل أداء المدربين</span>
+<h3 class="font-headline-md text-headline-md text-primary">94.8%</h3>
+</div>
+<div class="bg-white p-md rounded-lg border border-outline-variant flex flex-col gap-xs shadow-sm">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded" data-icon="person_check">person_check</span>
+<span class="text-green-600 font-label-md bg-green-100 px-xs py-0.5 rounded">منتظم</span>
+</div>
+<span class="font-body-sm text-on-surface-variant mt-sm">نسبة الحضور الأسبوعي</span>
+<h3 class="font-headline-md text-headline-md text-primary">88.2%</h3>
+</div>
+<div class="bg-white p-md rounded-lg border border-outline-variant flex flex-col gap-xs shadow-sm">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded" data-icon="confirmation_number">confirmation_number</span>
+<span class="text-error font-label-md bg-error-container px-xs py-0.5 rounded">3 عاجل</span>
+</div>
+<span class="font-body-sm text-on-surface-variant mt-sm">تذاكر الدعم المفتوحة</span>
+<h3 class="font-headline-md text-headline-md text-primary">14</h3>
+</div>
+<div class="bg-white p-md rounded-lg border border-outline-variant flex flex-col gap-xs shadow-sm">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded" data-icon="domain">domain</span>
+<span class="text-on-surface-variant font-label-md bg-surface-container-high px-xs py-0.5 rounded">6 فروع</span>
+</div>
+<span class="font-body-sm text-on-surface-variant mt-sm">الطلاب المسجلين نشطاً</span>
+<h3 class="font-headline-md text-headline-md text-primary">2,450</h3>
+</div>
+</div>
+<!-- Main Data Section: Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-md mt-md">
+<!-- Performance Table -->
+<div class="lg:col-span-2 bg-white rounded-lg border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h4 class="font-label-md text-primary">أداء المدربين (الأعلى تقييماً)</h4>
+<span class="text-primary font-label-md cursor-pointer hover:underline">عرض الكل</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-right">
+<thead class="bg-surface-container-low text-on-surface-variant border-b border-outline-variant">
+<tr>
+<th class="p-md font-label-md">المدرب</th>
+<th class="p-md font-label-md">الفرع</th>
+<th class="p-md font-label-md">عدد المجموعات</th>
+<th class="p-md font-label-md">التقييم</th>
+<th class="p-md font-label-md">الحالة</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-primary-fixed/10 transition-colors">
+<td class="p-md flex items-center gap-sm">
+<img alt="Coach" class="w-8 h-8 rounded-full border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK41Jb8MT3vaJwdElYO_kAm6xUfreggtz9T_6mXczkPBlDsq556e3s5ZAO6INHq-8wFzcoM5TpTCXNHjKtAbd9hcb71bWOqbRS0LtDGlF_97fI6Fp8yFdVkOuXjn0eZY40oRccYPKFQEU28fLfru8w2RcVifcKAI4CfkMtorPZbZlAoOzpqO1WqYiMvYhhjvaHcggn3N6fO2HxQHd1PsSgYd0zV4UQQdkXqI8FkPxVhvJI_G_gVMsB_64PkT2QFZoyKH5fqElcNWA"/>
+<span class="font-body-md text-primary">م. محمد علي</span>
+</td>
+<td class="p-md font-body-sm">فرع القاهرة - مدينة نصر</td>
+<td class="p-md font-body-sm">12 مجموعة</td>
+<td class="p-md">
+<div class="flex items-center text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md">4.9</span>
+</div>
+</td>
+<td class="p-md">
+<span class="text-[10px] font-bold uppercase px-2 py-1 rounded-full bg-green-100 text-green-700 border border-green-200">نشط</span>
+</td>
+</tr>
+<tr class="hover:bg-primary-fixed/10 transition-colors">
+<td class="p-md flex items-center gap-sm">
+<img alt="Coach" class="w-8 h-8 rounded-full border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw0knJ4tD-nAoBzAZcjOC_KcY17wNrN1p8apCR69MX4-lA2CK7-n6ZzslqF_GYpYbvIZONSn5Xra35BneP6h1VbBdcpbmEtGNbT-KUpLvoZRTUiNkoApdQDFFMSO8Y8NWrmLPIgf0_lXHy_ynz71B43qzQkV4urCALtFy1Dfh4vDCUDpQJ3mwpnr7iPrpvZCzCwpD_T3v3U4_j0gIiCeQ7wo9dyB-wIsrwy6xOoi8vNKBLJGOP4B3Yw5toIdrM7XxwykEEAQUFxHg"/>
+<span class="font-body-md text-primary">أ. سارة حسن</span>
+</td>
+<td class="p-md font-body-sm">فرع الإسكندرية</td>
+<td class="p-md font-body-sm">8 مجموعات</td>
+<td class="p-md">
+<div class="flex items-center text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md">4.8</span>
+</div>
+</td>
+<td class="p-md">
+<span class="text-[10px] font-bold uppercase px-2 py-1 rounded-full bg-green-100 text-green-700 border border-green-200">نشط</span>
+</td>
+</tr>
+<tr class="hover:bg-primary-fixed/10 transition-colors">
+<td class="p-md flex items-center gap-sm">
+<img alt="Coach" class="w-8 h-8 rounded-full border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLwilMsvPZptifMxNQ1nw45Ye_upfLlxznJ2QMtG_7B4PcTcmGOcjwDDMRrXLyJPQkp-y2qLZsKH-qeMqy0SjjrOZxRYQf-SHLFFsU9uYJRNo3a16PR3JZ0_VV2KDJ2xoITyLnFiNljd-dASjJhjaYBPDWCIVEbHIEM6Pzj00L_B0X-LepupdqfxGzWhxBdp5ESBCPygJdnZ4MNPeaedSzeBLyN8K8jfoaccRawahy61bA2JRUZEjEJV4Kkm-Q5FBmLTOLJwQTFj0"/>
+<span class="font-body-md text-primary">م. خالد يوسف</span>
+</td>
+<td class="p-md font-body-sm">فرع الجيزة</td>
+<td class="p-md font-body-sm">10 مجموعات</td>
+<td class="p-md">
+<div class="flex items-center text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md">4.7</span>
+</div>
+</td>
+<td class="p-md">
+<span class="text-[10px] font-bold uppercase px-2 py-1 rounded-full bg-yellow-100 text-yellow-700 border border-yellow-200">إجازة</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Support Requests & Branch Status -->
+<div class="space-y-md">
+<!-- Support Tickets Card -->
+<div class="bg-white rounded-lg border border-outline-variant shadow-sm p-md">
+<div class="flex justify-between items-center mb-md">
+<h4 class="font-label-md text-primary">طلبات الدعم الفني</h4>
+<span class="bg-error text-white text-[10px] font-bold px-2 py-0.5 rounded-full">3 جديدة</span>
+</div>
+<div class="space-y-sm">
+<div class="p-sm bg-surface-container rounded-lg border border-outline-variant cursor-pointer hover:border-primary transition-colors">
+<p class="font-label-md text-primary line-clamp-1">مشكلة في تسجيل حضور مجموعة A12</p>
+<div class="flex justify-between items-center mt-xs">
+<span class="text-[10px] text-on-surface-variant">منذ 15 دقيقة</span>
+<span class="text-[10px] text-error font-bold">عاجل</span>
+</div>
+</div>
+<div class="p-sm bg-surface-container rounded-lg border border-outline-variant cursor-pointer hover:border-primary transition-colors">
+<p class="font-label-md text-primary line-clamp-1">طلب تعديل جدول فرع مدينة نصر</p>
+<div class="flex justify-between items-center mt-xs">
+<span class="text-[10px] text-on-surface-variant">منذ ساعتين</span>
+<span class="text-[10px] text-primary-container font-bold">عادي</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Branch Map/List Card -->
+<div class="bg-primary-container rounded-lg shadow-sm p-md text-white relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-label-md text-secondary-fixed">حالة الفروع الجغرافية</h4>
+<div class="mt-md space-y-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary-fixed" data-icon="location_on">location_on</span>
+<div>
+<p class="font-label-md">فرع القاهرة (المقر الرئيسي)</p>
+<p class="text-[10px] text-on-primary-container">أداء مستقر - 1,200 طالب</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary-fixed" data-icon="location_on">location_on</span>
+<div>
+<p class="font-label-md">فرع الإسكندرية</p>
+<p class="text-[10px] text-on-primary-container">نمو سريع - 850 طالب</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Abstract Background Decoration -->
+<div class="absolute -bottom-10 -right-10 w-40 h-40 bg-white/5 rounded-full blur-2xl"></div>
+</div>
+</div>
+</div>
+<!-- Attendance & Reporting Visualization Section -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-md mt-md">
+<div class="bg-white rounded-lg border border-outline-variant shadow-sm p-md">
+<h4 class="font-label-md text-primary mb-md">تقارير الحضور الأسبوعية (نظرة شاملة)</h4>
+<div class="h-64 flex items-end gap-md px-md">
+<!-- Simulated Chart -->
+<div class="flex-1 bg-primary-fixed/20 rounded-t h-[60%] relative group">
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">75%</div>
+<span class="absolute top-full mt-2 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant font-bold">الأحد</span>
+</div>
+<div class="flex-1 bg-primary-container rounded-t h-[85%] relative group">
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">92%</div>
+<span class="absolute top-full mt-2 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant font-bold">الأثنين</span>
+</div>
+<div class="flex-1 bg-primary-fixed/20 rounded-t h-[40%] relative group">
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">55%</div>
+<span class="absolute top-full mt-2 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant font-bold">الثلاثاء</span>
+</div>
+<div class="flex-1 bg-primary-container rounded-t h-[95%] relative group">
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">98%</div>
+<span class="absolute top-full mt-2 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant font-bold">الأربعاء</span>
+</div>
+<div class="flex-1 bg-primary-fixed/20 rounded-t h-[70%] relative group">
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">82%</div>
+<span class="absolute top-full mt-2 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant font-bold">الخميس</span>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg border border-outline-variant shadow-sm p-md flex flex-col justify-between">
+<div>
+<h4 class="font-label-md text-primary mb-xs">توزيع الطلاب حسب المسارات</h4>
+<p class="font-body-sm text-on-surface-variant mb-md">إحصائيات المسارات التعليمية الأكثر إقبالاً.</p>
+<div class="space-y-md">
+<div class="space-y-xs">
+<div class="flex justify-between text-[11px] font-bold">
+<span>البرمجة والتطوير</span>
+<span>45%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[45%]"></div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between text-[11px] font-bold">
+<span>التصميم الجرافيكي</span>
+<span>30%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[30%]"></div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between text-[11px] font-bold">
+<span>اللغات</span>
+<span>25%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-outline h-full w-[25%]"></div>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full py-sm mt-md bg-surface-container text-primary font-label-md rounded border border-outline-variant hover:bg-surface-variant transition-colors">
+                        عرض التحليل التفصيلي
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Navigation -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-surface dark:bg-inverse-surface pb-safe border-t border-outline-variant dark:border-outline">
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim font-bold cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">الرئيسية</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">المدربين</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="hub">hub</span>
+<span class="font-label-md text-label-md">المجموعات</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md">المالية</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">الحساب</span>
+</div>
+</nav>
+<!-- Floating Action Button - Only on appropriate context (Dashboard) -->
+<button class="fixed bottom-24 right-gutter w-14 h-14 bg-secondary text-primary rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-90 transition-transform md:bottom-10 z-50">
+<span class="material-symbols-outlined font-bold" data-icon="add">add</span>
+</button>
+<script>
+        // Micro-interaction for Sidebar Active State
+        const sidebarItems = document.querySelectorAll('aside nav ul li');
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', () => {
+                sidebarItems.forEach(i => {
+                    i.classList.remove('bg-white/10', 'active-indicator', 'text-secondary-fixed');
+                    i.classList.add('text-on-primary-container');
+                });
+                item.classList.add('bg-white/10', 'active-indicator', 'text-secondary-fixed');
+                item.classList.remove('text-on-primary-container');
+            });
+        });
+
+        // Simple notification toast simulation
+        window.addEventListener('load', () => {
+            console.log("AcademyPro Dashboard Initialized");
+        });
+    </script>
+</body></html>

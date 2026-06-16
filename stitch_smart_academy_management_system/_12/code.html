@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>إدارة المدربين | AcademyPro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;family=IBM+Plex+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "tertiary": "#172131",
+                "primary-container": "#1a365d",
+                "surface-container": "#ebeef0",
+                "secondary-container": "#fed488",
+                "on-primary-fixed-variant": "#2d476f",
+                "surface-variant": "#e0e3e5",
+                "error": "#ba1a1a",
+                "on-secondary-fixed": "#261900",
+                "on-error": "#ffffff",
+                "inverse-on-surface": "#eef1f3",
+                "on-surface-variant": "#43474e",
+                "on-error-container": "#93000a",
+                "secondary-fixed": "#ffdea5",
+                "on-tertiary-fixed": "#121c2c",
+                "inverse-surface": "#2d3133",
+                "surface-bright": "#f7fafc",
+                "primary-fixed-dim": "#adc7f7",
+                "on-secondary": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "tertiary-container": "#2c3647",
+                "tertiary-fixed-dim": "#bdc7dc",
+                "on-secondary-fixed-variant": "#5d4201",
+                "inverse-primary": "#adc7f7",
+                "surface-tint": "#455f88",
+                "on-primary": "#ffffff",
+                "on-tertiary-container": "#959fb3",
+                "surface-container-highest": "#e0e3e5",
+                "on-secondary-container": "#785a1a",
+                "surface": "#f7fafc",
+                "outline": "#74777f",
+                "background": "#f7fafc",
+                "on-primary-fixed": "#001b3c",
+                "surface-dim": "#d7dadc",
+                "secondary": "#775a19",
+                "on-tertiary": "#ffffff",
+                "on-background": "#181c1e",
+                "secondary-fixed-dim": "#e9c176",
+                "surface-container-high": "#e5e9eb",
+                "primary": "#002045",
+                "primary-fixed": "#d6e3ff",
+                "on-tertiary-fixed-variant": "#3d4759",
+                "outline-variant": "#c4c6cf",
+                "surface-container-low": "#f1f4f6",
+                "on-surface": "#181c1e",
+                "tertiary-fixed": "#d9e3f9",
+                "error-container": "#ffdad6",
+                "on-primary-container": "#86a0cd"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "xs": "4px",
+                "base": "8px",
+                "xl": "64px",
+                "sm": "12px",
+                "gutter": "24px",
+                "md": "24px",
+                "lg": "40px",
+                "container-max": "1440px"
+            },
+            "fontFamily": {
+                "headline-lg": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                "headline-xl": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                "headline-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                "body-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                "body-lg": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                "body-sm": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                "label-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"]
+            },
+            "fontSize": {
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', sans-serif;
+            background-color: #f7fafc;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 10px;
+        }
+        @media (max-width: 1024px) {
+            .desktop-only { display: none; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-background">
+<!-- Navigation Drawer (Desktop) -->
+<aside class="hidden lg:flex flex-col h-screen fixed inset-y-0 right-0 z-40 w-[280px] bg-primary border-l border-primary-fixed-dim/10 shadow-md">
+<div class="p-md flex flex-col gap-base">
+<div class="flex items-center gap-sm mb-lg">
+<div class="w-10 h-10 bg-secondary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary font-bold">school</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-secondary-fixed">AcademyPro</h1>
+</div>
+<nav class="flex flex-col gap-xs">
+<a class="text-primary-fixed-dim p-md flex items-center gap-base hover:bg-primary-fixed-dim/20 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="text-on-secondary-fixed bg-secondary-fixed border-r-4 border-secondary-container p-md flex items-center gap-base transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-label-md text-label-md">المدربون</span>
+</a>
+<a class="text-primary-fixed-dim p-md flex items-center gap-base hover:bg-primary-fixed-dim/20 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-md text-label-md">Students</span>
+</a>
+<a class="text-primary-fixed-dim p-md flex items-center gap-base hover:bg-primary-fixed-dim/20 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Groups</span>
+</a>
+<a class="text-primary-fixed-dim p-md flex items-center gap-base hover:bg-primary-fixed-dim/20 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Payments</span>
+</a>
+<a class="text-primary-fixed-dim p-md flex items-center gap-base hover:bg-primary-fixed-dim/20 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-md border-t border-primary-fixed-dim/10">
+<div class="flex items-center gap-base">
+<img alt="Admin" class="w-10 h-10 rounded-full border-2 border-secondary-fixed" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARZicI9ko7EzAzDq07POIk538glJvYE8mIurWQDEJ18pooSUQeFGCH-uHrrEvP1ZvbvEqsAqAiYlMhyBro9IJCv-AaVLEcc01x-Yod_ZGDsxi5zFP8QreQdxt8bBf0jINeX6bmp9rsRZhurEXiJL5VTPZG1VupkEVUnTDQsaBBVBtXx4IJxa_7PJGkZOq_qGQXH36GPCT03aHWnrSJlnrRyXNLn_2zpUUr0bb2Sa8fr7sy71yUx2ObDuyzbZpk-1BELh04WNmdx_o"/>
+<div>
+<p class="text-white font-label-md">أحمد علي</p>
+<p class="text-primary-fixed-dim text-xs">مدير النظام</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:mr-[280px] min-h-screen pb-xl">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky z-30 bg-surface-container-lowest shadow-sm border-b border-outline-variant">
+<div class="flex items-center justify-between px-md h-16 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-md">
+<button class="lg:hidden p-base hover:bg-surface-container-high transition-colors rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">إدارة المدربين</h2>
+</div>
+<div class="flex items-center gap-base">
+<div class="hidden md:flex items-center bg-surface-container-low px-md py-xs rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm w-48" placeholder="بحث عن مدرب..." type="text"/>
+</div>
+<button class="p-base hover:bg-surface-container-high transition-colors rounded-full relative">
+<span class="material-symbols-outlined text-primary">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="p-md lg:p-lg max-w-container-max mx-auto">
+<!-- Statistics Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md mb-lg">
+<div class="glass-card p-md rounded-xl shadow-sm flex items-center gap-md">
+<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">groups</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-body-sm">إجمالي المدربين</p>
+<h3 class="text-headline-md font-bold text-primary">42</h3>
+</div>
+</div>
+<div class="glass-card p-md rounded-xl shadow-sm flex items-center gap-md border-r-4 border-green-500">
+<div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-600">
+<span class="material-symbols-outlined text-3xl">task_alt</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-body-sm">مدرب نشط</p>
+<h3 class="text-headline-md font-bold text-primary">38</h3>
+</div>
+</div>
+<div class="glass-card p-md rounded-xl shadow-sm flex items-center gap-md border-r-4 border-secondary">
+<div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-3xl">star</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-body-sm">متوسط التقييم</p>
+<h3 class="text-headline-md font-bold text-primary">4.8</h3>
+</div>
+</div>
+<div class="glass-card p-md rounded-xl shadow-sm flex items-center gap-md">
+<div class="w-12 h-12 bg-error/10 rounded-full flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-3xl">event_busy</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-body-sm">في إجازة</p>
+<h3 class="text-headline-md font-bold text-primary">4</h3>
+</div>
+</div>
+</div>
+<!-- Management Section -->
+<div class="glass-card rounded-xl overflow-hidden shadow-md">
+<!-- Filters & Actions Header -->
+<div class="p-md border-b border-outline-variant bg-surface-container-low flex flex-col md:flex-row justify-between gap-md">
+<div class="flex flex-wrap items-center gap-base">
+<div class="relative">
+<select class="appearance-none bg-surface-container-lowest border border-outline-variant rounded-lg px-lg py-xs pr-10 text-body-sm focus:ring-primary focus:border-primary">
+<option>كل التخصصات</option>
+<option>برمجة</option>
+<option>تصميم</option>
+<option>لغات</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">filter_list</span>
+</div>
+<div class="relative">
+<select class="appearance-none bg-surface-container-lowest border border-outline-variant rounded-lg px-lg py-xs pr-10 text-body-sm focus:ring-primary focus:border-primary">
+<option>الحالة: الكل</option>
+<option>نشط</option>
+<option>في إجازة</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">toggle_on</span>
+</div>
+</div>
+<button class="bg-primary text-white px-md py-xs rounded-lg flex items-center gap-xs hover:bg-primary-container transition-all shadow-sm">
+<span class="material-symbols-outlined">person_add</span>
+<span class="font-label-md">إضافة مدرب جديد</span>
+</button>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-right">
+<thead class="bg-surface-container-high/50 border-b border-outline-variant">
+<tr>
+<th class="p-md font-label-md text-on-surface-variant">المدرب</th>
+<th class="p-md font-label-md text-on-surface-variant">التخصص</th>
+<th class="p-md font-label-md text-on-surface-variant">المجموعات</th>
+<th class="p-md font-label-md text-on-surface-variant">التقييم</th>
+<th class="p-md font-label-md text-on-surface-variant">الحالة</th>
+<th class="p-md font-label-md text-on-surface-variant">الإجراءات</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Trainer Row 1 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="p-md">
+<div class="flex items-center gap-sm">
+<img class="w-12 h-12 rounded-lg object-cover border border-outline-variant" data-alt="Portrait of a professional middle-aged male instructor in a modern office setting. He is wearing a navy blue blazer and has a friendly, authoritative expression. The background is a clean, bright academic environment with soft natural lighting and institutional trust aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCstF7xp4WaYMWyqnXWPPQ6MXDpVlGZbAm7_x84OHTlZd09bLv7RRCLXg9Er51oWoK1uImssU3f5PO2i0tAqbNvl3Em1Tj3WNhEqjYAuZSp1JSzV5Pe6kJFdPqk_97y5UgFt4v6Yq3WOc5BRjUlypRJBmeBDzswdeDm-xScNY5J_Y1C4RTTx-H70j2hcuzYQQFaWBo0s9V6iAC48gx2Vu1YSGMByhw3a3pJoWXbqxkfFg78GodG1pdxVNeNKPfmh-GDNxDZG1M9JrA"/>
+<div>
+<p class="font-bold text-primary">د. ياسر مصطفى</p>
+<p class="text-xs text-on-surface-variant">yasser.m@academy.pro</p>
+</div>
+</div>
+</td>
+<td class="p-md">
+<span class="px-base py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">علوم البيانات</span>
+</td>
+<td class="p-md">
+<div class="flex -space-x-reverse space-x-2">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-[10px] font-bold border-2 border-white" title="Group A1">A1</div>
+<div class="w-8 h-8 rounded-full bg-tertiary text-white flex items-center justify-center text-[10px] font-bold border-2 border-white" title="Group B3">B3</div>
+<div class="w-8 h-8 rounded-full bg-outline-variant flex items-center justify-center text-[10px] font-bold border-2 border-white">+2</div>
+</div>
+</td>
+<td class="p-md">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-body-sm">4.9</span>
+</div>
+</td>
+<td class="p-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600 ml-1.5"></span>
+                                        نشط
+                                    </span>
+</td>
+<td class="p-md">
+<div class="flex items-center gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-1 hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+<button class="p-1 hover:text-secondary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Trainer Row 2 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="p-md">
+<div class="flex items-center gap-sm">
+<img class="w-12 h-12 rounded-lg object-cover border border-outline-variant" data-alt="Close-up portrait of a professional female tech instructor with glasses, smiling confidently. She is in a well-lit, high-end educational laboratory with subtle bokeh in the background. The lighting is warm and professional, conveying competence and empathy in an Egyptian academic context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1NyjPdMZ0n8UA5o8hkB7ndKqiKls9ftPGLq3MLQpoqtf6N-IhRbsMqKl8pUo_CIG5Q0bK1Xb5SHw64og5xV3VWEj3EvLGDEOpe6yTqWoetOkUVd29eNSEPKK_rRR6WBqwzq2TtHIjdIRJVosffbpOp9SmV1vSJTFZkoMXWZOEsc6ME8jDlW7mAYOaqIvoP46vq-8W4knXytBviHGhJZhPr3E6Gaf23NOjstL_p2bXDLYXSq4iMABUaxC73uq7IYeV8UDg8zvnnHg"/>
+<div>
+<p class="font-bold text-primary">أ. سارة كامل</p>
+<p class="text-xs text-on-surface-variant">sara.k@academy.pro</p>
+</div>
+</div>
+</td>
+<td class="p-md">
+<span class="px-base py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">تصميم UI/UX</span>
+</td>
+<td class="p-md">
+<div class="flex -space-x-reverse space-x-2">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-[10px] font-bold border-2 border-white">D2</div>
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-[10px] font-bold border-2 border-white">W1</div>
+</div>
+</td>
+<td class="p-md">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-body-sm">4.7</span>
+</div>
+</td>
+<td class="p-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600 ml-1.5"></span>
+                                        نشط
+                                    </span>
+</td>
+<td class="p-md">
+<div class="flex items-center gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-1 hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+<button class="p-1 hover:text-secondary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Trainer Row 3 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="p-md">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold">م ع</div>
+<div>
+<p class="font-bold text-primary">م. محمود علي</p>
+<p class="text-xs text-on-surface-variant">m.ali@academy.pro</p>
+</div>
+</div>
+</td>
+<td class="p-md">
+<span class="px-base py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">تطوير الويب</span>
+</td>
+<td class="p-md">
+<span class="text-xs text-on-surface-variant italic">لا توجد مجموعات</span>
+</td>
+<td class="p-md">
+<div class="flex items-center gap-1 text-outline">
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="font-bold text-body-sm">4.5</span>
+</div>
+</td>
+<td class="p-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-800">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500 ml-1.5"></span>
+                                        في إجازة
+                                    </span>
+</td>
+<td class="p-md">
+<div class="flex items-center gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-1 hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+<button class="p-1 hover:text-secondary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-md bg-surface-container-lowest flex items-center justify-between border-t border-outline-variant">
+<p class="text-body-sm text-on-surface-variant">عرض 1 إلى 3 من أصل 42 مدرب</p>
+<div class="flex items-center gap-base">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined rotate-180">chevron_right</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-white font-bold text-xs">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high transition-colors font-bold text-xs">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high transition-colors font-bold text-xs">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest flex justify-around items-center px-base py-xs border-t border-outline-variant shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] mt-1">الرئيسية</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="text-[10px] mt-1 font-bold">المدربون</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="text-[10px] mt-1">الطلاب</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-[10px] mt-1">المجموعات</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px] mt-1">بروفايل</span>
+</a>
+</nav>
+<!-- Floating Action Button (FAB) - Mobile only for add -->
+<button class="lg:hidden fixed bottom-20 left-4 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center active:scale-95 transition-transform z-40">
+<span class="material-symbols-outlined text-3xl">person_add</span>
+</button>
+<script>
+        // Micro-interactions and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ripple effect on buttons
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.addEventListener('mousedown', function(e) {
+                    this.classList.add('opacity-80');
+                });
+                btn.addEventListener('mouseup', function(e) {
+                    this.classList.remove('opacity-80');
+                });
+            });
+
+            // Table row highlight logic
+            const rows = document.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                row.addEventListener('mouseenter', () => {
+                    row.style.cursor = 'pointer';
+                });
+            });
+        });
+
+        // Search Filter Simulation
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body></html>

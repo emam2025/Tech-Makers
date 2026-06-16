@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AcademyPro - إدارة المهام</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;family=IBM+Plex+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#d7dadc",
+                    "primary-fixed": "#d6e3ff",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "secondary-container": "#fed488",
+                    "primary": "#002045",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#eef1f3",
+                    "outline": "#74777f",
+                    "on-surface-variant": "#43474e",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e5e9eb",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#ffdea5",
+                    "surface-bright": "#f7fafc",
+                    "on-tertiary-fixed": "#121c2c",
+                    "surface-container": "#ebeef0",
+                    "on-primary-fixed": "#001b3c",
+                    "surface-container-low": "#f1f4f6",
+                    "on-primary-container": "#86a0cd",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#adc7f7",
+                    "surface-tint": "#455f88",
+                    "surface-variant": "#e0e3e5",
+                    "on-background": "#181c1e",
+                    "background": "#f7fafc",
+                    "secondary-fixed-dim": "#e9c176",
+                    "secondary": "#775a19",
+                    "inverse-surface": "#2d3133",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-secondary-container": "#785a1a",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#adc7f7",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#d9e3f9",
+                    "primary-container": "#1a365d",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#959fb3",
+                    "outline-variant": "#c4c6cf",
+                    "surface": "#f7fafc",
+                    "tertiary-container": "#2c3647",
+                    "on-tertiary-fixed-variant": "#3d4759",
+                    "on-surface": "#181c1e",
+                    "on-secondary-fixed": "#261900",
+                    "tertiary": "#172131",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#bdc7dc",
+                    "on-primary-fixed-variant": "#2d476f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "container-max": "1440px",
+                    "xs": "4px",
+                    "lg": "40px",
+                    "base": "8px",
+                    "xl": "64px",
+                    "md": "24px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "headline-lg-mobile": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "body-sm": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "label-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "headline-lg": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "body-lg": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "headline-md": ["IBM Plex Sans Arabic", "IBM Plex Sans"],
+                    "headline-xl": ["IBM Plex Sans Arabic", "IBM Plex Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', sans-serif;
+            background-color: #f7fafc;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .task-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .task-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 4px 12px rgba(26, 54, 93, 0.08);
+        }
+        .upload-area {
+            border: 2px dashed #c4c6cf;
+            transition: border-color 0.3s ease;
+        }
+        .upload-area:hover {
+            border-color: #1a365d;
+        }
+        .nav-indicator {
+            position: absolute;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background-color: #775a19;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- Top AppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter h-16 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-base">
+<span class="material-symbols-outlined text-primary font-bold text-headline-md" data-icon="school">school</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">AcademyPro</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-base hover:bg-surface-container-low transition-colors cursor-pointer rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
+</button>
+<button class="p-base hover:bg-surface-container-low transition-colors cursor-pointer rounded-full relative">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-surface"></span>
+</button>
+<div class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-low p-xs rounded-lg transition-colors">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-bold font-label-md">
+                    أح
+                </div>
+<span class="hidden md:block font-label-md text-on-surface">أحمد محمود</span>
+</div>
+</div>
+</header>
+<div class="flex pt-16 min-h-screen">
+<!-- Sidebar (Desktop) -->
+<aside class="hidden md:flex flex-col w-64 bg-primary-container text-on-primary-container fixed h-[calc(100vh-64px)] overflow-y-auto">
+<nav class="flex-1 py-md">
+<a class="relative flex items-center px-gutter py-md hover:bg-white/10 transition-colors text-on-surface-variant/80" href="#">
+<span class="material-symbols-outlined ml-md" data-icon="home">home</span>
+<span class="font-label-md">الرئيسية</span>
+</a>
+<a class="relative flex items-center px-gutter py-md bg-white/5 text-secondary-fixed transition-colors" href="#">
+<div class="nav-indicator"></div>
+<span class="material-symbols-outlined ml-md" data-icon="assignment" style="font-variation-settings: 'FILL' 1;">assignment</span>
+<span class="font-label-md">المهام الدراسية</span>
+</a>
+<a class="relative flex items-center px-gutter py-md hover:bg-white/10 transition-colors text-on-surface-variant/80" href="#">
+<span class="material-symbols-outlined ml-md" data-icon="group">group</span>
+<span class="font-label-md">المجموعات</span>
+</a>
+<a class="relative flex items-center px-gutter py-md hover:bg-white/10 transition-colors text-on-surface-variant/80" href="#">
+<span class="material-symbols-outlined ml-md" data-icon="payments">payments</span>
+<span class="font-label-md">المدفوعات</span>
+</a>
+<a class="relative flex items-center px-gutter py-md hover:bg-white/10 transition-colors text-on-surface-variant/80" href="#">
+<span class="material-symbols-outlined ml-md" data-icon="calendar_month">calendar_month</span>
+<span class="font-label-md">الجدول الدراسي</span>
+</a>
+</nav>
+<div class="p-gutter border-t border-white/10">
+<a class="flex items-center text-on-surface-variant/70 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined ml-md" data-icon="settings">settings</span>
+<span class="font-label-md">الإعدادات</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 md:mr-64 p-gutter pb-32 md:pb-gutter">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-xl gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-xs">إدارة المهام والتكليفات</h2>
+<p class="font-body-md text-on-surface-variant">تابع مهامك الدراسية، سلم ملفاتك، وراجع التقييمات في مكان واحد.</p>
+</div>
+<div class="flex gap-sm">
+<button class="bg-primary text-white px-md py-sm rounded-lg font-label-md flex items-center gap-xs hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+                        تصفية
+                    </button>
+<button class="bg-secondary text-primary px-md py-sm rounded-lg font-label-md flex items-center gap-xs hover:bg-secondary/80 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+                        سجل المهام
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Stats -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-xl">
+<div class="bg-surface border border-outline-variant p-md rounded-xl flex flex-col gap-xs">
+<div class="flex justify-between items-center mb-xs">
+<span class="material-symbols-outlined text-primary bg-primary-fixed/30 p-xs rounded-lg" data-icon="pending_actions">pending_actions</span>
+<span class="text-body-sm text-on-surface-variant">المهام النشطة</span>
+</div>
+<span class="font-headline-md text-headline-md text-primary">05</span>
+</div>
+<div class="bg-surface border border-outline-variant p-md rounded-xl flex flex-col gap-xs">
+<div class="flex justify-between items-center mb-xs">
+<span class="material-symbols-outlined text-secondary bg-secondary-fixed/30 p-xs rounded-lg" data-icon="schedule">schedule</span>
+<span class="text-body-sm text-on-surface-variant">اقترب الموعد</span>
+</div>
+<span class="font-headline-md text-headline-md text-primary">02</span>
+</div>
+<div class="bg-surface border border-outline-variant p-md rounded-xl flex flex-col gap-xs">
+<div class="flex justify-between items-center mb-xs">
+<span class="material-symbols-outlined text-green-600 bg-green-100 p-xs rounded-lg" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm text-on-surface-variant">تم التسليم</span>
+</div>
+<span class="font-headline-md text-headline-md text-primary">12</span>
+</div>
+<div class="bg-surface border border-outline-variant p-md rounded-xl flex flex-col gap-xs">
+<div class="flex justify-between items-center mb-xs">
+<span class="material-symbols-outlined text-purple-600 bg-purple-100 p-xs rounded-lg" data-icon="grade">grade</span>
+<span class="text-body-sm text-on-surface-variant">متوسط التقييم</span>
+</div>
+<span class="font-headline-md text-headline-md text-primary">94%</span>
+</div>
+</div>
+<!-- Tasks List Header -->
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">المهام الحالية</h3>
+<div class="flex gap-md font-label-md text-on-surface-variant">
+<span class="cursor-pointer text-primary border-b-2 border-primary pb-xs">الكل</span>
+<span class="cursor-pointer hover:text-primary transition-colors">قيد التنفيذ</span>
+<span class="cursor-pointer hover:text-primary transition-colors">تم التسليم</span>
+<span class="cursor-pointer hover:text-primary transition-colors">بانتظار التقييم</span>
+</div>
+</div>
+<!-- Task Cards Container -->
+<div class="space-y-md">
+<!-- Task Card 1: Pending Execution -->
+<div class="task-card bg-surface border border-outline-variant rounded-xl overflow-hidden flex flex-col lg:flex-row items-stretch">
+<div class="lg:w-1/4 p-md bg-surface-container-low flex flex-col justify-between border-l lg:border-l-outline-variant">
+<div>
+<span class="bg-secondary-container/20 text-secondary font-label-md px-sm py-xs rounded-full inline-block mb-sm uppercase tracking-wider">قيد التنفيذ</span>
+<h4 class="font-headline-md text-primary mb-xs">تطوير واجهات المستخدم</h4>
+<p class="font-body-sm text-on-surface-variant">برمجة تطبيقات الويب - المجموعة A</p>
+</div>
+<div class="mt-md flex items-center gap-xs text-error font-label-md">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+                            تسليم: 15 أكتوبر 2023
+                        </div>
+</div>
+<div class="flex-1 p-md flex flex-col justify-between">
+<div class="mb-md">
+<p class="font-body-md text-on-surface mb-md">المطلوب تصميم وتنفيذ واجهة مستخدم متكاملة باستخدام React و Tailwind CSS لصفحة إدارة مهام، مع مراعاة الهوية البصرية المعتمدة وسهولة الاستخدام.</p>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-surface-variant px-sm py-xs rounded text-body-sm">React.js</span>
+<span class="bg-surface-variant px-sm py-xs rounded text-body-sm">Tailwind CSS</span>
+<span class="bg-surface-variant px-sm py-xs rounded text-body-sm">UI/UX</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-md border-t border-outline-variant">
+<div class="flex -space-x-2 space-x-reverse">
+<img alt="Student" class="w-8 h-8 rounded-full border-2 border-surface" data-alt="Close up portrait of a professional male software engineer with a friendly smile, clean studio background, natural lighting, wearing a navy blue polo shirt, matching the AcademyPro brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-Eltod25V6yU4zHeTCVqqvQCpBJ8dElx2aVWr4K_PX0p8UdOpjtNuRoSxlZISzVCcy61BqyGwdp_zHfufeFnWeZYyWU_xaWvujbdLwL4zMkCDwrlL1YCbd5WTKyMNxHHJ9YLERkaHceoLcvpfsHi_gTw-y3psfB27wBTbaOAvTnmLzcg9sGOkljSK6n9p_WznvUX4r8xpAYy2WLcMg7n0CXf3whs59zgEIb4gs9f7pCPOWaHRYmL_aIW3Px-IJupL_6_80rusR-A"/>
+<img alt="Student" class="w-8 h-8 rounded-full border-2 border-surface" data-alt="Professional corporate headshot of a young woman with dark hair, confident expression, minimalist workspace background with soft golden accents, high-end professional photographic style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJwuQsYzuj7UoegL_O9vt80EpwWfP6nFIuXuLeY55AZXJbd3FejuON_oxMdkZPDuXRWJkQcop0nbj4q5GcrE_JM5qLa_vA2UVJimhfVl7WGUEOyQ1NYvBnhOCLcjWV1J0ff9Gvt-Qh4ZKnLn314T9o5DtN0pJ8pKXUQQ4fAJ7tBSaWFsIrUzlkOWd22pvjbmRPDhs_GJIpqts8YlaLx5WiXH0KoPkbCbeIGQVsKjGG2kZpIuWezbUQpl9AY_7R3IXFlk3Pxlmz9LU"/>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container-highest flex items-center justify-center text-xs font-bold">+8</div>
+</div>
+<button class="bg-primary text-white px-lg py-sm rounded-lg font-label-md flex items-center gap-sm hover:bg-primary-container transition-all" onclick="openModal('modal-task-1')">
+<span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+                                تسليم المهمة
+                            </button>
+</div>
+</div>
+</div>
+<!-- Task Card 2: Waiting Evaluation -->
+<div class="task-card bg-surface border border-outline-variant rounded-xl overflow-hidden flex flex-col lg:flex-row items-stretch">
+<div class="lg:w-1/4 p-md bg-surface-container-low flex flex-col justify-between border-l lg:border-l-outline-variant">
+<div>
+<span class="bg-primary-fixed/30 text-primary font-label-md px-sm py-xs rounded-full inline-block mb-sm uppercase tracking-wider">بانتظار التقييم</span>
+<h4 class="font-headline-md text-primary mb-xs">هيكلية قواعد البيانات</h4>
+<p class="font-body-sm text-on-surface-variant">قواعد البيانات المتقدمة - القسم 2</p>
+</div>
+<div class="mt-md flex items-center gap-xs text-on-surface-variant font-label-md">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            تم التسليم: 05 أكتوبر 2023
+                        </div>
+</div>
+<div class="flex-1 p-md flex flex-col justify-between">
+<div class="mb-md">
+<p class="font-body-md text-on-surface mb-md">إعداد مخطط ERD متكامل لنظام إدارة مستشفى، يتضمن الجداول الأساسية والعلاقات بينها (One-to-Many, Many-to-Many) مع شرح لكل علاقة.</p>
+<div class="flex items-center gap-md p-sm bg-surface-container-lowest rounded-lg border border-outline-variant w-fit">
+<span class="material-symbols-outlined text-error" data-icon="picture_as_pdf">picture_as_pdf</span>
+<div class="flex flex-col">
+<span class="font-label-md text-on-surface">Database_Schema.pdf</span>
+<span class="text-[10px] text-on-surface-variant">2.4 MB</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="download">download</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-md border-t border-outline-variant">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-sm" data-icon="person">person</span>
+</div>
+<span class="font-body-sm text-on-surface-variant">المدرس: د. وليد السيد</span>
+</div>
+<button class="text-primary font-label-md flex items-center gap-xs hover:underline">
+                                عرض التفاصيل
+                                <span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-surface border-t border-outline-variant pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md">الرئيسية</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary font-bold transition-colors cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="assignment" style="font-variation-settings: 'FILL' 1;">assignment</span>
+<span class="font-label-md">المهام</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md">المجموعات</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md">حسابي</span>
+</a>
+</nav>
+<!-- Modal for Upload -->
+<div class="fixed inset-0 z-[100] hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-md" id="modal-task-1">
+<div class="bg-surface w-full max-w-2xl rounded-2xl border border-outline-variant shadow-xl overflow-hidden transform transition-all">
+<div class="p-gutter border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-md text-primary">تسليم المهمة الدراسية</h3>
+<button class="text-on-surface-variant hover:text-error transition-colors" onclick="closeModal('modal-task-1')">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<div class="p-gutter space-y-md">
+<div class="bg-primary-container/10 p-md rounded-lg">
+<h4 class="font-label-md text-primary mb-xs">تطوير واجهات المستخدم</h4>
+<p class="text-body-sm text-on-surface-variant">يرجى رفع الملفات بتنسيق (PDF, ZIP) فقط. تأكد من إدراج جميع المصادر المستخدمة.</p>
+</div>
+<div class="upload-area rounded-xl p-xl flex flex-col items-center justify-center gap-md cursor-pointer bg-surface-container-low" id="drop-zone">
+<span class="material-symbols-outlined text-primary text-5xl" data-icon="cloud_upload">cloud_upload</span>
+<div class="text-center">
+<p class="font-body-lg text-primary mb-xs">اسحب وأفلت الملفات هنا</p>
+<p class="text-body-sm text-on-surface-variant">أو اضغط لاختيار ملف من جهازك</p>
+</div>
+<input class="hidden" id="file-input" type="file"/>
+</div>
+<div class="space-y-sm">
+<label class="font-label-md text-on-surface">ملاحظات إضافية (اختياري)</label>
+<textarea class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary h-24 bg-surface text-body-md" placeholder="أضف أي تفاصيل تود إخبار المحاضر بها..."></textarea>
+</div>
+</div>
+<div class="p-gutter bg-surface-container-low border-t border-outline-variant flex justify-end gap-md">
+<button class="px-md py-sm font-label-md text-primary hover:underline" onclick="closeModal('modal-task-1')">إلغاء</button>
+<button class="bg-primary text-white px-xl py-sm rounded-lg font-label-md flex items-center gap-sm shadow-md hover:opacity-90 active:scale-95 transition-all" onclick="simulateUpload()">
+                    إرسال الآن
+                </button>
+</div>
+</div>
+</div>
+<!-- Success Toast (Hidden by default) -->
+<div class="fixed bottom-gutter left-1/2 -translate-x-1/2 md:left-gutter md:translate-x-0 z-[200] hidden" id="toast">
+<div class="bg-green-600 text-white px-xl py-md rounded-lg shadow-2xl flex items-center gap-md">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-md">تم تسليم المهمة بنجاح!</span>
+</div>
+</div>
+<script>
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function simulateUpload() {
+            const btn = event.currentTarget;
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = `<span class="material-symbols-outlined animate-spin" data-icon="progress_activity">progress_activity</span> جاري الرفع...`;
+            btn.disabled = true;
+
+            setTimeout(() => {
+                closeModal('modal-task-1');
+                showToast();
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+            }, 2000);
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('hidden');
+            toast.classList.add('animate-bounce');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Drag and drop interaction
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+
+        dropZone.addEventListener('click', () => fileInput.click());
+        
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('bg-primary-container/20');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('bg-primary-container/20');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('bg-primary-container/20');
+            if (e.dataTransfer.files.length) {
+                alert('تم اختيار ملف: ' + e.dataTransfer.files[0].name);
+            }
+        });
+    </script>
+</body></html>
