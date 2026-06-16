@@ -11,7 +11,15 @@ const SPECIALTIES = [
   { value: 'java', label: 'Java' },
   { value: 'c', label: 'C' },
   { value: 'cpp', label: 'C++' },
-  { value: 'database', 'label': 'قواعد بيانات' },
+  { value: 'database', label: 'قواعد بيانات' },
+];
+
+const ROLES = [
+  { value: 'trainer', label: 'مدرب' },
+  { value: 'specialist', label: 'إخصائي' },
+  { value: 'admin', label: 'إداري' },
+  { value: 'supervisor', label: 'مشرف' },
+  { value: 'coordinator', label: 'منسق' },
 ];
 
 const STATUS_MAP = {
@@ -34,6 +42,11 @@ export default function TrainersPage() {
   const [saving, setSaving] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(null);
 
+  const [source, setSource] = useState('manual');
+  const [sourceList, setSourceList] = useState([]);
+  const [sourceLoading, setSourceLoading] = useState(false);
+  const [sourceSearch, setSourceSearch] = useState('');
+
   const loadTrainers = useCallback(async () => {
     setLoading(true);
     try {
@@ -54,15 +67,64 @@ export default function TrainersPage() {
     return () => clearTimeout(t);
   }, [loadTrainers, search, filterSpecialty, filterStatus]);
 
+  const loadSourceList = useCallback(async () => {
+    if (source === 'manual') { setSourceList([]); return; }
+    setSourceLoading(true);
+    try {
+      const params = new URLSearchParams({ source });
+      if (sourceSearch) params.set('search', sourceSearch);
+      const res = await fetch(`/api/admin/trainers?${params}`);
+      if (res.ok) {
+        const data = await res.json();
+        setSourceList(source === 'students' ? (data.students || []) : (data.team || []));
+      }
+    } finally { setSourceLoading(false); }
+  }, [source, sourceSearch]);
+
+  useEffect(() => {
+    if (modal === 'edit' && source !== 'manual') {
+      const t = setTimeout(loadSourceList, sourceSearch ? 300 : 0);
+      return () => clearTimeout(t);
+    }
+  }, [modal, source, sourceSearch, loadSourceList]);
+
+  const handleSourceSelect = (item) => {
+    if (source === 'students') {
+      setForm({
+        ...form,
+        full_name: item.name || '',
+        email: item.email || '',
+        phone: item.phone || '',
+        source: 'student',
+        source_id: item.id,
+      });
+    } else {
+      setForm({
+        ...form,
+        full_name: item.name || '',
+        email: item.email || '',
+        phone: item.phone || '',
+        source: 'team',
+        source_id: item.id,
+      });
+    }
+    setSourceList([]);
+  };
+
   const handleSave = async () => {
     setSaving(true);
     try {
+      const payload = { ...form };
+      if (source === 'manual') {
+        payload.source = 'manual';
+        payload.source_id = null;
+      }
       const method = form.id ? 'PUT' : 'POST';
       const url = form.id ? `/api/admin/trainers/${form.id}` : '/api/admin/trainers';
       const res = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
       if (res.ok) { setModal(null); loadTrainers(); success(form.id ? 'تم تحديث بيانات المدرب' : 'تم إضافة المدرب'); }
       else { const data = await res.json(); toastError(data.error || 'حدث خطأ'); }
@@ -75,6 +137,14 @@ export default function TrainersPage() {
       const res = await fetch(`/api/admin/trainers/${confirmDelete.id}`, { method: 'DELETE' });
       if (res.ok) { setConfirmDelete(null); loadTrainers(); success('تم حذف المدرب'); }
     } catch { toastError('خطأ في الحذف'); }
+  };
+
+  const openNewModal = () => {
+    setForm({});
+    setSource('manual');
+    setSourceList([]);
+    setSourceSearch('');
+    setModal('edit');
   };
 
   const activeCount = trainers.filter(t => t.status === 'active').length;
@@ -212,10 +282,10 @@ export default function TrainersPage() {
             <span className="material-symbols-outlined text-[64px] text-outline mb-sm block">person_off</span>
             <h3 className="font-headline-md text-headline-md text-on-surface mb-xs">لا يوجد مدربين</h3>
             <p className="text-on-surface-variant mb-sm">ابدأ بإضافة مدرب جديد</p>
-            <button
-              onClick={() => { setForm({}); setModal('edit'); }}
-              className="bg-primary text-white px-md py-xs rounded-lg inline-flex items-center gap-xs hover:bg-primary-container transition-all shadow-sm"
-            >
+              <button
+                onClick={openNewModal}
+                className="bg-primary text-white px-md py-xs rounded-lg inline-flex items-center gap-xs hover:bg-primary-container transition-all shadow-sm"
+              >
               <span className="material-symbols-outlined">person_add</span>
               <span className="font-label-md">إضافة مدرب</span>
             </button>
@@ -247,7 +317,7 @@ export default function TrainersPage() {
                           </div>
                           <div>
                             <p className="font-bold text-primary">{trainer.full_name}</p>
-                            <p className="text-xs text-on-surface-variant">{trainer.email || ''}</p>
+                            <p className="text-xs text-on-surface-variant">{ROLES.find(r => r.value === trainer.role)?.label || trainer.role || trainer.email || ''}</p>
                           </div>
                         </div>
                       </td>
@@ -328,6 +398,75 @@ export default function TrainersPage() {
               </button>
             </div>
             <div className="p-md space-y-4">
+              {/* Source selector */}
+              {!form.id && (
+                <div className="bg-surface-container-high rounded-lg p-3">
+                  <label className="block text-body-sm text-on-surface-variant mb-2 font-bold">المصدر</label>
+                  <div className="flex gap-2">
+                    {[
+                      { value: 'manual', label: 'إدخال يدوي', icon: 'edit' },
+                      { value: 'students', label: 'من المسجلين', icon: 'school' },
+                      { value: 'team', label: 'من المتقدمين', icon: 'groups' },
+                    ].map(s => (
+                      <button
+                        key={s.value}
+                        type="button"
+                        onClick={() => { setSource(s.value); setSourceSearch(''); setSourceList([]); setForm({ ...form, full_name: '', email: '', phone: '' }); }}
+                        className={`flex-1 flex flex-col items-center gap-1 p-2 rounded-lg border-2 text-xs font-medium transition-all ${
+                          source === s.value ? 'border-primary bg-primary/10 text-primary' : 'border-outline-variant hover:border-outline'
+                        }`}
+                      >
+                        <span className="material-symbols-outlined text-lg">{s.icon}</span>
+                        {s.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Source search & list */}
+              {!form.id && source !== 'manual' && (
+                <div>
+                  <input
+                    type="text"
+                    placeholder="بحث بالاسم أو البريد أو الهاتف..."
+                    value={sourceSearch}
+                    onChange={e => setSourceSearch(e.target.value)}
+                    className="w-full border border-outline-variant rounded-lg px-base py-xs text-body-sm focus:ring-2 focus:ring-primary outline-none mb-2"
+                  />
+                  {sourceLoading ? (
+                    <div className="text-center py-4 text-on-surface-variant text-sm">جاري التحميل...</div>
+                  ) : sourceList.length > 0 ? (
+                    <div className="max-h-48 overflow-y-auto border border-outline-variant rounded-lg divide-y divide-outline-variant">
+                      {sourceList.map(item => (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => handleSourceSelect(item)}
+                          className="w-full text-right p-3 hover:bg-primary/5 transition-colors flex items-center gap-3"
+                        >
+                          <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm shrink-0">
+                            {(item.name || '').split(' ').map(w => w[0]).slice(0, 2).join('')}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="font-bold text-sm text-on-surface truncate">{item.name}</p>
+                            <p className="text-xs text-on-surface-variant truncate">{item.email || item.phone}</p>
+                          </div>
+                          {source === 'team' && item.form_type && (
+                            <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full shrink-0">{item.form_type}</span>
+                          )}
+                          {source === 'students' && item.track && (
+                            <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full shrink-0">{item.track}</span>
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  ) : sourceSearch ? (
+                    <div className="text-center py-4 text-on-surface-variant text-sm">لا توجد نتائج</div>
+                  ) : null}
+                </div>
+              )}
+
               <div>
                 <label className="block text-body-sm text-on-surface-variant mb-1">الاسم الكامل *</label>
                 <input
@@ -364,6 +503,19 @@ export default function TrainersPage() {
                   onChange={e => setForm({ ...form, phone: e.target.value })}
                   className="w-full border border-outline-variant rounded-lg px-base py-xs text-body-sm focus:ring-2 focus:ring-primary outline-none"
                 />
+              </div>
+              <div>
+                <label className="block text-body-sm text-on-surface-variant mb-1">الوظيفة / الدور *</label>
+                <select
+                  value={form.role || ''}
+                  onChange={e => setForm({ ...form, role: e.target.value })}
+                  className="w-full border border-outline-variant rounded-lg px-base py-xs text-body-sm focus:ring-2 focus:ring-primary outline-none bg-surface-container-lowest"
+                >
+                  <option value="">اختر الوظيفة</option>
+                  {ROLES.map(r => (
+                    <option key={r.value} value={r.value}>{r.label}</option>
+                  ))}
+                </select>
               </div>
               <div>
                 <label className="block text-body-sm text-on-surface-variant mb-1">التخصص</label>
@@ -473,6 +625,10 @@ export default function TrainersPage() {
               </div>
               <div className="space-y-3">
                 <div className="flex items-center gap-base text-on-surface-variant">
+                  <span className="material-symbols-outlined text-sm">badge</span>
+                  <span className="text-body-sm">{ROLES.find(r => r.value === form.role)?.label || form.role || 'غير محدد'}</span>
+                </div>
+                <div className="flex items-center gap-base text-on-surface-variant">
                   <span className="material-symbols-outlined text-sm">school</span>
                   <span className="text-body-sm">{SPECIALTIES.find(s => s.value === form.specialty)?.label || form.specialty || 'غير محدد'}</span>
                 </div>
@@ -481,7 +637,7 @@ export default function TrainersPage() {
                   <span className="text-body-sm">{form.phone || 'غير محدد'}</span>
                 </div>
                 <div className="flex items-center gap-base text-on-surface-variant">
-                  <span className="material-symbols-outlined text-sm">badge</span>
+                  <span className="material-symbols-outlined text-sm">credit_card</span>
                   <span className="text-body-sm">{form.national_id || 'غير محدد'}</span>
                 </div>
                 <div className="flex items-center gap-base text-on-surface-variant">
@@ -496,6 +652,14 @@ export default function TrainersPage() {
                   <span className="material-symbols-outlined text-sm">flag</span>
                   <span className="text-body-sm">{STATUS_MAP[form.status]?.label || form.status}</span>
                 </div>
+                {form.source && (
+                  <div className="flex items-center gap-base text-on-surface-variant">
+                    <span className="material-symbols-outlined text-sm">source</span>
+                    <span className="text-body-sm">
+                      {form.source === 'student' ? 'مسجّل بالموقع (طالب)' : form.source === 'team' ? 'متقدم للانضمام (فريق)' : 'إدخال يدوي'}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
             <div className="sticky bottom-0 bg-surface-container-lowest border-t border-outline-variant p-md flex gap-3">

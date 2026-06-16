@@ -33,6 +33,29 @@ export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search') || '';
+    const source = searchParams.get('source') || '';
+
+    if (source === 'students') {
+      let query = `${SUPABASE_URL}/rest/v1/students?select=id,name,email,phone,track,grade,status&order=created_at.desc&limit=200`;
+      if (search) query += `&or=(name.ilike.*${search}*,email.ilike.*${search}*,phone.ilike.*${search}*)`;
+      const res = await fetch(query, {
+        headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` },
+      });
+      if (!res.ok) return NextResponse.json({ error: 'فشل جلب الطلاب' }, { status: 500 });
+      const students = await res.json();
+      return NextResponse.json({ students });
+    }
+
+    if (source === 'team') {
+      let query = `${SUPABASE_URL}/rest/v1/team_applications?select=id,name,email,phone,form_type,qualification,university,college,major,status&order=created_at.desc&limit=200`;
+      if (search) query += `&or=(name.ilike.*${search}*,email.ilike.*${search}*,phone.ilike.*${search}*)`;
+      const res = await fetch(query, {
+        headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` },
+      });
+      if (!res.ok) return NextResponse.json({ error: 'فشل جلب المتقدمين' }, { status: 500 });
+      const team = await res.json();
+      return NextResponse.json({ team });
+    }
 
     let query = `${SUPABASE_URL}/rest/v1/trainers?select=*&order=created_at.desc`;
     if (search) query += `&or=(full_name.ilike.*${search}*,email.ilike.*${search}*)`;
