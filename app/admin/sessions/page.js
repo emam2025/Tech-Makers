@@ -130,7 +130,7 @@ export default function SessionsPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-3 mb-4">
+      <div className="grid grid-cols-3 gap-3 mb-xs">
         <div className="card-admin p-3 text-center">
           <div className="text-lg font-bold" style={{ color: 'var(--color-warning)' }}>{upcomingCount}</div>
           <div className="text-[11px] text-[var(--color-text-tertiary)]">مجدولة</div>

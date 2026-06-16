@@ -27,6 +27,9 @@ async function verifyAuth(request) {
   return { user: profiles[0], token };
 }
 
+const VALID_METHODS = ['cash', 'instapay', 'vodafone_cash', 'orange_money', 'etisalat_cash', 'fawry', 'visa', 'mastercard', 'transfer', 'other'];
+const VALID_STATUSES = ['pending', 'confirmed', 'rejected', 'refunded'];
+
 export async function GET(request) {
   const auth = await verifyAuth(request);
   if (auth.error) return NextResponse.json({ error: auth.error }, { status: auth.status });
@@ -34,6 +37,7 @@ export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const student_id = searchParams.get('student_id') || '';
+    const status = searchParams.get('status') || '';
 
     let query = `${SUPABASE_URL}/rest/v1/payments?select=*,student:students_enhanced(full_name),subscription:subscriptions(id)&order=payment_date.desc`;
     if (student_id) {
@@ -41,6 +45,7 @@ export async function GET(request) {
       if (cleanId.length > 50) return NextResponse.json({ error: 'معرف غير صالح' }, { status: 400 });
       query += `&student_id=eq.${cleanId}`;
     }
+    if (status) query += `&status=eq.${status}`;
     query += '&limit=500';
 
     const res = await fetch(query, {
@@ -73,21 +78,29 @@ export async function POST(request) {
     if (body.amount > 1000000) {
       return NextResponse.json({ error: 'المبلغ يتجاوز الحد الأقصى' }, { status: 400 });
     }
-    const validTypes = ['cash', 'card', 'transfer', 'fawry', 'other'];
-    if (body.method && !validTypes.includes(body.method)) {
-      return NextResponse.json({ error: 'نوع الدفع غير صالح' }, { status: 400 });
+    if (body.method && !VALID_METHODS.includes(body.method)) {
+      return NextResponse.json({ error: 'طريقة الدفع غير صالحة' }, { status: 400 });
+    }
+    if (body.status && !VALID_STATUSES.includes(body.status)) {
+      return NextResponse.json({ error: 'حالة الدفع غير صالحة' }, { status: 400 });
     }
     if (body.notes && typeof body.notes === 'string' && body.notes.length > 500) {
       return NextResponse.json({ error: 'الملاحظات طويلة جداً' }, { status: 400 });
+    }
+    if (body.reference_number && typeof body.reference_number === 'string' && body.reference_number.length > 100) {
+      return NextResponse.json({ error: 'رقم المرجع طويل جداً' }, { status: 400 });
     }
 
     const allowed = {
       student_id: sanitizePlain(body.student_id),
       amount: body.amount,
       method: body.method || 'cash',
+      status: body.status || 'confirmed',
       payment_date: body.payment_date || new Date().toISOString().split('T')[0],
       subscription_id: body.subscription_id || null,
       notes: body.notes ? sanitizePlain(body.notes) : null,
+      reference_number: body.reference_number ? sanitizePlain(body.reference_number) : null,
+      paid_by_name: body.paid_by_name ? sanitizePlain(body.paid_by_name) : null,
     };
 
     const res = await fetch(`${SUPABASE_URL}/rest/v1/payments`, {

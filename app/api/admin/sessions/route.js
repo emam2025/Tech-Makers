@@ -1,30 +1,8 @@
 import { NextResponse } from 'next/server';
+import { verifyAuth, getTrainerGroupIds } from '../../../../lib/adminAuth.js';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
-
-function getTokenFromCookie(request) {
-  const cookieHeader = request.headers.get('cookie') || '';
-  const match = cookieHeader.match(/sb-access-token=([^;]+)/);
-  return match ? match[1] : null;
-}
-
-async function verifyAuth(request) {
-  const token = getTokenFromCookie(request);
-  if (!token) return { error: 'غير مصرح', status: 401 };
-  const userRes = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
-    headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${token}` },
-  });
-  if (!userRes.ok) return { error: 'جلسة منتهية', status: 401 };
-  const userData = await userRes.json();
-  const profileRes = await fetch(
-    `${SUPABASE_URL}/rest/v1/profiles?id=eq.${userData.id}&select=*`,
-    { headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` } }
-  );
-  const profiles = await profileRes.json();
-  if (!profiles?.length) return { error: 'الملف الشخصي غير موجود', status: 404 };
-  return { user: profiles[0], token };
-}
 
 export async function GET(request) {
   const auth = await verifyAuth(request);
@@ -38,6 +16,13 @@ export async function GET(request) {
     let query = `${SUPABASE_URL}/rest/v1/sessions?select=*,group:groups(name),trainer:trainers(full_name)&order=scheduled_date.desc`;
     if (group_id) query += `&group_id=eq.${group_id}`;
     if (date) query += `&scheduled_date=eq.${date}`;
+
+    if (auth.user.role === 'trainer') {
+      const groupIds = await getTrainerGroupIds(auth.user.id);
+      if (groupIds.length === 0) return NextResponse.json({ sessions: [] });
+      query += `&group_id=in.(${groupIds.join(',')})`;
+    }
+
     query += '&limit=500';
 
     const res = await fetch(query, {
@@ -46,7 +31,7 @@ export async function GET(request) {
     if (!res.ok) return NextResponse.json({ error: 'فشل جلب البيانات' }, { status: 500 });
     const sessions = await res.json();
     return NextResponse.json({ sessions });
-  } catch (err) {
+  } catch {
     return NextResponse.json({ error: 'خطأ داخلي' }, { status: 500 });
   }
 }
@@ -76,7 +61,7 @@ export async function POST(request) {
     }
     const session = await res.json();
     return NextResponse.json({ success: true, session: session[0] });
-  } catch (err) {
+  } catch {
     return NextResponse.json({ error: 'خطأ داخلي' }, { status: 500 });
   }
 }

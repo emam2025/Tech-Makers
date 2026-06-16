@@ -62,7 +62,7 @@ export default function AdminTestCodesPage() {
           const dataUrl = await QRCode.toDataURL(url, {
             width: 256,
             margin: 2,
-            color: { dark: '#1a3fa0', light: '#ffffff' },
+            color: { dark: '#005ea1', light: '#ffffff' },
           });
           setQrImages(prev => ({ ...prev, [c.code]: dataUrl }));
         } catch {}
@@ -133,7 +133,7 @@ export default function AdminTestCodesPage() {
 
       {/* Generate form - admin only */}
       {user?.role === 'admin' && (
-        <div className="bg-white rounded-24 p-4 md:p-6 border border-outline-variant/20">
+        <div className="bg-white dark:bg-surface rounded-24 p-4 md:p-6 border border-outline-variant">
           <h2 className="font-headline-md text-headline-md text-on-surface mb-4 flex items-center gap-2">
             <span className="material-symbols-outlined text-primary">add_circle</span>
             إنشاء كود جديد لطالب
@@ -192,22 +192,22 @@ export default function AdminTestCodesPage() {
 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-3">
-        <div className="bg-white rounded-24 p-4 border border-outline-variant/20 text-center">
+        <div className="bg-white dark:bg-surface rounded-24 p-4 border border-outline-variant text-center">
           <div className="text-2xl font-bold text-on-surface">{codes.length}</div>
           <div className="text-xs text-on-surface-variant">إجمالي الأكواد</div>
         </div>
-        <div className="bg-white rounded-24 p-4 border border-outline-variant/20 text-center">
+        <div className="bg-white dark:bg-surface rounded-24 p-4 border border-outline-variant text-center">
           <div className="text-2xl font-bold text-success">{unusedCount}</div>
           <div className="text-xs text-on-surface-variant">أكواد متاحة</div>
         </div>
-        <div className="bg-white rounded-24 p-4 border border-outline-variant/20 text-center">
+        <div className="bg-white dark:bg-surface rounded-24 p-4 border border-outline-variant text-center">
           <div className="text-2xl font-bold text-on-surface-variant">{usedCount + expiredCount}</div>
           <div className="text-xs text-on-surface-variant">مستخدمة / منتهية</div>
         </div>
       </div>
 
       {/* Codes list */}
-      <div className="bg-white rounded-24 border border-outline-variant/20 overflow-hidden">
+      <div className="bg-white dark:bg-surface rounded-24 border border-outline-variant overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center py-16">
             <span className="material-symbols-outlined text-primary text-3xl animate-spin">progress_activity</span>
@@ -228,11 +228,11 @@ export default function AdminTestCodesPage() {
                       <img
                         src={qrImages[c.code]}
                         alt={`QR ${c.code}`}
-                        className="w-16 h-16 rounded-lg border border-outline-variant/20 cursor-pointer hover:scale-110 transition-transform"
+                        className="w-16 h-16 rounded-lg border border-outline-variant cursor-pointer hover:scale-110 transition-transform"
                         onClick={() => setQrModal(c)}
                       />
                     ) : (
-                      <div className="w-16 h-16 rounded-lg bg-gray-100 animate-pulse" />
+                      <div className="w-16 h-16 rounded-lg bg-surface-container-high animate-pulse" />
                     )}
                   </div>
 
@@ -303,10 +303,10 @@ export default function AdminTestCodesPage() {
       {/* QR Modal */}
       {qrModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4" onClick={() => setQrModal(null)}>
-          <div className="bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full shadow-2xl" onClick={e => e.stopPropagation()}>
+          <div className="bg-white dark:bg-surface rounded-xl p-6 md:p-8 max-w-sm w-full shadow-2xl" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-6">
               <h3 className="font-headline-lg text-headline-lg text-on-surface">QR Code</h3>
-              <button onClick={() => setQrModal(null)} className="p-2 hover:bg-gray-100 rounded-full">
+              <button onClick={() => setQrModal(null)} className="p-2 hover:bg-surface-container-high rounded-full">
                 <span className="material-symbols-outlined">close</span>
               </button>
             </div>
@@ -323,7 +323,7 @@ export default function AdminTestCodesPage() {
               {qrImages[qrModal.code] ? (
                 <img src={qrImages[qrModal.code]} alt="QR Code" className="w-56 h-56" />
               ) : (
-                <div className="w-56 h-56 bg-gray-100 animate-pulse rounded-2xl" />
+                <div className="w-56 h-56 bg-surface-container-high animate-pulse rounded-xl" />
               )}
             </div>
 

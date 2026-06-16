@@ -123,20 +123,20 @@ export default function AttendancePage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
-        <div className="card-admin p-3 text-center">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-xs">
+        <div className="card-admin p-xs text-center">
           <div className="text-lg font-bold" style={{ color: 'var(--color-success)' }}>{stats.present}</div>
           <div className="text-[11px] text-[var(--color-text-tertiary)]">حاضر</div>
         </div>
-        <div className="card-admin p-3 text-center">
+        <div className="card-admin p-xs text-center">
           <div className="text-lg font-bold" style={{ color: 'var(--color-danger)' }}>{stats.absent}</div>
           <div className="text-[11px] text-[var(--color-text-tertiary)]">غائب</div>
         </div>
-        <div className="card-admin p-3 text-center">
+        <div className="card-admin p-xs text-center">
           <div className="text-lg font-bold" style={{ color: 'var(--color-warning)' }}>{stats.late}</div>
           <div className="text-[11px] text-[var(--color-text-tertiary)]">متأخر</div>
         </div>
-        <div className="card-admin p-3 text-center">
+        <div className="card-admin p-xs text-center">
           <div className="text-lg font-bold" style={{ color: 'var(--color-info)' }}>{stats.excused}</div>
           <div className="text-[11px] text-[var(--color-text-tertiary)]">معذور</div>
         </div>
@@ -144,7 +144,7 @@ export default function AttendancePage() {
 
       {/* Attendance Bar */}
       {stats.total > 0 && (
-        <div className="mb-4 card-admin p-3">
+        <div className="mb-xs card-admin p-xs">
           <div className="flex gap-1 h-3 rounded-full overflow-hidden">
             <div style={{ width: `${(stats.present / stats.total) * 100}%`, background: 'var(--color-success)' }} />
             <div style={{ width: `${(stats.late / stats.total) * 100}%`, background: 'var(--color-warning)' }} />
@@ -161,7 +161,7 @@ export default function AttendancePage() {
       )}
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-3 mb-4">
+      <div className="flex flex-wrap gap-3 mb-xs">
         <Select options={[{ value: '', label: 'جميع الجلسات' }, ...sessions.map(s => ({ value: s.id, label: `${s.title} — ${s.scheduled_date || ''}` }))]} value={filterSession} onChange={(e) => setFilterSession(e.target.value)} className="w-full sm:w-64" />
         <Select options={[{ value: '', label: 'جميع المجموعات' }, ...groups.map(g => ({ value: g.id, label: g.name }))]} value={filterGroup} onChange={(e) => setFilterGroup(e.target.value)} className="w-full sm:w-48" />
       </div>

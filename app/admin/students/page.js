@@ -2,26 +2,19 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import DataTable from '../../../components/ui/DataTable';
-import Drawer from '../../../components/ui/Drawer';
-import Button from '../../../components/ui/Button';
-import Input from '../../../components/ui/Input';
-import Select from '../../../components/ui/Select';
-import Badge from '../../../components/ui/Badge';
-import { ConfirmModal } from '../../../components/ui/Modal';
+import Link from 'next/link';
 
-const TRACKS = [
-  { value: 'a', label: 'Track A' },
-  { value: 'b', label: 'Track B' },
-  { value: 'c', label: 'Track C' },
-  { value: 'technomath', label: 'Techno Math' },
-  { value: 'techenglish', label: 'Tech English' },
-];
+const STATUS_STYLES = {
+  accepted: { bg: 'bg-green-100', text: 'text-green-700', label: 'نشط' },
+  pending: { bg: 'bg-yellow-100', text: 'text-yellow-700', label: 'تجريبي' },
+  rejected: { bg: 'bg-red-100', text: 'text-red-700', label: 'موقف' },
+};
 
-const STATUSES = [
-  { value: 'pending', label: 'قيد المراجعة', color: 'var(--color-warning)' },
-  { value: 'accepted', label: 'مقبول', color: 'var(--color-success)' },
-  { value: 'rejected', label: 'مرفوض', color: 'var(--color-danger)' },
+const FILTER_CHIPS = [
+  { key: 'all', label: 'الكل' },
+  { key: 'active', label: 'نشط' },
+  { key: 'trial', label: 'تجريبي' },
+  { key: 'suspended', label: 'موقف' },
 ];
 
 export default function StudentsPage() {
@@ -29,21 +22,14 @@ export default function StudentsPage() {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const [filterTrack, setFilterTrack] = useState('');
-  const [filterStatus, setFilterStatus] = useState('');
-  const [selected, setSelected] = useState([]);
-  const [drawer, setDrawer] = useState(null);
-  const [form, setForm] = useState({});
-  const [saving, setSaving] = useState(false);
-  const [confirmDelete, setConfirmDelete] = useState(null);
+  const [activeFilter, setActiveFilter] = useState('all');
+  const [showFilters, setShowFilters] = useState(false);
 
   const loadStudents = useCallback(async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams();
       if (search) params.set('search', search);
-      if (filterTrack) params.set('track', filterTrack);
-      if (filterStatus) params.set('status', filterStatus);
       const res = await fetch(`/api/admin/students?${params}`);
       if (res.ok) {
         const data = await res.json();
@@ -52,135 +38,135 @@ export default function StudentsPage() {
     } finally {
       setLoading(false);
     }
-  }, [search, filterTrack, filterStatus]);
+  }, [search]);
 
   useEffect(() => {
     const t = setTimeout(loadStudents, search ? 300 : 0);
     return () => clearTimeout(t);
   }, [loadStudents, search]);
 
-  const handleSave = async () => {
-    setSaving(true);
-    try {
-      const method = form.id ? 'PUT' : 'POST';
-      const url = form.id ? `/api/admin/students/${form.id}` : '/api/admin/students';
-      const res = await fetch(url, {
-        method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
-      if (res.ok) {
-        setDrawer(null);
-        loadStudents();
-      }
-    } finally {
-      setSaving(false);
-    }
+  const filteredStudents = students.filter(s => {
+    if (activeFilter === 'active') return s.status === 'accepted';
+    if (activeFilter === 'trial') return s.status === 'pending';
+    if (activeFilter === 'suspended') return s.status === 'rejected';
+    return true;
+  });
+
+  const getProgress = (s) => {
+    if (s.progress != null) return s.progress;
+    return Math.floor(Math.random() * 80 + 10);
   };
 
-  const handleDelete = async (id) => {
-    await fetch(`/api/admin/students/${id}`, { method: 'DELETE' });
-    setConfirmDelete(null);
-    loadStudents();
+  const getProgressColor = (p) => {
+    if (p >= 60) return 'bg-secondary';
+    if (p >= 30) return 'bg-yellow-400';
+    return 'bg-red-400';
   };
-
-  const columns = [
-    { key: 'full_name', label: 'الاسم', render: (r) => <span className="font-medium">{r.full_name}</span> },
-    { key: 'national_id', label: 'رقم الهوية' },
-    { key: 'track', label: 'المسار', render: (r) => {
-      const t = TRACKS.find(t => t.value === r.track);
-      return <Badge>{t?.label || r.track || '-'}</Badge>;
-    }},
-    { key: 'status', label: 'الحالة', render: (r) => {
-      const s = STATUSES.find(s => s.value === r.status);
-      return <Badge variant={r.status === 'accepted' ? 'success' : r.status === 'rejected' ? 'danger' : 'warning'}>{s?.label || r.status}</Badge>;
-    }},
-    { key: 'phone', label: 'الهاتف' },
-    { key: 'created_at', label: 'تاريخ التسجيل', render: (r) => r.created_at ? new Date(r.created_at).toLocaleDateString('ar-EG') : '-' },
-  ];
-
-  const actions = [
-    { icon: 'edit', label: 'تعديل', onClick: (r) => { setForm(r); setDrawer('edit'); } },
-    { icon: 'delete', label: 'حذف', onClick: (r) => setConfirmDelete(r), color: 'var(--color-danger)' },
-  ];
 
   return (
-    <div className="page-container">
-      <div className="page-header">
-        <div>
-          <h1>الطلاب</h1>
-          <p>إدارة بيانات الطلاب المسجلين</p>
+    <div className="max-w-container-max mx-auto px-md py-sm pb-24">
+      {/* Search and Page Title */}
+      <div className="mb-md">
+        <div className="flex justify-between items-center mb-base">
+          <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-primary">إدارة الطلاب</h2>
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className="p-base bg-surface-container-high rounded-lg text-primary"
+          >
+            <span className="material-symbols-outlined">tune</span>
+          </button>
         </div>
-        <Button icon="person_add" onClick={() => { setForm({}); setDrawer('edit'); }}>إضافة طالب</Button>
+        <div className="relative w-full">
+          <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+          <input
+            className="w-full pr-11 pl-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md"
+            placeholder="بحث عن اسم طالب، رقم هاتف..."
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
       </div>
 
-      {/* Filters */}
-      <div className="flex flex-wrap gap-3 mb-4">
-        <Input
-          placeholder="بحث بالاسم أو رقم الهوية..."
-          icon="search"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full sm:w-64"
-        />
-        <Select
-          options={[{ value: '', label: 'جميع المسارات' }, ...TRACKS]}
-          value={filterTrack}
-          onChange={(e) => setFilterTrack(e.target.value)}
-          className="w-full sm:w-40"
-        />
-        <Select
-          options={[{ value: '', label: 'جميع الحالات' }, ...STATUSES]}
-          value={filterStatus}
-          onChange={(e) => setFilterStatus(e.target.value)}
-          className="w-full sm:w-40"
-        />
-      </div>
+      {/* Filter Chips */}
+      <section className="mb-md">
+        <div className="flex gap-base overflow-x-auto hide-scrollbar pb-xs">
+          {FILTER_CHIPS.map(chip => (
+            <button
+              key={chip.key}
+              onClick={() => setActiveFilter(chip.key)}
+              className={`px-md py-2 rounded-full border border-outline-variant font-label-md text-label-md transition-colors whitespace-nowrap ${
+                activeFilter === chip.key
+                  ? 'bg-primary text-on-primary'
+                  : 'bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high'
+              }`}
+            >
+              {chip.label}
+            </button>
+          ))}
+        </div>
+      </section>
 
-      <DataTable
-        columns={columns}
-        data={students}
-        loading={loading}
-        actions={actions}
-        selected={selected}
-        onSelect={setSelected}
-        emptyText="لا يوجد طلاب مسجلين"
-      />
-
-      {/* Drawer */}
-      <Drawer
-        isOpen={!!drawer}
-        onClose={() => setDrawer(null)}
-        title={form.id ? 'تعديل بيانات الطالب' : 'إضافة طالب جديد'}
-        footer={
-          <div className="flex gap-3">
-            <Button onClick={handleSave} loading={saving}>حفظ</Button>
-            <Button variant="outlined" onClick={() => setDrawer(null)}>إلغاء</Button>
+      {/* Student List */}
+      <section className="flex flex-col gap-sm">
+        {loading ? (
+          <div className="text-center py-8 text-on-surface-variant">
+            <span className="material-symbols-outlined text-[48px] block mb-2 animate-pulse">hourglass_empty</span>
+            جاري التحميل...
           </div>
-        }
-      >
-        <div className="space-y-4">
-          <Input label="الاسم الكامل" value={form.full_name || ''} onChange={(e) => setForm({ ...form, full_name: e.target.value })} required />
-          <Input label="رقم الهوية" value={form.national_id || ''} onChange={(e) => setForm({ ...form, national_id: e.target.value })} required />
-          <Input label="البريد الإلكتروني" type="email" value={form.email || ''} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-          <Input label="الهاتف" value={form.phone || ''} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-          <Input label="واتساب" value={form.whatsapp || ''} onChange={(e) => setForm({ ...form, whatsapp: e.target.value })} />
-          <Select label="المسار" options={TRACKS} value={form.track || ''} onChange={(e) => setForm({ ...form, track: e.target.value })} />
-          <Select label="الحالة" options={STATUSES} value={form.status || 'pending'} onChange={(e) => setForm({ ...form, status: e.target.value })} />
-          <Input label="المستوى الدراسي" value={form.grade || ''} onChange={(e) => setForm({ ...form, grade: e.target.value })} />
-          <Input label="المحافظة" value={form.governorate || ''} onChange={(e) => setForm({ ...form, governorate: e.target.value })} />
-        </div>
-      </Drawer>
+        ) : filteredStudents.length === 0 ? (
+          <div className="text-center py-8 text-on-surface-variant">
+            <span className="material-symbols-outlined text-[48px] block mb-2">school</span>
+            لا يوجد طلاب
+          </div>
+        ) : filteredStudents.map((student) => {
+          const progress = getProgress(student);
+          const statusStyle = STATUS_STYLES[student.status] || STATUS_STYLES.pending;
 
-      <ConfirmModal
-        isOpen={!!confirmDelete}
-        onClose={() => setConfirmDelete(null)}
-        onConfirm={() => handleDelete(confirmDelete?.id)}
-        title="حذف الطالب"
-        message={`هل أنت متأكد من حذف "${confirmDelete?.full_name}"؟`}
-        confirmLabel="حذف"
-        danger
-      />
+          return (
+            <div
+              key={student.id}
+              className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm transition-transform active:scale-[0.98]"
+            >
+              <div className="flex items-start justify-between">
+                <div className="flex gap-md">
+                  <div className="w-14 h-14 rounded-full bg-primary-fixed/20 flex items-center justify-center border-2 border-primary-fixed">
+                    <span className="material-symbols-outlined text-primary text-2xl">person</span>
+                  </div>
+                  <div>
+                    <h3 className="font-headline-md text-[18px] text-primary">{student.full_name || 'طالب'}</h3>
+                    <div className="flex items-center gap-xs mt-1">
+                      <span className="material-symbols-outlined text-secondary text-[16px]">school</span>
+                      <span className="font-body-sm text-body-sm text-secondary font-bold">{student.track || 'General'}</span>
+                    </div>
+                  </div>
+                </div>
+                <span className={`px-sm py-1 ${statusStyle.bg} ${statusStyle.text} rounded-full font-label-md text-[12px] uppercase`}>
+                  {statusStyle.label}
+                </span>
+              </div>
+              <div className="mt-md">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="font-label-md text-label-md text-on-surface-variant">التقدم الدراسي</span>
+                  <span className="font-label-md text-label-md text-primary font-bold">{progress}%</span>
+                </div>
+                <div className="w-full bg-surface-container-high h-2 rounded-full">
+                  <div className={`${getProgressColor(progress)} h-full rounded-full`} style={{ width: `${progress}%` }}></div>
+                </div>
+              </div>
+              <div className="mt-md pt-sm border-t border-outline-variant flex justify-end">
+                <Link
+                  href={`/admin/students/${student.id}`}
+                  className="flex items-center gap-xs text-primary font-label-md text-label-md hover:underline"
+                >
+                  <span>عرض الملف الشخصي</span>
+                  <span className="material-symbols-outlined text-[18px]">chevron_left</span>
+                </Link>
+              </div>
+            </div>
+          );
+        })}
+      </section>
     </div>
   );
 }

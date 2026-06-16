@@ -27,6 +27,9 @@ async function verifyAuth(request) {
   return { user: profiles[0], token };
 }
 
+const VALID_METHODS = ['cash', 'instapay', 'vodafone_cash', 'orange_money', 'etisalat_cash', 'fawry', 'visa', 'mastercard', 'transfer', 'other'];
+const VALID_STATUSES = ['pending', 'confirmed', 'rejected', 'refunded'];
+
 export async function GET(request, { params }) {
   const auth = await verifyAuth(request);
   if (auth.error) return NextResponse.json({ error: auth.error }, { status: auth.status });
@@ -65,17 +68,31 @@ export async function PUT(request, { params }) {
       allowed.amount = body.amount;
     }
     if (body.method !== undefined) {
-      const validTypes = ['cash', 'card', 'transfer', 'fawry', 'other'];
-      if (!validTypes.includes(body.method)) {
-        return NextResponse.json({ error: 'نوع الدفع غير صالح' }, { status: 400 });
+      if (!VALID_METHODS.includes(body.method)) {
+        return NextResponse.json({ error: 'طريقة الدفع غير صالحة' }, { status: 400 });
       }
       allowed.method = body.method;
+    }
+    if (body.status !== undefined) {
+      if (!VALID_STATUSES.includes(body.status)) {
+        return NextResponse.json({ error: 'حالة الدفع غير صالحة' }, { status: 400 });
+      }
+      allowed.status = body.status;
     }
     if (body.notes !== undefined) {
       allowed.notes = body.notes ? sanitizePlain(body.notes) : null;
     }
     if (body.payment_date !== undefined) {
       allowed.payment_date = body.payment_date;
+    }
+    if (body.reference_number !== undefined) {
+      allowed.reference_number = body.reference_number ? sanitizePlain(body.reference_number) : null;
+    }
+    if (body.paid_by_name !== undefined) {
+      allowed.paid_by_name = body.paid_by_name ? sanitizePlain(body.paid_by_name) : null;
+    }
+    if (body.subscription_id !== undefined) {
+      allowed.subscription_id = body.subscription_id;
     }
 
     if (Object.keys(allowed).length === 0) {

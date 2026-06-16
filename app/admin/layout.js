@@ -29,7 +29,6 @@ export default function AdminLayout({ children }) {
 
   useEffect(() => { setSidebarOpen(false); }, [pathname]);
 
-  // Body scroll lock when sidebar is open
   useEffect(() => {
     if (sidebarOpen) {
       document.body.style.overflow = 'hidden';
@@ -39,10 +38,10 @@ export default function AdminLayout({ children }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[var(--color-bg)] flex items-center justify-center">
+      <div className="min-h-screen bg-bg-off-white dark:bg-gray-900 flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <span className="material-symbols-outlined text-[var(--color-primary)] text-[40px] animate-spin">progress_activity</span>
-          <p className="text-[var(--color-text-secondary)] text-sm">جاري التحميل...</p>
+          <span className="material-symbols-outlined text-primary dark:text-primary text-[40px] animate-spin">progress_activity</span>
+          <p className="text-on-surface-variant dark:text-gray-400 text-sm">جاري التحميل...</p>
         </div>
       </div>
     );
@@ -50,7 +49,7 @@ export default function AdminLayout({ children }) {
 
   return (
     <ToastProvider>
-      <div className="admin-layout-root min-h-screen bg-[var(--color-bg)] flex overflow-x-hidden" dir="rtl">
+      <div className="min-h-screen bg-bg-off-white dark:bg-gray-900 flex overflow-x-hidden" dir="rtl">
         {/* Mobile overlay */}
         <div
           className={`fixed inset-0 z-40 transition-opacity duration-300 lg:hidden ${sidebarOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}
@@ -65,7 +64,7 @@ export default function AdminLayout({ children }) {
         </div>
 
         {/* Main content */}
-        <div className={`flex-1 flex flex-col min-h-screen admin-main-content ${collapsed ? 'admin-main-collapsed' : ''}`}>
+        <div className={`flex-1 flex flex-col min-h-screen transition-all duration-300 ${collapsed ? 'lg:mr-[72px]' : 'lg:mr-64'}`}>
           <Topbar user={user} onMenuToggle={() => setSidebarOpen(!sidebarOpen)} />
           <main className="flex-1 overflow-x-hidden">
             {children}
