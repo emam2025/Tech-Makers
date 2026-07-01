@@ -1,13 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "mcp": {
-    "stitch": {
+    "supabase": {
       "type": "remote",
-      "url": "https://stitch.googleapis.com/mcp",
-      "enabled": true,
-      "headers": {
-        "X-Goog-Api-Key": "AQ.Ab8RN6KU-ckxYmDQ7C-TizH6cqofO_UooQYCi6u8SkouSWwHsQ"
-      }
+      "url": "https://mcp.supabase.com/mcp?project_ref=clofinlkbfqpplvhuywj",
+      "enabled": true
     }
   }
 }

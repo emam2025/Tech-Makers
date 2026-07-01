@@ -112,6 +112,12 @@ export default function LoginPage() {
                 </>
               )}
             </button>
+
+            <div className="text-center -mt-2">
+              <Link href="/forgot-password" className="text-sm text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">
+                نسيت كلمة المرور؟
+              </Link>
+            </div>
           </form>
 
           <div className="mt-6 text-center">

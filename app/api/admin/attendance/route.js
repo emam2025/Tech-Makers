@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
-import { verifyAuth, getTrainerGroupIds } from '../../../../lib/adminAuth.js';
+import { checkOrigin } from '../../../../lib/security';
+import { verifyCsrfToken } from '../../../../lib/csrf';
+import { verifyAuth, getTrainerGroupIds } from '../../../../lib/auth-middleware.js';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
@@ -12,6 +14,10 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const session_id = searchParams.get('session_id') || '';
     const student_id = searchParams.get('student_id') || '';
+    const page = Math.max(1, parseInt(searchParams.get('page')) || 1);
+    const pageSize = Math.min(100, Math.max(1, parseInt(searchParams.get('pageSize')) || 20));
+    const from = (page - 1) * pageSize;
+    const to = from + pageSize - 1;
 
     let query = `${SUPABASE_URL}/rest/v1/attendance?select=*,session:sessions(title,scheduled_date,group_id),student:students_enhanced(full_name,national_id)&order=created_at.desc`;
     if (session_id) query += `&session_id=eq.${session_id}`;
@@ -19,18 +25,19 @@ export async function GET(request) {
 
     if (auth.user.role === 'trainer') {
       const groupIds = await getTrainerGroupIds(auth.user.id);
-      if (groupIds.length === 0) return NextResponse.json({ attendance: [] });
+      if (groupIds.length === 0) return NextResponse.json({ data: [], total: 0, page, pageSize, totalPages: 0 });
       query += `&session.group_id=in.(${groupIds.join(',')})`;
     }
 
-    query += '&limit=500';
+    query += `&limit=${pageSize}&offset=${from}`;
 
     const res = await fetch(query, {
-      headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` },
+      headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}`, Prefer: 'count=exact' },
     });
     if (!res.ok) return NextResponse.json({ error: 'فشل جلب البيانات' }, { status: 500 });
     const attendance = await res.json();
-    return NextResponse.json({ attendance });
+    const total = parseInt(res.headers.get('content-range')?.split('/')[1] || attendance.length);
+    return NextResponse.json({ data: attendance, total, page, pageSize, totalPages: Math.ceil(total / pageSize) });
   } catch {
     return NextResponse.json({ error: 'خطأ داخلي' }, { status: 500 });
   }
@@ -39,6 +46,9 @@ export async function GET(request) {
 export async function POST(request) {
   const auth = await verifyAuth(request);
   if (auth.error) return NextResponse.json({ error: auth.error }, { status: auth.status });
+  if (!checkOrigin(request) || !verifyCsrfToken(request)) {
+    return NextResponse.json({ error: 'طلب غير مصرح به' }, { status: 403 });
+  }
   if (!['admin', 'supervisor', 'trainer'].includes(auth.user.role)) {
     return NextResponse.json({ error: 'غير مصرح' }, { status: 403 });
   }

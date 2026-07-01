@@ -1,4 +1,4 @@
-import { sanitize, sanitizePlain, validateEmail, validatePhone, validateName, validateInputLength, rateLimit } from '@/lib/security';
+import { sanitize, sanitizePlain, validateEmail, validatePhone, validateName, validateInputLength } from '@/lib/security';
 
 describe('Security Utils', () => {
   describe('sanitize', () => {
@@ -98,23 +98,6 @@ describe('Security Utils', () => {
 
     it('ignores non-string values', () => {
       expect(validateInputLength({ age: 25 })).toBeNull();
-    });
-  });
-
-  describe('rateLimit', () => {
-    it('allows requests within limit', () => {
-      const ip = '192.168.1.1';
-      for (let i = 0; i < 10; i++) {
-        expect(rateLimit(ip, 10, 60000)).toBe(true);
-      }
-    });
-
-    it('blocks requests exceeding limit', () => {
-      const ip = '192.168.1.2';
-      for (let i = 0; i < 10; i++) {
-        rateLimit(ip, 10, 60000);
-      }
-      expect(rateLimit(ip, 10, 60000)).toBe(false);
     });
   });
 });

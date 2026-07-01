@@ -1,34 +1,17 @@
 import { NextResponse } from 'next/server';
+import { checkOrigin } from '../../../../../lib/security';
+import { verifyCsrfToken } from '../../../../../lib/csrf';
+import { verifyAuth, getTokenFromCookie } from '../../../../../lib/auth-middleware.js';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
 
-function getTokenFromCookie(request) {
-  const cookieHeader = request.headers.get('cookie') || '';
-  const match = cookieHeader.match(/sb-access-token=([^;]+)/);
-  return match ? match[1] : null;
-}
-
-async function verifyAuth(request) {
-  const token = getTokenFromCookie(request);
-  if (!token) return { error: 'غير مصرح', status: 401 };
-  const userRes = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
-    headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${token}` },
-  });
-  if (!userRes.ok) return { error: 'جلسة منتهية', status: 401 };
-  const userData = await userRes.json();
-  const profileRes = await fetch(
-    `${SUPABASE_URL}/rest/v1/profiles?id=eq.${userData.id}&select=*`,
-    { headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` } }
-  );
-  const profiles = await profileRes.json();
-  if (!profiles?.length) return { error: 'الملف الشخصي غير موجود', status: 404 };
-  return { user: profiles[0], token };
-}
-
 export async function PATCH(request, { params }) {
   const auth = await verifyAuth(request);
   if (auth.error) return NextResponse.json({ error: auth.error }, { status: auth.status });
+  if (!checkOrigin(request) || !verifyCsrfToken(request)) {
+    return NextResponse.json({ error: 'طلب غير مصرح به' }, { status: 403 });
+  }
   if (!['admin', 'supervisor'].includes(auth.user.role)) {
     return NextResponse.json({ error: 'غير مصرح' }, { status: 403 });
   }
@@ -62,6 +45,9 @@ export async function PATCH(request, { params }) {
 export async function DELETE(request, { params }) {
   const auth = await verifyAuth(request);
   if (auth.error) return NextResponse.json({ error: auth.error }, { status: auth.status });
+  if (!checkOrigin(request) || !verifyCsrfToken(request)) {
+    return NextResponse.json({ error: 'طلب غير مصرح به' }, { status: 403 });
+  }
   if (auth.user.role !== 'admin') {
     return NextResponse.json({ error: 'غير مصرح' }, { status: 403 });
   }

@@ -5,3 +5,10 @@ out/
 *.log
 .vercel
 .env*
+opencode.json
+skills-lock.json
+backups/
+stitch_*/
+update design/
+sql/*.sql
+.agents/

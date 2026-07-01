@@ -5,7 +5,7 @@ const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL;
 
 export async function GET(request) {
   const ip = getClientIp(request);
-  if (!rateLimit(ip, 20, 60000)) {
+  if (!await rateLimit(ip, 20, 60000)) {
     return NextResponse.json({ error: 'تم تجاوز الحد المسموح' }, { status: 429 });
   }
 

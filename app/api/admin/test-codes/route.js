@@ -1,36 +1,10 @@
 import { NextResponse } from 'next/server';
+import { checkOrigin } from '../../../../lib/security';
+import { verifyCsrfToken } from '../../../../lib/csrf';
+import { verifyAuth, getTokenFromCookie } from '../../../../lib/auth-middleware.js';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
-
-function getTokenFromCookie(request) {
-  const cookieHeader = request.headers.get('cookie') || '';
-  const match = cookieHeader.match(/sb-access-token=([^;]+)/);
-  return match ? match[1] : null;
-}
-
-async function verifyAuth(request) {
-  const token = getTokenFromCookie(request);
-  if (!token) return { error: 'غير مصرح', status: 401 };
-
-  const userRes = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
-    headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${token}` },
-  });
-  if (!userRes.ok) return { error: 'جلسة منتهية', status: 401 };
-
-  const userData = await userRes.json();
-
-  const profileRes = await fetch(
-    `${SUPABASE_URL}/rest/v1/profiles?id=eq.${userData.id}&select=*`,
-    { headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` } }
-  );
-  if (!profileRes.ok) return { error: 'الملف الشخصي غير موجود', status: 404 };
-
-  const profiles = await profileRes.json();
-  if (!profiles || profiles.length === 0) return { error: 'الملف الشخصي غير موجود', status: 404 };
-
-  return { user: profiles[0], token };
-}
 
 function generateCode() {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -46,12 +20,19 @@ export async function GET(request) {
   if (auth.error) return NextResponse.json({ error: auth.error }, { status: auth.status });
 
   try {
+    const { searchParams } = new URL(request.url);
+    const page = Math.max(1, parseInt(searchParams.get('page')) || 1);
+    const pageSize = Math.min(100, Math.max(1, parseInt(searchParams.get('pageSize')) || 20));
+    const from = (page - 1) * pageSize;
+    const to = from + pageSize - 1;
+
     const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/test_codes?select=*&order=created_at.desc`,
+      `${SUPABASE_URL}/rest/v1/test_codes?select=*&order=created_at.desc&limit=${pageSize}&offset=${from}`,
       {
         headers: {
           apikey: SUPABASE_KEY,
           Authorization: `Bearer ${SUPABASE_KEY}`,
+          Prefer: 'count=exact',
         },
       }
     );
@@ -63,7 +44,8 @@ export async function GET(request) {
     }
 
     const codes = await res.json();
-    return NextResponse.json({ codes });
+    const total = parseInt(res.headers.get('content-range')?.split('/')[1] || codes.length);
+    return NextResponse.json({ data: codes, total, page, pageSize, totalPages: Math.ceil(total / pageSize) });
   } catch (err) {
     console.error('List test codes error:', err);
     return NextResponse.json({ error: 'خطأ داخلي' }, { status: 500 });
@@ -73,6 +55,9 @@ export async function GET(request) {
 export async function POST(request) {
   const auth = await verifyAuth(request);
   if (auth.error) return NextResponse.json({ error: auth.error }, { status: auth.status });
+  if (!checkOrigin(request) || !verifyCsrfToken(request)) {
+    return NextResponse.json({ error: 'طلب غير مصرح به' }, { status: 403 });
+  }
   if (auth.user.role !== 'admin') {
     return NextResponse.json({ error: 'غير مصرح — للإدارة فقط' }, { status: 403 });
   }

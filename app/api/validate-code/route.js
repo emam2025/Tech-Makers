@@ -6,7 +6,7 @@ const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
 
 export async function POST(request) {
   const ip = getClientIp(request);
-  if (!rateLimit(ip, 5, 60000)) {
+  if (!await rateLimit(ip, 5, 60000)) {
     return NextResponse.json({ error: 'تم تجاوز الحد المسموح، حاول بعد دقيقة' }, { status: 429 });
   }
 
@@ -78,7 +78,7 @@ export async function POST(request) {
 
 export async function PATCH(request) {
   const ip = getClientIp(request);
-  if (!rateLimit(ip, 5, 60000)) {
+  if (!await rateLimit(ip, 5, 60000)) {
     return NextResponse.json({ error: 'تم تجاوز الحد المسموح، حاول بعد دقيقة' }, { status: 429 });
   }
 

@@ -28,6 +28,12 @@ const ROUTE_ROLES = {
   '/admin/profile': ['admin', 'supervisor', 'trainer', 'student'],
 };
 
+const SECURITY_HEADERS = {
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'X-XSS-Protection': '1; mode=block',
+};
+
 function getTokenFromCookie(cookieHeader) {
   const match = cookieHeader.match(/sb-access-token=([^;]+)/);
   return match ? match[1] : null;
@@ -37,6 +43,8 @@ function isPublicEndpoint(pathname) {
   const publicPaths = [
     '/api/admin/auth',
     '/api/admin/auth/guest',
+    '/api/auth/forgot-password',
+    '/api/auth/reset-password',
     '/api/validate-code',
     '/api/register',
     '/api/join',
@@ -48,8 +56,15 @@ function isPublicEndpoint(pathname) {
 }
 
 function isPublicPage(pathname) {
-  const publicPages = ['/', '/about', '/tracks', '/register', '/join', '/certificate', '/english-test', '/technomath', '/techenglish', '/login'];
+  const publicPages = ['/', '/about', '/tracks', '/register', '/join', '/certificate', '/english-test', '/technomath', '/techenglish', '/login', '/forgot-password', '/reset-password'];
   return publicPages.some(p => pathname === p || pathname.startsWith(p + '/'));
+}
+
+function addSecurityHeaders(response) {
+  Object.entries(SECURITY_HEADERS).forEach(([key, value]) => {
+    response.headers.set(key, value);
+  });
+  return response;
 }
 
 export function middleware(request) {
@@ -59,7 +74,8 @@ export function middleware(request) {
 
   // Allow public endpoints and pages
   if (isPublicEndpoint(pathname) || isPublicPage(pathname)) {
-    return NextResponse.next();
+    const response = NextResponse.next();
+    return addSecurityHeaders(response);
   }
 
   // For admin routes
@@ -67,33 +83,22 @@ export function middleware(request) {
     // Check if token exists
     if (!token) {
       if (pathname.startsWith('/api/admin')) {
-        return NextResponse.json({ error: 'غير مصرح' }, { status: 401 });
+        const response = NextResponse.json({ error: 'غير مصرح' }, { status: 401 });
+        return addSecurityHeaders(response);
       }
       const loginUrl = new URL('/login', request.url);
       loginUrl.searchParams.set('redirect', pathname);
-      return NextResponse.redirect(loginUrl);
-    }
-
-    // Token exists - for API routes, let the route handler validate the token
-    // For page routes, we need to check role-based access
-    if (!pathname.startsWith('/api/admin')) {
-      // Check role-based access for specific routes
-      const requiredRoles = ROUTE_ROLES[pathname];
-      if (requiredRoles) {
-        // We'll do a lightweight check by looking at the cookie
-        // The actual role validation happens in the API route or page component
-        // For now, just ensure the user is authenticated
-        // Role validation will happen in the page component
-      }
+      const response = NextResponse.redirect(loginUrl);
+      return addSecurityHeaders(response);
     }
   }
 
-  return NextResponse.next();
+  const response = NextResponse.next();
+  return addSecurityHeaders(response);
 }
 
 export const config = {
   matcher: [
-    '/admin/:path*',
-    '/api/admin/:path*',
+    '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
 };

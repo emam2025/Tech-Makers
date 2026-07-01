@@ -112,7 +112,7 @@ async function sendResultEmail(email, name, result) {
 export async function POST(request) {
   const ip = getClientIp(request);
 
-  if (!rateLimit(ip, 5, 60000)) {
+  if (!await rateLimit(ip, 5, 60000)) {
     return NextResponse.json(
       { error: 'تم تجاوز الحد المسموح من الطلبات' },
       { status: 429 }

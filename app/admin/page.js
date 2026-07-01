@@ -11,11 +11,13 @@ export default function AdminDashboard() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [recentActivity, setRecentActivity] = useState([]);
+  const [todaySessions, setTodaySessions] = useState([]);
+  const [attendanceTotal, setAttendanceTotal] = useState(0);
 
   useEffect(() => {
     async function loadData() {
       try {
-        const [authRes, studentsRes, teamRes, codesRes, groupsRes, sessionsRes, paymentsRes, subscriptionsRes] = await Promise.all([
+        const [authRes, studentsRes, teamRes, codesRes, groupsRes, sessionsRes, paymentsRes, subscriptionsRes, attendanceRes] = await Promise.all([
           fetch('/api/admin/auth'),
           fetch('/api/admin/students'),
           fetch('/api/admin/team'),
@@ -24,29 +26,41 @@ export default function AdminDashboard() {
           fetch('/api/admin/sessions').catch(() => ({ ok: false })),
           fetch('/api/admin/payments').catch(() => ({ ok: false })),
           fetch('/api/admin/subscriptions').catch(() => ({ ok: false })),
+          fetch('/api/admin/attendance?page=1&pageSize=1').catch(() => ({ ok: false })),
         ]);
 
         if (!authRes.ok) { router.push('/login'); return; }
         const authData = await authRes.json();
         setUser(authData.user);
 
-        const studentsData = studentsRes.ok ? await studentsRes.json() : { students: [] };
+        const studentsData = studentsRes.ok ? await studentsRes.json() : { data: [] };
         const teamData = teamRes.ok ? await teamRes.json() : { applications: [] };
         const codesData = codesRes.ok ? await codesRes.json() : { codes: [] };
-        const groupsData = groupsRes.ok ? await groupsRes.json() : { groups: [] };
-        const sessionsData = sessionsRes.ok ? await sessionsRes.json() : { sessions: [] };
-        const paymentsData = paymentsRes.ok ? await paymentsRes.json() : { payments: [] };
+        const groupsData = groupsRes.ok ? await groupsRes.json() : { data: [] };
+        const sessionsData = sessionsRes.ok ? await sessionsRes.json() : { data: [] };
+        const paymentsData = paymentsRes.ok ? await paymentsRes.json() : { data: [] };
         const subsData = subscriptionsRes.ok ? await subscriptionsRes.json() : { subscriptions: [] };
+
+        let attCount = 0;
+        if (attendanceRes.ok) {
+          const attData = await attendanceRes.json();
+          attCount = attData.total || 0;
+        }
+        setAttendanceTotal(attCount);
 
         const now = new Date();
         const thisMonth = now.getMonth();
         const thisYear = now.getFullYear();
 
+        const students = studentsData.data || [];
+        const sessions = sessionsData.data || [];
+        const payments = paymentsData.data || [];
+        const groups = groupsData.data || [];
+
         const activeCodes = codesData.codes?.filter(c => !c.used && (!c.expires_at || new Date(c.expires_at) > now)).length || 0;
         const pendingTeam = teamData.applications?.filter(a => a.status === 'pending').length || 0;
-        const activeStudents = studentsData.students?.filter(s => s.status === 'accepted' || s.status === 'pending').length || 0;
+        const activeStudents = students.filter(s => s.status === 'accepted' || s.status === 'pending').length || 0;
 
-        const payments = paymentsData.payments || [];
         const totalRevenue = payments.filter(p => (p.status || 'confirmed') === 'confirmed').reduce((sum, p) => sum + (parseFloat(p.amount) || 0), 0);
         const thisMonthRevenue = payments.filter(p => {
           const d = new Date(p.payment_date);
@@ -58,15 +72,22 @@ export default function AdminDashboard() {
         const activeSubs = subscriptions.filter(s => s.status === 'active').length;
         const expiredSubs = subscriptions.filter(s => s.status === 'expired').length;
 
+        const todayStr = now.toISOString().split('T')[0];
+        const todaySess = sessions.filter(s => {
+          const sDate = s.scheduled_date ? s.scheduled_date.split('T')[0] : '';
+          return sDate === todayStr;
+        });
+        setTodaySessions(todaySess);
+
         setStats({
-          students: studentsData.students?.length || 0,
+          students: students.length,
           activeStudents,
           team: teamData.applications?.length || 0,
           pendingTeam,
           testCodes: codesData.codes?.length || 0,
           activeCodes,
-          groups: groupsData.groups?.length || 0,
-          sessions: sessionsData.sessions?.length || 0,
+          groups: groups.length,
+          sessions: sessions.length,
           totalRevenue,
           thisMonthRevenue,
           pendingPayments,
@@ -76,7 +97,7 @@ export default function AdminDashboard() {
         });
 
         const activity = [];
-        (studentsData.students || []).slice(0, 3).forEach(s => {
+        students.slice(0, 3).forEach(s => {
           if (s.created_at) {
             const diff = now - new Date(s.created_at);
             if (diff < 7 * 24 * 60 * 60 * 1000) {
@@ -84,7 +105,7 @@ export default function AdminDashboard() {
             }
           }
         });
-        (sessionsData.sessions || []).slice(0, 3).forEach(s => {
+        sessions.slice(0, 3).forEach(s => {
           if (s.scheduled_date) {
             activity.push({ icon: 'event', text: `جلسة "${s.title || 'بدون عنوان'}" ${s.status === 'completed' ? 'مكتملة' : 'مجدولة'}`, time: s.scheduled_date, color: s.status === 'completed' ? 'bg-success/10' : 'bg-primary-fixed/40', iconColor: s.status === 'completed' ? 'text-success' : 'text-primary', date: new Date(s.scheduled_date) });
           }
@@ -123,6 +144,25 @@ export default function AdminDashboard() {
   const today = new Date();
   const dateStr = today.toLocaleDateString('ar-EG', { day: 'numeric', month: 'long', year: 'numeric' });
 
+  const totalStudents = stats?.students || 0;
+  const activeStudents = stats?.activeStudents || 0;
+  const totalSessions = stats?.sessions || 0;
+  const totalGroups = stats?.groups || 0;
+  const totalRevenueVal = stats?.totalRevenue || 0;
+  const thisMonthRevenueVal = stats?.thisMonthRevenue || 0;
+
+  const attendanceCount = attendanceTotal || 0;
+  const avgStudentsPerGroup = totalGroups > 0 ? Math.round(totalStudents / totalGroups) : 0;
+  const expectedAttendance = totalSessions * Math.max(avgStudentsPerGroup, 1);
+  const computedAttendanceRate = expectedAttendance > 0 ? Math.min(Math.round((attendanceCount / expectedAttendance) * 100), 100) : 0;
+
+  const performanceScore = totalStudents > 0 ? Math.round((activeStudents / totalStudents) * 100) : computedAttendanceRate || 0;
+
+  const todayCount = todaySessions.length;
+
+  const circumference = 364.4;
+  const offset = circumference - (performanceScore / 100) * circumference;
+
   return (
     <div className="max-w-container-max mx-auto px-md py-lg mb-24">
       {/* Dashboard Header */}
@@ -138,10 +178,10 @@ export default function AdminDashboard() {
             <div className="bg-primary-fixed/20 p-2 rounded-lg">
               <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>school</span>
             </div>
-            <span className="text-success font-label-md text-label-md flex items-center bg-success/10 px-2 py-0.5 rounded-full">+12%</span>
+            <span className="text-on-surface-variant font-label-md text-label-md flex items-center bg-surface-container/30 px-2 py-0.5 rounded-full">إجمالي</span>
           </div>
           <p className="font-body-sm text-body-sm text-on-surface-variant mt-2">إجمالي الطلاب</p>
-          <h3 className="font-headline-md text-headline-md text-on-surface font-bold">{(stats?.students || 0).toLocaleString()}</h3>
+          <h3 className="font-headline-md text-headline-md text-on-surface font-bold">{totalStudents.toLocaleString()}</h3>
         </div>
         <div className="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm flex flex-col gap-xs hover:shadow-md transition-shadow">
           <div className="flex justify-between items-start">
@@ -151,27 +191,27 @@ export default function AdminDashboard() {
             <span className="text-on-surface-variant font-label-md text-label-md">مستقر</span>
           </div>
           <p className="font-body-sm text-body-sm text-on-surface-variant mt-2">المجموعات النشطة</p>
-          <h3 className="font-headline-md text-headline-md text-on-surface font-bold">{stats?.groups || 0}</h3>
+          <h3 className="font-headline-md text-headline-md text-on-surface font-bold">{totalGroups}</h3>
         </div>
         <div className="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm flex flex-col gap-xs hover:shadow-md transition-shadow">
           <div className="flex justify-between items-start">
             <div className="bg-tertiary-fixed/30 p-2 rounded-lg">
               <span className="material-symbols-outlined text-tertiary" style={{ fontVariationSettings: "'FILL' 1" }}>payments</span>
             </div>
-            <span className="text-success font-label-md text-label-md flex items-center bg-success/10 px-2 py-0.5 rounded-full">+8%</span>
+            <span className="text-on-surface-variant font-label-md text-label-md flex items-center bg-surface-container/30 px-2 py-0.5 rounded-full">شهري</span>
           </div>
           <p className="font-body-sm text-body-sm text-on-surface-variant mt-2">الإيرادات الشهرية</p>
-          <h3 className="font-headline-md text-headline-md text-on-surface font-bold">{(stats?.thisMonthRevenue || 0).toLocaleString()} ج.م</h3>
+          <h3 className="font-headline-md text-headline-md text-on-surface font-bold">{thisMonthRevenueVal.toLocaleString()} ج.م</h3>
         </div>
         <div className="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm flex flex-col gap-xs hover:shadow-md transition-shadow">
           <div className="flex justify-between items-start">
             <div className="bg-error-container/20 p-2 rounded-lg">
               <span className="material-symbols-outlined text-error" style={{ fontVariationSettings: "'FILL' 1" }}>event_available</span>
             </div>
-            <span className="text-error font-label-md text-label-md flex items-center bg-error/10 px-2 py-0.5 rounded-full">-2%</span>
+            <span className="text-on-surface-variant font-label-md text-label-md flex items-center bg-surface-container/30 px-2 py-0.5 rounded-full">تسجيل</span>
           </div>
-          <p className="font-body-sm text-body-sm text-on-surface-variant mt-2">معدل الحضور</p>
-          <h3 className="font-headline-md text-headline-md text-on-surface font-bold">92%</h3>
+          <p className="font-body-sm text-body-sm text-on-surface-variant mt-2">سجلات الحضور</p>
+          <h3 className="font-headline-md text-headline-md text-on-surface font-bold">{attendanceCount.toLocaleString()}</h3>
         </div>
       </section>
 
@@ -212,8 +252,8 @@ export default function AdminDashboard() {
                   <span className="material-symbols-outlined">warning</span>
                 </div>
                 <div>
-                  <h4 className="font-label-md text-label-md text-error">طلاب متعثرون</h4>
-                  <p className="font-body-md text-body-md text-on-surface">34 طالباً بحاجة لاهتمامك</p>
+                  <h4 className="font-label-md text-label-md text-error">الطلاب</h4>
+                  <p className="font-body-md text-body-md text-on-surface">{totalStudents} طالباً مسجلاً</p>
                   <Link href="/admin/students" className="font-label-md text-label-md text-primary underline mt-1 block">عرض القائمة</Link>
                 </div>
               </div>
@@ -223,7 +263,9 @@ export default function AdminDashboard() {
                 </div>
                 <div>
                   <h4 className="font-label-md text-label-md text-primary">جلسات اليوم</h4>
-                  <p className="font-body-md text-body-md text-on-surface">8 جلسات مقررة اليوم</p>
+                  <p className="font-body-md text-body-md text-on-surface">
+                    {todayCount > 0 ? `${todayCount} جلسات مقررة اليوم` : 'لا توجد جلسات اليوم'}
+                  </p>
                   <Link href="/admin/sessions" className="font-label-md text-label-md text-primary underline mt-1 block">عرض الجدول</Link>
                 </div>
               </div>
@@ -266,27 +308,22 @@ export default function AdminDashboard() {
               <span className="font-body-md text-body-md opacity-80">{dateStr}</span>
             </div>
             <div className="space-y-md">
-              <div className="bg-white/10 p-sm rounded-lg flex justify-between items-center">
-                <div className="flex items-center gap-base">
-                  <span className="w-2 h-2 rounded-full bg-secondary-container"></span>
-                  <span className="font-label-md text-label-md">رياضيات - مستوى متقدم</span>
+              {todaySessions.length === 0 ? (
+                <div className="text-center py-4 opacity-80">
+                  <span className="material-symbols-outlined text-[32px] block mb-2">event_busy</span>
+                  <p className="font-body-md text-body-md">لا توجد جلسات اليوم</p>
                 </div>
-                <span className="font-body-sm text-body-sm opacity-80">04:00 م</span>
-              </div>
-              <div className="bg-white/10 p-sm rounded-lg flex justify-between items-center">
-                <div className="flex items-center gap-base">
-                  <span className="w-2 h-2 rounded-full bg-error"></span>
-                  <span className="font-label-md text-label-md">لغة عربية - المستوى 2</span>
+              ) : todaySessions.slice(0, 5).map((s, i) => (
+                <div key={i} className="bg-white/10 p-sm rounded-lg flex justify-between items-center">
+                  <div className="flex items-center gap-base">
+                    <span className="w-2 h-2 rounded-full bg-secondary-container"></span>
+                    <span className="font-label-md text-label-md">{s.title || s.group?.name || 'جلسة'}</span>
+                  </div>
+                  <span className="font-body-sm text-body-sm opacity-80">
+                    {s.scheduled_date ? new Date(s.scheduled_date).toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }) : ''}
+                  </span>
                 </div>
-                <span className="font-body-sm text-body-sm opacity-80">06:00 م</span>
-              </div>
-              <div className="bg-white/10 p-sm rounded-lg flex justify-between items-center">
-                <div className="flex items-center gap-base">
-                  <span className="w-2 h-2 rounded-full bg-surface-bright"></span>
-                  <span className="font-label-md text-label-md">اجتماع المعلمين</span>
-                </div>
-                <span className="font-body-sm text-body-sm opacity-80">08:00 م</span>
-              </div>
+              ))}
             </div>
             <Link href="/admin/sessions" className="w-full mt-md bg-secondary-fixed text-on-secondary-fixed py-2 rounded-xl font-label-md text-label-md hover:opacity-90 transition-opacity text-center block">إدارة الجدول</Link>
           </div>
@@ -298,14 +335,14 @@ export default function AdminDashboard() {
               <div className="relative w-32 h-32">
                 <svg className="w-full h-full transform -rotate-90">
                   <circle className="text-surface-container" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" strokeWidth="12"></circle>
-                  <circle className="text-primary" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" strokeDasharray="364.4" strokeDashoffset="54.6" strokeWidth="12"></circle>
+                  <circle className="text-primary" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" strokeDasharray={circumference} strokeDashoffset={offset} strokeWidth="12"></circle>
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center flex-col">
-                  <span className="text-headline-md font-bold text-primary">85%</span>
+                  <span className="text-headline-md font-bold text-primary">{performanceScore}%</span>
                 </div>
               </div>
             </div>
-            <p className="text-center font-body-sm text-body-sm text-on-surface-variant mt-base">نسبة رضاء الطلاب عن المحاضرين</p>
+            <p className="text-center font-body-sm text-body-sm text-on-surface-variant mt-base">نسبة الطلاب النشطين إلى إجمالي المسجلين</p>
           </div>
         </div>
       </div>

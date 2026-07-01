@@ -5,7 +5,7 @@ import { generateQuestions, analyzeResults } from '../../../lib/gemini';
 export async function POST(request) {
   const ip = getClientIp(request);
 
-  if (!rateLimit(ip, 3, 60000)) {
+  if (!await rateLimit(ip, 3, 60000)) {
     return NextResponse.json(
       { error: 'تم تجاوز الحد المسموح من الطلبات، حاول بعد دقيقة' },
       { status: 429 }

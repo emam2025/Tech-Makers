@@ -1,0 +1,147 @@
+@layer utilities {
+  /* ── RTL ── */
+  .rtl-input {
+    direction: rtl;
+    text-align: right;
+  }
+  .text-royal {
+    color: theme('colors.primary');
+  }
+  [dir="rtl"] .rtl-flip { transform: scaleX(-1); }
+
+  /* ── Admin Design System ── */
+
+  /* Page Container */
+  .page-container {
+    @apply p-4 md:p-6 space-y-4 md:space-y-6;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* Page Header */
+  .page-header {
+    @apply flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4;
+  }
+  .page-header h1 {
+    @apply text-xl md:text-2xl font-bold;
+    color: var(--color-text-primary);
+  }
+  .page-header p {
+    @apply text-sm mt-1;
+    color: var(--color-text-secondary);
+  }
+
+  /* Cards - Admin */
+  .card-admin {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .card-admin:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--color-primary-container);
+  }
+
+  /* KPI Card */
+  .kpi-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-card);
+    padding: var(--space-5);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--color-primary-container);
+  }
+  .kpi-card .kpi-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .kpi-card .kpi-value {
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--color-text-primary);
+  }
+  .kpi-card .kpi-label {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    margin-top: 2px;
+  }
+  .kpi-card .kpi-trend {
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    margin-top: 4px;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+  }
+  .kpi-trend.up { color: var(--color-success); background: var(--color-success-light); }
+  .kpi-trend.down { color: var(--color-danger); background: var(--color-danger-light); }
+
+  /* Status Badge */
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .status-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .status-badge.active { color: var(--color-success); background: var(--color-success-light); }
+  .status-badge.active::before { background: var(--color-success); }
+  .status-badge.pending { color: var(--color-warning); background: var(--color-warning-light); }
+  .status-badge.pending::before { background: var(--color-warning); }
+  .status-badge.expired { color: var(--color-danger); background: var(--color-danger-light); }
+  .status-badge.expired::before { background: var(--color-danger); }
+  .status-badge.suspended { color: var(--color-text-secondary); background: var(--color-surface-dim); }
+  .status-badge.suspended::before { background: var(--color-text-secondary); }
+  .status-badge.trial { color: var(--color-info); background: var(--color-info-light); }
+  .status-badge.trial::before { background: var(--color-info); }
+
+  /* Admin Table */
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .admin-table thead {
+    background: var(--color-surface-dim);
+  }
+  .admin-table th {
+    padding: 12px 16px;
+    text-align: right;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .admin-table td {
+    padding: 12px 16px;
+    font-size: 0.875rem;
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+}

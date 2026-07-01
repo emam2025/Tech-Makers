@@ -25,7 +25,7 @@ function generatePassword() {
 
 export async function POST(request) {
   const ip = getClientIp(request);
-  if (!rateLimit(ip, 3, 60000)) {
+  if (!await rateLimit(ip, 3, 60000)) {
     return NextResponse.json({ error: 'تم تجاوز الحد المسموح، حاول بعد دقيقة' }, { status: 429 });
   }
 
@@ -118,7 +118,7 @@ export async function POST(request) {
     response.cookies.set('sb-access-token', authData.access_token, {
       httpOnly: true,
       secure: true,
-      sameSite: 'lax',
+      sameSite: 'strict',
       path: '/',
       maxAge: authData.expires_in || 3600,
     });
@@ -126,7 +126,7 @@ export async function POST(request) {
     response.cookies.set('sb-refresh-token', authData.refresh_token || '', {
       httpOnly: true,
       secure: true,
-      sameSite: 'lax',
+      sameSite: 'strict',
       path: '/',
       maxAge: 60 * 60 * 24 * 30,
     });

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
-import { sanitizePlain, rateLimit, getClientIp } from '../../../../lib/security';
-import { verifyAuth, getTrainerGroupIds } from '../../../../lib/adminAuth.js';
+import { sanitizePlain, rateLimit, getClientIp, checkOrigin } from '../../../../lib/security';
+import { verifyCsrfToken } from '../../../../lib/csrf';
+import { verifyAuth, getTrainerGroupIds } from '../../../../lib/auth-middleware.js';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
@@ -15,6 +16,10 @@ export async function GET(request) {
     const month = searchParams.get('month') || '';
     const year = searchParams.get('year') || '';
     const status = searchParams.get('status') || '';
+    const page = Math.max(1, parseInt(searchParams.get('page')) || 1);
+    const pageSize = Math.min(100, Math.max(1, parseInt(searchParams.get('pageSize')) || 20));
+    const from = (page - 1) * pageSize;
+    const to = from + pageSize - 1;
 
     let query = `${SUPABASE_URL}/rest/v1/trainer_hours?select=*,trainer:profiles!trainer_hours_trainer_id_fkey(full_name),group:groups(name)&order=date.desc`;
 
@@ -32,18 +37,19 @@ export async function GET(request) {
       const endDate = `${endYear}-${String(endMonth).padStart(2, '0')}-01`;
       query += `&date=gte.${startDate}&date=lt.${endDate}`;
     }
-    query += '&limit=500';
+    query += `&limit=${pageSize}&offset=${from}`;
 
     const res = await fetch(query, {
-      headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` },
+      headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}`, Prefer: 'count=exact' },
     });
     if (!res.ok) return NextResponse.json({ error: 'فشل جلب الساعات' }, { status: 500 });
     const hours = await res.json();
 
     const totalHours = hours.reduce((sum, h) => sum + (parseFloat(h.hours) || 0), 0);
     const approvedHours = hours.filter(h => h.status === 'approved').reduce((sum, h) => sum + (parseFloat(h.hours) || 0), 0);
+    const total = parseInt(res.headers.get('content-range')?.split('/')[1] || hours.length);
 
-    return NextResponse.json({ hours, totalHours, approvedHours });
+    return NextResponse.json({ data: hours, totalHours, approvedHours, total, page, pageSize, totalPages: Math.ceil(total / pageSize) });
   } catch {
     return NextResponse.json({ error: 'خطأ داخلي' }, { status: 500 });
   }
@@ -51,12 +57,15 @@ export async function GET(request) {
 
 export async function POST(request) {
   const ip = getClientIp(request);
-  if (!rateLimit(ip, 30, 60000)) {
+  if (!await rateLimit(ip, 30, 60000)) {
     return NextResponse.json({ error: 'تم تجاوز الحد المسموح' }, { status: 429 });
   }
 
   const auth = await verifyAuth(request);
   if (auth.error) return NextResponse.json({ error: auth.error }, { status: auth.status });
+  if (!checkOrigin(request) || !verifyCsrfToken(request)) {
+    return NextResponse.json({ error: 'طلب غير مصرح به' }, { status: 403 });
+  }
   if (!['admin', 'supervisor', 'trainer'].includes(auth.user.role)) {
     return NextResponse.json({ error: 'غير مصرح' }, { status: 403 });
   }
@@ -119,6 +128,9 @@ export async function POST(request) {
 export async function PATCH(request) {
   const auth = await verifyAuth(request);
   if (auth.error) return NextResponse.json({ error: auth.error }, { status: auth.status });
+  if (!checkOrigin(request) || !verifyCsrfToken(request)) {
+    return NextResponse.json({ error: 'طلب غير مصرح به' }, { status: 403 });
+  }
   if (!['admin', 'supervisor'].includes(auth.user.role)) {
     return NextResponse.json({ error: 'غير مصرح' }, { status: 403 });
   }
@@ -165,6 +177,9 @@ export async function PATCH(request) {
 export async function DELETE(request) {
   const auth = await verifyAuth(request);
   if (auth.error) return NextResponse.json({ error: auth.error }, { status: auth.status });
+  if (!checkOrigin(request) || !verifyCsrfToken(request)) {
+    return NextResponse.json({ error: 'طلب غير مصرح به' }, { status: 403 });
+  }
   if (!['admin', 'supervisor'].includes(auth.user.role)) {
     return NextResponse.json({ error: 'غير مصرح' }, { status: 403 });
   }

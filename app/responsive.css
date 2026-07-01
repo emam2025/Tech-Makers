@@ -1,0 +1,67 @@
+/* ── Mobile Optimizations ── */
+@media (max-width: 767px) {
+  /* Typography */
+  .text-headline-xl { font-size: 28px !important; line-height: 36px !important; }
+  .text-headline-lg { font-size: 24px !important; line-height: 32px !important; }
+  .text-headline-md { font-size: 20px !important; line-height: 28px !important; }
+  .text-headline-lg-mobile { font-size: 24px !important; line-height: 32px !important; }
+  .text-body-lg { font-size: 16px !important; line-height: 24px !important; }
+  .text-body-md { font-size: 14px !important; line-height: 20px !important; }
+
+  /* Touch targets */
+  button, a, [role="button"] { min-height: 44px; }
+  input[type="text"], input[type="email"], input[type="tel"],
+  input[type="password"], input[type="number"], input[type="date"],
+  select, textarea { font-size: 16px !important; min-height: 44px; }
+
+  /* Overflow prevention */
+  html, body { overflow-x: hidden; max-width: 100vw; }
+  img, video, svg { max-width: 100%; height: auto; display: block; }
+
+  /* Grid adjustments */
+  .bento-grid { grid-template-columns: 1fr !important; }
+
+  /* Card border-radius fixes */
+  .rounded-\[2\.5rem\] { border-radius: 1.5rem !important; }
+  .rounded-\[3rem\] { border-radius: 1.5rem !important; }
+  .rounded-\[3\.5rem\] { border-radius: 1.5rem !important; }
+
+  /* Card padding fixes */
+  .p-10 { padding: 1.5rem !important; }
+  .p-8 { padding: 1.25rem !important; }
+  .px-10 { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+  .px-8 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+  .py-24 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+  .py-20 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+  .pt-16 { padding-top: 2rem !important; }
+  .pb-24 { padding-bottom: 3rem !important; }
+
+  /* Heading size fixes */
+  .text-5xl { font-size: 1.75rem !important; line-height: 2rem !important; }
+  .text-4xl { font-size: 1.5rem !important; line-height: 1.75rem !important; }
+  .text-3xl { font-size: 1.25rem !important; line-height: 1.5rem !important; }
+
+  /* Pricing card scale fix */
+  .scale-105 { transform: scale(1) !important; }
+
+  /* Gap fixes */
+  .gap-6 { gap: 1rem !important; }
+  .gap-8 { gap: 1.25rem !important; }
+  .space-y-8 > :not([hidden]) ~ :not([hidden]) { margin-bottom: 1.25rem !important; }
+  .space-y-10 > :not([hidden]) ~ :not([hidden]) { margin-bottom: 1.5rem !important; }
+  .space-y-12 > :not([hidden]) ~ :not([hidden]) { margin-bottom: 1.5rem !important; }
+
+  /* Horizontal scroll cards */
+  .min-w-\[300px\] { min-width: 260px !important; }
+
+  /* Hero text */
+  .tracking-tighter { letter-spacing: -0.01em !important; }
+
+  /* Bottom nav spacer */
+  main { padding-bottom: 5rem !important; }
+}
+
+/* ── Tablet ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .bento-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}

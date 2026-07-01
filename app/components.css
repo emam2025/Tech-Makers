@@ -1,0 +1,215 @@
+@layer components {
+  /* ── Glass Card ── */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--color-border-subtle);
+    box-shadow: var(--shadow-soft);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .glass-card:hover {
+    border-color: var(--color-primary-container);
+    box-shadow: var(--shadow-medium);
+  }
+  .dark .glass-card {
+    border-color: var(--color-border-subtle);
+  }
+  .dark .glass-card:hover {
+    border-color: var(--color-primary-muted);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  /* ── Electric Button ── */
+  .electric-btn {
+    background: linear-gradient(135deg, #2F6FE4 0%, #245FD1 100%);
+    box-shadow: 0 4px 15px rgba(47, 111, 228, 0.2);
+    transition: all 0.2s ease;
+  }
+  .electric-btn:hover {
+    box-shadow: 0 4px 25px rgba(47, 111, 228, 0.4);
+    transform: translateY(-1px);
+  }
+  .dark .electric-btn {
+    box-shadow: 0 4px 20px rgba(95, 142, 248, 0.4);
+  }
+  .dark .electric-btn:hover {
+    box-shadow: 0 4px 30px rgba(95, 142, 248, 0.6);
+  }
+
+  /* ── Electric Gradient Text ── */
+  .electric-gradient-text {
+    background: linear-gradient(135deg, #2F6FE4 0%, #245FD1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .dark .electric-gradient-text {
+    background: linear-gradient(135deg, #5f8ef8 0%, #91b4ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Circuit Background ── */
+  .circuit-bg {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H 90 V 90 H 10 Z' stroke='rgba(47, 111, 228, 0.03)' fill='none'/%3E%3Ccircle cx='10' cy='10' r='1' fill='rgba(47, 111, 228, 0.05)'/%3E%3C/svg%3E");
+  }
+  .dark .circuit-bg {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H 90 V 90 H 10 Z' stroke='rgba(95, 142, 248, 0.05)' fill='none'/%3E%3Ccircle cx='10' cy='10' r='1' fill='rgba(95, 142, 248, 0.1)'/%3E%3C/svg%3E");
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-bold text-white;
+    background-color: var(--color-primary) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(47, 111, 228, 0.15);
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover) !important;
+  }
+  .btn-primary:active { transform: scale(0.98); }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-bold;
+    color: var(--color-primary);
+    border: 1px solid var(--color-outline);
+    background: transparent;
+    transition: all 0.15s ease;
+  }
+  .btn-secondary:hover { background-color: var(--color-surface-hover); }
+
+  .skip-link {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #111827;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    z-index: 80;
+    transform: translateY(-100%);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0;
+  }
+  .skip-link:focus, .skip-link:not(.sr-only) {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* ── Card System (Design System) ── */
+  .ds-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.3s ease;
+  }
+  .ds-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--color-primary-container);
+  }
+  .dark .ds-card {
+    background: var(--color-surface);
+    border-color: var(--color-border-subtle);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  .dark .ds-card:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    border-color: var(--color-primary-muted);
+  }
+
+  /* ── Public Card (for landing pages) ── */
+  .public-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  }
+  .public-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
+    border-color: var(--color-primary-container);
+  }
+  .dark .public-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  .dark .public-card:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  }
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  @media (min-width: 768px) {
+    .bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* ── Auto Grid (dynamic card lists) ── */
+  .auto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    gap: 1rem;
+  }
+  @media (min-width: 768px) {
+    .auto-grid {
+      gap: 1.5rem;
+    }
+  }
+
+  /* ── Dark Mode Card Fix ── */
+  .dark .bg-white {
+    background-color: var(--color-surface) !important;
+  }
+  .student-avatar {
+    background-color: white !important;
+  }
+  .dark .bg-white\/10 {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+  }
+  .dark .bg-white\/15 {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+  }
+  .dark .bg-white\/20 {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+  }
+  .dark .bg-white\/25 {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+  }
+
+  /* ── Dark Mode Text Colors ── */
+  .dark .text-gray-500 {
+    color: var(--color-text-tertiary) !important;
+  }
+  .dark .text-gray-600 {
+    color: var(--color-text-secondary) !important;
+  }
+  .dark .text-gray-700 {
+    color: var(--color-text-primary) !important;
+  }
+  .dark .text-gray-800 {
+    color: var(--color-text-primary) !important;
+  }
+  .dark .text-gray-900 {
+    color: var(--color-text-primary) !important;
+  }
+
+  /* Hide scrollbar for horizontal scroll */
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* ── Layout ── */
+  .section-padding {
+    @apply px-4 md:px-10 py-12 md:py-16;
+  }
+
+  .container-inner {
+    @apply max-w-container-max mx-auto;
+  }
+}
